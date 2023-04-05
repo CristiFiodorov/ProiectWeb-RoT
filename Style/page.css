@@ -1,0 +1,40 @@
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    background-image: linear-gradient(90deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%), url('../images/background-img2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-attachment: fixed;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.content{
+    margin: 5rem;
+    width: 40rem;
+    color: #fff;
+    font-size: 1.8rem;
+    display: felx;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content h1{
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.gold-text{
+    color: #FFD600;
+}
+
