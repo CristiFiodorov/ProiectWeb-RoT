@@ -1,0 +1,70 @@
+// mixins
+
+@mixin mq($size) {
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}
+
+%clearfix {
+    zoom:1;
+    &:before, &:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+$color-primary: #40C9CC;
+$color-secondary: #0D4662;
+$white: #9c9c9c;
+$gray: #DFDFDF;
+$lg: 32em;
+.nav {
+  width: 100vw;
+  display: none;
+  background-color: $gray;
+  @extend %clearfix;
+  @include mq($lg) {
+    display: block;
+  }
+  &--top {
+  padding: 1em;
+   a {
+    color: $color-secondary;
+    text-decoration: none;
+    }
+    @include mq($lg) {
+      li {
+      display: inline;
+      margin: 0 1em 0 0;
+        &:last-child {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+.toggle {
+  background-color: #fff;
+  color: $color-primary;
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.active {
+  display: block;
+}
+
+// hide toggle on larger screens
+@include mq($lg) {
+  .toggle {
+    display: none;
+  }
+}
