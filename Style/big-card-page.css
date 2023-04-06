@@ -62,6 +62,10 @@ main {
     background: linear-gradient(0deg, #FF002E 0%, rgba(255, 0, 46, 0) 103.28%, rgba(255, 214, 0, 0) 103.29%);
 }
 
+.card--gradient-move {
+    background: linear-gradient(0deg, #5200FF 0%, rgba(82, 0, 255, 0) 103.29%);
+}
+
 /* Modifier styles */
 @media screen and (max-width: 995px) {
     .big-card {
@@ -69,6 +73,36 @@ main {
         margin-right: 10rem;
     }
 
+
+    .big-card__image {
+        height: 25rem;
+    }
+
+    .big-card__text p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .big-card {
+        margin-left: 7rem;
+        margin-right: 7rem;
+    }
+
+    .big-card__image {
+        height: 25rem;
+    }
+
+    .big-card__text p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .big-card {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
 
     .big-card__image {
         height: 25rem;

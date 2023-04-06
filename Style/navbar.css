@@ -30,14 +30,20 @@
     margin: 0;
 }
 
-.navbar__nav-links li a{
+.navbar__link{
     font-size: 1rem;
     color: #AFAFAF;
     text-decoration: none;
     font-weight: bold;
 }
 
-.navbar__nav-links li a:hover{
+.navbar__link--clicked{
+    color: #0C5AE8;
+    font-weight: bold;
+}
+
+
+.navbar__link:hover{
     color: #0C5AE8;
     font-weight: bold;
 }

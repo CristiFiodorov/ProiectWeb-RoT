@@ -41,3 +41,7 @@
 .card--gradient-red {
     background: linear-gradient(0deg, #FF002E 0%, rgba(255, 0, 46, 0) 103.28%, rgba(255, 214, 0, 0) 103.29%);
 }
+
+.card--gradient-move {
+    background: linear-gradient(0deg, #5200FF 0%, rgba(82, 0, 255, 0) 103.29%);
+}
