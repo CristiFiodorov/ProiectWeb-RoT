@@ -14,12 +14,12 @@ body{
 }
 
 .title--red {
-    background: linear-gradient(0deg, #FF002E 0%, rgba(255, 0, 46, 0) 103.28%, rgba(255, 214, 0, 0) 103.29%);
+    background: linear-gradient(180deg, rgba(255,0,46,1) 0%, rgba(255,221,221,1) 100%);
     color: white;
 }
 
 .title--blue {
-    background: #0C5AE8;
+    background: linear-gradient(180deg, rgba(12,90,232,1) 0%, rgba(255,255,255,1) 100%);
     color: white;
 }
 
