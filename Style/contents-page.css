@@ -3,7 +3,7 @@ body {
     flex-direction: column;
 }
 
-.title {
+.contents-container__title {
     transform: scale(1);
     transition: 0.5s;
     font-size: 3rem;
@@ -13,7 +13,7 @@ body {
     text-decoration: none;
 }
 
-.title--green {
+.contents-container__title--green {
     background-color: #3bb78f;
     background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
     color: white;
