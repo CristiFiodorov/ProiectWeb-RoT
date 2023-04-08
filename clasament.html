@@ -15,135 +15,29 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar__logo-nav-links">
-            <div class="navbar__logo-div">
-                <a href="#"><img src="images/logo-dark.png" alt="Your Logo" class="navbar__logo"></a>
-            </div>
-            <ul class="navbar__nav-links">
-                <li><a class="navbar__link" href="page.html">Acasa</a></li>
-                <li><a class="navbar__link" href="categorii_cursuri.html">Cursuri</a></li>
-                <li><a class="navbar__link" href="tipuri_indicatoare.html">Indicatoare</a></li>
-                <li><a class="navbar__link" href="sfaturi.html">Sfaturi</a></li>
-                <li><a class="navbar__link" href="#">Teste</a></li>
-                <li><a class="navbar__link navbar__link--clicked" href="clasament.html">Clasament</a></li>
-            </ul>
-        </div>
-    
-        <button class="navbar__login-btn">
-            <a href="#">Log in</a>
-        </button>
-    </nav>
-
+    <nav id="navbar" class="navbar"></nav>
 
     <main>
         <h1 class="title title--blue">Clasament</h1>
 
         <div class="rank-table__container shadow">
-            <table class="rank-table">
+            <table id="table" class="rank-table">
                 <tr class="rank-table__header">
                     <th>No.</th>
                     <th>Username</th>
                     <th>Puncte</th>
                 </tr>
-                <tr class="rank-table__row">
+                <!-- <tr class="rank-table__row">
                     <td>1</td>
                     <td>user1</td>
                     <td>100</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>2</td>
-                    <td>user2</td>
-                    <td>90</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>3</td>
-                    <td>user3</td>
-                    <td>80</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>4</td>
-                    <td>user4</td>
-                    <td>70</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>5</td>
-                    <td>user5</td>
-                    <td>60</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>6</td>
-                    <td>user7</td>
-                    <td>50</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>7</td>
-                    <td>user7</td>
-                    <td>40</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>8</td>
-                    <td>user8</td>
-                    <td>30</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>9</td>
-                    <td>user9</td>
-                    <td>25</td>
-                </tr>
-
-                <tr class="rank-table__row">
-                    <td>1</td>
-                    <td>user1</td>
-                    <td>100</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>2</td>
-                    <td>user2</td>
-                    <td>90</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>3</td>
-                    <td>user3</td>
-                    <td>80</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>4</td>
-                    <td>user4</td>
-                    <td>70</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>5</td>
-                    <td>user5</td>
-                    <td>60</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>6</td>
-                    <td>user7</td>
-                    <td>50</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>7</td>
-                    <td>user7</td>
-                    <td>40</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>8</td>
-                    <td>user8</td>
-                    <td>30</td>
-                </tr>
-                <tr class="rank-table__row">
-                    <td>9</td>
-                    <td>user9</td>
-                    <td>25</td>
-                </tr>
-
-
-
+                </tr> -->
             </table>
         </div>
 
     </main>
     
+    <script src="scripts/nav.js"></script>
+    <script src="scripts/user_scoreboard.js" type="module"></script>
 </body>
 </html>

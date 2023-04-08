@@ -8,11 +8,12 @@ nav.innerHTML = '\
             </div>\
         </div>\
         <ul class="navbar__nav-links">\
-            <li><a class="navbar__link" href="page.html">Acasa</a></li>\
+            <li><a class="navbar__link" href="index.html">Acasa</a></li>\
+            <li><a class="navbar__link" href="categorii_cursuri.html">Cursuri</a></li>\
             <li><a class="navbar__link" href="tipuri_indicatoare.html">Indicatoare</a></li>\
             <li><a class="navbar__link" href="sfaturi.html">Sfaturi</a></li>\
             <li><a class="navbar__link" href="#">Teste</a></li>\
-            <li><a class="navbar__link" href="#">Clasament</a></li>\
+            <li><a class="navbar__link" href="clasament.html">Clasament</a></li>\
         </ul>\
     </div>\
 \
@@ -24,6 +25,14 @@ nav.innerHTML = '\
 let toggle = document.querySelector(".toggle");
 let login = document.querySelector(".navbar__login-btn");
 let links = document.querySelector(".navbar__nav-links");
+
+let current_url = document.location;
+
+document.querySelectorAll(".navbar__link").forEach(function(e){
+    if(e.href == current_url){
+       e.classList += " navbar__link--clicked";
+    }
+ });
 
 toggle.addEventListener('click', function() {
     console.log("toggle clicked");
