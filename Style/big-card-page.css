@@ -75,12 +75,39 @@ main {
 }
 
 
+.big-card__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.big-card__button {
+    transform: scale(1);
+    transition: 0.5s;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+
+.big-card__button:hover, .big-card__button:focus {
+    transform: scale(1.3);
+    transition: 0.5s;
+}
+
+
 
 
 @media screen and (max-width: 995px) {
     .big-card {
         margin-left: 10rem;
         margin-right: 10rem;
+    }
+
+    .big-card__button{
+        font-size: 1rem;
     }
 
 /* 

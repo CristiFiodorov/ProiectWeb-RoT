@@ -1,4 +1,4 @@
-.card-link{
+.card__link{
     text-decoration: none;
 }
     
@@ -34,7 +34,12 @@
     border-radius: 2rem;
 }
     
-.card:hover, .card:focus{
+.card:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.card__link:focus .card{
     transform: scale(1.1);
     transition: 0.5s;
 }

@@ -43,7 +43,7 @@
 }
 
 
-.navbar__link:hover{
+.navbar__link:hover, .navbar__link:focus{
     color: #0C5AE8;
     font-weight: bold;
 }
@@ -65,12 +65,12 @@
     font-weight: bold;
 }
 
-.navbar__login-btn:hover{
+.navbar__login-btn:hover, .navbar__login-btn:focus{
     background-color: #fff;
     border: 1px solid #0C5AE8;
 }
 
-.navbar__login-btn:hover a{
+.navbar__login-btn:hover a, .navbar__login-btn:focus a{
     color: #0C5AE8;
     font-weight: bold;
 }
