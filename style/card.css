@@ -1,4 +1,4 @@
-.card-link{
+.card__link{
     text-decoration: none;
 }
     
@@ -13,6 +13,7 @@
     overflow: hidden;
     margin-bottom: 20px;
     width: 300px;
+    height: 400px;
 }
     
 .card__title{
@@ -33,7 +34,12 @@
     border-radius: 2rem;
 }
     
-.card:hover, .card:focus{
+.card:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.card__link:focus .card{
     transform: scale(1.1);
     transition: 0.5s;
 }
