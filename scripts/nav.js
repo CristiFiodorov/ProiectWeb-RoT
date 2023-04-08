@@ -3,7 +3,7 @@ nav.innerHTML = '\
     <div class="navbar__logo-nav-links">\
         <div class="navbar__logo-div">\
             <div class="navbar__logo-div__container">\
-                <a href="#"><img src="images/logo-dark.png" alt="Your Logo" class="navbar__logo"></a>\
+                <a href="index.html"><img src="images/logo-dark.png" alt="Your Logo" class="navbar__logo"></a>\
                 <img src="/assets/hamb.png" class="toggle"></img>\
             </div>\
         </div>\
@@ -12,14 +12,16 @@ nav.innerHTML = '\
             <li><a class="navbar__link" href="categorii_cursuri.html">Cursuri</a></li>\
             <li><a class="navbar__link" href="tipuri_indicatoare.html">Indicatoare</a></li>\
             <li><a class="navbar__link" href="sfaturi.html">Sfaturi</a></li>\
-            <li><a class="navbar__link" href="#">Teste</a></li>\
+            <li><a class="navbar__link" href="teste.html">Teste</a></li>\
             <li><a class="navbar__link" href="clasament.html">Clasament</a></li>\
         </ul>\
     </div>\
 \
-    <button class="navbar__login-btn">\
-        <a href="#">Log in</a>\
-    </button>';
+    <a href="login.html">\
+        <button class="navbar__login-btn">\
+            Log in\
+        </button>\
+    </a>';
 
 
 let toggle = document.querySelector(".toggle");

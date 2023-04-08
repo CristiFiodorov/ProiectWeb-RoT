@@ -51,3 +51,7 @@
 .card--gradient-move {
     background: linear-gradient(0deg, #5200FF 0%, rgba(82, 0, 255, 0) 103.29%);
 }
+
+.card--gradient-orange {
+    background: linear-gradient(0deg, #f57505 0%, rgba(82, 0, 255, 0) 103.29%);
+}
