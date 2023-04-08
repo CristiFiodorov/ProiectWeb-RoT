@@ -109,15 +109,7 @@ main {
 @media screen and (max-width: 995px) {
     .chapter-footer {
         width: 100%;
-        margin-top: 2.5rem;
-        background-color: #3bb78f;
-        background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
         text-align: center;
-        color: white;
-        
     }
     .chapter-footer__link {
         width: 100%;
@@ -153,13 +145,5 @@ main {
     }
     .chapter-title {
         font-size: 2rem;
-        font-weight: bold;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        margin: 0;
-        text-align: center;
-        text-decoration: none;
-        width: 100%;
-        position: relative;
     }
 }
