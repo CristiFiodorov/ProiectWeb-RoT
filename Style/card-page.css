@@ -3,26 +3,6 @@ body{
     flex-direction: column;
 }
 
-.title {
-    transform: scale(1);
-    transition: 0.5s;
-    font-size: 3rem;
-    font-weight: bold;
-    padding: 1rem;
-    text-align: center;
-    text-decoration: none;
-}
-
-.title--red {
-    background: linear-gradient(180deg, rgba(255,0,46,1) 0%, rgba(255,221,221,1) 100%);
-    color: white;
-}
-
-.title--blue {
-    background: linear-gradient(180deg, rgba(12,90,232,1) 0%, rgba(255,255,255,1) 100%);
-    color: white;
-}
-
 .title:hover {
     transform: scale(1.1);
     transition: 0.5s;

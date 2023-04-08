@@ -20,21 +20,21 @@ main {
     display: flex;
     flex-direction: column;
 
-    margin-left: 15rem;
-    margin-right: 15rem;
+    margin-left: 13rem;
+    margin-right: 13rem;
 
     background-color: #fff;
     border-radius: 2rem;
     overflow: hidden;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
     margin-bottom: 2rem;
-    max-height: 37rem;
+    max-height: 80vh;
 }
 
 .big-card__image {
     box-sizing: border-box;
     width: 100%;
-    height: 25rem;
+    height: 50vh;
     padding: 1rem;
     border-radius: 2rem;
     overflow: hidden;
@@ -76,19 +76,19 @@ main {
     background: linear-gradient(0deg, #5200FF 0%, rgba(82, 0, 255, 0) 103.29%);
 }
 
-/* Modifier styles */
+
+
+
 @media screen and (max-width: 995px) {
     .big-card {
         margin-left: 10rem;
         margin-right: 10rem;
-
-        max-height: 35rem;
     }
 
-
+/* 
     .big-card__image {
-        height: 25rem;
-    }
+        height: 30rem;
+    } */
 
     .big-card__text p {
         font-size: 1rem;
@@ -99,32 +99,23 @@ main {
     .big-card {
         margin-left: 7rem;
         margin-right: 7rem;
-
-        max-height: 30rem;
     }
 
-    .big-card__image {
-        height: 25rem;
-    }
+    /* .big-card__image {
+        height: 30rem;
+    } */
+}
 
-    .big-card__text p {
-        font-size: 1rem;
+@media screen and (max-width: 700px) {
+    .big-card {
+        margin-left: 4rem;
+        margin-right: 4rem;
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
     .big-card {
-        margin-left: 5rem;
-        margin-right: 5rem;
-
-        max-height: 25rem;
-    }
-
-    .big-card__image {
-        height: 25rem;
-    }
-
-    .big-card__text p {
-        font-size: 1rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
     }
 }
