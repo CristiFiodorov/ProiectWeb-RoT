@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="Style/global.css">
-    <link rel="stylesheet" href="Style/navbar.css">
-    <link rel="stylesheet" href="Style/course-chapter.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <nav id="navbar" class="navbar"></nav>
-    <main>
-        <div id="container" class="chapter-container">
-            <!-- <h1 class ="chapter-title chapter-title--green">Capitolul 1 - partea 1 - Drumul Public</h1>
+import chapters from './mock_jsons/chapters.json' assert { type: 'json'};
+
+function createChapterPage(chapterID){
+    const container = document.getElementById("container");
+    const chapterObj = chapters.find(c => c.chapterID == chapterID);
+    container.innerHTML = `
+    <h1 class ="chapter-title chapter-title--green">${chapterObj.title}</h1>
             <div class="chapter-content">
                 <h1 class="chapter-content__subsection chapter-content__subsection--green">
                     Articole de referință din legislația în vigoare
@@ -63,11 +51,9 @@
                 <a class="chapter-footer__link" href="capitol_curs.html"><h1>Lecția Precedentă</h1></a>
                 <a class="chapter-footer__link" href="cuprins.html"><h1>Cuprins</h1></a>
                 <a class="chapter-footer__link" href="capitol_curs.html"><h1>Lecția Următoare</h1></a>
-            </div> -->
-        </div>
-    </main>
-    
-    <script src="scripts/nav.js"></script>
-    <script src="scripts/chapter.js" type="module"></script>
-</body>
-</html>
+            </div>
+    `;
+}
+
+const id = new URLSearchParams(window.location.search).get('chapterID');
+createChapterPage(id);

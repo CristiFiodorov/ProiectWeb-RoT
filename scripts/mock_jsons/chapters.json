@@ -1,0 +1,30 @@
+[
+    {
+        "chapterID" : 1,
+        "title" : "Capitolul 1 - partea 1 - Drumul public"
+    },
+    {
+        "chapterID" : 2,
+        "title" : "Capitolul 1 - partea 2 - Sensul și banda de circulație"
+    },
+    {
+        "chapterID" : 3,
+        "title" : "Capitolul 2 - partea 1 - Deplasarea vehiculelor pe drumul public"
+    },
+    {
+        "chapterID" : 4,
+        "title" : "Capitolul 2 - partea 2 - Circulația în intersecții"
+    },
+    {
+        "chapterID" : 5,
+        "title" : "Capitolul 3 - partea 1 - Semnalizarea rutieră și ordinea de prioritate"
+    },
+    {
+        "chapterID" : 6,
+        "title" : "Capitolul 3 - partea 2 - Semnalele polițistului rutier"
+    },
+    {
+        "chapterID" : 7,
+        "title" : "Capitolul 3 - partea 3 - Semnalele speciale de avertizare"
+    }
+]
