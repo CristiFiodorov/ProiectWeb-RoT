@@ -88,13 +88,16 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  }
-  .active{
+}
+
+.active{
     display: flex !important;
 }
+
 .active__button{
-    display: block !important;
-  }
+    display: block !important;  
+}
+
 @media screen and (max-width: 1150px) {
     .navbar {
         flex-direction: column;
