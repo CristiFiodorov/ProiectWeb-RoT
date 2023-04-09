@@ -62,13 +62,8 @@
     font-weight: bold;
 }
 
-<<<<<<< HEAD
-.navbar__login-btn:hover, .navbar__login-btn:focus{
-    background-color: #0c59e893;
-=======
 .navbar__login-btn:hover, .navbar__login-link:focus .navbar__login-btn{
     background-color: #fff;
->>>>>>> main
     border: 1px solid #0C5AE8;
     color: #0C5AE8;
     font-weight: bold;
