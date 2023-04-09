@@ -3,8 +3,8 @@ nav.innerHTML = '\
     <div class="navbar__logo-nav-links">\
         <div class="navbar__logo-div">\
             <div class="navbar__logo-div__container">\
-                <a href="index.html"><img src="images/logo-dark.png" alt="Your Logo" class="navbar__logo"></a>\
-                <img src="/assets/hamb.png" class="toggle"></img>\
+                <a href="index.html"><img src="../images/logo-dark.png" alt="Your Logo" class="navbar__logo"></a>\
+                <img src="../images/hamb.png" class="toggle"></img>\
             </div>\
         </div>\
         <ul class="navbar__nav-links">\
@@ -17,7 +17,7 @@ nav.innerHTML = '\
         </ul>\
     </div>\
 \
-    <a href="login.html">\
+    <a class="navbar__login-link" href="login.html">\
         <button class="navbar__login-btn">\
             Log in\
         </button>\
