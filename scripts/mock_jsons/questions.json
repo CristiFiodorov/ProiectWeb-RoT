@@ -1,0 +1,21 @@
+[
+    {
+        "id" : 1,
+        "question" : "Ce semnifică indicatorul?",
+        "img" : "images/questions/Cat_B_poz_887.jpg",
+        "answers" : [
+            {
+                "content" : "circulația se desfășoară pe ambele benzi",
+                "isValid" : false
+            },
+            {
+                "content" : " circulația se desfășoară pe ambele benzi",
+                "isValid" : false
+            },
+            {
+                "content" : " selectarea circulaţiei pe direcţii de mers în apropierea unei intersecţii.",
+                "isValid" : false
+            }
+        ]
+    }
+] 
