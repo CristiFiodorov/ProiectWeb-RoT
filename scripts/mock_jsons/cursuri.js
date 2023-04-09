@@ -20,18 +20,18 @@ const courses = [
         "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
         "chapters" : [13,14,15,16]
     },
-    {
-        "cursID" : 4,
-        "titlu" : "Conducerea ecologică",
-        "img" : "images/eco.jpg",
-        "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
-        "chapters" : [17,18]
-    },
-    {
-        "cursID" : 5,
-        "titlu" : "Conduita preventivă",
-        "img" : "images/conducerea-preventiva.jpg",
-        "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
-        "chapters" : [19,20,21,22,23]
-    }
+    // {
+    //     "cursID" : 4,
+    //     "titlu" : "Conducerea ecologică",
+    //     "img" : "images/eco.jpg",
+    //     "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
+    //     "chapters" : [17,18]
+    // },
+    // {
+    //     "cursID" : 5,
+    //     "titlu" : "Conduita preventivă",
+    //     "img" : "images/conducerea-preventiva.jpg",
+    //     "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
+    //     "chapters" : [19,20,21,22,23]
+    // }
 ]
