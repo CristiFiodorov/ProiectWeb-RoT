@@ -31,6 +31,7 @@
 }
 
 .navbar__link{
+    transition: 0.3s;
     font-size: 1rem;
     color: #AFAFAF;
     text-decoration: none;
@@ -44,11 +45,13 @@
 
 
 .navbar__link:hover, .navbar__link:focus{
+    transition: 0.1s;
     color: #0C5AE8;
     font-weight: bold;
 }
 
 .navbar__login-btn{
+    transition: 0.3s;
     background-color: #0C5AE8;
     width: 15rem;
     margin: 1rem;
@@ -63,6 +66,7 @@
 }
 
 .navbar__login-btn:hover, .navbar__login-link:focus .navbar__login-btn{
+    transition: 0.1s;
     background-color: #fff;
     border: 1px solid #0C5AE8;
     color: #0C5AE8;

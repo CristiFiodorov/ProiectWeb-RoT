@@ -40,6 +40,7 @@ form{
 }
 
 button{
+    transition: 0.3s;
     margin-top: 10px;
     background-color: var(--blue);
     color:white;
@@ -47,7 +48,17 @@ button{
     width: 150px;
     font-weight: 400;
     border-radius: 50px;
+    border: none;
 }
+
+button:hover, button:focus{
+    transition: 0.1s;
+    background-color: #fff;
+    border: 1px solid #0C5AE8;
+    color: #0C5AE8;
+    font-weight: bold;
+}
+
 .bottom_text{
     width: 287px;
     max-width: 70vw;
@@ -64,14 +75,17 @@ button{
 }
 
 .bottom_text a{
+    transition: 0.3s;
     text-decoration: none;
     color: var(--blue);
 }
-.bottom_text a:hover {
+.bottom_text a:hover, .bottom_text a:focus{
+    transition: 0.1s;
     text-decoration: underline;
 }
 
 input{
+    transition: 0.3s;
     border: 2px solid #D4D4D4;
     margin-top: 2rem;
 
@@ -81,6 +95,12 @@ input{
     padding: 0px 25px 0px 25px;
 }
 
+input:focus, input:hover{
+    transition: 0.1s;
+    outline: none;
+    border: 2px solid var(--blue);
+}
+
 .form__image img{
     max-height: 80vh;
     max-width: 80vw;
@@ -88,6 +108,12 @@ input{
 
 input[type=text], input[type=password]{
     font-size: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+    .form__image img{
+        display: none;
+    }
 }
 
 @media (min-width: 0px) and (max-width: 480px) {
@@ -102,4 +128,4 @@ input[type=text], input[type=password]{
         width: 220px;
         max-width: 70vw;
     }
-  } 
+} 
