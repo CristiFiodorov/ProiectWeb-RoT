@@ -2,7 +2,7 @@ const questions = [
     {
         "id" : 1,
         "question" : "Ce semnifică indicatorul?",
-        "img" : "images/questions/Cat_B_poz_887.jpg",
+        "img" : "../images/questions/Cat_B_poz_887.jpg",
         "answers" : [
             {
                 "content" : "circulația se desfășoară pe ambele benzi",

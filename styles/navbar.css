@@ -62,12 +62,14 @@
     font-weight: bold;
 }
 
+<<<<<<< HEAD
 .navbar__login-btn:hover, .navbar__login-btn:focus{
     background-color: #0c59e893;
+=======
+.navbar__login-btn:hover, .navbar__login-link:focus .navbar__login-btn{
+    background-color: #fff;
+>>>>>>> main
     border: 1px solid #0C5AE8;
-}
-
-.navbar__login-btn:hover a, .navbar__login-btn:focus a{
     color: #0C5AE8;
     font-weight: bold;
 }
@@ -94,7 +96,7 @@
 .active__button{
     display: block !important;
   }
-@media screen and (max-width: 995px) {
+@media screen and (max-width: 1150px) {
     .navbar {
         flex-direction: column;
         align-items: center;
