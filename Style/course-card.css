@@ -43,7 +43,7 @@
     margin-bottom: 3vh;
 }
     
-.course-card:hover, .card:focus{
+.course-card:hover, .course-card-link:focus .course-card{
     transform: scale(1.05);
     transition: 0.25s;
 }
