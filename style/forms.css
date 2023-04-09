@@ -50,7 +50,9 @@ button{
 }
 .bottom_text{
     width: 287px;
+    max-width: 70vw;
     height: 27px;
+    text-align: center;
     color: #AFAFAF;
     font-family: 'Poppins';
     font-style: normal;
@@ -58,19 +60,30 @@ button{
     font-size: 18px;
     line-height: 27px;
     margin-top: 3rem;
+    margin-bottom: 3rem;
 }
+
+.bottom_text a{
+    text-decoration: none;
+    color: var(--blue);
+}
+.bottom_text a:hover {
+    text-decoration: underline;
+}
+
 input{
     border: 2px solid #D4D4D4;
     margin-top: 2rem;
 
     border-radius: 500px;
-    width: 481px;
+    width: 300px;
     height: 76px;
-    padding: 10px;
+    padding: 0px 25px 0px 25px;
 }
 
 .form__image img{
-    height: 80vh;
+    max-height: 80vh;
+    max-width: 80vw;
 }
 
 input[type=text], input[type=password]{
@@ -85,5 +98,8 @@ input[type=text], input[type=password]{
     form{
         padding: 20px 20px 20px 20px;
     }
-    
+    input{
+        width: 220px;
+        max-width: 70vw;
+    }
   } 
