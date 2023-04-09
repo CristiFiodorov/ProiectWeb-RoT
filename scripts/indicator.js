@@ -24,4 +24,5 @@ function createIndicatorPage(indicatorID)
     main.appendChild(div);
 }
 
-createIndicatorPage(4);
+const id = new URLSearchParams(window.location.search).get('indicatorID');
+createIndicatorPage(id);
