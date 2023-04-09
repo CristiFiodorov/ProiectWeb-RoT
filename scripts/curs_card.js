@@ -1,5 +1,3 @@
-import courses from './mock_jsons/cursuri.json' assert { type: 'json'};
-
 function createCourseCard(courseID){
     const courseObj = courses.find(e => e.cursID == courseID);
     const main = document.getElementById("main");

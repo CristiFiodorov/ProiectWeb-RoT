@@ -1,5 +1,3 @@
-import json from './mock_jsons/sfaturi.json' assert { type : 'json'};
-
 function createAdviceCard(id, title, src){
     const aElement = document.createElement("a");
     aElement.className = "card__link";
@@ -15,4 +13,4 @@ function createAdviceCard(id, title, src){
 }
 
 
-json.map( e => createAdviceCard(e.id, e.title, e.src));
+advices.map( e => createAdviceCard(e.id, e.title, e.src));

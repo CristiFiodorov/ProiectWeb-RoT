@@ -1,4 +1,4 @@
-[
+const courses = [
     {
         "cursID" : 1,
         "titlu" : "Legislație rutieră",

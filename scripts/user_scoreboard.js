@@ -1,5 +1,3 @@
-import json from './mock_jsons/clasament.json' assert { type : 'json'};
-
 function createTableRow(id, userName, score){
     const tableRow = document.createElement("tr");
     tableRow.className = "rank-table__row";
@@ -12,4 +10,4 @@ function createTableRow(id, userName, score){
     tableElement.appendChild(tableRow);
 }
 
-json.map( e => createTableRow(e.id, e.userName, e.score));
+users.map( e => createTableRow(e.id, e.userName, e.score));

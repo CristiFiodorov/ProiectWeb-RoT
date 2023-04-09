@@ -1,4 +1,4 @@
-[
+const questions = [
     {
         "id" : 1,
         "question" : "Ce semnifică indicatorul?",

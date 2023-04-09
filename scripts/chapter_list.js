@@ -1,6 +1,3 @@
-import chapters from './mock_jsons/chapters.json' assert { type: 'json'};
-import courses from './mock_jsons/cursuri.json' assert { type: 'json'};
-
 function createCourseChapter(chapterID){
     const a = document.createElement("a");
     const list = document.getElementById("list");

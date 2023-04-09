@@ -1,5 +1,3 @@
-import json from './mock_jsons/questions.json' assert { type: 'json'};
-import tests from './mock_jsons/teste.json' assert { type: 'json'};
 function getNextChar(char) {
     return String.fromCharCode(char.charCodeAt(0) + 1);
 }
@@ -22,7 +20,7 @@ function createQuestion(questionIndex) {
 
     console.log(`Intrebarea ${questionIndex}`);
     const questionID = questionArray[questionIndex];
-    const questionObj = json.find(e => e.id == questionID);
+    const questionObj = questions.find(e => e.id == questionID);
     questionElement.innerHTML = `
     <h2> Întrebarea #${questionIndex + 1} </h2>
     <h1 class="question__title" >${questionObj.question}</h1>

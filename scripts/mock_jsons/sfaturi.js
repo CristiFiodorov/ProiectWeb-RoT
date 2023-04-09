@@ -1,4 +1,4 @@
-[
+const advices = [
     {
         "id" : 1,
         "src" : "images/drumInzapezit.jpg",

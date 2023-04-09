@@ -1,9 +1,7 @@
-import categorii from './mock_jsons/categorii_indicatoare.json' assert { type: 'json'};
-
 function createCategoryCard(categoryID) {
     const a = document.createElement("a");
     const main = document.getElementById("main");
-    const categorie = categorii.find(e => e.categoryID == categoryID);
+    const categorie = signsCategories.find(e => e.categoryID == categoryID);
     a.href = `indicatoare_specifice.html?categoryID=${categoryID}`;
     a.className = "card__link";
     a.innerHTML = `
@@ -16,4 +14,4 @@ function createCategoryCard(categoryID) {
     main.appendChild(a);
 }
 
-categorii.map(e => createCategoryCard(e.categoryID));
+signsCategories.map(e => createCategoryCard(e.categoryID));

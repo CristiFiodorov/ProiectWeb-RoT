@@ -1,5 +1,3 @@
-import json from './mock_jsons/sfaturi.json' assert { type : 'json'};
-
 function createAdvicePage(id, src, title, content){
     const card = document.getElementById("advice-card");
 
@@ -21,5 +19,5 @@ function createAdvicePage(id, src, title, content){
 }
 
 const id = new URLSearchParams(window.location.search).get('id');
-const adviceObj = json.find(e => e.id == id);
+const adviceObj = advices.find(e => e.id == id);
 createAdvicePage(adviceObj.id, adviceObj.src, adviceObj.title, adviceObj.content);

@@ -1,4 +1,4 @@
-[
+const signsCategories = [
     {
         "categoryID" : 1,
         "name" : "Indicatoare de avertizare",

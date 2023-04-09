@@ -1,5 +1,3 @@
-import chapters from './mock_jsons/chapters.json' assert { type: 'json'};
-
 function createChapterPage(chapterID){
     const container = document.getElementById("container");
     const chapterObj = chapters.find(c => c.chapterID == chapterID);
@@ -48,9 +46,9 @@ function createChapterPage(chapterID){
                 </p>
             </div>
             <div class="chapter-footer">
-                <a class="chapter-footer__link" href="capitol_curs.html"><h1>Lecția Precedentă</h1></a>
-                <a class="chapter-footer__link" href="cuprins.html"><h1>Cuprins</h1></a>
-                <a class="chapter-footer__link" href="capitol_curs.html"><h1>Lecția Următoare</h1></a>
+                <a class="chapter-footer__link" href="#"><h1>Lecția Precedentă</h1></a>
+                <a class="chapter-footer__link" href="categorii_cursuri.html"><h1>Cuprins</h1></a>
+                <a class="chapter-footer__link" href="#"><h1>Lecția Următoare</h1></a>
             </div>
     `;
 }

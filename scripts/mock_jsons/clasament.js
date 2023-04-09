@@ -1,4 +1,4 @@
-[
+const users = [
     {
         "id" : 1,
         "userName" : "user1",

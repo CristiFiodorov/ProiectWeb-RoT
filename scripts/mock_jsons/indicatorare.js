@@ -1,4 +1,4 @@
-[
+const signs = [
     {
         "indicatorID" : 1,
         "name" : "Curba la stanga",

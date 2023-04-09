@@ -1,4 +1,4 @@
-[
+const chapters =[
     {
         "chapterID" : 1,
         "title" : "Capitolul 1 - partea 1 - Drumul public"

@@ -1,5 +1,3 @@
-import tests from './mock_jsons/teste.json' assert { type: 'json'};
-
 function createTestCard(testID)
 {
     const main = document.getElementById("main");
