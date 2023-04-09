@@ -3,7 +3,7 @@ nav.innerHTML = '\
     <div class="navbar__logo-nav-links">\
         <div class="navbar__logo-div">\
             <div class="navbar__logo-div__container">\
-                <a href="index.html"><img src="../images/logo-dark.png" alt="Your Logo" class="navbar__logo"></a>\
+                <a href="index.html"><img src="images/logo-dark.png" alt="Your Logo" class="navbar__logo"></a>\
                 <img src="../images/hamb.png" class="toggle"></img>\
             </div>\
         </div>\
