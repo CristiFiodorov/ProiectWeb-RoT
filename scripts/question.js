@@ -14,7 +14,9 @@ function createQuestion(questionIndex) {
     if (questionIndex >= questionArray.length) {
         questionElement.innerHTML = `
         <h1 class="question__title" > Ai terminat testul!</h1>
-        `;
+        <a href="teste.html">
+        <button id="nextButton" class="question__btn"> Pagina de teste </button>
+        </a>`;
         return;
     }
 
