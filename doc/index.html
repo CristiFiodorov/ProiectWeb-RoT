@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="documentation.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Documentation</title>
+</head>
+<body>
+    <article resource="#" typeof="schema:ScholarlyArticle">
+        <header>
+            <h1 property="schema:name">
+                Romanian Traffic Tutor (ROT)
+            </h1>
+            <meta property="schema:accessibilityFeature" content="alternativeText">
+            <meta property="schema:accessibilityFeature" content="MathML">
+            <meta property="schema:accessibilityHazard" content="noFlashingHazard">
+        </header>
+
+        <div role="contentinfo">
+            <section typeof="sa:AuthorsList">
+                <h2>Team Members</h2>
+                <ul>
+                    <li typeof="sa:ContributorRole" property="schema:author">
+                        <span property="schema:author" typeof="schema:Person">
+                            <meta property="schema:givenName" content="Alexandru">
+                            <meta property="schema:familyName" content="Neagu">
+                            <span property="schema:name">Neagu Alexandru, A6</span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailto:nalex4080@gmail.com" property="schema:email">
+                                    nalex4080@gmail.com
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li typeof="sa:ContributorRole" property="schema:author">
+                        <span property="schema:author" typeof="schema:Person">
+                            <meta property="schema:givenName" content="Petru">
+                            <meta property="schema:additionalName" content="Gabriel">
+                            <meta property="schema:familyName" content="Vamanu">
+                            <span property="schema:name">Vamanu Petru Gabriel, A6</span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailto:petrisor_vmy@yahoo.com" property="schema:email">
+                                    petrisor_vmy@yahoo.com
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li typeof="sa:ContributorRole" property="schema:author">
+                        <span property="schema:author" typeof="schema:Person">
+                            <meta property="schema:givenName" content="Cristian">
+                            <meta property="schema:familyName" content="Fiodorov">
+                            <span property="schema:name">Fiodorov Cristian, A4</span>
+                        </span>
+                        <ul>
+                            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                                <a href="mailto:cristifv59@gmail.com " property="schema:email">
+                                    cristifv59@gmail.com 
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <section role="doc-toc">
+            <h2>Table of Contents</h2>
+            <ol class="nested" role="directory">
+                <li class="nested">
+                    <a href="#Introduction">Introduction</a>
+                    <ol class="nested">
+                        <li class="nested"><a href="#purpose">Purpose</a></li>
+                        <li class="nested"><a href="#conventions">Document Conventions</a></li>
+                        <li class="nested"><a href="#audience">Intented Audience and Reading Suggestions</a></li>
+                        <li class="nested"><a href="#scope">Product Scope</a></li>
+                        <li class="nested"><a href="#references">References</a></li>
+                    </ol>
+                </li>
+                <li class="nested">
+                    <a href="#overall-description">Overall Description</a>
+                    <ol class="nested">
+                        <li class="nested"><a href="#product-motivation">Product Motivation</a></li>
+                        <li class="nested"><a href="#product-functions">Product Functions</a></li>
+                        <li class="nested"><a href="#user-classes">User Classes and Characteristics</a></li>
+                        <li class="nested"><a href="#operating-environment">Operating Environment</a></li>
+                        <li class="nested"><a href="#implementation-constraints">Design and Implementation Constraints</a></li>
+                    </ol>
+                </li>
+                <li class="nested">
+                    <a href="#requirments">External Interface Requirments</a>
+                    <ol class="nested">
+                        <li class="nested">
+                            <a href="#user-interfaces">User Interfaces</a>
+                            <ol class="nested">
+                                <li class="nested"><a href="#landing-page">Landing Page</a></li>
+                                <li class="nested"><a href="#signup-page">Sign-up Page</a></li>
+                                <li class="nested"><a href="#login-page">Login Page</a></li>
+                                <li class="nested"><a href="#courses-page">Courses Page</a></li>
+                                <li class="nested"><a href="#course-toc-page">Course Table Of Contents</a></li>
+                                <li class="nested"><a href="#chapter-presentation">Chapter Presentation Page</a></li>
+                                <li class="nested"><a href="#signs-categories-page">Traffic Signs Categories Page</a></li>
+                                <li class="nested"><a href="#signs-page">Traffic Signs Page</a></li>
+                                <li class="nested"><a href="#sign-info-page">Traffic Sign Presentation Page</a></li>
+                                <li class="nested"><a href="#advices-page">Practical Advices Page</a></li>
+                                <li class="nested"><a href="#advice-presentation">Advice Presentation Page</a></li>
+                                <li class="nested"><a href="#quizes-page">Quizes Page</a></li>
+                                <li class="nested"><a href="#quiz-question-page">Quiz Question Page</a></li>
+                                <li class="nested"><a href="#scoreboard-page">Scoreboard Page</a></li>
+                            </ol>
+                        </li>
+                    </ol>
+                </li class="nested">
+            </ol>
+        </section>
+
+        <hr>
+        <section role="doc-introduction" id="introduction">
+            <h2>1. Introduction</h2>
+            <section id="purpose">
+                <h3>1.1 Purpose</h3>
+                <p>
+                    This SRS describes the general specifications for the <b class="bold-text--blue">Romanian Traffic Tutor</b> application v1.0. We created this application during the Web Technologies course, in the fourth semester 
+                    of University at the Faculty of Computer Science, Iași. Because the full project is not finished yet, this paper aims to describe the product scope, different characteristics and details regarding 
+                    the user interfaces, and several application features. We will cover the back-end components of the application later, in an updated version of this documentation.
+                    <!-- Identify the product whose software requirements are specified in this document, 
+                    including the revision or release number. Describe the scope of the product that is 
+                    covered by this SRS, particularly if this SRS describes only part of the system or a 
+                    single subsystem. -->
+                </p>
+            </section>
+            <section id="conventions">
+                <h3>1.2 Document Conventions</h3>
+                <ul>
+                    <li>This document has been written following the <cite typeof="citation">IEEE System Requirements Specification Template</cite></li>
+                    <li>This document respects the <cite typeof="citation">Scholarly HTML</cite> specification</li>
+                    <li>Citations are specified in italics</li>
+                    <!-- <li></li> -->
+                </ul>
+                <!-- Describe any standards or typographical conventions that were followed when writing this SRS, such as fonts or highlighting that have special significance. 
+                For example, state whether priorities for higher-level requirements are assumed to be inherited by detailed requirements, or whether every requirement statement 
+                is to have its own priority. -->
+            </section>
+            <section id="audience">
+                <h3>1.3 Intended Audience and Reading Suggestions</h3>
+                <p>
+                    This document is intended for the laboratory teacher, who will be grading our product during the 8th and 17th weeks of the semester. For the evaluation during the 8th week, only the 
+                    <cite><a href="#product-scope">Product Scope</a></cite>, <cite><a href="#overall-description">Overall Description</a></cite>, and <cite><a href="#user-interfaces">User Interfaces</a></cite> 
+                    sections are relevant.
+                    <!-- Describe the different types of reader that the document is intended for, 
+                    such as developers, project managers, marketing staff, users, testers, 
+                    and documentation writers. Describe what the rest of this SRS contains and how it is organized. 
+                    Suggest a sequence for reading the document, beginning with the overview sections and proceeding through the 
+                    sections that are most pertinent to each reader type. -->
+                </p>
+            </section>
+            <section id="scope">
+                <h3>1.4 Product Scope</h3>
+                <p>
+                    The <b class="bold-text--blue">Romanian Traffic Tutor</b> application aims to help those who are struggling to pass their driving license exam. All the laws 
+                    from the Traffic Code are presented in an interactive way, making it easier for the users to learn. All the traffic signs are concisely presented in a 
+                    separate section, with a lot of real examples. The users should be able to test their understanding by taking quizes, ordered by difficulty levels. 
+                    A scoreboard to track the progress and performance should also be provided, both within the application and as a RSS feed.
+                    <!-- Provide a short description of the software being specified and its purpose, s
+                    including relevant benefits, objectives, and goals. 
+                    Relate the software to corporate goals or business strategies. 
+                    If a separate vision and scope document is available, 
+                    refer to it rather than duplicating its contents here. -->
+                </p>
+            </section>
+            <section role="doc-bibliography" id="references">
+                <h3>1.5 References</h3>
+                <!-- List any other documents or Web addresses to which this SRS refers. These may include user interface style guides, 
+                    contracts, standards, system requirements specifications, use case documents, or a vision and scope document. 
+                    Provide enough information so that the reader could access a copy of each reference, including title, author, 
+                    version number, date, and source or location. -->
+                <ul>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://profs.info.uaic.ro/~busaco/teach/courses/web" property="schema:citation" id="course-site">
+                        <cite property="schema:name">
+                            <a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/">B. Sabin Corneliu. Course Page. Web Technologies 2023.</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://victorvlad19.github.io/web" property="schema:citation" id="lab-page">
+                        <cite property="schema:name">
+                            <a href="https://victorvlad19.github.io/web">V. Vlad. Laboratory Page. Web Technologies 2023.</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://github.com/rick4470/IEEE-SRS-Tempate" property="schema:citation" id="document-template">
+                        <cite property="schema:name">
+                            <a href="https://github.com/rick4470/IEEE-SRS-Tempate">H. Rick. IEEE System Requirments Specification Template.</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://w3c.github.io/scholarly-html" property="schema:citation" id="scholarly-html">
+                        <cite property="schema:name">
+                            <a href="https://w3c.github.io/scholarly-html/">About Scholarly HTML.</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://fonts.google.com/" property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://fonts.google.com/">Google Fonts</a>
+                        </cite>
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <hr>
+        <section role="doc-chapter" id="overall-description">
+            <h2>2. Overall Description</h2>
+            <section id="product-motivation">
+                <h3>2.1 Product Motivation</h3>
+                <p>
+                    Driving is a crucial part of modern life, providing individuals the freedom to go where they want in relatively short time. However, driving comes with a lot of 
+                    risks and dangers that can be minimized by knowing the laws and regulations of the traffic code.
+                    Unfortunately, there are drivers who don't know even the elementary rules in traffic, which can make them more likely to cause accidents or receive traffic violations.
+                    Additionally, attending driving school and passing the driving exam can be difficult for some people, as they may have trouble retaining the information they learn. 
+                    This can lead to a sense of frustration and lack of confidence. To address these issues, we aim to create a modern application that teaches all the laws and signs 
+                    from the traffic code in an interactive and engaging way. Our application will provide a variety of quizzes organized by difficulty levels, so that users can test 
+                    their knowledge and improve their understanding of the traffic code. By doing so, we hope to make a positive impact in the society and help new drivers feel more confident and 
+                    safe behind the wheel.
+                    <!-- Motivatia Produsului !-->
+                </p>
+            </section>
+            <section id="product-functions">
+                <h3>2.2 Product Functions</h3>
+                <p>
+                    <ul>
+                        <li>
+                            <span class="ul-heading__move">Login and Sign-up Features</span>
+                            <ul>
+                                <li>A login page where users introduce their username and password to enter the application</li>
+                                <li>An authentification page where users can create a new account in the application</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="ul-heading__move">
+                                Traffic Signs Features
+                            </span>
+                            <ul>
+                                <li>
+                                    A page that contains multiple categories of traffic signs. All the categories are displayed on separated cards. 
+                                    The user can press on any card in order to enter a page that displays all the traffic signs related to the chosen category.
+                                </li>
+                                <li>
+                                    A page that displays multiple traffic signs that are all corresponding to a specific category. All the traffic signs are displayed on separated cards.
+                                    The user can press on any card in order to enter a page that displays relevant information about the chosen traffic sign.
+                                </li>
+                                <li>
+                                    A page that displays relevant information about a specific traffic sign. All the rules, variations and real world examples regarding the traffic signs are 
+                                    concisely displayed on the screen. 
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="ul-heading__move">Practical Advices Features</span> 
+                            <ul>
+                                <li>
+                                    A page that contains multiple practical advices about driving. All the practical advices are displayed on separated cards. 
+                                    The user can press on a specific card in order to enter a page that presents the chosen advice.
+                                </li>
+                                <li>
+                                    A page that presents a practical driving advice.   
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="ul-heading__move">Courses Features</span> 
+                            <ul>
+                                <li>
+                                    A page that contains three course categories: <span class="course--green">Legislation</span>, <span class="course--green">Mechanics</span> and <span class="course--green">First Aid</span>. 
+                                    Each course is displayed on a separate card. The user can press on a specific card in order to enter a new page that displays the a list of available chapters for the 
+                                    selected course.
+                                </li>
+                                <li>
+                                    A page that displays a list of chapters for a specific course. The user can press on a specific chapter in order to enter a presentation page. 
+                                </li>
+                                <li>
+                                    A page that presents a given chapter of the course. Several resourses such as images and citations might be included in the presentation. 
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="ul-heading__move">Quizes Features</span> 
+                            <ul>
+                                <li>
+                                    A page that contains multiple quizes, of different difficulties, on different topics. Only logged in users can access this page. 
+                                    Each quiz is displayed on a separate card. The user can press one of the cards in order to start a desired quiz.
+                                </li>
+                                <li>
+                                    A page that displays a question from a specific quiz. Each question is numbered. A photo and three answer options are associated. 
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="ul-heading__move">Scoreboard Features</span> 
+                            <ul>
+                                <li>
+                                    A scoreboard page. All users are displayed on the scoreboard, in descending order of their total score. 
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- Summarize the major functions the product must perform or must let the user perform. 
+                    Details will be provided in Section 3, so only a high level summary (such as a bullet list) is needed here. 
+                    Organize the functions to make them understandable to any reader of the SRS. A picture of the major groups of 
+                    related requirements and how they relate, such as a top level data flow diagram or 
+                    object class diagram, is often effective. -->
+                </p>
+            </section>
+            <section id="user-classes">
+                <h3>2.3 User Classes and Characteristics</h3>
+                <p>
+                    The application will be used by all the people who want to learn more about the traffic code and improve their driving skills.
+                    
+                    <!-- Identify the various user classes that you anticipate will use this product. User classes may be differentiated 
+                    based on frequency of use, subset of product functions used, technical expertise, security or privilege levels, 
+                    educational level, or experience. Describe the pertinent characteristics of each user class. 
+                    Certain requirements may pertain only to certain user classes. Distinguish the most important user classes 
+                    for this product from those who are less important to satisfy. -->
+                </p>
+            </section>
+            <section id="operating-environment">
+                <h3>2.4 Operating Environment</h3>
+                <p>
+                    <!-- Describe the environment in which the software will operate, including the hardware platform, 
+                    operating system and versions, and any other software components or applications with which it
+                    must peacefully coexist. -->
+
+                    <ul>
+                        <li>
+                            Hardware Platform
+                            <ul>
+                                <li>Desktop</li>
+                                <li>Mobile</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Browser
+                            <ul>
+                                <li>Google Chrome</li>
+                                <li>Mozilla Firefox</li>
+                                <li>Microsoft Edge</li>
+                                <li>Apple Safari</li>
+                            </ul>
+                        </li>
+
+                </p>
+            </section>
+            <section id="implementation-constraints">
+                <h3>2.5 Design and Implementation Constraints</h3>
+                <p>
+
+                    The development of the Romanian Traffic Tutor app will have some constraints regarding the use of tools and frameworks. 
+                    The grading policy prohibits the use of frontend or backend frameworks, and any tools used must have an open license.
+                    To comply with these constraints, the development team will rely on HTML5, CSS3, and Javascript for the interface, 
+                    without using any frontend or backend frameworks. The team will also use Node.js for the backend, 
+                    but without the use of web server frameworks like Express.
+
+                    <!-- Describe any items or issues that will limit the options available to the developers. 
+                    These might include: corporate or regulatory policies; hardware limitations (timing requirements, 
+                    memory requirements); interfaces to other applications; specific technologies, tools, and databases 
+                    to be used; parallel operations; language requirements; communications protocols; security 
+                    considerations; design conventions or programming standards (for example, if the customer’s 
+                    organization will be responsible for maintaining the delivered software). -->
+                </p>
+            </section>
+            <!-- <section id="user-documentation">
+                <h3>2.6 User Documentation</h3>
+                <p>
+                    List the user documentation components (such as user manuals, on-line help, and tutorials) that will 
+                    be delivered along with the software. Identify any known user documentation delivery formats or 
+                    standards.
+                </p>
+            </section>
+            <section id="assumptions-dependencies">
+                <h3>2.7 Assumptions and Dependencies</h3>
+                <p>
+                    List any assumed factors (as opposed to known facts) that could affect the requirements 
+                    stated in the SRS. These could include third-party or commercial components that you plan to use, 
+                    issues around the development or operating environment, or constraints. The project could be affected 
+                    if these assumptions are incorrect, are not shared, or change. Also identify any dependencies the project 
+                    has on external factors, such as software components that you intend to reuse from another project, 
+                    unless they are already documented elsewhere  (for example, in the vision and scope document or the project plan). 
+                </p>
+            </section> -->
+        </section>
+        <hr>
+        <section role="doc-chapter" id="requirments">
+            <h2>3. External Interface Requirments</h2>
+            <section id="user-interfaces">
+                <h3>3.1 User Interfaces</h3>
+                <section id="landing-page">
+                    <h4>3.1.1 Landing Page</h4>
+                    <p>
+                        This page contains a navbar that is also present on every other page. 
+                        The navbar contains seven different links, each one leading to different pages. 
+                        The following pages might be accesed (in the same order) from the navbar: <cite><a href="#landing-page">Landing Page</a></cite>,
+                        <cite><a href="#courses-page">Courses Page</a></cite>, <cite><a href="#signs-categories-page">Traffic Signs Categories Page</a></cite>, 
+                        <cite><a href="#advices-page">Practical Advices Page</a></cite>, <cite><a href="#quizes-page">Quizes Page</a></cite>, <cite><a href="#scoreboard-page">Scoreboard Page</a></cite>
+                        and <cite><a href="#login-page">Login Page</a></cite>. Also, it's worth to mention that the page is perfectly responsive and the navbar transforms into an accordion. We used javascript
+                        to create such effects.
+                        <!-- ADD CONTENT  -->
+                    </p>
+                    <div class="figure-wrapper">
+                        <figure typeof="sa-image">
+                            <img src="images/landing_page.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <figcaption>Landing Page Design On Desktop</figcaption>
+                        </figure>
+                        <figure typeof="sa-image">
+                            <img src="images/m_landing_page.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <figcaption>Landing Page Design On Mobile</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                <section id="signup-page">
+                    <h4>3.1.2 Sign-up Page</h4>
+                    <p>
+                        This page displays a form on the screen, where the user should fill all the given fields in order to create an account on the application.
+                        After the user successfully completed all the fields, he should click the button bellow in order to create the account. If the user already has an account 
+                        he can press on the link <b class="bold-text--blue">Loghează-te</b> to be redirected on the <cite><a href="#login-page">Login Page</a></cite>.
+                    </p>
+                    <div class="figure-wrapper">
+                        <figure typeof="sa-image">
+                            <img src="images/signup.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <figcaption>Sign-up Page Design On Desktop</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                <section id="login-page">
+                    <h4>3.1.3 Login Page</h4>
+                    <p>
+                        This page displays a form on the screen, where the user should fill the username and password fields.
+                        After the user successfully completed the fields with the correct information, he will enter the application by clicking on the button below. A logged in user will have access
+                        to the quizes page and his progress will be displayed on the <cite><a href="#scoreboard-page">Scoreboard Page</a></cite>. 
+                        If the user doesn't have an account, he can press on the link <b class="bold-text--blue">Înregistrează-te</b> to be redirected on the <cite><a href="#signup-page">Sign-up Page</a></cite>.
+                    </p>
+                    <div class="figure-wrapper">
+                        <figure typeof="sa-image">
+                            <img src="images/login.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <figcaption>Login Page Design On Desktop</figcaption>
+                        </figure>
+                        <figure typeof="sa-image">
+                            <img src="images/m_login.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <figcaption>Login Page Design On Mobile</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                <section id="courses-page">
+                    <h4>3.1.4 Courses Page</h4>
+                    <p>
+                        This page displays three cards on the screen. Each card corresponds to a course that has multiple chapters and detailed explanations for each chapter.
+                        The course-themes are the following: <span class="course--green">Legislation</span>, <span class="course--green">Mechanics</span> and <span class="course--green">First Aid</span> in the exact 
+                        same order. A hover effect was added for each card. If the user clicks on a card, he will be redirected to a <cite><a href="#course-toc-page">Course Table Of Contents Page</a></cite>, specific 
+                        for each type of course.
+                    </p>
+                    <div class="figure-wrapper">
+                        <figure typeof="sa-image">
+                            <img src="images/courses_page.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <figcaption>Courses Page Design On Desktop</figcaption>
+                        </figure>
+                        <figure typeof="sa-image">
+                            <img src="images/m_courses_page.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <figcaption>Courses Page Design On Mobile</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                <section id="course-toc-page">
+                    <h4>3.1.5 Course Table Of Contents</h4>
+                    <p>
+                        This page displays a list of available chapters for a specific course. Each chapter has it's own box on the screen and the user can click on one 
+                        of them in order to choose a specific chapter. A hover effect was added for each box. All the boxes on the page are generated using javascript. If the user clicks on the box, 
+                        he will further be redirected to the <cite><a href="#chapter-presentation">Chapter Presentation Page</a></cite>. 
+                    </p>
+                    <div class="figure-wrapper">
+                        <figure typeof="sa-image">
+                            <img src="images/courses_toc_page.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <figcaption>Course Table Of Contents Page Design On Desktop</figcaption>
+                        </figure>
+                        <figure typeof="sa-image">
+                            <img src="images/m_courses_toc_page.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <figcaption>Course Table Of Contents Page Design On Mobile</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                
+                <section id="chapter-presentation">
+                    <h4>3.1.6 Chapter Presentation Page</h4>
+                    <p>
+                        This page displays specific information about a chosen course chapter.
+                        Several elements might be displayed on this page such as images, styled headings, block paragraphs and bolded text.
+                        On the bottom of the page there is a footer with three buttons. The leftmost and rightmost buttons redirects the user to the 
+                        previous and next chapters. The middle button redirects the user back to the <cite><a href="#course-toc-page">Course Table Of Contents Page</a></cite>.
+                    </p>
+                    <div class="figure-wrapper">
+                        <figure typeof="sa-image">
+                            <img src="images/course_chapter.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <figcaption>Chapter Presentation Page Design On Desktop</figcaption>
+                        </figure>
+                        <figure typeof="sa-image">
+                            <img src="images/m_course_chapter.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <figcaption>Chapter Presentation Page Design On Mobile</figcaption>
+                        </figure>
+                    </div>
+                </section>
+                
+                
+            </section>
+        </section>
+    </article>
+
+    <footer></footer>
+</body>
+</html>
