@@ -8,15 +8,15 @@ function createChapterPage(chapterID){
                     Articole de referință din legislația în vigoare
                 </h1>
                 <p class="chapter-content__paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, cum? Ut odio fugit assumenda optio reprehenderit, vel cumque esse fugiat obcaecati unde vitae ad nulla, eum dolorem voluptates aut in?
+                    istinctio quod ut enim obcaecati ex voluptas debitis beatae tempore nostrum repudiandae ea! Ipsa eum dolore cumque fugit nobis doloribus beatae officiis nemo laudantium!
+                    Aperiam delectus aspernatur quas sed molestias, ex deserunt temporibus! Doloribus soluta maxime amet aliquid cumque recusandae blanditiis odio maiores voluptates quidem ipsa tempora placeat possimus excepturi quo odit, vero sed.
+                    Et quae, nemo beatae porro officiis iure, fugiat consequuntur temporibus mollitia rem sunt odio ullam libero dicta facere? Tenetur deleniti magni eum, hic unde consequatur nam eos. Fuga, accusantium veniam?
+                    AssumenLorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, cum? Ut odio fugit assumenda optio reprehenderit, vel cumque esse fugiat obcaecati unde vitae ad nulla, eum dolorem voluptates aut in?
                     Assumenda maiores dolore, officia blanditiis, eum deleniti delectus earum magni incidunt esse quia fugiat aperiam odit iste tenetur dolores animi maxime itaque sint sapiente nisi fugit! Sequi illo accusantium sed.
                     Exercitationem alias, numquam debitis similique nemo a autem est dignissimos dolores quo optio dolor fuga repudiandae animi eaque sit. Nulla vitae blanditiis saepe hic nesciunt error distinctio, voluptatibus illum fuga.
                     Exercitationem rerum aliquid asperiores debitis possimus molestias tempore beatae, nihil cum necessitatibus libero ex soluta nisi, voluptates nemo officiis sed laborum reiciendis atque expedita sunt at. Ratione nobis autem vero.
                     Odit, pariatur nulla reprehenderit dolores illum sequi architecto alias quidem sed ut omnis ullam blanditiis, enim cumque. Repellat, atque error. Nisi molestias, voluptas amet dolor nam aspernatur alias illo minus.
-                    Modi, animi veniam, quasi totam quae distinctio quod ut enim obcaecati ex voluptas debitis beatae tempore nostrum repudiandae ea! Ipsa eum dolore cumque fugit nobis doloribus beatae officiis nemo laudantium!
-                    Aperiam delectus aspernatur quas sed molestias, ex deserunt temporibus! Doloribus soluta maxime amet aliquid cumque recusandae blanditiis odio maiores voluptates quidem ipsa tempora placeat possimus excepturi quo odit, vero sed.
-                    Et quae, nemo beatae porro officiis iure, fugiat consequuntur temporibus mollitia rem sunt odio ullam libero dicta facere? Tenetur deleniti magni eum, hic unde consequatur nam eos. Fuga, accusantium veniam?
-                    Assumenda sequi ut, eius maiores fugiat porro aperiam harum id. Accusamus unde asperiores numquam eaque, laboriosam autem. Atque vero alias, excepturi quis facilis reiciendis. Quo qui obcaecati aperiam aut earum?
+                    Modi, animi veniam, quasi totam quae dda sequi ut, eius maiores fugiat porro aperiam harum id. Accusamus unde asperiores numquam eaque, laboriosam autem. Atque vero alias, excepturi quis facilis reiciendis. Quo qui obcaecati aperiam aut earum?
                     Qui aut voluptatibus illo, sequi labore consequatur explicabo corporis a natus quibusdam in ipsam accusantium exercitationem quam ea et magni animi amet, dignissimos aliquam? Quod aliquid ad maxime ab incidunt.
                 </p>   
                     <div class="chapter-content__image-wrapper">
