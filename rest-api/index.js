@@ -13,9 +13,13 @@ mongoose.connection.on('connected', () => console.log('Connected to database'));
 console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
-
+server.get('/')
 server.post('/register', async (req, res) => {
     registerUser(req, res);
+});
+
+server.post('/login', async(req, res) => {
+    
 });
 
 server.listen(3000);

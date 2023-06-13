@@ -9,6 +9,7 @@ async function registerUser(req, res) {
         await registerUserIfValid(registeredUser);
         sendEmptyResponse(res, 200);
     } catch (err) {
+        console.log(err);
         sendTextResponse(res, 400, err);
     }
 }

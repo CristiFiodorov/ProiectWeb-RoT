@@ -39,11 +39,6 @@ class ServerManager extends Server {
         const reqUrl = url.parse(req.url).pathname;
         const method = req.method.toUpperCase();
 
-        if (!this.routes.has(method)) {
-            sendTextResponse(res, 405, `Method ${method} not allowed`);
-            return;
-        }
-
         const handlers = this.routes.get(method);
         if (!handlers.has(reqUrl)) {
             // if the request is a GET request and the requested url is a local file for swagger

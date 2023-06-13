@@ -1,13 +1,15 @@
 const bcrypt = require('bcrypt');
 
-const { validateUsername, validatePassword, validateEmail } = require('../utils/validators');
+const { validateEmailFormat, validateUsernameFormat, validatePasswordFormat, validateEmailNotUsed, validateUsernameNotUsed } = require('../utils/auth-validators');
 const User = require('../models/user-scheme');
 
 async function registerUserIfValid(user) {
-    validatePassword(user.password);
-    validateEmail(user.email);
-    validateUsername(user.username);
-    
+    validatePasswordFormat(user.password);
+    validateEmailFormat(user.email);
+    await validateEmailNotUsed(user.email);
+    validateUsernameFormat(user.username);
+    await validateUsernameNotUsed(user.username);
+
     const hashedPassword = await bcrypt.hash(user.password, 10);
     const newUser = new User({
         username: user.username,
