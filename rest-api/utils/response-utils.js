@@ -1,6 +1,6 @@
 function sendJsonResponse(res, status, content) {
     res.writeHead(status, 'Content-Type', 'application/json');
-    res.end(content); 
+    res.end(content);
 }
 
 function sendTextResponse(res, status, text) {
@@ -10,12 +10,17 @@ function sendTextResponse(res, status, text) {
 
 function sendFileResponse(res, status, file, contentType) {
     res.writeHead(status, 'Content-Type', contentType);
-    res.end(file); 
+    res.end(file);
 }
 
+function sendEmptyResponse(res, status) {
+    res.writeHead(status);
+    res.end();
+}
 
 module.exports = {
     sendJsonResponse,
     sendFileResponse,
-    sendTextResponse
+    sendTextResponse,
+    sendEmptyResponse
 }
