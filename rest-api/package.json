@@ -9,6 +9,7 @@
   "author": "Alex Neagu, Cristian Fiodorov, Petru Vamanu",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.3"
   },

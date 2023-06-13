@@ -15,7 +15,7 @@ function getDocFileAndContentType(req, res) {
     return [req.url.substr(1), contentType];
 }
 
-function serverDocFile(req, res) {
+function servedDocFile(req, res) {
     try {
         const [filePath, contentType] = getDocFileAndContentType(req, res);
         const file = fs.readFileSync(filePath, 'utf8');
@@ -29,5 +29,5 @@ function serverDocFile(req, res) {
 
 module.exports = {
     getDocFileAndContentType,
-    serverDocFile
+    servedDocFile
 }

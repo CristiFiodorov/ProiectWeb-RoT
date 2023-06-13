@@ -1,6 +1,6 @@
 const { Server } = require('http');
 const { sendTextResponse } = require('../utils/response-utils');
-const { serverDocFile } = require('../services/docs-service');
+const { servedDocFile } = require('../services/docs-service');
 
 const url = require('url');
 
@@ -47,7 +47,7 @@ class ServerManager extends Server {
         const handlers = this.routes.get(method);
         if (!handlers.has(reqUrl)) {
             // if the request is a GET request and the requested url is a local file for swagger
-            if (serverDocFile(req, res)) {
+            if (servedDocFile(req, res)) {
                 return;
             }
             sendTextResponse(res, 404, `Route ${reqUrl} not found`);
