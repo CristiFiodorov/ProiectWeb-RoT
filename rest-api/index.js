@@ -22,11 +22,9 @@ server.post('/api/v1/login', async (req, res) => {
     loginUser(req, res);
 });
 
-server.get('/api/v1/test', (req, res) => {
-    verifyToken(req, res, () => {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.end("Hello World");
-    });
+server.get('/api/v1/test', async (req, res) => {
+    // verifyToken(req, res, async () => {
+    // });
 });
 
 server.listen(3000);
