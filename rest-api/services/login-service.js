@@ -3,6 +3,7 @@ const User = require('../models/user-scheme');
 const { generateAccessToken } = require('./auth-service');
 
 async function loginUserIfValid(loginCreds) {
+    console.log(loginCreds);
     const { username, password } = loginCreds;
     if (!username || !password) {
         throw new Error('Parola sau username incorecte');
