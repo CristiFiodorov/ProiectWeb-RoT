@@ -4,7 +4,7 @@
 function validatePasswordFormat(password) {
     var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if (!re.test(password)) {
-        throw 'Password is not valid. It must contain at least 8 characters, one uppercase letter, one lowercase letter and one number';
+        throw new Error('Password is not valid. It must contain at least 8 characters, one uppercase letter, one lowercase letter and one number');
     }
 }
 
@@ -14,19 +14,19 @@ function validatePasswordFormat(password) {
 function validateEmailFormat(email) {
     var re = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
     if (!email || email.length > 254 || !re.test(email)) {
-        throw 'Email introduced does not correspond to a valid email address';
+        throw new Error('Email introduced does not correspond to a valid email address');
     }
 
     // if some part (separated by the @) is longer than 64 characters
     const parts = email.split("@");
     if (parts[0].length > 64) {
-        throw 'Email introduced does not correspond to a valid email address. The username part is longer than 64 characters';
+        throw new Error('Email introduced does not correspond to a valid email address. The username part is longer than 64 characters');
     }
 
     // if some part (separated by the .) after the @ is longer than 63 characters
     const domainParts = parts[1].split(".");
     if (domainParts.some((part) => { return part.length > 63; })) {
-        throw 'Email introduced does not correspond to a valid email address. One of domain parts are longer than 63 characters';
+        throw new Error('Email introduced does not correspond to a valid email address. One of domain parts are longer than 63 characters');
     }
 }
 
@@ -35,7 +35,7 @@ function validateEmailFormat(email) {
  */
 function validateUsernameFormat(username) {
     if (username.length < 5) {
-        throw 'Username is not valid. It must contain at least 5 characters';
+        throw new Error('Username is not valid. It must contain at least 5 characters');
     }
 }
 
@@ -47,10 +47,10 @@ async function validateUsernameNotUsed(username) {
     try {
         const count = await User.countDocuments({ username: username });
         if(count > 0) {
-            throw 'Email already used';
+            throw new Error('Email already used');
         }
     } catch (err) {
-        throw err.getMessage();
+        throw err;
     }
 }
 
@@ -62,7 +62,7 @@ async function validateEmailNotUsed(email) {
     try {
         const count = await User.countDocuments({ email: email });
         if(count > 0) {
-            throw 'Email already used';
+            throw new Error('Email already used');
         }
     } catch (err) {
         throw err;

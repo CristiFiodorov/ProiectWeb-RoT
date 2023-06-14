@@ -22,7 +22,7 @@ function servedDocFile(req, res) {
         sendFileResponse(res, 200, file, contentType);
         return true;
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
         return false;
     }
 }
