@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: StudentProject API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Generated server url
+
+paths:
+  /api/v1/register:
+    post:
+      tags:
+        - Authentification
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string  
+    
+  /api/v1/login:
+    post:
+      tags:
+        - Authentification
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginCreds'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    LoginCreds:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    LoginResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
