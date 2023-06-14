@@ -1,7 +1,7 @@
 const { Server } = require('http');
 const { sendTextResponse } = require('../utils/response-utils');
 const { serveDocFile } = require('../services/docs-service');
-const { serveAccessControlHeaders } = require('../services/auth-service');
+const { sendEmptyResponse } = require('../utils/response-utils');
 const url = require('url');
 
 class ServerManager extends Server {
@@ -41,7 +41,7 @@ class ServerManager extends Server {
 
         // CORS Stuff
         if (method === 'OPTIONS') {
-            serveAccessControlHeaders(res);
+            sendEmptyResponse(res, 204);
             return;
         }
 
