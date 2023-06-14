@@ -37,7 +37,9 @@ function handleFormSubmission(event) {
     })
     .then(responseData => {
         // set jwt token in local storage 
-        console.log(responseData);
+        localStorage.setItem('accessToken', responseData.accessToken);
+        // redirect to home page
+        window.location.href = '/app/views/index.html';
     })
     .catch(error => {
         // log the message with the red color above username 
