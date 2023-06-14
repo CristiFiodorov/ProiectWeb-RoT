@@ -20,7 +20,7 @@ function createChapterPage(chapterID){
                     Qui aut voluptatibus illo, sequi labore consequatur explicabo corporis a natus quibusdam in ipsam accusantium exercitationem quam ea et magni animi amet, dignissimos aliquam? Quod aliquid ad maxime ab incidunt.
                 </p>   
                     <div class="chapter-content__image-wrapper">
-                        <img src="images/mecanic-auto.png" alt="" class="chapter-content__image">
+                        <img src="../public/images/mecanic-auto.png" alt="" class="chapter-content__image">
                     </div>
                 <p class="chapter-content__paragraph">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis optio in hic dignissimos dolorem placeat iste, asperiores nesciunt odit adipisci sapiente ad minus. Possimus aliquam distinctio error exercitationem culpa eius!
@@ -39,7 +39,7 @@ function createChapterPage(chapterID){
                     Titlu subsectiune
                 </h1>
                 <div class="chapter-content__image-wrapper">
-                    <img src="images/e-drpciv_12.jpg" alt="" class="chapter-content__image">
+                    <img src="../public/images/e-drpciv_12.jpg" alt="" class="chapter-content__image">
                 </div>
                 <p class="chapter-content__paragraph chapter-content__paragraph--strong">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni odit nostrum porro consectetur culpa nihil saepe eius incidunt labore suscipit, totam maxime vero ducimus, sint, in quo sequi dolorum tempore.
