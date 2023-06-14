@@ -1,4 +1,7 @@
 const { Server } = require('http');
+const { sendTextResponse } = require('../utils/response-utils');
+const { servedDocFile } = require('../services/docs-service');
+
 const url = require('url');
 
 class ServerManager extends Server {
@@ -36,18 +39,13 @@ class ServerManager extends Server {
         const reqUrl = url.parse(req.url).pathname;
         const method = req.method.toUpperCase();
 
-        if (!this.routes.has(method)) {
-            res.statusCode = 405;
-            res.write(`Method ${method} not allowed`);
-            res.end();
-            return;
-        }
-
         const handlers = this.routes.get(method);
         if (!handlers.has(reqUrl)) {
-            res.statusCode = 404;
-            res.write('Not found');
-            res.end();
+            // if the request is a GET request and the requested url is a local file for swagger
+            if (servedDocFile(req, res)) {
+                return;
+            }
+            sendTextResponse(res, 404, `Route ${reqUrl} not found`);
             return;
         }
 
