@@ -9,7 +9,7 @@ async function loginUser(req, res) {
         const token = await loginUserIfValid(loginCreds);
         sendJsonResponse(res, 200, JSON.stringify({"accessToken": token}));
     } catch (err) {
-        sendTextResponse(res, 400, err.message);
+        sendTextResponse(res, 404, err.message);
     }
 }
 

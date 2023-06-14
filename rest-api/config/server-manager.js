@@ -1,7 +1,7 @@
 const { Server } = require('http');
 const { sendTextResponse } = require('../utils/response-utils');
-const { servedDocFile } = require('../services/docs-service');
-
+const { serveDocFile } = require('../services/docs-service');
+const { serveAccessControlHeaders } = require('../services/auth-service');
 const url = require('url');
 
 class ServerManager extends Server {
@@ -39,10 +39,16 @@ class ServerManager extends Server {
         const reqUrl = url.parse(req.url).pathname;
         const method = req.method.toUpperCase();
 
+        // CORS Stuff
+        if (method === 'OPTIONS') {
+            serveAccessControlHeaders(res);
+            return;
+        }
+
         const handlers = this.routes.get(method);
-        if (!handlers.has(reqUrl)) {
+        if (!handlers || !handlers.has(reqUrl)) {
             // if the request is a GET request and the requested url is a local file for swagger
-            if (servedDocFile(req, res)) {
+            if (serveDocFile(req, res)) {
                 return;
             }
             sendTextResponse(res, 404, `Route ${reqUrl} not found`);

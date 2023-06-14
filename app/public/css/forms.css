@@ -84,6 +84,13 @@ button:hover, button:focus{
     text-decoration: underline;
 }
 
+#error-message{
+    color: red;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
 input{
     transition: 0.3s;
     border: 2px solid #D4D4D4;
