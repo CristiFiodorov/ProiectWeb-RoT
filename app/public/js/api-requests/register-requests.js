@@ -74,10 +74,11 @@ function handleFormSubmission(event) {
         })
     })
     .then(response => {
-        if(!response.ok) {
-            return response.text().then(errorText => {
-                throw new Error(errorText);
-            });
+        return response.json();
+    })
+    .then(responseObj => {
+        if(!responseObj.success) {
+            throw new Error(JSON.stringify(responseObj.data));
         } else {
             // everything is ok
             window.location.href = "/app/views/login.html";
