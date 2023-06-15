@@ -85,6 +85,9 @@ button:hover, button:focus{
 }
 
 #error-message{
+    /* position: absolute;
+    bottom: 100%;
+    width: 100%; */
     color: red;
     font-size: 18px;
     font-weight: 400;
