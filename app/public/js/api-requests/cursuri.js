@@ -2,21 +2,21 @@ const courses = [
     {
         "cursID" : 1,
         "titlu" : "Legislație rutieră",
-        "img" : "images/e-drpciv_12.jpg",
+        "img" : "../public/images/e-drpciv_12.jpg",
         "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
         "chapters" : [1,2,3,4,5,6,7]
     },
     {
         "cursID" : 2,
         "titlu" : "Mecanică auto",
-        "img" : "images/mecanic-auto.png",
+        "img" : "../public/images/mecanic-auto.png",
         "description" : "Elemente de bază din mecanica unui autovehicul",
         "chapters" : [8,9,10,11,12]
     },
     {
         "cursID" : 3,
         "titlu" : "Primul ajutor",
-        "img" : "images/prim-ajutor.jpg",
+        "img" : "../public/images/prim-ajutor.jpg",
         "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
         "chapters" : [13,14,15,16]
     },

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const signScheme = new mongoose.Schema({
+const signCategoryScheme = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -12,10 +12,10 @@ const signScheme = new mongoose.Schema({
         type: String,
         required: true
     },
-    index: {
+    signs: [{
         type: Number,
-        required: true
-    }
+        ref: 'Sign'
+    }]
 });
 
-module.exports = mongoose.model('Sign', signScheme);
+module.exports = mongoose.model('SignCategory', signCategoryScheme);

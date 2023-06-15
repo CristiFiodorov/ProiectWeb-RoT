@@ -15,19 +15,19 @@ function getDocFileAndContentType(req, res) {
     return [req.url.substr(1), contentType];
 }
 
-function servedDocFile(req, res) {
+function serveDocFile(req, res) {
     try {
         const [filePath, contentType] = getDocFileAndContentType(req, res);
         const file = fs.readFileSync(filePath, 'utf8');
         sendFileResponse(res, 200, file, contentType);
         return true;
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
         return false;
     }
 }
 
 module.exports = {
     getDocFileAndContentType,
-    servedDocFile
+    serveDocFile
 }
