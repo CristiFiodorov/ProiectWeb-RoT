@@ -24,6 +24,10 @@ class ServerManager extends Server {
         this.registerRoute('PUT', route, handler);
     }
 
+    patch(route, handler) {
+        this.registerRoute('PATCH', route, handler);
+    }
+
     delete(route, handler) {
         this.registerRoute('DELETE', route, handler);
     }
@@ -36,27 +40,61 @@ class ServerManager extends Server {
     }
 
     handleRequest(req, res) {
-        const reqUrl = url.parse(req.url).pathname;
+        const { pathname, query } = url.parse(req.url, true);
         const method = req.method.toUpperCase();
-
+    
         // CORS Stuff
         if (method === 'OPTIONS') {
             sendEmptyResponse(res, 204);
             return;
         }
-
+    
         const handlers = this.routes.get(method);
-        if (!handlers || !handlers.has(reqUrl)) {
+
+        let foundRoute = false;
+        handlers.forEach((handler, route) => {
+            const params = matchRoute(route, reqUrl);
+            if (params) {
+                foundRoute = true;
+                console.log(params);
+                handler(req, res, params);
+            }
+        });
+
+        if (!foundRoute) {
             // if the request is a GET request and the requested url is a local file for swagger
             if (serveDocFile(req, res)) {
                 return;
             }
-            sendTextResponse(res, 404, `Route ${reqUrl} not found`);
+            sendTextResponse(res, 404, `Route ${pathname} not found`);
             return;
         }
 
-        handlers.get(reqUrl)(req, res);
+        // handlers.get(reqUrl)(req, res);
     }
 }
 
-module.exports = ServerManager;
+function matchRoute(route, reqUrl) {
+    const routeParts = route.split('/');
+    const urlParts = reqUrl.split('/');
+
+    if (routeParts.length !== urlParts.length) {
+        return null;
+    }
+
+    const params = {};
+    for (let i = 0; i < routeParts.length; i++) {
+        const routePart = routeParts[i];
+        const urlPart = urlParts[i];
+
+        if (routePart.startsWith(':')) {
+            const paramName = routePart.slice(1);
+            params[paramName] = urlPart;
+        } else if (routePart !== urlPart) {
+            return null;
+        }
+    }
+    return params;
+}
+
+module.exports = { ServerManager, matchRoute };

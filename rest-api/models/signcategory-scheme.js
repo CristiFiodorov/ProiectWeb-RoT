@@ -12,10 +12,6 @@ const signCategoryScheme = new mongoose.Schema({
         type: String,
         required: true
     },
-    signs: [{
-        type: Number,
-        ref: 'Sign'
-    }]
 });
 
 module.exports = mongoose.model('SignCategory', signCategoryScheme);
