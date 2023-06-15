@@ -12,8 +12,8 @@ const signScheme = new mongoose.Schema({
         type: String,
         required: true
     },
-    index: {
-        type: Number,
+    parentId: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     }
 });

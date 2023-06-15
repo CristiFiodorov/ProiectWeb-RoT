@@ -36,26 +36,33 @@ class ServerManager extends Server {
     }
 
     handleRequest(req, res) {
-        const reqUrl = url.parse(req.url).pathname;
+        const { pathname, query } = url.parse(req.url, true);
         const method = req.method.toUpperCase();
-
+    
         // CORS Stuff
         if (method === 'OPTIONS') {
             sendEmptyResponse(res, 204);
             return;
         }
-
+    
         const handlers = this.routes.get(method);
-        if (!handlers || !handlers.has(reqUrl)) {
+        if (!handlers) {
+            sendTextResponse(res, 404, `Route ${pathname} not found`);
+            return;
+        }
+    
+        let handler = handlers.get(pathname);
+        if (!handler) {
             // if the request is a GET request and the requested url is a local file for swagger
             if (serveDocFile(req, res)) {
                 return;
             }
-            sendTextResponse(res, 404, `Route ${reqUrl} not found`);
+            sendTextResponse(res, 404, `Route ${pathname} not found`);
             return;
         }
-
-        handlers.get(reqUrl)(req, res);
+    
+        // Pass the query object as a second argument to the handler function
+        handler(req, res, query);
     }
 }
 

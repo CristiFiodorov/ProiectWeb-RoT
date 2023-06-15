@@ -14,7 +14,7 @@ mongoose.connection.on('connected', () => console.log('Connected to database'));
 console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 const { getSignCategories } = require('./controllers/signcategories-controller');
-const { getSignsByCategory } = require('./controllers/sign-controller');
+const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory } = require('./controllers/sign-controller');
 
 server.post('/api/v1/register', async (req, res) => {
     registerUser(req, res);
@@ -25,17 +25,15 @@ server.post('/api/v1/login', async (req, res) => {
     loginUser(req, res);
 });
 
-server.get('/api/v1/signcategories', async (req, res) => {
-    verifyToken(req, res, async () => {
-        getSignCategories(req, res);
-    });
-});
+server.get('/api/v1/signcategories', getSignCategories);
 
-server.get('/api/v1/signs', async (req, res) => {
-    verifyToken(req, res, async () => {
-        getSignsByCategory(req, res);
-    });
-});
+server.get('/api/v1/signs', getSignsByCategory);
+
+server.get('/api/v1/sign', getSignById);
+
+server.get('/api/v1/nextsign', getNextSignByCategory);
+
+server.get('/api/v1/prevsign', getPrevSignByCategory);
 
 
 server.get('/api/v1/test', async (req, res) => {
