@@ -40,15 +40,15 @@ class ServerManager extends Server {
     }
 
     handleRequest(req, res) {
-        const { pathname, query } = url.parse(req.url, true);
+        const reqUrl = url.parse(req.url).pathname;
         const method = req.method.toUpperCase();
-    
+
         // CORS Stuff
         if (method === 'OPTIONS') {
             sendEmptyResponse(res, 204);
             return;
         }
-    
+
         const handlers = this.routes.get(method);
 
         let foundRoute = false;
@@ -66,7 +66,7 @@ class ServerManager extends Server {
             if (serveDocFile(req, res)) {
                 return;
             }
-            sendTextResponse(res, 404, `Route ${pathname} not found`);
+            sendTextResponse(res, 404, `Route ${reqUrl} not found`);
             return;
         }
 
