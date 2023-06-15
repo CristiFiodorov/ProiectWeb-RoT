@@ -1,17 +1,26 @@
-function createCategoryCard(categoryID) {
+function createCategoryCard(category) {
     const a = document.createElement("a");
     const main = document.getElementById("main");
-    const categorie = signsCategories.find(e => e.categoryID == categoryID);
-    a.href = `indicatoare_specifice.html?categoryID=${categoryID}`;
+    a.href = `indicatoare_specifice.html?categoryID=${category._id}`;
     a.className = "card__link";
     a.innerHTML = `
     <div class="card card--gradient-red">
-        <img src="${categorie.img}" alt="${categorie.name}" class="card__image">
-        <h3 class="card__title">${categorie.name}</h3>
+        <img src="${category.image_url}" alt="${category.title}" class="card__image">
+        <h3 class="card__title">${category.title}</h3>
     </div>
     `;
 
     main.appendChild(a);
 }
 
-signsCategories.map(e => createCategoryCard(e.categoryID));
+getSignCategories()
+  .then(signCategories => {
+    if (Array.isArray(signCategories)) {
+      signCategories.map(e => createCategoryCard(e));
+    } else {
+      console.error('signCategories is not an array');
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });

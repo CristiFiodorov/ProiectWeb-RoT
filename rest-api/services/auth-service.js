@@ -18,7 +18,6 @@ function verifyToken(req, res, next) {
             return sendJsonResponse(res, 403, JSON.stringify({ message: "Forbidden" }));
         }
         req.user = user;
-        console.log(req.user);
     });
     next();
 }
