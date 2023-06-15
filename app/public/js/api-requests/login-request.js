@@ -1,7 +1,7 @@
 function addErrorMessageElement(errorMessage) {
-    document.getElementById('error-message')?.remove();
+    document.getElementById('error-message-auth')?.remove();
     const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
+    errorContainer.className = 'error-message-auth';
     errorContainer.textContent = errorMessage;
     const form = document.querySelector('form');
     const h2Element = form.querySelector('h2');

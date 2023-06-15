@@ -32,14 +32,9 @@ server.get('/questions/:id', async (req, res, params) => { findQuestionById(req,
 server.delete('/questions/:id', async (req, res, params) => { deleteQuestion(req, res, params); });
 
 
-server.post('/api/v1/register', async (req, res) => {
-    registerUser(req, res);
-});
+server.post('/api/v1/register', registerUser);
 
-server.post('/api/v1/login', async (req, res) => {
-    console.log('login' + req);
-    loginUser(req, res);
-});
+server.post('/api/v1/login', loginUser);
 
 server.get('/api/v1/signcategories', getSignCategories);
 
