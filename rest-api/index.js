@@ -6,7 +6,6 @@ const { ServerManager } = require('./config/server-manager');
 const {  findAllQuestions, findQuestionById, createQuestion, deleteQuestion, patchQuestion } = require('./controllers/questions-controller');
 const { createTest, findAllTests, findTestById } = require('./controllers/test-controller');
 
-const ServerManager = require('./config/server-manager');
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
 const { verifyToken } = require('./services/auth-service');
