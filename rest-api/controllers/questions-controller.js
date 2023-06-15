@@ -1,7 +1,7 @@
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { sendTextResponse, sendEmptyResponse, sendJsonResponse } = require('../utils/response-utils');
 const { registerUserIfValid } = require('../services/register-service');
-const { getQuestions, getQuestionById, saveQuestion, _deleteQuestion } = require('../services/questions-service');
+const { getQuestions, getQuestionById, saveQuestion, _deleteQuestion, updateQuestion } = require('../services/questions-service');
 const { matchRoute } = require('../config/server-manager');
 
 async function createQuestion(req,res,params){
@@ -24,9 +24,14 @@ async function deleteQuestion(req, res, params){
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
+async function patchQuestion(req, res, params){
+    const {statusCode, response} = await updateQuestion(req, params);
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
+}
 module.exports = {
     createQuestion,
     findAllQuestions,
     findQuestionById,
-    deleteQuestion
+    deleteQuestion,
+    patchQuestion
 }

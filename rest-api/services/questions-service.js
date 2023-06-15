@@ -28,6 +28,7 @@ const _getQuestions = async () => {
     return questions;
   } catch (error) {
     console.error(error);
+    throw new Error();
   }
 };
 
@@ -50,7 +51,7 @@ const _getQuestionById = async (id) => {
     return question;
   } catch (error) {
     console.error(error);
-    return null;
+    throw new Error();
   }
 }
 
@@ -70,22 +71,29 @@ const getQuestionById = async (params) => {
 
 // UPDATE
 
-// const _updateQuestion = async (questionId) => {
-//   try {
-//     const body = JSON.parse( await getBodyFromRequest(req));
-//     const oldQuestion = await getQuestionById(questionId);
-//     if(body.hasOwnProperty('question'))
-
-//     const question  await Question.findByIdAndUpdate(questionId, updatedData, { new: true });
-//     return question;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
+const _updateQuestion = async (req, questionId) => {
+  try {
+    const body = JSON.parse( await getBodyFromRequest(req));
+    let updatedData = {};
+    const fields = ['question', 'image_url', 'answers'];
+    fields.map(field =>{
+      if(body.hasOwnProperty(field)){
+        updatedData[field] = body[field];
+      }
+    });
+    
+     await Question.updateOne({ _id: `${questionId}`}, { $set : updatedData});
+     const question  = await _getQuestionById(questionId);
+    return question;
+  } catch (error) {
+    console.error(error);
+    throw new Error();
+  }
+};
 
 const updateQuestion = async (req, params) =>{
   try{
-      // const question = await _updateQuestion(params.id);
+      const question = await _updateQuestion(req, params.id);
       return new Status(200, new Response(true, question, "Question successfully updated."));
   } catch (error) {
     console.error(error);
@@ -104,4 +112,4 @@ const _deleteQuestion = async(params) =>{
     return new Status(500, new Response(false, null, "There was an internal error."));
   }
 }
-module.exports = { saveQuestion, getQuestions, getQuestionById, _deleteQuestion };
+module.exports = { saveQuestion, getQuestions, getQuestionById, _deleteQuestion, updateQuestion };
