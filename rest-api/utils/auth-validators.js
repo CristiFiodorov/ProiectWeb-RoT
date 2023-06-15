@@ -69,10 +69,42 @@ async function validateEmailNotUsed(email) {
     }
 }
 
+/**
+ * Checks if the username and password are present in the login request body
+ */
+function checkIfUsernameAndPasswordPresent(username, password) {
+    if (!username || !password) {
+        throw new Error('Toate câmpurile sunt obligatorii');
+    }
+}
+
+/**
+ * Checks if an user with the given username exists in the database and if the password is correct
+ */
+async function checkUserCredentials(username, password) {
+    const bcrypt = require('bcrypt');
+    const User = require('../models/user-scheme');
+    
+    const user = await User.findOne({ username: username });
+    if (!user) {
+        throw new Error('Nume de utilizator sau parolă incorecte');
+    }
+    
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+        throw new Error('Nume de utilizator sau parolă incorecte');
+    }
+
+    return user;
+}
+
 module.exports = {
     validatePasswordFormat,
     validateEmailFormat,
     validateUsernameFormat,
     validateUsernameNotUsed,
-    validateEmailNotUsed
+    validateEmailNotUsed,
+    checkIfUsernameAndPasswordPresent,
+    checkUserCredentials
 }

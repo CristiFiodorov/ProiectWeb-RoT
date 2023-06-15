@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const { validateEmailFormat, validateUsernameFormat, validatePasswordFormat, validateEmailNotUsed, validateUsernameNotUsed } = require('../utils/auth-validators');
 const User = require('../models/user-scheme');
 
+const { Status } = require('../utils/status-class');
+const { Response } = require('../utils/response-class');
 
 async function checkAsyncValidation(asyncValidation, param, errorKey, errorList) {
     try {
@@ -29,7 +31,7 @@ async function registerUserIfValid(user) {
     await checkAsyncValidation(validateUsernameNotUsed, user.username, "usernameAlreadyUsed", errorList);
 
     if (errorList.length > 0) {
-        throw new Error(JSON.stringify(errorList));
+        return new Status(400, new Response(false, errorList, "Invalid registration data."));
     }
 
     try {
@@ -40,10 +42,12 @@ async function registerUserIfValid(user) {
             email: user.email,
             isAdmin: false
         });
-        return await newUser.save();
+        await newUser.save();
+        return new Status(201, new Response(true, null, "User successfully registered."));
     } catch (err) {
-        throw new Error(JSON.stringify([{ dbError: err.message }]));
+        return new Status(500, new Response(false, null, err.message));
     }
+
 }
 
 module.exports = {

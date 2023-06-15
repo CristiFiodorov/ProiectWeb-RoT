@@ -27,7 +27,7 @@ function handleFormSubmission(event) {
         body: JSON.stringify(inpData)
     })
     .then(response => {
-        if(response.ok) {
+        if(response.success) {
             return response.json();
         } else {
             return response.text().then(errorText => {
