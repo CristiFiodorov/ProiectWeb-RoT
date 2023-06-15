@@ -5,16 +5,16 @@ const { generateAccessToken } = require('./auth-service');
 async function loginUserIfValid(loginCreds) {
     const { username, password } = loginCreds;
     if (!username || !password) {
-        throw new Error('Parola sau username incorecte');
+        throw new Error('Toate câmpurile sunt obligatorii');
     }
     const user = await User.findOne({ username: username });
     if (!user) {
-        throw new Error('Username inexistent');
+        throw new Error('Nume de utilizator sau parolă incorecte');
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if(!isPasswordValid) {
-        throw new Error('Parola introdusa este incorecta');
+        throw new Error('Nume de utilizator sau parolă incorecte');
     }
     if (isPasswordValid) {
         return generateAccessToken(user);

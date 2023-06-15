@@ -4,7 +4,7 @@
 function validatePasswordFormat(password) {
     var re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     if (!re.test(password)) {
-        throw new Error('Parola trbuie sa contina cel putin 8 caractere, o litera mare, o litera mica si o cifra');
+        throw new Error('Parola trebuie să conțină cel puțin 8 caractere, o literă mare, o literă mică și o cifră');
     }
 }
 
@@ -14,19 +14,19 @@ function validatePasswordFormat(password) {
 function validateEmailFormat(email) {
     var re = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
     if (!email || email.length > 254 || !re.test(email)) {
-        throw new Error('Adresa de email nu este una valida');
+        throw new Error('Adresa de email nu este una validă');
     }
 
     // if some part (separated by the @) is longer than 64 characters
     const parts = email.split("@");
     if (parts[0].length > 64) {
-        throw new Error('Adresa de email nu este una valida');
+        throw new Error('Adresa de email nu este una validă');
     }
 
     // if some part (separated by the .) after the @ is longer than 63 characters
     const domainParts = parts[1].split(".");
     if (domainParts.some((part) => { return part.length > 63; })) {
-        throw new Error('Adresa de email nu este una valida');
+        throw new Error('Adresa de email nu este una validă');
     }
 }
 
@@ -35,7 +35,7 @@ function validateEmailFormat(email) {
  */
 function validateUsernameFormat(username) {
     if (username.length < 5) {
-        throw new Error('Numele de utilizator trebuie sa contina cel putin 5 caractere');
+        throw new Error('Numele de utilizator trebuie să conțină cel puțin 5 caractere');
     }
 }
 
@@ -47,7 +47,7 @@ async function validateUsernameNotUsed(username) {
     try {
         const count = await User.countDocuments({ username: username });
         if(count > 0) {
-            throw new Error('Un utilizator cu acest nume deja exista');
+            throw new Error('Un utilizator cu acest nume deja există');
         }
     } catch (err) {
         throw err;

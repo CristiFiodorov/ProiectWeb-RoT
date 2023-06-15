@@ -1,68 +1,21 @@
-function addUsernameNotMatchedMessageElement(errorMessage) {
+function addErrorMessageAfterElement(errorMessage, elementId) {
     const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
+    errorContainer.className = 'error-message-auth';
     errorContainer.textContent = errorMessage;
-    const confirmUsernameElement = document.getElementById('confirm-username');
-    form.insertBefore(errorContainer, confirmUsernameElement.nextSibling);
-}
-
-function addEmailNotMatchedMessageElement(errorMessage) {
-    const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
-    errorContainer.textContent = errorMessage;
-    const confirmEmailElement = document.getElementById('confirm-email');
-    form.insertBefore(errorContainer, confirmEmailElement.nextSibling);
-}
-
-function addPasswordNotValidMessageElement(errorMessage) {
-    const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
-    errorContainer.textContent = errorMessage;
-    const passwordElement = document.getElementById('password');
-    form.insertBefore(errorContainer, passwordElement.nextSibling);
-}
-
-function addEmailNotValidMessageElement(errorMessage) {
-    const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
-    errorContainer.textContent = errorMessage;
-    const emailElement = document.getElementById('email');
-    form.insertBefore(errorContainer, emailElement.nextSibling);
-}
-
-function addEmailAlreadyUsedMessageElement(errorMessage) {
-    const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
-    errorContainer.textContent = errorMessage;
-    const emailElement = document.getElementById('email');
-    form.insertBefore(errorContainer, emailElement.nextSibling);
-}
-
-function addUsernameNotValidMessageElement(errorMessage) {
-    const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
-    errorContainer.textContent = errorMessage;
-    const usernameElement = document.getElementById('username');
-    form.insertBefore(errorContainer, usernameElement.nextSibling);
-}   
-
-function addUsernameAlreadyUsedMessageElement(errorMessage) {
-    const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
-    errorContainer.textContent = errorMessage;
-    const usernameElement = document.getElementById('username');
-    form.insertBefore(errorContainer, usernameElement.nextSibling);
+    const form = document.querySelector('form');
+    const correspondingElement = document.getElementById(elementId);
+    form.insertBefore(errorContainer, correspondingElement.nextSibling);
 }
 
 function checkIfCredentialsAreMatched(password, email, confirmedPassword, confirmedEmail) {
     let matchedCredentials = true;
     if(confirmedPassword !== password) {
-        addUsernameNotMatchedMessageElement("Parolele nu se potrivesc!");
+        addErrorMessageAfterElement("Parolele nu se potrivesc", "confirm_password");
         matchedCredentials = false;
     }
 
     if(email !== confirmedEmail) {
-        addEmailNotMatchedMessageElement("Email-urile nu se potrivesc!");
+        addErrorMessageAfterElement("Email-urile nu se potrivesc", "confirm_email");
         matchedCredentials = false;
     }
     return matchedCredentials;
@@ -71,22 +24,22 @@ function checkIfCredentialsAreMatched(password, email, confirmedPassword, confir
 function parseErrorListAndCreateElements(errorList) {
     errorList.forEach(error => {
         if(error.passwordNotValid) {
-            addPasswordNotValidMessageElement(error.passwordNotValid);
+            addErrorMessageAfterElement(error.passwordNotValid, "password");
         }
         if(error.emailNotValid) {
-            addEmailNotValidMessageElement(error.emailNotValid);
+            addErrorMessageAfterElement(error.emailNotValid, "email");
         }
         if(error.emailAlreadyUsed) {
-            addEmailAlreadyUsedMessageElement(error.emailAlreadyUsed);
+            addErrorMessageAfterElement(error.emailAlreadyUsed, "email");
         }
         if(error.usernameNotValid) {
-            addUsernameNotValidMessageElement(error.usernameNotValid);
+            addErrorMessageAfterElement(error.usernameNotValid, "username");
         }
         if(error.usernameAlreadyUsed) {
-            addUsernameAlreadyUsedMessageElement(error.usernameAlreadyUsed);
+            addErrorMessageAfterElement(error.usernameAlreadyUsed, "username");
         }
         if(error.dbError) {
-            addDbErrorMessageElement(error.dbError);
+            console.log(error.dbError);
         }
     });
 }
@@ -94,17 +47,21 @@ function parseErrorListAndCreateElements(errorList) {
 function handleFormSubmission(event) {
     event.preventDefault();
 
+    document.querySelectorAll(".error-message-auth").forEach(element => {
+        element.remove();
+    });
+
     const username = document.getElementById("username").value;
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     
     const confirmedPassword = document.getElementById("confirm_password").value;
     const confirmedEmail = document.getElementById("confirm_email").value;
-
+    
     if(!checkIfCredentialsAreMatched(password, email, confirmedPassword, confirmedEmail)) {
         return;
     }
-    
+
     fetch("http://localhost:3000/api/v1/register", {
         method: "POST",
         headers: {
@@ -121,10 +78,12 @@ function handleFormSubmission(event) {
             return response.text().then(errorText => {
                 throw new Error(errorText);
             });
+        } else {
+            // everything is ok
+            window.location.href = "/app/views/login.html";
         }
     })
     .catch(error => {
         parseErrorListAndCreateElements(JSON.parse(error.message));
     });
-
 }

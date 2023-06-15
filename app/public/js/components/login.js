@@ -5,9 +5,9 @@ var usernameField = document.getElementById('username');
 var passwordField = document.getElementById('password');
 
 usernameField.addEventListener('input', function () {
-    document.getElementById('error-message')?.remove();
+    document.querySelector('.error-message-auth')?.remove();
 });
 
 passwordField.addEventListener('input', function () {
-    document.getElementById('error-message')?.remove();
+    document.querySelector('.error-message-auth')?.remove();
 });
