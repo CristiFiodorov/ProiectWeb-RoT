@@ -24,6 +24,10 @@ class ServerManager extends Server {
         this.registerRoute('PUT', route, handler);
     }
 
+    patch(route, handler) {
+        this.registerRoute('PATCH', route, handler);
+    }
+
     delete(route, handler) {
         this.registerRoute('DELETE', route, handler);
     }
@@ -84,8 +88,7 @@ function matchRoute(route, reqUrl) {
             return null;
         }
     }
-
     return params;
 }
 
-module.exports = {ServerManager, matchRoute};
+module.exports = { ServerManager, matchRoute };

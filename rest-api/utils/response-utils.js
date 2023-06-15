@@ -1,5 +1,7 @@
 function sendJsonResponse(res, status, content) {
-    res.writeHead(status, 'Content-Type', 'application/json');
+    res.writeHead(status, {
+        'Content-Type': 'application/json'
+    });
     res.end(content);
 }
 

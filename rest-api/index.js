@@ -3,10 +3,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 const { ServerManager } = require('./config/server-manager');
-const { registerUser } = require('./controllers/register-controller');
-const { getAllQuestions, findAllQuestions, findQuestionById, createQuestion } = require('./controllers/questions-controller');
-const { sendJsonResponse } = require('./utils/response-utils');
-const { Response } = require('./utils/response-class');
+const {  findAllQuestions, findQuestionById, createQuestion, deleteQuestion } = require('./controllers/questions-controller');
 
 const server = new ServerManager();
 
@@ -28,5 +25,6 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 server.post('/questions', async (req, res, params) => { createQuestion(req, res, params); });
 server.get('/questions', async (req, res, params) => { findAllQuestions(req, res, params); });
 server.get('/questions/:id', async (req, res, params) => { findQuestionById(req, res, params); });
+server.delete('/questions/:id', async (req, res, params) => { deleteQuestion(req, res, params); });
 
 server.listen(3000);

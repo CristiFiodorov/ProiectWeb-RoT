@@ -70,5 +70,38 @@ const getQuestionById = async (params) => {
 
 // UPDATE
 
+// const _updateQuestion = async (questionId) => {
+//   try {
+//     const body = JSON.parse( await getBodyFromRequest(req));
+//     const oldQuestion = await getQuestionById(questionId);
+//     if(body.hasOwnProperty('question'))
+
+//     const question  await Question.findByIdAndUpdate(questionId, updatedData, { new: true });
+//     return question;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
+
+const updateQuestion = async (req, params) =>{
+  try{
+      // const question = await _updateQuestion(params.id);
+      return new Status(200, new Response(true, question, "Question successfully updated."));
+  } catch (error) {
+    console.error(error);
+    return new Status(500, new Response(false, null, "There was an internal error."));
+  }
+}
+
 // DELETE
-module.exports = { saveQuestion, getQuestions, getQuestionById };
+const _deleteQuestion = async(params) =>{
+  try{
+    const question = await _getQuestionById(params.id);
+    Question.findOneAndRemove({_id : params.id});
+    return new Status(204, new Response(true, null, "Question successfully deleted."));
+  } catch (error) {
+    console.error(error);
+    return new Status(500, new Response(false, null, "There was an internal error."));
+  }
+}
+module.exports = { saveQuestion, getQuestions, getQuestionById, _deleteQuestion };
