@@ -6,8 +6,9 @@ function setCorsHeaders(res) {
 }
 
 function sendJsonResponse(res, status, content) {
-    setCorsHeaders(res);
-    res.writeHead(status, 'Content-Type', 'application/json');
+    res.writeHead(status, {
+        'Content-Type': 'application/json'
+    });
     res.end(content);
 }
 
