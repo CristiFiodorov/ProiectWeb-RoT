@@ -6,12 +6,17 @@ async function getSignCategories(){
         }
     })
     .then(response => {
-        if(response.ok) {
-            return response.json();
-        } else {
-            return response.text().then(errorText => {
-                throw new Error(errorText);
-            });
+        return response.json();
+    })
+    .then(responseObj => {
+        if(responseObj.success){
+            return responseObj.data;
+        }
+        else{
+            throw new Error(responseObj.message);
         }
     })
+    .catch(error => {
+        console.error(error);
+    });
 }
