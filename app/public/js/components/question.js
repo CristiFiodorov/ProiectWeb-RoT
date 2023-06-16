@@ -38,24 +38,21 @@ async function createQuestion(questionIndex, questionArray) {
         }
         questionElement.innerHTML = `
         <h2> Întrebarea #${questionIndex + 1} </h2>
-        <div> Întrebări corecte: ${right} </div>
-        <div> Întrebări greșite: ${wrong} </div>
+        <div id="qr"> Întrebări corecte: ${right} </div>
+        <div id="qw"> Întrebări greșite: ${wrong} </div>
         <h1 class="question__title" >${questionObj.question}</h1>
         ${img}
         <form id="form" class="question__form" action="">
         </form>
         <button id="nextButton" class="question__btn"> Submit </button>
         `;
-        //TODO daca ramane validat intrebare + punctaj in timp real
+        //TODO daca ramane validat intrebare
         let letter = 'A';
         const buttonElement = document.getElementById("nextButton");
         buttonElement.addEventListener("click", () => {
-            if(validateQuestion(questionObj.answers)){
-                right++;
-            } else{
-                wrong++;
-            }
-            createQuestion(questionIndex + 1, questionArray);
+            console.log("VECHI");
+            validateQuestion(questionObj.answers, questionIndex + 1, questionArray);
+            // createQuestion(questionIndex + 1, questionArray);
         });
 
         const formElement = document.getElementById("form");
@@ -75,19 +72,53 @@ async function createQuestion(questionIndex, questionArray) {
     }
 }
 
-function validateQuestion(answers) {
+function validateQuestion(answers, questionIndex, questionArray) {
     const checkbox = [document.getElementById("qA"),
     document.getElementById("qB"),
     document.getElementById("qC")
     ];
     for (let i = 0; i < 3; i++) {
+        let col = "#7ae377";
+        if(answers[i].isValid == false){
+            let col = "#e34848";
+        }
+        checkbox[i].parentElement.style.backgroundColor = col;
+    }
+    
+    const buttonElement = document.getElementById("nextButton");
+    const clonedElement = buttonElement.cloneNode(true);
+
+    buttonElement.parentNode.replaceChild(clonedElement, buttonElement);
+    clonedElement.addEventListener("click", () => {
+        console.log("NOU");
+        createQuestion(questionIndex, questionArray);
+    });
+    
+    
+    for (let i = 0; i < 3; i++) {
+        let col = "#7ae377";
+        if(answers[i].isValid == false){
+            col = "#e34848";
+        }
+        checkbox[i].parentElement.style.backgroundColor = col;
+    }
+    for (let i = 0; i < 3; i++) {
         console.log(checkbox[i]);
         console.log(answers[i]);
         if (checkbox[i].checked != answers[i].isValid) {
             console.log("PROST");
+            wrong++;
+            update();
             return false;
         }
     }
     console.log("BUN");
+    right++;
+    update();
     return true;
+}
+
+function update(){
+    document.getElementById("qr").innerHTML =  `Întrebări corecte: ${right}`;
+    document.getElementById("qw").innerHTML =  `Întrebări greșite: ${wrong}`;
 }
