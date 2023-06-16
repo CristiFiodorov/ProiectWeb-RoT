@@ -19,6 +19,8 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 const { getSignCategories, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController } = require('./controllers/signcategories-controller');
 const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory, createSignController, deleteSignByIdController, updateSignByIdController } = require('./controllers/sign-controller');
 
+const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdController, updateAdviceByIdController, getNextAdvice, getPrevAdvice } = require('./controllers/advice-controller');
+
 //TODO case when entity not found
 server.post('/tests', async (req, res, params) => { createTest(req, res, params); });
 server.get('/tests', async (req, res, params) => { findAllTests(req, res, params); });
@@ -47,6 +49,15 @@ server.get('/api/v1/signs/prevsign/:sign_id/:category_id', getPrevSignByCategory
 server.post('/api/v1/signs', createSignController);
 server.delete('/api/v1/signs/:id', deleteSignByIdController);
 server.put('/api/v1/signs/:id', updateSignByIdController);
+
+
+server.get('/api/v1/advices', getAdvices);
+server.get('/api/v1/advices/:id', getAdviceById);
+server.post('/api/v1/advices', createAdviceController);
+server.delete('/api/v1/advices/:id', deleteAdviceByIdController);
+server.put('/api/v1/advices/:id', updateAdviceByIdController);
+server.get('/api/v1/advices/nextadvice/:advice_id', getNextAdvice);
+server.get('/api/v1/advices/prevadvice/:advice_id', getPrevAdvice);
 
 
 server.get('/api/v1/test', async (req, res) => {
