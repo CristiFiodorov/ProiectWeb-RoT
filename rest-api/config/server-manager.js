@@ -97,4 +97,4 @@ function matchRoute(route, reqUrl) {
     return params;
 }
 
-module.exports = { ServerManager, matchRoute };
+module.exports = { ServerManager };

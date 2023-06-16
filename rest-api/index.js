@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 
 const { ServerManager } = require('./config/server-manager');
 const {  findAllQuestions, findQuestionById, createQuestion, deleteQuestion, patchQuestion } = require('./controllers/questions-controller');
-const { createTest, findAllTests, findTestById } = require('./controllers/test-controller');
+const { createTest, findAllTests, findTestById, findTestByIndex } = require('./controllers/test-controller');
 
-const ServerManager = require('./config/server-manager');
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
 const { verifyToken } = require('./services/auth-service');
+const Question = require('./models/question-schema');
 const server = new ServerManager();
 
 mongoose.connection.on('error', (error) => console.error(error));
@@ -22,6 +22,7 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 server.post('/tests', async (req, res, params) => { createTest(req, res, params); });
 server.get('/tests', async (req, res, params) => { findAllTests(req, res, params); });
 server.get('/tests/:id', async (req, res, params) => { findTestById(req, res, params); });
+server.get('/tests/index/:id', async (req, res, params) => { findTestByIndex(req, res, params); });
 
 server.post('/questions', async (req, res, params) => { createQuestion(req, res, params); });
 server.patch('/questions/:id', async (req, res, params) => { patchQuestion(req, res, params); });
@@ -43,4 +44,20 @@ server.get('/api/v1/test', async (req, res) => {
     // });
 });
 
+const generatorTeste = async() => {
+    try {
+        const result = await Question.aggregate([
+          { $sample: { size: 26 } },
+          { $project: { _id: 1 } }
+        ]);
+    
+        const randomQuestionIds = result.map(question => question._id.toString());
+        console.log('Random Question IDs:', randomQuestionIds);
+        return randomQuestionIds;
+      } catch (error) {
+        console.error('Error retrieving random question IDs:', error);
+        throw error;
+      }
+}
+// foo()
 server.listen(3000);

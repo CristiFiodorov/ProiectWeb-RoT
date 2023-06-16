@@ -1,3 +1,5 @@
+import { getAllTests } from '../api-requests/tests.js';
+
 function createTestCard(testID)
 {
     const main = document.getElementById("main");
@@ -16,4 +18,13 @@ function createTestCard(testID)
     main.appendChild(a);
 }
 
-tests.map(e => createTestCard(e.testID));
+try{
+  const response = await getAllTests();
+  console.log(response);
+  response.forEach(e => {
+    createTestCard(e.testId);
+  });
+} catch(error){
+  console.log(error);
+}
+// tests.map(e => createTestCard(e.testID));

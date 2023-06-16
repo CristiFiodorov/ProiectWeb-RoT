@@ -6,9 +6,17 @@ const Test = require("../models/test-schema");
 
 // CREATE
 const saveTest = async (req) => {
+  //TODO AUTO INCREMENT TESTID
   try {
-    const { testId, questions } = JSON.parse(await getBodyFromRequest(req));
-
+    const { questions } = JSON.parse(await getBodyFromRequest(req));
+    const result = await Test.findOne({}, 'testId')
+      .sort({ testId: -1 })
+      .exec();
+    
+    if (!result) {
+      return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+    const testId = result.testId + 1;
     const newTest = new Test({
       testId,
       questions
@@ -54,19 +62,43 @@ const _getTestById = async (id) => {
   }
 }
 
+const _getTestByIndex = async (index) => {
+  try {
+    console.log(index);
+    const test = await Test.findOne({ testId: index });
+    return test;
+  } catch (error) {
+    console.error(error);
+    throw new Error();
+  }
+}
+
 const getTestById = async (params) => {
   try {
     const id = params.id;
     console.log(id);
     const test = await _getTestById(id);
     console.log(test);
-    return new Status(200, new Response(true, test, "Question successfully retrieved."));
+    return new Status(200, new Response(true, test, "Test successfully retrieved."));
   } catch (error) {
     console.error(error);
     return new Status(500, new Response(false, null, "There was an internal error."));
   }
 }
 
+
+const getTestByIndex = async (params) => {
+  try {
+    const id = params.id;
+    console.log(id);
+    const test = await _getTestByIndex(id);
+    console.log(test);
+    return new Status(200, new Response(true, test, "Test successfully retrieved."));
+  } catch (error) {
+    console.error(error);
+    return new Status(500, new Response(false, null, "There was an internal error."));
+  }
+}
 
 // UPDATE
 
@@ -112,4 +144,4 @@ const getTestById = async (params) => {
 //   }
 // }
 // module.exports = { saveQuestion, getQuestions, getQuestionById, _deleteQuestion, updateQuestion };
-module.exports = { saveTest, getTests, getTestById };
+module.exports = { saveTest, getTests, getTestById, getTestByIndex };
