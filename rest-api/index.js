@@ -16,8 +16,8 @@ mongoose.connection.on('connected', () => console.log('Connected to database'));
 
 console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
-const { getSignCategories } = require('./controllers/signcategories-controller');
-const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory } = require('./controllers/sign-controller');
+const { getSignCategories, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController } = require('./controllers/signcategories-controller');
+const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory, createSignController, deleteSignByIdController, updateSignByIdController } = require('./controllers/sign-controller');
 
 //TODO case when entity not found
 server.post('/tests', async (req, res, params) => { createTest(req, res, params); });
@@ -36,14 +36,17 @@ server.post('/api/v1/register', registerUser);
 server.post('/api/v1/login', loginUser);
 
 server.get('/api/v1/signcategories', getSignCategories);
+server.post('/api/v1/signcategories', createSignCategoryController);
+server.delete('/api/v1/signcategories/:id', deleteSignCategoryByIdController);
+server.put('/api/v1/signcategories/:id', updateSignCategoryByIdController);
 
-server.get('/api/v1/signs', getSignsByCategory);
-
-server.get('/api/v1/sign', getSignById);
-
-server.get('/api/v1/nextsign', getNextSignByCategory);
-
-server.get('/api/v1/prevsign', getPrevSignByCategory);
+server.get('/api/v1/:category_id/signs', getSignsByCategory);
+server.get('/api/v1/signs/:id', getSignById);
+server.get('/api/v1/signs/nextsign/:sign_id/:category_id', getNextSignByCategory);
+server.get('/api/v1/signs/prevsign/:sign_id/:category_id', getPrevSignByCategory);
+server.post('/api/v1/signs', createSignController);
+server.delete('/api/v1/signs/:id', deleteSignByIdController);
+server.put('/api/v1/signs/:id', updateSignByIdController);
 
 
 server.get('/api/v1/test', async (req, res) => {
