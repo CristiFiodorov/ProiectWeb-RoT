@@ -3,8 +3,8 @@ const { generateAccessToken } = require('./auth-service');
 const { checkIfUsernameAndPasswordPresent } = require('../utils/auth-validators');
 const { checkUserCredentials } = require('../utils/auth-validators');
 
-const { Status } = require('../utils/Status-class');
-const { Response } = require('../utils/Response-class');
+const { Status } = require('../utils/status-class');
+const { Response } = require('../utils/response-class');
 
 async function loginUserIfValid(loginCreds) {
     try {

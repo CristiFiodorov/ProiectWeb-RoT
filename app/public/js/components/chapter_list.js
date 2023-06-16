@@ -1,17 +1,26 @@
-function createCourseChapter(chapterID){
+function createCourseChapter(chapter){
     const a = document.createElement("a");
     const list = document.getElementById("list");
-    const chapterObj = chapters.find(c => c.chapterID == chapterID);
-    a.href = `capitol_curs.html?chapterID=${chapterID}`;
+    a.href = `capitol_curs.html?chapterID=${chapter._id}`;
     a.className = "contents-card-link";
     a.innerHTML = `
     <div class="contents-card__item">
-        <p>${chapterObj.title}</p>
+        <p>${chapter.title}</p>
     </div>
     `;
     list.appendChild(a);
 }
 
 const id = new URLSearchParams(window.location.search).get('courseID');
-const courseObj = courses.find(c => c.cursID == id);
-courseObj.chapters.map( c => createCourseChapter(c));
+
+getChapters(id)
+    .then(chapters => {
+        if (Array.isArray(chapters)) {
+            chapters.map(e => createCourseChapter(e));
+        } else {
+            console.error('chapters is not an array');
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });

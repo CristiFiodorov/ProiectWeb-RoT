@@ -1,37 +1,22 @@
-const courses = [
-    {
-        "cursID" : 1,
-        "titlu" : "Legislație rutieră",
-        "img" : "../public/images/e-drpciv_12.jpg",
-        "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
-        "chapters" : [1,2,3,4,5,6,7]
-    },
-    {
-        "cursID" : 2,
-        "titlu" : "Mecanică auto",
-        "img" : "../public/images/mecanic-auto.png",
-        "description" : "Elemente de bază din mecanica unui autovehicul",
-        "chapters" : [8,9,10,11,12]
-    },
-    {
-        "cursID" : 3,
-        "titlu" : "Primul ajutor",
-        "img" : "../public/images/prim-ajutor.jpg",
-        "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
-        "chapters" : [13,14,15,16]
-    },
-    // {
-    //     "cursID" : 4,
-    //     "titlu" : "Conducerea ecologică",
-    //     "img" : "images/eco.jpg",
-    //     "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
-    //     "chapters" : [17,18]
-    // },
-    // {
-    //     "cursID" : 5,
-    //     "titlu" : "Conduita preventivă",
-    //     "img" : "images/conducerea-preventiva.jpg",
-    //     "description" : "Bazat pe legislația rutieră actualizată în anul 2023",
-    //     "chapters" : [19,20,21,22,23]
-    // }
-]
+async function getCourses(){
+    return fetch('http://localhost:3000/api/v1/courses', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(responseObj => {
+        if(responseObj.success){
+            return responseObj.data;
+        }
+        else{
+            throw new Error(responseObj.message);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}

@@ -4,9 +4,9 @@ const { Status } = require("../utils/status-class");
 
 async function findSignsByCategory(categoryId) {
     try {
-        const signs = await Sign.find({parentId: categoryId});
+        const signs = await Sign.find({ parentId: categoryId });
 
-        if(signs.length === 0)
+        if (signs.length === 0)
             return new Status(404, new Response(false, null, "Signs not found."));
 
         return new Status(200, new Response(true, signs, "Signs successfully retrieved."));
@@ -19,8 +19,8 @@ async function findSignsByCategory(categoryId) {
 
 async function findSignById(signId) {
     try {
-        const sign = await Sign.find({_id: signId});
-        if(sign.length === 0)
+        const sign = await Sign.find({ _id: signId });
+        if (sign.length === 0)
             return new Status(404, new Response(false, null, "Sign not found."));
 
         return new Status(200, new Response(true, sign[0], "Sign successfully retrieved."));
@@ -32,11 +32,11 @@ async function findSignById(signId) {
 }
 
 async function findNextSignsByCategory(signId, categoryId) {
-    const signs = await Sign.find({parentId: categoryId});
+    const signs = await Sign.find({ parentId: categoryId });
     const currentSignIndex = signs.findIndex(sign => sign._id.toString() === signId);
 
-    if (currentSignIndex === signs.length - 1) 
-    return new Status(200, new Response(true, signs[0], "Sign successfully retrieved."));
+    if (currentSignIndex === signs.length - 1)
+        return new Status(200, new Response(true, signs[0], "Sign successfully retrieved."));
 
     const nextSign = signs[currentSignIndex + 1];
     return new Status(200, new Response(true, nextSign, "Sign successfully retrieved."));
@@ -44,7 +44,7 @@ async function findNextSignsByCategory(signId, categoryId) {
 
 
 async function findPrevSignsByCategory(signId, categoryId) {
-    const signs = await Sign.find({parentId: categoryId});
+    const signs = await Sign.find({ parentId: categoryId });
     const currentSignIndex = signs.findIndex(sign => sign._id.toString() === signId);
 
     if (currentSignIndex === 0)
@@ -71,7 +71,7 @@ async function createSign(sign) {
 async function deleteSignById(signId) {
     try {
         const deletedSign = await Sign.findByIdAndDelete(signId);
-        if(!deletedSign)
+        if (!deletedSign)
             return new Status(404, new Response(false, null, "Sign not found."));
 
         return new Status(200, new Response(true, deletedSign, "Sign successfully deleted."));
@@ -86,7 +86,7 @@ async function updateSignById(signId, sign) {
     try {
         const updatedSign = await Sign.findByIdAndUpdate(signId, sign);
 
-        if(!updatedSign)
+        if (!updatedSign)
             return new Status(404, new Response(false, null, "Sign not found."));
 
         return new Status(200, new Response(true, sign, "Sign successfully updated."));
@@ -99,8 +99,8 @@ async function updateSignById(signId, sign) {
 
 async function deleteSignsByCategoryId(categoryId) {
     try {
-        const deletedSigns = await Sign.deleteMany({parentId: categoryId});
-        if(!deletedSigns)
+        const deletedSigns = await Sign.deleteMany({ parentId: categoryId });
+        if (!deletedSigns)
             return new Status(404, new Response(false, null, "Signs not found."));
 
         return new Status(200, new Response(true, deletedSigns, "Signs successfully deleted."));
@@ -113,12 +113,12 @@ async function deleteSignsByCategoryId(categoryId) {
 
 
 module.exports = {
-    findSignsByCategory, 
-    findSignById, 
-    findNextSignsByCategory, 
-    findPrevSignsByCategory, 
-    createSign, 
-    deleteSignById, 
+    findSignsByCategory,
+    findSignById,
+    findNextSignsByCategory,
+    findPrevSignsByCategory,
+    createSign,
+    deleteSignById,
     updateSignById,
     deleteSignsByCategoryId
 };

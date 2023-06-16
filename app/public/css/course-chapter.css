@@ -40,12 +40,10 @@ main {
 
 .chapter-content__subsection {
     color: white;
-    margin: 0;
-    padding-left: 1rem;
     display: flex;
     justify-content: center;
     align-items: center; /* Align vertical */
-    padding-bottom: 1rem;
+    padding: 1rem;
 }
 
 .chapter-content__subsection--green {
