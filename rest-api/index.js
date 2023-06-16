@@ -6,18 +6,27 @@ const { ServerManager } = require('./config/server-manager');
 const {  findAllQuestions, findQuestionById, createQuestion, deleteQuestion, patchQuestion } = require('./controllers/questions-controller');
 const { createTest, findAllTests, findTestById } = require('./controllers/test-controller');
 
+const { getSignCategories, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController } = require('./controllers/signcategories-controller');
+const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory, createSignController, deleteSignByIdController, updateSignByIdController } = require('./controllers/sign-controller');
+
+const { getAllCourses, createCourseController, deleteCourse, updateCourse } = require('./controllers/course-controller');
+
+const { getAllChapters, deleteChapter } = require('./controllers/chapter-controller');
+
+const { getChapterContentByChapterId, deleteChapterContent } = require('./controllers/chapter-content-controller');
+
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
 const { verifyToken } = require('./services/auth-service');
-const server = new ServerManager();
 
+
+
+const server = new ServerManager();
 mongoose.connection.on('error', (error) => console.error(error));
 mongoose.connection.on('connected', () => console.log('Connected to database'));
 
 console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
-const { getSignCategories, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController } = require('./controllers/signcategories-controller');
-const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory, createSignController, deleteSignByIdController, updateSignByIdController } = require('./controllers/sign-controller');
 
 //TODO case when entity not found
 server.post('/tests', async (req, res, params) => { createTest(req, res, params); });
@@ -47,6 +56,18 @@ server.get('/api/v1/signs/prevsign/:sign_id/:category_id', getPrevSignByCategory
 server.post('/api/v1/signs', createSignController);
 server.delete('/api/v1/signs/:id', deleteSignByIdController);
 server.put('/api/v1/signs/:id', updateSignByIdController);
+
+
+server.get('/api/v1/courses', getAllCourses);
+server.post('/api/v1/courses', createCourseController);
+server.put('/api/v1/courses/:id', updateCourse);
+server.delete('/api/v1/courses/:id', deleteCourse);
+
+server.get('/api/v1/courses/:course_id/chapters', getAllChapters);
+server.delete('/api/v1/chapters/:id', deleteChapter);
+
+server.get('/api/v1/chapters/:chapter_id', getChapterContentByChapterId);
+server.delete('/api/v1/chapters/:id', deleteChapterContent);
 
 
 server.get('/api/v1/test', async (req, res) => {
