@@ -23,7 +23,6 @@ const { verifyToken } = require('./services/auth-service');
 const Question = require('./models/question-schema');
 const server = new ServerManager();
 
-const server = new ServerManager();
 mongoose.connection.on('error', (error) => console.error(error));
 mongoose.connection.on('connected', () => console.log('Connected to database'));
 
