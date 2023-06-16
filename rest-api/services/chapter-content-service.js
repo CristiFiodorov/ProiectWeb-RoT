@@ -1,15 +1,17 @@
 const ChapterContent = require('../models/chapter-content-scheme');
+const Chapter = require('../models/chapter-scheme');
+
 const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 
 async function findChapterContentByChapterId(chapterId) {
     try {
-        const chapterContent = await ChapterContent.find({parentId: chapterId});
+        const chapterContent = await ChapterContent.find({ parentId: chapterId });
 
-        if(chapterContent.length === 0)
+        if (chapterContent.length === 0)
             return new Status(404, new Response(false, null, "Chapter content not found."));
 
-        return new Status(200, new Response(true, chapterContent, "Chapter content successfully retrieved."));
+        return new Status(200, new Response(true, chapterContent[0], "Chapter content successfully retrieved."));
     }
     catch (error) {
         console.error(error);
@@ -21,7 +23,7 @@ async function deleteChapterContentById(id) {
     try {
         const chapterContent = await ChapterContent.findByIdAndDelete(id);
 
-        if(!chapterContent)
+        if (!chapterContent)
             return new Status(404, new Response(false, null, "Chapter content not found."));
 
         return new Status(200, new Response(true, chapterContent, "Chapter content successfully deleted."));
@@ -35,9 +37,9 @@ async function deleteChapterContentById(id) {
 
 async function deleteChapterContentByChapterId(chapterId) {
     try {
-        const chapterContent = await ChapterContent.deleteMany({parentId: chapterId});
+        const chapterContent = await ChapterContent.deleteMany({ parentId: chapterId });
 
-        if(!chapterContent)
+        if (!chapterContent)
             return new Status(404, new Response(false, null, "Chapter content not found."));
 
         return new Status(200, new Response(true, chapterContent, "Chapter content successfully deleted."));

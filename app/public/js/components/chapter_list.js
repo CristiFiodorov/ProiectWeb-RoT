@@ -16,7 +16,7 @@ const id = new URLSearchParams(window.location.search).get('courseID');
 getChapters(id)
     .then(chapters => {
         if (Array.isArray(chapters)) {
-            chapters.map( e => createCourseChapter(e));
+            chapters.map(e => createCourseChapter(e));
         } else {
             console.error('chapters is not an array');
         }
