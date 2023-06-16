@@ -1,23 +1,56 @@
-function createAdvicePage(id, src, title, content){
+function createAdvicePage(advice){
     const card = document.getElementById("advice-card");
 
     card.innerHTML = `
     <div class="big-card__image">
-        <img src="${src}" alt="sfat">
+        <img src="${advice.image_url}" alt="sfat">
     </div>
 
     <div class="big-card__text">
-        <p> ${content} </p>
+        <p> ${advice.description} </p>
     </div>
 
     <div class="big-card__buttons">
-        <a class="big-card__button " href="#">Înapoi</a>
+        <a class="big-card__button " id="prev" href="#">Înapoi</a>
         <a class="big-card__button " href="sfaturi.html">Sfaturi</a>
-        <a class="big-card__button " href="#">Următorul</a>
+        <a class="big-card__button " id="next" href="#">Următorul</a>
     </div>
     `;
+
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+
+    prevButton.addEventListener('click', () => {
+        getPrevAdvice(advice._id)
+        .then(prevAdvice => {
+            if (prevAdvice !== undefined) {
+                window.location.href = `sfat.html?id=${prevAdvice._id}`;
+            } else {
+                console.error('advice is not defined');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    });
+
+    nextButton.addEventListener('click', () => {
+        getNextAdvice(advice._id)
+        .then(nextAdvice => {
+            if (nextAdvice !== undefined) {
+                window.location.href = `sfat.html?id=${nextAdvice._id}`;
+            } else {
+                console.error('advice is not defined');
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    });
 }
 
 const id = new URLSearchParams(window.location.search).get('id');
-const adviceObj = advices.find(e => e.id == id);
-createAdvicePage(adviceObj.id, adviceObj.src, adviceObj.title, adviceObj.content);
+
+getAdviceById(id).then((advice) => {
+    createAdvicePage(advice);
+});

@@ -1,3 +1,37 @@
+import { baseURL } from "./const.js";
+export const getQuestionById = async (id) => {
+    try{
+        const request = await fetch(baseURL + '/questions/' + id);
+        const response = await request.json();
+        if(response?.success === false){
+            console.log("ERROR");
+            //TODO handle error
+            return [];
+        }
+        console.log(response);
+        return response?.data;
+    } catch(error){
+        console.log(error);
+    }
+}
+
+export const getTestById = async (id) => {
+    try{
+        const request = await fetch(baseURL + '/tests/index/' + id);
+        const response = await request.json();
+        if(response?.success === false){
+            console.log("ERROR");
+            //TODO handle error
+            return [];
+        }
+        console.log(response);
+        return response?.data;
+    } catch(error){
+        console.log(error);
+    }
+}
+
+
 const questions = [
     {
         "id" : 1,
