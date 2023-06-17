@@ -1,7 +1,7 @@
 function addErrorMessageElement(errorMessage) {
-    document.getElementById('error-message')?.remove();
+    document.getElementById('error-message-auth')?.remove();
     const errorContainer = document.createElement('div');
-    errorContainer.id = 'error-message';
+    errorContainer.className = 'error-message-auth';
     errorContainer.textContent = errorMessage;
     const form = document.querySelector('form');
     const h2Element = form.querySelector('h2');
@@ -10,10 +10,12 @@ function addErrorMessageElement(errorMessage) {
 
 function handleFormSubmission(event) {
     event.preventDefault();
+    
+    document.querySelector(".error-message-auth")?.remove();
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    
+
     const inpData = {
         username: username,
         password: password
@@ -27,16 +29,14 @@ function handleFormSubmission(event) {
         body: JSON.stringify(inpData)
     })
     .then(response => {
-        if(response.ok) {
-            return response.json();
-        } else {
-            return response.text().then(errorText => {
-                throw new Error(errorText);
-            });
-        }
+        return response.json();
     })
-    .then(responseData => {
-        // set jwt token in local storage 
+    .then(responseObj => {
+        // set jwt token in local storage
+        if(!responseObj.success) {
+            throw new Error(responseObj.message);
+        }
+        const responseData = responseObj.data;
         localStorage.setItem('accessToken', responseData.accessToken);
         // redirect to home page
         window.location.href = '/app/views/index.html';

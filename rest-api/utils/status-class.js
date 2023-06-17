@@ -1,8 +1,8 @@
 class Status {
-    constructor(statusCode, response) {
-      this.statusCode = statusCode;
-      this.response = response;
-    }
+  constructor(statusCode, response) {
+    this.statusCode = statusCode;
+    this.response = response;
   }
+}
 
-module.exports = {Status};
+module.exports = { Status };

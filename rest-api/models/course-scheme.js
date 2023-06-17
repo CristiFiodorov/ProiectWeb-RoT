@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const signCategoryScheme = new mongoose.Schema({
+const courseScheme = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -10,8 +10,7 @@ const signCategoryScheme = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: true
-    },
+    }
 });
 
-module.exports = mongoose.model('SignCategory', signCategoryScheme);
+module.exports = mongoose.model('Course', courseScheme);
