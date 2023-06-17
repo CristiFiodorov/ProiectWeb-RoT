@@ -20,6 +20,8 @@ const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
 const { verifyToken } = require('./services/auth-service');
 
+const { uploadFileController } = require('./controllers/file-upload-controller');
+
 const Question = require('./models/question-schema');
 const server = new ServerManager();
 
@@ -87,6 +89,8 @@ server.delete('/api/v1/advices/:id', deleteAdviceByIdController);
 server.put('/api/v1/advices/:id', updateAdviceByIdController);
 server.get('/api/v1/advices/nextadvice/:advice_id', getNextAdvice);
 server.get('/api/v1/advices/prevadvice/:advice_id', getPrevAdvice);
+
+server.post('/api/v1/upload', uploadFileController);
 
 server.get('/api/v1/test', async (req, res) => {
     // verifyToken(req, res, async () => {
