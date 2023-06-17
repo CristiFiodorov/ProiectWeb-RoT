@@ -13,6 +13,7 @@ function createCategoryCard(category) {
     main.appendChild(a);
 }
 
+
 getSignCategories()
   .then(signCategories => {
     if (Array.isArray(signCategories)) {
