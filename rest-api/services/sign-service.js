@@ -89,7 +89,7 @@ async function updateSignById(signId, sign) {
         if (!updatedSign)
             return new Status(404, new Response(false, null, "Sign not found."));
 
-        return new Status(200, new Response(true, sign, "Sign successfully updated."));
+        return new Status(200, new Response(true, updatedSign, "Sign successfully updated."));
     }
     catch (error) {
         console.error(error);

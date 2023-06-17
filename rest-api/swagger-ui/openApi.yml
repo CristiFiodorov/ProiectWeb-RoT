@@ -51,6 +51,741 @@ paths:
             text/plain:
               schema:
                 type: string
+  
+  /api/v1/signcategories:
+    get:
+      tags:
+        - SignCategories
+      operationId: getSignCategories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignCategoryResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+    post:
+      tags:
+        - SignCategories
+      operationId: createSignCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignCategoryRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignCategoryResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/signcategories/{id}:
+    delete:
+      tags:
+        - SignCategories
+      operationId: deleteSignCategory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignCategoryResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - SignCategories
+      operationId: updateSignCategory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignCategoryRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignCategoryResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/{category_id}/signs:
+    get:
+      tags:
+        - Signs
+      operationId: getSignsByCategory
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/signs/{id}:
+    get:
+      tags:
+        - Signs
+      operationId: getSignById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - Signs
+      operationId: deleteSign
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      tags:
+        - Signs
+      operationId: updateSign
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/signs:
+    post:
+      tags:
+        - Signs
+      operationId: createSign
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+  /api/v1/signs/nextsign/{sign_id}/{category_id}:
+    get:
+      tags:
+        - Signs
+      operationId: getNextSign
+      parameters:
+        - name: sign_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/signs/prevsign/{sign_id}/{category_id}:
+    get:
+      tags:
+        - Signs
+      operationId: getPrevSign
+      parameters:
+        - name: sign_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/advices:
+    get:
+      tags:
+        - Advices
+      operationId: getAdvices
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+    post:
+      tags:
+        - Advices
+      operationId: createAdvice
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdviceRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/advices/{id}:
+    get: 
+      tags:
+        - Advices
+      operationId: getAdviceById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+    delete:
+      tags:
+        - Advices
+      operationId: deleteAdvice
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+    put:
+      tags:
+        - Advices
+      operationId: updateAdvice
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdviceRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/advices/nextadvice/{advice_id}: 
+    get:
+      tags:
+        - Advices
+      operationId: getNextAdvice
+      parameters:
+        - name: advice_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/advices/prevadvice/{advice_id}:
+    get:
+      tags:
+        - Advices
+      operationId: getPrevAdvice
+      parameters:
+        - name: advice_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/courses:
+    get:
+      tags:
+        - Courses
+      operationId: getCourses
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+        - Courses
+      operationId: createCourse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/courses/{id}:
+    delete:
+      tags:
+        - Courses
+      operationId: deleteCourse
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+    put:
+      tags:
+        - Courses
+      operationId: updateCourse
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CourseRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+
+  /api/v1/courses/{course_id}/chapters:
+    get:
+      tags:
+        - Chapters
+      operationId: getChaptersByCourseId
+      parameters:
+        - name: course_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/chapters/{chapter_id}:
+    delete:
+      tags:
+        - Chapters
+      operationId: deleteChapter
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      get:
+        tags:
+          - Chapters
+        operationId: getChapterById
+        parameters:
+          - name: chapter_id
+            in: path
+            required: true
+            schema:
+              type: string
+        responses:
+          '200':
+            description: OK
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ChapterResponse'
+          '404':
+            description: Bad Request
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/chapters/{chapter_id}/contents:
+    get:
+      tags:
+        - ChapterContents
+      operationId: getContentsByChapterId
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterContentResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      tags:
+        - ChapterContents
+      operationId: deleteContent
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterContentResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/chapters/prevchapter/{chapter_id}/{course_id}:
+    get:
+      tags:
+        - Chapters
+      operationId: getPrevChapter
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: course_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/chapters/nextchapter/{chapter_id}/{course_id}:
+    get:
+      tags:
+        - Chapters
+      operationId: getNextChapter
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: course_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
 components:
   schemas:
@@ -63,6 +798,7 @@ components:
           type: string
         password:
           type: string
+
     LoginCreds:
       type: object
       properties:
@@ -70,8 +806,250 @@ components:
           type: string
         password:
           type: string
+
     LoginResponse:
       type: object
       properties:
         accessToken:
           type: string
+    
+    SignCategory:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        image_url:
+          type: string
+        description:
+          type: string
+
+    SignCategoryResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SignCategory'
+        message:
+          type: string
+    
+    SignCategoryRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        image_url:
+          type: string
+        description:
+          type: string
+
+    Sign:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        image_url:
+          type: string
+        description:
+          type: string
+        parentId:
+          type: string
+        __v:
+          type: number
+
+    SignRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        image_url:
+          type: string
+        description:
+          type: string
+        parentId:
+          type: string
+    
+    SignResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sign'
+        message:
+          type: string
+
+    Advice:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        image_url:
+          type: string
+        description:
+          type: string
+        __v:
+          type: number
+
+    AdviceRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        image_url:
+          type: string
+        description:
+          type: string
+
+    AdviceResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Advice'
+        message:
+          type: string
+
+    Course:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        image_url:
+          type: string
+        description:
+          type: string
+        __v:
+          type: number
+    
+    CourseRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        image_url:
+          type: string
+        description:
+          type: string
+    
+    CourseResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course'
+        message:
+          type: string
+    
+    Chapter:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        parentId:
+          type: string
+        __v:
+          type: number
+    
+    ChapterRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        parentId:
+          type: string
+    
+    ChapterResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Chapter'
+        message:
+          type: string
+    
+    Content:
+      type: object
+      properties:
+        element:
+          type: string
+        data:
+          string:
+            type: string
+        tags:
+          array:
+            type: string
+    
+    ChapterContent:
+      type: object
+      properties:
+        _id:
+          type: string
+        parentId:
+          type: string
+        content:
+          array:
+            type: object
+            items:
+              $ref: '#/components/schemas/Content'
+    
+    ChapterContentRequest:
+      type: object
+      properties:
+        parentId:
+          type: string
+        content:
+          array:
+            type: object
+            items:
+              $ref: '#/components/schemas/Content'
+    
+    ChapterContentResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChapterContent'
+        message:
+          type: string
+    
+    ErrorResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+         default: false
+        data:
+          type: array
+          default: null
+        message:
+          type: string
+
+  
+    

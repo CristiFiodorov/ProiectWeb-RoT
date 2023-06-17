@@ -53,7 +53,7 @@ async function updateSignCategoryById(signCategoryId, signCategory) {
         if(!updatedSignCategory)
             return new Status(404, new Response(false, null, "Sign Category not found."));
 
-        return new Status(200, new Response(true, signCategory, "Sign Category successfully updated."));
+        return new Status(200, new Response(true, updatedSignCategory, "Sign Category successfully updated."));
     }
     catch (error) {
         console.error(error);

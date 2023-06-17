@@ -53,14 +53,15 @@ server.delete('/api/v1/signcategories/:id', deleteSignCategoryByIdController);
 server.put('/api/v1/signcategories/:id', updateSignCategoryByIdController);
 
 server.get('/api/v1/:category_id/signs', getSignsByCategory);
+
 server.get('/api/v1/signs/:id', getSignById);
+server.delete('/api/v1/signs/:id', deleteSignByIdController);
+server.put('/api/v1/signs/:id', updateSignByIdController);
 
 server.get('/api/v1/signs/nextsign/:sign_id/:category_id', getNextSignByCategory);
 server.get('/api/v1/signs/prevsign/:sign_id/:category_id', getPrevSignByCategory);
 
 server.post('/api/v1/signs', createSignController);
-server.delete('/api/v1/signs/:id', deleteSignByIdController);
-server.put('/api/v1/signs/:id', updateSignByIdController);
 
 
 server.get('/api/v1/courses', getAllCourses);
@@ -69,7 +70,7 @@ server.put('/api/v1/courses/:id', updateCourse);
 server.delete('/api/v1/courses/:id', deleteCourse);
 
 server.get('/api/v1/courses/:course_id/chapters', getAllChapters);
-server.delete('/api/v1/chapters/:id', deleteChapter);
+server.delete('/api/v1/chapters/:chapter_id', deleteChapter);
 
 server.get('/api/v1/chapters/:chapter_id', getChapterById);
 server.get('/api/v1/chapters/:chapter_id/contents', getChapterContentByChapterId);
@@ -77,7 +78,7 @@ server.get('/api/v1/chapters/:chapter_id/contents', getChapterContentByChapterId
 server.get('/api/v1/chapters/prevchapter/:chapter_id/:course_id', getPrevChapterByCourseId);
 server.get('/api/v1/chapters/nextchapter/:chapter_id/:course_id', getNextChapterByCourseId);
 
-server.delete('/api/v1/chapters/:id', deleteChapterContent);
+server.delete('/api/v1/chapters/:chapter_id/contents', deleteChapterContent);
 
 server.get('/api/v1/advices', getAdvices);
 server.get('/api/v1/advices/:id', getAdviceById);
