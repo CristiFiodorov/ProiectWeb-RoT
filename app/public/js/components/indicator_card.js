@@ -60,11 +60,13 @@ function addAdminButtons() {
 
         // add event handlers for submit 
         const submitButton = document.getElementById("save-modal");
-        submitButton.addEventListener("click", () => {
+        submitButton.addEventListener("click", async () => {
             const title = document.getElementById("title").value;
             const description = document.getElementById("description").value;
-            const img = document.getElementById("img").files[0];
             
+            const img = document.getElementById("img").files[0];
+            const returned = await uploadImage(img);
+            // console.log(returned);
             // const formData = new FormData();
             
             // formData.append("title", title);
