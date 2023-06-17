@@ -28,4 +28,4 @@ const generateNrTests = async (n) => {
     }
 }
 
-module.exports = { generateNrTests };
+module.exports = { generateNrTests , generatorTeste };

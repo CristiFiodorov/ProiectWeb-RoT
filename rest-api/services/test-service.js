@@ -2,6 +2,7 @@ const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 const { mongo } = require("mongoose");
 const { getBodyFromRequest } = require("../utils/request-utils");
+const { generatorTeste } = require("../utils/random-test-utils");
 const Test = require("../models/test-schema");
 
 
@@ -88,6 +89,9 @@ const _getTestById = async (id) => {
 const _getTestByIndex = async (index) => {
   try {
     console.log(index);
+    if(index === 'random'){
+      return {questions:  (await generatorTeste())};
+    }
     const test = await Test.findOne({ testId: index });
     return test;
   } catch (error) {
