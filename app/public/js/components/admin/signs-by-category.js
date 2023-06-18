@@ -39,7 +39,7 @@ function addSignPopUpHandler() {
         <textarea id="form_description" name="form_description" rows="7" placeholder="Descriere Indicator"></textarea>
     `;
 
-    form.addEventListener("submit", submitAddSignHandler);
+    document.getElementById("save-modal").addEventListener("click", submitAddSignHandler);
     document.getElementById("modal-content").appendChild(form);
 };
 
