@@ -24,6 +24,7 @@ async function getPrevSignByCategory(req, res, params) {
 
 async function createSignController(req, res, params) {
     const body = await getBodyFromRequest(req);
+    console.log(body);
     const { statusCode, response } = await createSign(JSON.parse(body));
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }

@@ -1,9 +1,6 @@
 async function getSignCategories(){
     return fetch('http://localhost:3000/api/v1/signcategories', {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-        }
+        method: 'GET'
     })
     .then(response => {
         return response.json();
