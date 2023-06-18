@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../public/css/global.css" />
     <link rel="stylesheet" href="../public/css/navbar.css" />
     <link rel="stylesheet" href="../public/css/card.css" />
-    <link rel="stylesheet" href="../public/css/card-page.css" />
+    <link rel="stylesheet" href="../public/css/card-page-updated.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,15 +23,18 @@
   <body>
     <nav id="navbar" class="navbar"></nav>
 
-    <main id="main">
-      <!-- <a href="intrebare.html?testID=1" class="card__link">
-        <div class="card card--gradient-orange">
-          <img src="images/test.jpg" alt="Test auto" class="card__image" />
-          <div class="card__title">
-            Test de antrenament 1<br />Punctaj: 18/26
-          </div>
-        </div>
-      </a> -->
+    <main >
+      <h1>Teste de antrenament</h1>
+      <div id="main" class="main"></div>
+      <h1>Teste generate aleator</h1> 
+
+      <div class="subtext">
+        Generează chestionar nou, instant, pentru Categoria B (B, B1) <br>
+        În cazul în care ai terminat chestionarele predefinite de mai sus, poți să îți generezi alte chestionare pentru Categoria B (B, B1). În acest caz întrebarile se pot repeta de pe un chestionar pe altul, deoarece întrebarile sunt alese aleatoriu.
+      </div>
+      <a href="intrebare.html?testID=random" class="button">
+            Generează test
+      </a>
     </main>
     <script src="../public/js/components/nav.js"></script>
     <script src="../public/js/api-requests/teste.js"></script>

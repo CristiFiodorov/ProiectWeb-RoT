@@ -1,5 +1,5 @@
 const { sendJsonResponse } = require('../utils/response-utils');
-const { saveTest, getTests, getTestById, getTestByIndex } = require('../services/test-service');
+const { saveTest, getTests, getTestById, getTestByIndex, updateTest, _deleteTest } = require('../services/test-service');
 
 async function createTest(req, res, params) {
     const { statusCode, response } = await saveTest(req);
@@ -21,20 +21,20 @@ async function findTestByIndex(req, res, params){
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
-// async function deleteQuestion(req, res, params){
-//     const {statusCode, response} = await _deleteQuestion(params);
-//     sendJsonResponse(res, statusCode, JSON.stringify(response));
-// }
+async function deleteTest(req, res, params){
+    const {statusCode, response} = await _deleteTest(params);
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
+}
 
-// async function patchQuestion(req, res, params){
-//     const {statusCode, response} = await updateQuestion(req, params);
-//     sendJsonResponse(res, statusCode, JSON.stringify(response));
-// }
+async function patchTest(req, res, params){
+    const {statusCode, response} = await updateTest(req, params);
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
+}
 module.exports = {
     createTest,
     findAllTests,
     findTestById,
-    findTestByIndex
-    // deleteQuestion,
-    // patchQuestion
+    findTestByIndex,
+    patchTest,
+    deleteTest
 }

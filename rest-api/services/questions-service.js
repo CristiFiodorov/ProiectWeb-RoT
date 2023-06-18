@@ -105,7 +105,7 @@ const updateQuestion = async (req, params) =>{
 const _deleteQuestion = async(params) =>{
   try{
     const question = await _getQuestionById(params.id);
-    Question.findOneAndRemove({_id : params.id});
+    await Question.deleteOne({_id : params.id});
     return new Status(204, new Response(true, null, "Question successfully deleted."));
   } catch (error) {
     console.error(error);
