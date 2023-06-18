@@ -76,7 +76,7 @@ paths:
       operationId: createSignCategory
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignCategoryRequest'
         required: true
@@ -154,7 +154,7 @@ paths:
             type: string
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignCategoryRequest'
         required: true
@@ -256,7 +256,7 @@ paths:
             type: string
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignRequest'
         required: true
@@ -281,7 +281,7 @@ paths:
       operationId: createSign
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignRequest'
         required: true
@@ -384,7 +384,7 @@ paths:
       operationId: createAdvice
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/AdviceRequest'
         required: true
@@ -463,7 +463,7 @@ paths:
             type: string
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/AdviceRequest'
         required: true
@@ -865,8 +865,8 @@ components:
       properties:
         title:
           type: string
-        image_url:
-          type: string
+        file:
+          type: file
         description:
           type: string
 
@@ -891,8 +891,8 @@ components:
       properties:
         title:
           type: string
-        image_url:
-          type: string
+        file:
+          type: file
         description:
           type: string
         parentId:
@@ -929,8 +929,8 @@ components:
       properties:
         title:
           type: string
-        image_url:
-          type: string
+        file:
+          type: file
         description:
           type: string
 
