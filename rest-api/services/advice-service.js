@@ -44,7 +44,7 @@ async function createAdvice(advice) {
     }
 }
 
-async function updateAdvice(adviceId, advice) {
+async function updateAdviceById(adviceId, advice) {
     try {
         const updateAdvice = await Advice.findByIdAndUpdate(adviceId, advice);
 
@@ -59,7 +59,7 @@ async function updateAdvice(adviceId, advice) {
     }
 }
 
-async function deleteAdvice(adviceId) {
+async function deleteAdviceById(adviceId) {
     try {
         const deletedAdvice = await Advice.findByIdAndDelete(adviceId);
 
@@ -101,8 +101,8 @@ module.exports = {
     findAllAdvices,
     findAdviceById,
     createAdvice,
-    updateAdvice,
-    deleteAdvice,
+    updateAdviceById,
+    deleteAdviceById,
     findNextAdvice,
     findPrevAdvice
 };
