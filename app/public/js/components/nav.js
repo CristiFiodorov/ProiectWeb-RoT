@@ -54,7 +54,7 @@ else {
 }
 
 let toggle = document.querySelector(".toggle");
-let login = document.querySelector(".navbar__login-btn");
+let login = document.querySelector(".navbar__log-btn");
 let links = document.querySelector(".navbar__nav-links");
 
 let current_url = document.location;
