@@ -39,7 +39,6 @@ async function deleteChapterById(id) {
             return new Status(statusCode, response);
 
         return new Status(200, new Response(true, chapter, "Chapter successfully deleted."));
-
     }
     catch (error) {
         console.error(error);
