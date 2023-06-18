@@ -45,6 +45,7 @@ async function createSignController(req, res, params) {
                 data: null,
                 message: 'No file uploaded'
                 }));
+                return;
             }
     
             const { statusCode, response } = await uploadFile(uploadedFile);
@@ -78,9 +79,56 @@ async function deleteSignByIdController(req, res, params) {
 }
 
 async function updateSignByIdController(req, res, params) {
-    const body = await getBodyFromRequest(req);
-    const { statusCode, response } = await updateSignById(params.id, JSON.parse(body));
-    sendJsonResponse(res, statusCode, JSON.stringify(response));
+    try {
+        const form = new formidable.IncomingForm({  uploadDir: './uploads' });
+    
+        form.parse(req, async (err, fields, files) => {
+            if (err) {
+                sendJsonResponse(res, 400, JSON.stringify({
+                success: false,
+                data: null,
+                message: 'Error uploading file'
+                }));
+            }
+    
+            const uploadedFile = files.file;
+
+            let response = null;
+            let statusCode;
+    
+            if (uploadedFile) {
+                const status = await uploadFile(uploadedFile);
+                response = status.response;
+                statusCode = status.statusCode;
+                
+                if(statusCode !== 200){
+                    sendJsonResponse(res, statusCode, JSON.stringify(response));
+                    return;
+                }
+            }
+            
+            if(!response){
+                const { statusCode: statusCode2, response: response2 } = await findSignById(params.id);
+                response = response2.data.image_url;
+            }
+
+            const sign = {
+                title: fields.title,
+                description: fields.description,
+                parentId: fields.parentId,
+                image_url: response.data
+            }
+
+            console.log("Sign " + sign);
+
+            const { statusCode: statusCode2, response: response2 } = await updateSignById(params.id, sign);
+
+            sendJsonResponse(res, statusCode2, JSON.stringify(response2));
+        });
+    } catch (error) {
+        console.error(error);
+        sendJsonResponse(res, 500, JSON.stringify({ error: 'Internal Server Error' }));
+    }
 }
 
 
