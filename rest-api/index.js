@@ -56,14 +56,11 @@ server.delete('/api/v1/signcategories/:id', deleteSignCategoryByIdController);
 server.put('/api/v1/signcategories/:id', updateSignCategoryByIdController);
 
 server.get('/api/v1/:category_id/signs', getSignsByCategory);
-
 server.get('/api/v1/signs/:id', getSignById);
 server.delete('/api/v1/signs/:id', deleteSignByIdController);
 server.put('/api/v1/signs/:id', updateSignByIdController);
-
 server.get('/api/v1/signs/nextsign/:sign_id/:category_id', getNextSignByCategory);
 server.get('/api/v1/signs/prevsign/:sign_id/:category_id', getPrevSignByCategory);
-
 server.post('/api/v1/signs', createSignController);
 
 
@@ -90,6 +87,7 @@ server.delete('/api/v1/advices/:id', deleteAdviceByIdController);
 server.put('/api/v1/advices/:id', updateAdviceByIdController);
 server.get('/api/v1/advices/nextadvice/:advice_id', getNextAdvice);
 server.get('/api/v1/advices/prevadvice/:advice_id', getPrevAdvice);
+
 
 server.post('/api/v1/upload', uploadFileController);
 
