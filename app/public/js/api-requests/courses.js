@@ -1,5 +1,5 @@
 async function getCourses(){
-    return fetch('http://localhost:3000/api/v1/courses', {
+    return fetch(`${config.apiAddress}/api/v1/courses`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')

@@ -1,5 +1,6 @@
 async function getAdvices(){
-    return fetch('http://localhost:3000/api/v1/advices', {
+    console.log(config.apiAddress);
+    return fetch(`${config.apiAddress}/api/v1/advices`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')

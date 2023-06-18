@@ -1,5 +1,5 @@
 async function getSign(signID){
-    return fetch(`http://localhost:3000/api/v1/signs/${signID}`, {
+    return fetch(`${config.apiAddress}/api/v1/signs/${signID}`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
@@ -22,7 +22,7 @@ async function getSign(signID){
 }
 
 async function getPrevSign(signId, categoryId) {
-    return fetch(`http://localhost:3000/api/v1/signs/prevsign/${signId}/${categoryId}`)
+    return fetch(`${config.apiAddress}/api/v1/signs/prevsign/${signId}/${categoryId}`)
         .then(response => {
             return response.json();
         })
@@ -40,7 +40,7 @@ async function getPrevSign(signId, categoryId) {
 }
 
 async function getNextSign(signId, categoryId) {
-    return fetch(`http://localhost:3000/api/v1/signs/nextsign/${signId}/${categoryId}`)
+    return fetch(`${config.apiAddress}/api/v1/signs/nextsign/${signId}/${categoryId}`)
         .then(response => {
             return response.json();
         })
@@ -55,4 +55,24 @@ async function getNextSign(signId, categoryId) {
         .catch(error => {
             console.error(error);
         });
+}
+
+async function deleteSign(signId) {
+    return fetch(`${config.apiAddress}/api/v1/signs/${signId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(responseObj => {
+        if(responseObj.success) {
+            return responseObj.data;
+        }
+        else {
+            throw new Error(responseObj.message);
+        }
+    });
 }

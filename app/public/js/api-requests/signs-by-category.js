@@ -1,5 +1,5 @@
 async function getSigns(signCategoriesID) {
-    return fetch(`http://localhost:3000/api/v1/${signCategoriesID}/signs`, {
+    return fetch(`${config.apiAddress}/api/v1/${signCategoriesID}/signs`, {
         method: 'GET',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')

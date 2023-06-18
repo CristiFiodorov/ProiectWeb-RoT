@@ -51,45 +51,76 @@ server.post('/api/v1/login', loginUser);
 
 server.get('/api/v1/signcategories', getSignCategories);
 server.get('/api/v1/signcategories/:id', getSignCategoryById);
-server.post('/api/v1/signcategories', createSignCategoryController);
-server.delete('/api/v1/signcategories/:id', deleteSignCategoryByIdController);
-server.put('/api/v1/signcategories/:id', updateSignCategoryByIdController);
+server.post('/api/v1/signcategories', async (req, res, params) => {
+    verifyToken(req, res, params, true, createSignCategoryController);
+});
+server.delete('/api/v1/signcategories/:id', async (req, res, params) => { 
+    verifyToken(req, res, params, true, deleteSignCategoryByIdController);
+})
+server.put('/api/v1/signcategories/:id', async (req, res, params) => {
+    verifyToken(req, res, params, true, updateSignCategoryByIdController);
+});
+
 
 server.get('/api/v1/:category_id/signs', getSignsByCategory);
 server.get('/api/v1/signs/:id', getSignById);
-server.delete('/api/v1/signs/:id', deleteSignByIdController);
-server.put('/api/v1/signs/:id', updateSignByIdController);
 server.get('/api/v1/signs/nextsign/:sign_id/:category_id', getNextSignByCategory);
 server.get('/api/v1/signs/prevsign/:sign_id/:category_id', getPrevSignByCategory);
-server.post('/api/v1/signs', createSignController);
+server.delete('/api/v1/signs/:id', async (req, res, params) => {
+    verifyToken(req, res, params, true, deleteSignByIdController);
+});
+server.put('/api/v1/signs/:id', async (req, res, params) => {
+    verifyToken(req, res, params, true, updateSignByIdController);
+});
+server.post('/api/v1/signs', async (req, res, params) => {
+    verifyToken(req, res, params, true, createSignController);
+});
 
 
 server.get('/api/v1/courses', getAllCourses);
-server.post('/api/v1/courses', createCourseController);
-server.put('/api/v1/courses/:id', updateCourse);
-server.delete('/api/v1/courses/:id', deleteCourse);
+server.post('/api/v1/courses', async (req, res, params) => {
+    verifyToken(req, res, params, true, createCourseController);
+});
+server.put('/api/v1/courses/:id', async (req, res, params) => {
+    verifyToken(req, res, params, true, updateCourse);
+});
+server.delete('/api/v1/courses/:id', async (req, res, params) => {
+    verifyToken(req, res, params, true, deleteCourse);
+});
 
 server.get('/api/v1/courses/:course_id/chapters', getAllChapters);
-server.delete('/api/v1/chapters/:chapter_id', deleteChapter);
-
 server.get('/api/v1/chapters/:chapter_id', getChapterById);
-server.get('/api/v1/chapters/:chapter_id/contents', getChapterContentByChapterId);
-
 server.get('/api/v1/chapters/prevchapter/:chapter_id/:course_id', getPrevChapterByCourseId);
 server.get('/api/v1/chapters/nextchapter/:chapter_id/:course_id', getNextChapterByCourseId);
+server.delete('/api/v1/chapters/:chapter_id', async (req, res, params) => {
+  verifyToken(req, res, params, true, deleteChapter);
+});
 
-server.delete('/api/v1/chapters/:chapter_id/contents', deleteChapterContent);
+server.get('/api/v1/chapters/:chapter_id/contents', getChapterContentByChapterId);
+server.delete('/api/v1/chapters/:chapter_id/contents', async (req, res, params) => {
+    verifyToken(req, res, params, true, deleteChapterContent);
+});
+
+
 
 server.get('/api/v1/advices', getAdvices);
 server.get('/api/v1/advices/:id', getAdviceById);
-server.post('/api/v1/advices', createAdviceController);
-server.delete('/api/v1/advices/:id', deleteAdviceByIdController);
-server.put('/api/v1/advices/:id', updateAdviceByIdController);
 server.get('/api/v1/advices/nextadvice/:advice_id', getNextAdvice);
 server.get('/api/v1/advices/prevadvice/:advice_id', getPrevAdvice);
+server.post('/api/v1/advices', async (req, res, params) => {
+    verifyToken(req, res, params, true, createAdviceController);
+});
+server.delete('/api/v1/advices/:id', async (req, res, params) => {
+    verifyToken(req, res, params, true, deleteAdviceByIdController);
+});
+server.put('/api/v1/advices/:id', async (req, res, params) => {
+    verifyToken(req, res, params, true, updateAdviceByIdController);
+});
 
 
-server.post('/api/v1/upload', uploadFileController);
+server.post('/api/v1/upload', async (req, res, params) => {
+    verifyToken(req, res, params, true, uploadFileController);
+});
 
 server.get('/api/v1/test', async (req, res) => {
     // verifyToken(req, res, async () => {
