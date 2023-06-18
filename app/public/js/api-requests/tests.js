@@ -1,7 +1,7 @@
 import { baseURL } from "./const.js";
 
 export const getAllTests = async () => {
-    try{
+    try {
         const request = await fetch(baseURL + '/tests');
         const response = await request.json();
         if(response?.success === false){
