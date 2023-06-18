@@ -115,3 +115,26 @@ function submitUpdateSignCategoryHandler(event) {
         addErrorMessageElement(error.message);
     });
 }
+
+function submitDeleteSignCategoryHandler(event) {
+    event.preventDefault();
+    const categoryID = new URLSearchParams(window.location.search).get('categoryID');
+
+    fetch(`http://localhost:3000/api/v1/signcategories/${categoryID}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(responseObj => {
+        if (responseObj.success) {
+            window.location.href = `sign_categories.html`;
+        }
+        else {
+            throw new Error(responseObj.message);
+        }
+    })
+    .catch(error => {
+        addErrorMessageElement(error.message);
+    });
+}

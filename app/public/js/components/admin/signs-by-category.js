@@ -3,9 +3,9 @@
  * a flag that indicates whether clicking the card pops up a modal or not,
  * and a 'click' event handler for the card, it will create a special admin card 
  */
-function addAdminSpecificButton(mainContainer, title, imgSrc, isModal, clickHandler) {
+function addAdminSpecificButton(mainContainer, title, imgSrc, modalType, clickHandler) {
     const specificButton = document.createElement("a");
-    specificButton.className = "card__link " + (isModal ? "modal-open" : "");
+    specificButton.className = "card__link " + modalType;
     specificButton.href = '#';
     const buttonWrapper = document.createElement("div");
     buttonWrapper.className = "card card--gradient-orange";
@@ -46,7 +46,7 @@ function addSignPopUpHandler() {
 async function modifySignCategoryHandler() {
     document.getElementById("modal-content").firstChild?.remove();
     document.getElementById("modal-title").innerHTML = "Modifică Categoria";
-
+    
     const form = document.createElement("form");
     form.className = "flex flex-col align-center";
 
@@ -60,19 +60,24 @@ async function modifySignCategoryHandler() {
     document.getElementById("save-modal").addEventListener("click", submitUpdateSignCategoryHandler);
 };
 
+function deleteSignCategoryHandler() {
+    document.getElementById("delete-modal-title").innerHTML = "Ești sigur că vrei să ștergi categoria?";
+    document.getElementById("save-delete-modal").addEventListener("click", submitDeleteSignCategoryHandler);
+};
+
 function addAdminButtons() {
     const main = document.getElementById("main");
     const adminContainer = document.createElement("div");
     adminContainer.className = "admin-container";
 
     // Adding add button for admin
-    addAdminSpecificButton(adminContainer, "Adaugă Indicator", "https://fiiwebapp.blob.core.windows.net/rot-web/admin_add_img.png", true, addSignPopUpHandler);
+    addAdminSpecificButton(adminContainer, "Adaugă Indicator", "https://fiiwebapp.blob.core.windows.net/rot-web/admin_add_img.png", "modal-open", addSignPopUpHandler);
 
     // Ading update button for admin
-    addAdminSpecificButton(adminContainer, "Modifică Categoria", "https://fiiwebapp.blob.core.windows.net/rot-web/admin_upd_img.png", true, modifySignCategoryHandler);
+    addAdminSpecificButton(adminContainer, "Modifică Categoria", "https://fiiwebapp.blob.core.windows.net/rot-web/admin_upd_img.png", "modal-open", modifySignCategoryHandler);
 
     // Adding delete button for admin
-    addAdminSpecificButton(adminContainer, "Șterge Categoria", "https://fiiwebapp.blob.core.windows.net/rot-web/admin_delete_img.png", false);
+    addAdminSpecificButton(adminContainer, "Șterge Categoria", "https://fiiwebapp.blob.core.windows.net/rot-web/admin_delete_img.png", "delete-modal-open", deleteSignCategoryHandler);
 
     // Append this whole container to the main container 
     main.appendChild(adminContainer);

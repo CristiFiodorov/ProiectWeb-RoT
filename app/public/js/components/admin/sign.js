@@ -15,10 +15,17 @@ async function updateSignPopUpHandler() {
     document.getElementById("save-modal").addEventListener("click", (event) => submitUpdateSignHandler(event, parentId));
 }
 
+async function deleteSignPopUpHandler(event, currentSign) {
+    event.preventDefault();
+    document.getElementById("delete-modal-title").innerHTML = "Ești sigur că vrei să ștergi indicatorul?";
+    document.getElementById("save-delete-modal").addEventListener("click", (event) => {
+        submitDeleteSignHandler(event, currentSign);
+    });
+}
 
 function appendAdminCardButtons(cardButtons, currentSign, cardContainer, mainContainer) {
     cardButtons.innerHTML = `
-        <a class="big-card__button modal-open" id="delete_sign" href="#">Șterge</a>
+        <a class="big-card__button delete-modal-open" id="delete_sign" href="#">Șterge</a>
         <a class="big-card__button" href="signs_by_category.html?categoryID=${currentSign.parentId}">Indicatoare</a>
         <a class="big-card__button modal-open" id="update_sign" href="#">Modifică</a>
     `;
@@ -29,16 +36,9 @@ function appendAdminCardButtons(cardButtons, currentSign, cardContainer, mainCon
     const deleteButton = document.getElementById("delete_sign");
     const updateButton = document.getElementById("update_sign");
 
-    deleteButton.addEventListener('click', () => {
-        deleteSign(currentSign._id)
-        .then(() => {
-            window.location.href = `signs_by_category.html?categoryID=${currentSign.parentId}`;
-        })  
-        .catch(error => {
-            console.error(error);
-        });
+    deleteButton.addEventListener('click', async (event) => {
+        deleteSignPopUpHandler(event, currentSign);
     });
-
     updateButton.addEventListener('click', updateSignPopUpHandler);
 
     addModalBundles();

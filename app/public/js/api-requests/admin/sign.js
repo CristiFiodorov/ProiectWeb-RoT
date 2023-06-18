@@ -72,3 +72,15 @@ function submitUpdateSignHandler(event, parentId) {
         addErrorMessageElement(error.message);
     });
 } 
+
+
+function submitDeleteSignHandler(event, currentSign) {
+    event.preventDefault();    
+    deleteSign(currentSign._id)
+    .then(() => {
+        window.location.href = `signs_by_category.html?categoryID=${currentSign.parentId}`;
+    })  
+    .catch(error => {
+        console.error(error);
+    });
+}
