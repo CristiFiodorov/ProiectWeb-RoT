@@ -1,5 +1,4 @@
 function addErrorMessageElement(errorMessage) {
-    document.getElementById('error-message-auth')?.remove();
     const errorContainer = document.createElement('div');
     errorContainer.className = 'error-message-auth';
     errorContainer.textContent = errorMessage;
