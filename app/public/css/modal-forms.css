@@ -71,6 +71,14 @@ input:focus, input:hover{
     border: 2px solid var(--blue);
 }
 
+.error-message {
+    width: 300px;
+    color: red;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
 textarea {
     font-size: 14px;
     border: 2px solid #D4D4D4;
@@ -101,7 +109,7 @@ textarea {
         max-width: 70vw;
     }
     
-    .error-message-auth {
+    .error-message {
         width: 300px;
         color: red;
         font-size: 18px;

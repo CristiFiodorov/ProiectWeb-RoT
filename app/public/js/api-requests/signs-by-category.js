@@ -1,3 +1,12 @@
+function addErrorMessageElement(errorMessage) {
+    document.querySelector('.error-message')?.remove();
+    const errorContainer = document.createElement('div');
+    errorContainer.className = 'error-message';
+    errorContainer.textContent = errorMessage;
+    const form = document.querySelector('form');
+    form.insertBefore(errorContainer, form.firstChild);
+}
+
 async function getSigns(signCategoriesID) {
     return fetch(`http://localhost:3000/api/v1/${signCategoriesID}/signs`, {
         method: 'GET',
@@ -5,65 +14,22 @@ async function getSigns(signCategoriesID) {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
         }
     })
-        .then(response => {
-            return response.json();
-        })
-        .then(responseObj => {
-            if (responseObj.success) {
-                return responseObj.data;
-            }
-            else {
-                throw new Error(responseObj.message);
-            }
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    .then(response => {
+        return response.json();
+    })
+    .then(responseObj => {
+        if (responseObj.success) {
+            return responseObj.data;
+        }
+        else {
+            throw new Error(responseObj.message);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
 }
 
-// async function uploadImage(imageFile) {
-//     const formData = new FormData();
-//     formData.append('file', imageFile);
-
-//     console.log(imageFile);
-
-//     return fetch('http://localhost:3000/api/v1/upload', {
-//         method: 'POST',
-//         body: formData
-//     })
-//     .then(response => {
-//         return response.json();
-//     })
-//     .then(responseObj => {
-//         if (responseObj.success) {
-//             return responseObj.data;
-//         }
-//         else {
-//             throw new Error(responseObj.message);
-//         }
-//     });
-// }
-
-// async function createSign(sign) {
-//     return fetch(`http://localhost:3000/api/v1/signs`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(sign)
-//     })
-//     .then(response => {
-//         return response.json();
-//     })
-//     .then(responseObj => {
-//         if (responseObj.success) {
-//             return responseObj.data;
-//         }
-//         else {
-//             throw new Error(responseObj.message);
-//         }
-//     });
-// }
 
 function submitAddSignHandler(event) {
     event.preventDefault();
@@ -72,13 +38,18 @@ function submitAddSignHandler(event) {
     const img = document.getElementById("form_img").files[0];
     const categoryID = new URLSearchParams(window.location.search).get('categoryID');
 
-    if (!img) {
-        alert("Please select an image");
+    if (!title) {
+        addErrorMessageElement("The title field is required");
         return;
     }
 
-    if (!title) {
-        alert("Please enter a title");
+    if (!img) {
+        addErrorMessageElement("Please upload an image");
+        return;
+    }
+
+    if(!description) {
+        addErrorMessageElement("The description field is required");
         return;
     }
 
@@ -98,13 +69,13 @@ function submitAddSignHandler(event) {
     })
     .then(responseObj => {
         if (responseObj.success) {
-            console.log(responseObj.data);
+            window.location.href = `signs_by_category.html?categoryID=${categoryID}`;
         }
         else {
             throw new Error(responseObj.message);
         }
     })
     .catch(error => {
-        alert(error.message);
+        addErrorMessageElement(error.message);
     });
 }
