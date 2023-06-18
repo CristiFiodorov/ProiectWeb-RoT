@@ -96,7 +96,7 @@ async function updateSignCategoryByIdController(req, res, params) {
             }
             
             if(!response){
-                const { statusCode: statusCode2, response: response2 } = await findSignById(params.id);
+                const { statusCode: statusCode2, response: response2 } = await findSignCategoryById(params.id);
                 response = response2.data.image_url;
             }
 
