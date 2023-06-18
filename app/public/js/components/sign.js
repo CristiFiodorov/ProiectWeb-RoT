@@ -14,7 +14,7 @@ function createIndicatorPage(indicator)
 
             <div class="big-card__buttons">
                 <a class="big-card__button " id="prev" href="#">Înapoi</a>
-                <a class="big-card__button " href="sign_categories.html">Indicatoare</a>
+                <a class="big-card__button " href="signs_by_category.html?categoryID=${indicator.parentId}">Indicatoare</a>
                 <a class="big-card__button " id="next" href="#">Următorul</a>
             </div>
     `;
