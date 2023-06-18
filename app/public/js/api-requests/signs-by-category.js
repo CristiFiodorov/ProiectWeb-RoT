@@ -70,6 +70,7 @@ function submitAddSignHandler(event) {
     const title = document.getElementById("form_title").value;
     const description = document.getElementById("form_description").value;
     const img = document.getElementById("form_img").files[0];
+    const categoryID = new URLSearchParams(window.location.search).get('categoryID');
 
     if (!img) {
         alert("Please select an image");
@@ -83,9 +84,12 @@ function submitAddSignHandler(event) {
 
     const formData = new FormData();
     formData.append('file', img);
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('parentId', categoryID);
 
 
-    fetch('http://localhost:3000/api/v1/upload', {
+    fetch('http://localhost:3000/api/v1/signs', {
         method: 'POST',
         body: formData
     })
