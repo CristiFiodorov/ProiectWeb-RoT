@@ -4,7 +4,7 @@ function addModalBundles() {
 
     const openDeleteModalButtons = document.querySelectorAll(".delete-modal-open");
     const deleteModalWindowOverlay = document.getElementById("delete-modal-overlay");
-    
+
     // Create normal modal windows (usually with forms as content)
     const createModalWindow = () => {
         modalWindowOverlay.style.display = "flex";
@@ -17,13 +17,17 @@ function addModalBundles() {
         document.body.style.overflow = "hidden";
     }
 
-    openModalButtons.forEach(button => {
-        button.addEventListener("click", createModalWindow);
-    });
+    if (openModalButtons) {
+        openModalButtons.forEach(button => {
+            button.addEventListener("click", createModalWindow);
+        });
+    }
 
-    openDeleteModalButtons.forEach(button => {
-        button.addEventListener("click", createDeleteModalWindow);
-    });
+    if (openDeleteModalButtons) {
+        openDeleteModalButtons.forEach(button => {
+            button.addEventListener("click", createDeleteModalWindow);
+        });
+    }
 
     const closeModalWindow = () => {
         modalWindowOverlay.style.display = "none";
@@ -36,8 +40,12 @@ function addModalBundles() {
     }
 
     const modalCloseButton = document.getElementById("close-modal");
-    modalCloseButton.addEventListener("click", closeModalWindow);
+    if (modalCloseButton) {
+        modalCloseButton.addEventListener("click", closeModalWindow);
+    }
 
     const deleteModalCloseButton = document.getElementById("close-delete-modal");
-    deleteModalCloseButton.addEventListener("click", closeDeleteModalWindow);
+    if (deleteModalCloseButton) {
+        deleteModalCloseButton.addEventListener("click", closeDeleteModalWindow);
+    }
 }
