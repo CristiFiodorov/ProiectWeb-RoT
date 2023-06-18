@@ -1,4 +1,5 @@
-async function updateSignPopUpHandler() {
+async function updateSignPopUpHandler(event, currentSign) {
+    event.preventDefault();
     document.getElementById("modal-content").firstChild?.remove();
     document.getElementById("modal-title").innerHTML = "Modifică Indicatorul";
 
@@ -10,8 +11,9 @@ async function updateSignPopUpHandler() {
         <textarea id="form_description" name="form_description" rows="7" placeholder="Descriere Indicator"></textarea>
         <input type="file" id="form_img" name="form_img" title = "Incărcați o nouă poză" accept="image/*"/>
     `;
+    
     document.getElementById("modal-content").appendChild(form);
-    const parentId = await initializeUpdateSignFormAndGetParentId();
+    const parentId = initializeUpdateSignFormAndGetParentId(currentSign);
     document.getElementById("save-modal").addEventListener("click", (event) => submitUpdateSignHandler(event, parentId));
 }
 
@@ -39,7 +41,9 @@ function appendAdminCardButtons(cardButtons, currentSign, cardContainer, mainCon
     deleteButton.addEventListener('click', async (event) => {
         deleteSignPopUpHandler(event, currentSign);
     });
-    updateButton.addEventListener('click', updateSignPopUpHandler);
+    updateButton.addEventListener('click', async (event) => {
+        updateSignPopUpHandler(event, currentSign);
+    });
 
     addModalBundles();
 }   

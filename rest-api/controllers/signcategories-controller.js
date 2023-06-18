@@ -16,6 +16,7 @@ async function getSignCategoryById(req, res, params) {
 
 async function createSignCategoryController(req, res) {
     try {
+        console.log("Am ajuns totusi");
         const form = new formidable.IncomingForm({ uploadDir: './uploads' });
 
         form.parse(req, async (err, fields, files) => {
@@ -29,7 +30,7 @@ async function createSignCategoryController(req, res) {
             }
 
             const uploadedFile = files.file;
-
+            console.log(uploadedFile);
             if (!uploadedFile) {
                 sendJsonResponse(res, 400, JSON.stringify({
                     success: false,

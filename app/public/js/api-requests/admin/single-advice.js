@@ -7,18 +7,46 @@ function addErrorMessageElement(errorMessage) {
     form.insertBefore(errorContainer, form.firstChild);
 }
 
-async function initializeUpdateSignFormAndGetParentId(currentSign) {
-    document.getElementById("form_title").value = currentSign.title;
-    document.getElementById("form_description").value = currentSign.description;
-    return currentSign.parentId;
+async function deleteAdvice(adviceID) {
+    return fetch(`http://localhost:3000/api/v1/advices/${adviceID}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(responseObj => {
+        if (responseObj.success) {
+            return responseObj.data;
+        }
+        else {
+            throw new Error(responseObj.message);
+        }
+    });
 }
 
-function submitUpdateSignHandler(event, parentId) {
+function submitDeleteSingleAdviceHandler(event, currentAdvice) {
+    event.preventDefault();
+    const adviceID = currentAdvice._id;
+    deleteAdvice(adviceID)
+    .then(() => {
+        window.location.href = `advice.html`;
+    })  
+    .catch(error => {
+        console.error(error);
+    });
+}
+
+function initializeUpdateSingleAdviceForm(currentAdvice) {
+    document.getElementById("form_title").value = currentAdvice.title;
+    document.getElementById("form_description").value = currentAdvice.description;
+}
+
+function submitUpdateSingleAdviceHandler(event) {
     event.preventDefault();
     const title = document.getElementById("form_title").value;
     const description = document.getElementById("form_description").value;
     const img = document.getElementById("form_img").files[0];
-    const signID = new URLSearchParams(window.location.search).get('indicatorID');
+    const adviceID = new URLSearchParams(window.location.search).get('id');
 
     if (!title) {
         addErrorMessageElement("The title field is required");
@@ -36,9 +64,8 @@ function submitUpdateSignHandler(event, parentId) {
     }
     formData.append('title', title);
     formData.append('description', description);
-    formData.append('parentId', parentId);
 
-    fetch(`http://localhost:3000/api/v1/signs/${signID}`, {
+    fetch(`http://localhost:3000/api/v1/advices/${adviceID}`, {
         method: 'PUT',
         body: formData
     })
@@ -55,36 +82,5 @@ function submitUpdateSignHandler(event, parentId) {
     })
     .catch(error => {
         addErrorMessageElement(error.message);
-    });
-} 
-
-async function deleteSign(signId) {
-    return fetch(`http://localhost:3000/api/v1/signs/${signId}`, {
-        method: 'DELETE',
-        headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
-        }
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(responseObj => {
-        if(responseObj.success) {
-            return responseObj.data;
-        }
-        else {
-            throw new Error(responseObj.message);
-        }
-    });
-}
-
-function submitDeleteSignHandler(event, currentSign) {
-    event.preventDefault();    
-    deleteSign(currentSign._id)
-    .then(() => {
-        window.location.href = `signs_by_category.html?categoryID=${currentSign.parentId}`;
-    })  
-    .catch(error => {
-        console.error(error);
     });
 }

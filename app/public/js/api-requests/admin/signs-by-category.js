@@ -121,7 +121,10 @@ function submitDeleteSignCategoryHandler(event) {
     const categoryID = new URLSearchParams(window.location.search).get('categoryID');
 
     fetch(`http://localhost:3000/api/v1/signcategories/${categoryID}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
     })
     .then(response => {
         return response.json();
