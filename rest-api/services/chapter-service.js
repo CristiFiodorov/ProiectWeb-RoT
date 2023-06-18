@@ -69,27 +69,39 @@ async function deleteChaptersByCourseId(courseId) {
 }
 
 async function findPrevChapterByCourseId(chapterId, courseId) {
-    const chapters = await Chapter.find({ parentId: courseId });
-    const currentChapterIndex = chapters.findIndex(chapter => chapter._id.toString() === chapterId);
-    
-    if (currentChapterIndex === 0) {
-        return new Status(200, new Response(true, chapters[chapters.length - 1], "Sign successfully retrieved."));
-    }
+    try {
+        const chapters = await Chapter.find({ parentId: courseId });
+        const currentChapterIndex = chapters.findIndex(chapter => chapter._id.toString() === chapterId);
+        
+        if (currentChapterIndex === 0) {
+            return new Status(200, new Response(true, chapters[chapters.length - 1], "Sign successfully retrieved."));
+        }
 
-    const prevChapter = chapters[currentChapterIndex - 1];
-    return new Status(200, new Response(true, prevChapter, "Sign successfully retrieved."));
+        const prevChapter = chapters[currentChapterIndex - 1];
+        return new Status(200, new Response(true, prevChapter, "Sign successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
 }
 
 async function findNextChapterByCourseId(chapterId, courseId) {
-    const chapters = await Chapter.find({ parentId: courseId });
-    const currentChapterIndex = chapters.findIndex(chapter => chapter._id.toString() === chapterId);
-    
-    if (currentChapterIndex === chapters.length - 1) {
-        return new Status(200, new Response(true, chapters[0], "Sign successfully retrieved."));
-    }
+    try {
+        const chapters = await Chapter.find({ parentId: courseId });
+        const currentChapterIndex = chapters.findIndex(chapter => chapter._id.toString() === chapterId);
+        
+        if (currentChapterIndex === chapters.length - 1) {
+            return new Status(200, new Response(true, chapters[0], "Sign successfully retrieved."));
+        }
 
-    const nextChapter = chapters[currentChapterIndex + 1];
-    return new Status(200, new Response(true, nextChapter, "Sign successfully retrieved."));
+        const nextChapter = chapters[currentChapterIndex + 1];
+        return new Status(200, new Response(true, nextChapter, "Sign successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
 }
 
 module.exports = {

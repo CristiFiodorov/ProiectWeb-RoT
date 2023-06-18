@@ -72,6 +72,7 @@ async function updateSignCategoryById(signCategoryId, signCategory) {
     }
     catch (error) {
         console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
     }
 }
 
