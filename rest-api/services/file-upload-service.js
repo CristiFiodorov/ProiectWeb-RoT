@@ -7,7 +7,7 @@ async function uploadFile(file) {
     try {
         const fileUrl = await uploadFileToAzureBlobStorage(file);
 
-        fs.unlink(file.path, (err) => {
+        fs.unlink(file.filepath, (err) => {
             if (err) {
                 console.error(err);
             } else {

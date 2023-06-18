@@ -9,14 +9,14 @@ const containerName = process.env.AZURE_CONTAINER_NAME;
 
 async function uploadFileToAzureBlobStorage(file) {
   try {
-    const filePath = file.path;
+    const filePath = file.filepath;
     const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
 
     const blobServiceClient = new BlobServiceClient(`https://${accountName}.blob.core.windows.net`, sharedKeyCredential);
 
     const containerClient = blobServiceClient.getContainerClient(containerName);
 
-    const blockBlobClient = containerClient.getBlockBlobClient(file.originalname);
+    const blockBlobClient = containerClient.getBlockBlobClient(file.originalFilename);
 
     await blockBlobClient.uploadFile(filePath, {
         blobHTTPHeaders: {

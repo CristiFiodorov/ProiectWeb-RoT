@@ -1,21 +1,12 @@
-const fs = require('fs');
 const { uploadFile } = require('../services/file-upload-service');
 const { sendJsonResponse } = require('../utils/response-utils');
-const multer = require('multer');
-
-const storage = multer.diskStorage({
-  destination: 'uploads',
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-
-
-const upload = multer({ storage: storage });
+const formidable = require('formidable');
 
 async function uploadFileController(req, res) {
   try {
-    upload.single('file')(req, res, async (err) => {
+    const form = new formidable.IncomingForm({  uploadDir: './uploads', multiples: false });
+
+    form.parse(req, async (err, fields, files) => {
       if (err) {
         sendJsonResponse(res, 400, JSON.stringify({
           success: false,
@@ -24,7 +15,7 @@ async function uploadFileController(req, res) {
         }));
       }
 
-      const uploadedFile = req.file;
+      const uploadedFile = files.file;
 
       if (!uploadedFile) {
         sendJsonResponse(res, 400, JSON.stringify({
@@ -35,7 +26,6 @@ async function uploadFileController(req, res) {
       }
 
       const { statusCode, response } = await uploadFile(uploadedFile);
-      console.log(response);
       sendJsonResponse(res, statusCode, JSON.stringify(response));
     });
   } catch (error) {
