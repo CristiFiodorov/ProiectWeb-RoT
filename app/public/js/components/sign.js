@@ -14,7 +14,7 @@ function createIndicatorPage(indicator)
 
             <div class="big-card__buttons">
                 <a class="big-card__button " id="prev" href="#">Înapoi</a>
-                <a class="big-card__button " href="tipuri_indicatoare.html">Indicatoare</a>
+                <a class="big-card__button " href="sign_categories.html">Indicatoare</a>
                 <a class="big-card__button " id="next" href="#">Următorul</a>
             </div>
     `;
@@ -27,7 +27,7 @@ function createIndicatorPage(indicator)
         getPrevSign(indicator._id, indicator.parentId)
         .then(sign => {
             if (sign !== undefined) {
-                window.location.href = `indicator.html?indicatorID=${sign._id}`;
+                window.location.href = `sign.html?indicatorID=${sign._id}`;
             } else {
                 console.error('sign is not defined');
             }
@@ -41,7 +41,7 @@ function createIndicatorPage(indicator)
         getNextSign(indicator._id, indicator.parentId)
         .then(sign => {
             if (sign !== undefined) {
-                window.location.href = `indicator.html?indicatorID=${sign._id}`;
+                window.location.href = `sign.html?indicatorID=${sign._id}`;
             } else {
                 console.error('sign is not defined');
             }

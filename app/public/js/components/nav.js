@@ -9,9 +9,9 @@ nav.innerHTML = '\
         </div>\
         <ul class="navbar__nav-links">\
             <li><a class="navbar__link" href="index.html">Acasa</a></li>\
-            <li><a class="navbar__link" href="categorii_cursuri.html">Cursuri</a></li>\
-            <li><a class="navbar__link" href="tipuri_indicatoare.html">Indicatoare</a></li>\
-            <li><a class="navbar__link" href="sfaturi.html">Sfaturi</a></li>\
+            <li><a class="navbar__link" href="courses.html">Cursuri</a></li>\
+            <li><a class="navbar__link" href="sign_categories.html">Indicatoare</a></li>\
+            <li><a class="navbar__link" href="advice.html">Sfaturi</a></li>\
             <li><a class="navbar__link" href="teste.html">Teste</a></li>\
             <li><a class="navbar__link" href="clasament.html">Clasament</a></li>\
         </ul>\

@@ -1,7 +1,7 @@
 function createCategoryCard(category) {
     const a = document.createElement("a");
     const main = document.getElementById("main");
-    a.href = `indicatoare_specifice.html?categoryID=${category._id}`;
+    a.href = `signs_by_category.html?categoryID=${category._id}`;
     a.className = "card__link";
     a.innerHTML = `
     <div class="card card--gradient-red">

@@ -1,7 +1,7 @@
 function createCourseCard(course){
     const main = document.getElementById("main");
     const a = document.createElement("a");
-    a.href = `cuprins.html?courseID=${course._id}`;
+    a.href = `course_chapters.html?courseID=${course._id}`;
     a.className = "course-card-link";
     a.innerHTML = `
     <div class="course-card course-card--gradient-green">

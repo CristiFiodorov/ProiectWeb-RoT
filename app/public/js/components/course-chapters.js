@@ -1,7 +1,7 @@
 function createCourseChapter(chapter){
     const a = document.createElement("a");
     const list = document.getElementById("list");
-    a.href = `capitol_curs.html?chapterID=${chapter._id}`;
+    a.href = `chapter_content.html?chapterID=${chapter._id}`;
     a.className = "contents-card-link";
     a.innerHTML = `
     <div class="contents-card__item">

@@ -38,7 +38,7 @@ function addFooterSectionToContainer(contentContainer, chapterId, courseId) {
 
     prevButton.href = "#";
     nextButton.href = "#";
-    chaptersButton.href = "categorii_cursuri.html";
+    chaptersButton.href = "courses.html";
 
     prevButton.innerHTML = "<h1>Lecția Precedentă</h1>";
     nextButton.innerHTML = "<h1>Lecția Următoare</h1>";
@@ -49,7 +49,7 @@ function addFooterSectionToContainer(contentContainer, chapterId, courseId) {
         getPrevChapter(chapterId, courseId)
             .then(chapter => {
                 if (chapter) {
-                    window.location.href = `capitol_curs.html?chapterID=${chapter._id}`;
+                    window.location.href = `chapter_content.html?chapterID=${chapter._id}`;
                 }
                 else {
                     console.error('chapter is not defined');
@@ -65,7 +65,7 @@ function addFooterSectionToContainer(contentContainer, chapterId, courseId) {
         getNextChapter(chapterId, courseId)
             .then(chapter => {
                 if (chapter) {
-                    window.location.href = `capitol_curs.html?chapterID=${chapter._id}`;
+                    window.location.href = `chapter_content.html?chapterID=${chapter._id}`;
                 }
                 else {
                     console.error('chapter is not defined');
