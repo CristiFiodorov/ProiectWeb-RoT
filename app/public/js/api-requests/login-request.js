@@ -39,7 +39,7 @@ function handleFormSubmission(event) {
         const responseData = responseObj.data;
         localStorage.setItem('accessToken', responseData.accessToken);
         // redirect to home page
-        window.location.href = '/app/views/index.html';
+        window.location.href = 'index.html';
     })
     .catch(error => {
         // log the message with the red color above username 
