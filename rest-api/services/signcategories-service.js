@@ -19,6 +19,21 @@ async function findSignCategories() {
     }
 }
 
+async function findSignCategoryById(signCategoryId) {
+    try {
+        const signCategory = await SignCategory.findById(signCategoryId);
+
+        if(!signCategory)
+            return new Status(404, new Response(false, null, "Sign Category not found."));
+
+        return new Status(200, new Response(true, signCategory, "Sign Category successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
 async function createSignCategory(signCategory) {
     try {
         const newSignCategory = new SignCategory(signCategory);
@@ -61,7 +76,8 @@ async function updateSignCategoryById(signCategoryId, signCategory) {
 }
 
 module.exports = {
-    findSignCategories, 
+    findSignCategories,
+    findSignCategoryById,
     createSignCategory, 
     deleteSignCategoryById, 
     updateSignCategoryById
