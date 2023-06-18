@@ -70,4 +70,7 @@ function addAdminButtons() {
 }
 
 // TODO: Execute this function only if the user is admin
-addAdminButtons();
+// Execute verification function from admin checker 
+if(userIsAdmin()) {
+    addAdminButtons();
+}

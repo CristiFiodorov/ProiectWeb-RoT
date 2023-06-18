@@ -1,10 +1,19 @@
 const { sendJsonResponse } = require('../utils/response-utils');
 
+const User = require('../models/user-scheme');
 const jwt = require('jsonwebtoken');
 
+async function isUserAdmin(user) {
+    const foundUser = await User.findById(user._id);
+    if (!foundUser) {
+        throw new Error("User not found.");
+    }
+    return foundUser.isAdmin;
+}
 
-function generateAccessToken(user) {
-    return jwt.sign({ "id": user._id.toString() }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '24h' })
+async function generateAccessToken(user) {
+    const isAdmin = await isUserAdmin(user);
+    return jwt.sign({ "id": user._id.toString(), "isAdmin": isAdmin }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '24h' })
 }
 
 function verifyToken(req, res, next) {
