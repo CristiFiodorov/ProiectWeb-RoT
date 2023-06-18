@@ -43,9 +43,21 @@ function addSignPopUpHandler() {
     document.getElementById("modal-content").appendChild(form);
 };
 
-function modifySignCategoryHandler() {
+async function modifySignCategoryHandler() {
     document.getElementById("modal-content").firstChild?.remove();
     document.getElementById("modal-title").innerHTML = "Modifică Categoria";
+
+    const form = document.createElement("form");
+    form.className = "flex flex-col align-center";
+
+    form.innerHTML = `
+        <input type="text" id="form_title" name="form_title" placeholder="Nume Indicator"/>
+        <input type="file" id="form_img" name="form_img" title = "Incărcați poza indicatorului" accept="image/*"/>
+    `;
+
+    document.getElementById("modal-content").appendChild(form);    
+    await initializeUpdateSignCategoryForm();
+    document.getElementById("save-modal").addEventListener("click", submitUpdateSignCategoryHandler);
 };
 
 function addAdminButtons() {
