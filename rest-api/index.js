@@ -7,7 +7,7 @@ const { ServerManager } = require('./config/server-manager');
 const {  findAllQuestions, findQuestionById, createQuestion, deleteQuestion, patchQuestion } = require('./controllers/questions-controller');
 const { createTest, findAllTests, findTestById, findTestByIndex } = require('./controllers/test-controller');
 
-const { getSignCategories, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController } = require('./controllers/signcategories-controller');
+const { getSignCategories, getSignCategoryById, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController } = require('./controllers/signcategories-controller');
 const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory, createSignController, deleteSignByIdController, updateSignByIdController } = require('./controllers/sign-controller');
 
 const { getAllCourses, createCourseController, deleteCourse, updateCourse } = require('./controllers/course-controller');
@@ -50,6 +50,7 @@ server.post('/api/v1/register', registerUser);
 server.post('/api/v1/login', loginUser);
 
 server.get('/api/v1/signcategories', getSignCategories);
+server.get('/api/v1/signcategories/:id', getSignCategoryById);
 server.post('/api/v1/signcategories', createSignCategoryController);
 server.delete('/api/v1/signcategories/:id', deleteSignCategoryByIdController);
 server.put('/api/v1/signcategories/:id', updateSignCategoryByIdController);
