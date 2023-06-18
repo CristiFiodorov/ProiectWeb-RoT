@@ -21,8 +21,8 @@ getSignCategories()
 
             getSigns(categorie._id)
                 .then(signs => {
+                    title.innerHTML = `${categorie.title}`;
                     if (Array.isArray(signs)) {
-                        title.innerHTML = `${categorie.title}`;
                         signs.map(e => createIndicatorCard(e));
                     } else {
                         console.error('signs is not an array');
