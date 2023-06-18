@@ -33,8 +33,11 @@ function submitAddSingleAdviceHandler(event) {
     formData.append('title', title);
     formData.append('description', description);
 
-    fetch('http://localhost:3000/api/v1/advices', {
+    fetch(`${config.apiAddress}/api/v1/advices`, {
         method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
         body: formData
     })
     .then(response => {

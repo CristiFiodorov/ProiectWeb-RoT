@@ -1,6 +1,9 @@
 async function getPrevChapter(chapterId, courseId) {
     return fetch(`${config.apiAddress}/api/v1/chapters/prevchapter/${chapterId}/${courseId}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
     })
     .then(response => {
         return response.json();
@@ -21,7 +24,10 @@ async function getPrevChapter(chapterId, courseId) {
 
 async function getNextChapter(chapterId, courseId) {
     return fetch(`${config.apiAddress}/api/v1/chapters/nextchapter/${chapterId}/${courseId}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
     })
     .then(response => {
         return response.json();
@@ -42,7 +48,10 @@ async function getNextChapter(chapterId, courseId) {
 
 async function getChapter(chapterId) {
     return fetch(`${config.apiAddress}/api/v1/chapters/${chapterId}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
     })
     .then(response => {
         return response.json();
@@ -62,7 +71,10 @@ async function getChapter(chapterId) {
 
 async function getChapterContent(chapterId) {
     return fetch(`${config.apiAddress}/api/v1/chapters/${chapterId}/contents`, {
-         method: 'GET'
+         method: 'GET',
+         headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
     })
     .then(response => {
         return response.json(); 

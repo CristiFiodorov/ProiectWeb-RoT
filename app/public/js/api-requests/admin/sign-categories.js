@@ -27,8 +27,11 @@ function submitAddSignCategoryHandler(event) {
     formData.append('title', title);
     formData.append('description', null);
 
-    fetch('http://localhost:3000/api/v1/signcategories', {
+    fetch(`${config.apiAddress}/api/v1/signcategories`, {
         method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
         body: formData
     })
     .then(response => {

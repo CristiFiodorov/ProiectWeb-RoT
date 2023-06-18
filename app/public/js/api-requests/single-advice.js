@@ -23,7 +23,12 @@ async function getAdviceById(adviceId){
 
 
 async function getPrevAdvice(adviceId) {
-    return fetch(`${config.apiAddress}/api/v1/advices/prevadvice/${adviceId}`)
+    return fetch(`${config.apiAddress}/api/v1/advices/prevadvice/${adviceId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+            }
+    })
         .then(response => {
             return response.json();
         })
@@ -41,7 +46,12 @@ async function getPrevAdvice(adviceId) {
 }
 
 async function getNextAdvice(adviceId) {
-    return fetch(`${config.apiAddress}/api/v1/advices/nextadvice/${adviceId}`)
+    return fetch(`${config.apiAddress}/api/v1/advices/nextadvice/${adviceId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
+    })
         .then(response => {
             return response.json();
         })

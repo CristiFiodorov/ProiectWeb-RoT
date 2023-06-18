@@ -38,8 +38,11 @@ function submitUpdateSignHandler(event, parentId) {
     formData.append('description', description);
     formData.append('parentId', parentId);
 
-    fetch(`http://localhost:3000/api/v1/signs/${signID}`, {
+    fetch(`${config.apiAddress}/api/v1/signs/${signID}`, {
         method: 'PUT',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
         body: formData
     })
     .then(response => {
@@ -59,7 +62,7 @@ function submitUpdateSignHandler(event, parentId) {
 } 
 
 async function deleteSign(signId) {
-    return fetch(`http://localhost:3000/api/v1/signs/${signId}`, {
+    return fetch(`${config.apiAddress}/api/v1/signs/${signId}`, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')

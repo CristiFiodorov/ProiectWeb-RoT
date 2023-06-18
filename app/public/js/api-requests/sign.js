@@ -22,7 +22,12 @@ async function getSign(signID){
 }
 
 async function getPrevSign(signId, categoryId) {
-    return fetch(`${config.apiAddress}/api/v1/signs/prevsign/${signId}/${categoryId}`)
+    return fetch(`${config.apiAddress}/api/v1/signs/prevsign/${signId}/${categoryId}`,{
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+            }
+        })
         .then(response => {
             return response.json();
         })
@@ -40,7 +45,12 @@ async function getPrevSign(signId, categoryId) {
 }
 
 async function getNextSign(signId, categoryId) {
-    return fetch(`${config.apiAddress}/api/v1/signs/nextsign/${signId}/${categoryId}`)
+    return fetch(`${config.apiAddress}/api/v1/signs/nextsign/${signId}/${categoryId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+            }
+    })
         .then(response => {
             return response.json();
         })

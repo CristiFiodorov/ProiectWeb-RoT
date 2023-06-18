@@ -8,8 +8,11 @@ function addErrorMessageElement(errorMessage) {
 }
 
 async function deleteAdvice(adviceID) {
-    return fetch(`http://localhost:3000/api/v1/advices/${adviceID}`, {
-        method: 'DELETE'
+    return fetch(`${config.apiAddress}/api/v1/advices/${adviceID}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        }
     })
     .then(response => {
         return response.json();
@@ -67,6 +70,9 @@ function submitUpdateSingleAdviceHandler(event) {
 
     fetch(`http://localhost:3000/api/v1/advices/${adviceID}`, {
         method: 'PUT',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
         body: formData
     })
     .then(response => {

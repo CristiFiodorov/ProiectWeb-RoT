@@ -36,8 +36,11 @@ function submitAddSignHandler(event) {
     formData.append('parentId', categoryID);
 
 
-    fetch('http://localhost:3000/api/v1/signs', {
+    fetch(`${config.apiAddress}/api/v1/signs`, {
         method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
         body: formData
     })
     .then(response => {
@@ -58,7 +61,7 @@ function submitAddSignHandler(event) {
 
 async function initializeUpdateSignCategoryForm() {
     const categoryID = new URLSearchParams(window.location.search).get('categoryID');
-    return fetch(`http://localhost:3000/api/v1/signcategories/${categoryID}`, {
+    return fetch(`${config.apiAddress}/api/v1/signcategories/${categoryID}`, {
         method: 'GET'
     })
     .then(response => {
@@ -96,8 +99,11 @@ function submitUpdateSignCategoryHandler(event) {
     // TODO: solve description issue for categories
     formData.append('description', 'modified description');
 
-    fetch(`http://localhost:3000/api/v1/signcategories/${categoryID}`, {
+    fetch(`${config.apiAddress}/api/v1/signcategories/${categoryID}`, {
         method: 'PUT',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
         body: formData
     })
     .then(response => {
@@ -120,7 +126,7 @@ function submitDeleteSignCategoryHandler(event) {
     event.preventDefault();
     const categoryID = new URLSearchParams(window.location.search).get('categoryID');
 
-    fetch(`http://localhost:3000/api/v1/signcategories/${categoryID}`, {
+    fetch(`${config.apiAddress}/api/v1/signcategories/${categoryID}`, {
         method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
