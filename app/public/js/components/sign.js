@@ -1,7 +1,7 @@
 function appendSimpleUserCardButtons(cardButtons, currentSign, cardContainer, mainContainer) {
     cardButtons.innerHTML = `
         <a class="big-card__button" id="prev" href="#">Înapoi</a>
-        <a class="big-card__button"  href="sign_categories.html">Indicatoare</a>
+        <a class="big-card__button" href="signs_by_category.html?categoryID=${currentSign.parentId}">Indicatoare</a>
         <a class="big-card__button" id="next" href="#">Următorul</a>
     `;
 
