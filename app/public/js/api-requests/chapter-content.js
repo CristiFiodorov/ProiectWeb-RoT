@@ -1,5 +1,5 @@
 async function getPrevChapter(chapterId, courseId) {
-    return fetch(`http://localhost:3000/api/v1/chapters/prevchapter/${chapterId}/${courseId}`, {
+    return fetch(`${config.apiAddress}/api/v1/chapters/prevchapter/${chapterId}/${courseId}`, {
         method: 'GET'
     })
     .then(response => {
@@ -20,7 +20,7 @@ async function getPrevChapter(chapterId, courseId) {
 
 
 async function getNextChapter(chapterId, courseId) {
-    return fetch(`http://localhost:3000/api/v1/chapters/nextchapter/${chapterId}/${courseId}`, {
+    return fetch(`${config.apiAddress}/api/v1/chapters/nextchapter/${chapterId}/${courseId}`, {
         method: 'GET'
     })
     .then(response => {
@@ -41,7 +41,7 @@ async function getNextChapter(chapterId, courseId) {
 
 
 async function getChapter(chapterId) {
-    return fetch(`http://localhost:3000/api/v1/chapters/${chapterId}`, {
+    return fetch(`${config.apiAddress}/api/v1/chapters/${chapterId}`, {
         method: 'GET'
     })
     .then(response => {
@@ -61,7 +61,7 @@ async function getChapter(chapterId) {
 }
 
 async function getChapterContent(chapterId) {
-    return fetch(`http://localhost:3000/api/v1/chapters/${chapterId}/contents`, {
+    return fetch(`${config.apiAddress}/api/v1/chapters/${chapterId}/contents`, {
          method: 'GET'
     })
     .then(response => {

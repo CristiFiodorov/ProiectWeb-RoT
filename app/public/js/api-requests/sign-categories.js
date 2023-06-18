@@ -1,5 +1,5 @@
 async function getSignCategories(){
-    return fetch('http://localhost:3000/api/v1/signcategories', {
+    return fetch(`${config.apiAddress}/api/v1/signcategories`, {
         method: 'GET'
     })
     .then(response => {
