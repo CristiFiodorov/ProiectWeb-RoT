@@ -70,14 +70,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  
     post:
       tags:
         - SignCategories
       operationId: createSignCategory
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignCategoryRequest'
         required: true
@@ -96,6 +95,30 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 
   /api/v1/signcategories/{id}:
+    get:
+      tags:
+        - SignCategories
+      operationId: getSignCategoriesById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignCategoryResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
     delete:
       tags:
         - SignCategories
@@ -131,7 +154,7 @@ paths:
             type: string
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignCategoryRequest'
         required: true
@@ -233,7 +256,7 @@ paths:
             type: string
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignRequest'
         required: true
@@ -258,7 +281,7 @@ paths:
       operationId: createSign
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SignRequest'
         required: true
@@ -361,7 +384,7 @@ paths:
       operationId: createAdvice
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/AdviceRequest'
         required: true
@@ -440,7 +463,7 @@ paths:
             type: string
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/AdviceRequest'
         required: true
@@ -822,8 +845,6 @@ components:
           type: string
         image_url:
           type: string
-        description:
-          type: string
 
     SignCategoryResponse:
       type: object 
@@ -842,10 +863,8 @@ components:
       properties:
         title:
           type: string
-        image_url:
-          type: string
-        description:
-          type: string
+        file:
+          type: file
 
     Sign:
       type: object
@@ -868,8 +887,8 @@ components:
       properties:
         title:
           type: string
-        image_url:
-          type: string
+        file:
+          type: file
         description:
           type: string
         parentId:
@@ -906,8 +925,8 @@ components:
       properties:
         title:
           type: string
-        image_url:
-          type: string
+        file:
+          type: file
         description:
           type: string
 

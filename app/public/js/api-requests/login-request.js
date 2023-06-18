@@ -1,5 +1,4 @@
 function addErrorMessageElement(errorMessage) {
-    document.getElementById('error-message-auth')?.remove();
     const errorContainer = document.createElement('div');
     errorContainer.className = 'error-message-auth';
     errorContainer.textContent = errorMessage;
@@ -21,7 +20,7 @@ function handleFormSubmission(event) {
         password: password
     }
 
-    fetch('http://localhost:3000/api/v1/login', {
+    fetch(`${config.apiAddress}/api/v1/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -39,7 +38,7 @@ function handleFormSubmission(event) {
         const responseData = responseObj.data;
         localStorage.setItem('accessToken', responseData.accessToken);
         // redirect to home page
-        window.location.href = '/app/views/index.html';
+        window.location.href = 'index.html';
     })
     .catch(error => {
         // log the message with the red color above username 

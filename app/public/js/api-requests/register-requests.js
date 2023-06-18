@@ -62,7 +62,7 @@ function handleFormSubmission(event) {
         return;
     }
 
-    fetch("http://localhost:3000/api/v1/register", {
+    fetch(`${config.apiAddress}/api/v1/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

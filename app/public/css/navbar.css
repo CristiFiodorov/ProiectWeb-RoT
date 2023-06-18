@@ -50,7 +50,7 @@
     font-weight: bold;
 }
 
-.navbar__login-btn{
+.navbar__log-btn{
     transition: 0.3s;
     background-color: #0C5AE8;
     width: 15rem;
@@ -65,7 +65,7 @@
     font-weight: bold;
 }
 
-.navbar__login-btn:hover, .navbar__login-link:focus .navbar__login-btn{
+.navbar__log-btn:hover, .navbar__log-link:focus .navbar__login-btn{
     transition: 0.1s;
     background-color: #fff;
     border: 1px solid #0C5AE8;
@@ -126,7 +126,7 @@
         text-align: center;
     }
   
-    .navbar__login-btn {
+    .navbar__log-btn {
         margin-top: 1rem;
         margin-bottom: 2rem;
         display: none;

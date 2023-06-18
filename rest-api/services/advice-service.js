@@ -44,7 +44,7 @@ async function createAdvice(advice) {
     }
 }
 
-async function updateAdvice(adviceId, advice) {
+async function updateAdviceById(adviceId, advice) {
     try {
         const updateAdvice = await Advice.findByIdAndUpdate(adviceId, advice);
 
@@ -59,7 +59,7 @@ async function updateAdvice(adviceId, advice) {
     }
 }
 
-async function deleteAdvice(adviceId) {
+async function deleteAdviceById(adviceId) {
     try {
         const deletedAdvice = await Advice.findByIdAndDelete(adviceId);
 
@@ -76,33 +76,51 @@ async function deleteAdvice(adviceId) {
 
 
 async function findNextAdvice(adviceId) {
-    const advices = await Advice.find();
-    const currentAdviceIndex = advices.findIndex(advice => advice._id.toString() === adviceId);
+    try {
+        const advices = await Advice.find();
+        const currentAdviceIndex = advices.findIndex(advice => advice._id.toString() === adviceId);
 
-    if (currentAdviceIndex === advices.length - 1)
-        return new Status(200, new Response(true, advices[0], "Advice successfully retrieved."));
+        if(currentAdviceIndex === -1)
+            return new Status(404, new Response(false, null, "Advice not found."));
 
-    const nextAdvice = advices[currentAdviceIndex + 1];
-    return new Status(200, new Response(true, nextAdvice, "Advice successfully retrieved."));
+        if (currentAdviceIndex === advices.length - 1)
+            return new Status(200, new Response(true, advices[0], "Advice successfully retrieved."));
+
+        const nextAdvice = advices[currentAdviceIndex + 1];
+        return new Status(200, new Response(true, nextAdvice, "Advice successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
 }
 
 async function findPrevAdvice(adviceId) {
-    const advices = await Advice.find();
-    const currentAdviceIndex = advices.findIndex(advice => advice._id.toString() === adviceId);
+    try {
+        const advices = await Advice.find();
+        const currentAdviceIndex = advices.findIndex(advice => advice._id.toString() === adviceId);
 
-    if (currentAdviceIndex === 0)
-        return new Status(200, new Response(true, advices[advices.length - 1], "Advice successfully retrieved."));
+        if(currentAdviceIndex === -1)
+            return new Status(404, new Response(false, null, "Advice not found."));
 
-    const previousAdvice = advices[currentAdviceIndex - 1];
-    return new Status(200, new Response(true, previousAdvice, "Advice successfully retrieved."));
+        if (currentAdviceIndex === 0)
+            return new Status(200, new Response(true, advices[advices.length - 1], "Advice successfully retrieved."));
+
+        const previousAdvice = advices[currentAdviceIndex - 1];
+        return new Status(200, new Response(true, previousAdvice, "Advice successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
 }
 
 module.exports = {
     findAllAdvices,
     findAdviceById,
     createAdvice,
-    updateAdvice,
-    deleteAdvice,
+    updateAdviceById,
+    deleteAdviceById,
     findNextAdvice,
     findPrevAdvice
 };

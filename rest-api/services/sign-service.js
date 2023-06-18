@@ -32,27 +32,45 @@ async function findSignById(signId) {
 }
 
 async function findNextSignsByCategory(signId, categoryId) {
-    const signs = await Sign.find({ parentId: categoryId });
-    const currentSignIndex = signs.findIndex(sign => sign._id.toString() === signId);
+    try {
+        const signs = await Sign.find({ parentId: categoryId });
+        const currentSignIndex = signs.findIndex(sign => sign._id.toString() === signId);
 
-    if (currentSignIndex === signs.length - 1)
-        return new Status(200, new Response(true, signs[0], "Sign successfully retrieved."));
+        if(currentSignIndex === -1)
+            return new Status(404, new Response(false, null, "Sign not found."));
 
-    const nextSign = signs[currentSignIndex + 1];
-    return new Status(200, new Response(true, nextSign, "Sign successfully retrieved."));
+        if (currentSignIndex === signs.length - 1)
+            return new Status(200, new Response(true, signs[0], "Sign successfully retrieved."));
+
+        const nextSign = signs[currentSignIndex + 1];
+        return new Status(200, new Response(true, nextSign, "Sign successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
 }
 
 
 async function findPrevSignsByCategory(signId, categoryId) {
-    const signs = await Sign.find({ parentId: categoryId });
-    const currentSignIndex = signs.findIndex(sign => sign._id.toString() === signId);
+    try{
+        const signs = await Sign.find({ parentId: categoryId });
+        const currentSignIndex = signs.findIndex(sign => sign._id.toString() === signId);
 
-    if (currentSignIndex === 0)
-        return new Status(200, new Response(true, signs[signs.length - 1], "Sign successfully retrieved."));
+        if(currentSignIndex === -1)
+            return new Status(404, new Response(false, null, "Sign not found."));
 
-    const prevSign = signs[currentSignIndex - 1];
+        if (currentSignIndex === 0)
+            return new Status(200, new Response(true, signs[signs.length - 1], "Sign successfully retrieved."));
 
-    return new Status(200, new Response(true, prevSign, "Sign successfully retrieved."));
+        const prevSign = signs[currentSignIndex - 1];
+
+        return new Status(200, new Response(true, prevSign, "Sign successfully retrieved."));
+    }
+    catch(error){
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
 }
 
 
@@ -93,6 +111,7 @@ async function updateSignById(signId, sign) {
     }
     catch (error) {
         console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
     }
 }
 

@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@700&display=swap');
+@import url("root.css");
+
+* {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+  }
+
+h2{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+}
+
+label, button{
+    font-size: 20px;
+}
+
+body{
+    background-color: white;
+}
+
+h1, h2, label {
+    font-family: 'Poppins';
+    font-style: normal;
+}
+
+input #img {
+    display: inline-block;
+}
+
+input::file-selector-button {
+    display: none;
+}
+
+form {
+    background-color: white;
+    font-weight: bolder;
+    padding: 20px 100px 20px 100px;
+    justify-content: space-around;
+}
+
+input[type=text], input[type=password] {
+    transition: 0.3s;
+    border: 2px solid #D4D4D4;
+    margin-top: 2rem;
+    font-size: 20px;
+
+    border-radius: 10px;
+    width: 300px;
+    height: 76px;
+    padding: 0px 25px 0px 25px;
+}
+
+input[type=file] {
+    transition: 0.3s;
+    border: 2px solid #D4D4D4;
+    margin-top: 2rem;
+    font-size: 20px;
+
+    border-radius: 10px;
+    width: 300px;
+    height: 76px;
+    padding: 0px 25px 0px 25px;
+}
+
+input:focus, input:hover{
+    transition: 0.1s;
+    outline: none;
+    border: 2px solid var(--blue);
+}
+
+.error-message {
+    width: 300px;
+    color: red;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
+textarea {
+    font-size: 14px;
+    border: 2px solid #D4D4D4;
+    border-radius: 10px;
+    width: 300px;
+    padding: 0px 25px 0px 25px;
+    margin-top: 2rem;
+    resize: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .form__image img{
+        display: none;
+    }
+}
+
+@media (min-width: 0px) and (max-width: 480px) {
+    h1 {
+        font-size: 30px;
+    }
+    
+    form{
+        padding: 20px 20px 20px 20px;
+    }
+    input{
+        width: 220px;
+        max-width: 70vw;
+    }
+    
+    .error-message {
+        width: 300px;
+        color: red;
+        font-size: 18px;
+        font-weight: 400;
+        margin-top: 1rem;
+    }    
+} 
