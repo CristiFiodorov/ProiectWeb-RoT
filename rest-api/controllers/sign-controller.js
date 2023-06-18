@@ -35,6 +35,7 @@ async function createSignController(req, res, params) {
                 data: null,
                 message: 'Error uploading file'
                 }));
+                return;
             }
     
             const uploadedFile = files.file;
@@ -89,6 +90,7 @@ async function updateSignByIdController(req, res, params) {
                 data: null,
                 message: 'Error uploading file'
                 }));
+                return;
             }
     
             const uploadedFile = files.file;

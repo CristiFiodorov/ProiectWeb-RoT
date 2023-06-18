@@ -25,6 +25,7 @@ async function createAdviceController(req, res, params) {
                 data: null,
                 message: 'Error uploading file'
                 }));
+                return;
             }
     
             const uploadedFile = files.file;
@@ -78,6 +79,7 @@ async function updateAdviceByIdController(req, res, params) {
                 data: null,
                 message: 'Error uploading file'
                 }));
+                return;
             }
     
             const uploadedFile = files.file;
