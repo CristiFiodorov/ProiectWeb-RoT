@@ -48,7 +48,6 @@ async function createSignCategoryController(req, res) {
 
             const signCategory = {
                 title: fields.title,
-                description: fields.description,
                 image_url: response.data
             }
 
@@ -78,6 +77,7 @@ async function updateSignCategoryByIdController(req, res, params) {
                     data: null,
                     message: 'Error uploading file'
                 }));
+                return;
             }
 
             const uploadedFile = files.file;
@@ -103,7 +103,6 @@ async function updateSignCategoryByIdController(req, res, params) {
 
             const signCategory = {
                 title: fields.title,
-                description: fields.description,
                 image_url: response.data
             }
 

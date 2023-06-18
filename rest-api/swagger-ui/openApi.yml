@@ -845,8 +845,6 @@ components:
           type: string
         image_url:
           type: string
-        description:
-          type: string
 
     SignCategoryResponse:
       type: object 
@@ -867,8 +865,6 @@ components:
           type: string
         file:
           type: file
-        description:
-          type: string
 
     Sign:
       type: object
