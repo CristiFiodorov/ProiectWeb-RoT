@@ -7,10 +7,9 @@ function addErrorMessageElement(errorMessage) {
     form.insertBefore(errorContainer, form.firstChild);
 }
 
-async function initializeUpdateSignFormAndGetParentId(currentSign) {
+function initializeUpdateSignFormAndGetParentId(currentSign) {
     document.getElementById("form_title").value = currentSign.title;
     document.getElementById("form_description").value = currentSign.description;
-    return currentSign.parentId;
 }
 
 function submitUpdateSignHandler(event, parentId) {
