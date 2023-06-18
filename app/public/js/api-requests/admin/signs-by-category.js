@@ -58,9 +58,22 @@ function submitAddSignHandler(event) {
 
 async function initializeUpdateSignCategoryForm() {
     const categoryID = new URLSearchParams(window.location.search).get('categoryID');
-    const signCategories = await getSignCategories();
-    const signCategory = signCategories.find(signCategory => signCategory.id == categoryID);
-    document.getElementById("form_title").value = signCategory.title;
+    return fetch(`http://localhost:3000/api/v1/signcategories/${categoryID}`, {
+        method: 'GET'
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(responseObj => {
+        if (responseObj.success) {
+            const responseData = responseObj.data;
+            document.getElementById("form_title").value = responseData.title;
+            return responseData.parentId;
+        }
+        else {
+            throw new Error(responseObj.message);
+        }
+    });
 }
 
 function submitUpdateSignCategoryHandler(event) {
