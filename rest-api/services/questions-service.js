@@ -47,6 +47,7 @@ const getQuestions = async () => {
 const _getQuestionById = async (id) => {
   try {
     console.log(id);
+    if (isNotStringOf12Characters(id)) { return null; }
     const question = await Question.findById(id);
     return question;
   } catch (error) {
@@ -60,6 +61,7 @@ const getQuestionById = async (params) => {
     const id = params.id;
     console.log(id);
     const question = await _getQuestionById(id);
+    if (question == null) { return new Status(404, new Response(false, null, "Resource was not found.")); }
     console.log(question);
     return new Status(200, new Response(true, question, "Question successfully retrieved."));
   } catch (error) {
@@ -82,6 +84,7 @@ const _updateQuestion = async (req, questionId) => {
       }
     });
     
+    if ((await _getQuestionById(questionId)) == null) return null;
      await Question.updateOne({ _id: `${questionId}`}, { $set : updatedData});
      const question  = await _getQuestionById(questionId);
     return question;
@@ -94,6 +97,7 @@ const _updateQuestion = async (req, questionId) => {
 const updateQuestion = async (req, params) =>{
   try{
       const question = await _updateQuestion(req, params.id);
+      if(question == null) { return new Status(404, new Response(false, null, "Resource was not found.")); }
       return new Status(200, new Response(true, question, "Question successfully updated."));
   } catch (error) {
     console.error(error);
@@ -105,6 +109,7 @@ const updateQuestion = async (req, params) =>{
 const _deleteQuestion = async(params) =>{
   try{
     const question = await _getQuestionById(params.id);
+    if(question == null) { return new Status(404, new Response(false, null, "Resource was not found.")); }
     await Question.deleteOne({_id : params.id});
     return new Status(204, new Response(true, null, "Question successfully deleted."));
   } catch (error) {
