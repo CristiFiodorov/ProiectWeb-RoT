@@ -33,10 +33,6 @@ async function uploadFileToAzureBlobStorage(file) {
   }
 }
 
-function getFileExtension(filename) {
-  return filename.split('.').pop();
-}
-
 
 module.exports = {
     uploadFileToAzureBlobStorage
