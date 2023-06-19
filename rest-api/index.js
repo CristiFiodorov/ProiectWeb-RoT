@@ -10,7 +10,7 @@ const { createTest, findAllTests, findTestById, findTestByIndex, patchTest, dele
 const { getSignCategories, getSignCategoryById, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController } = require('./controllers/signcategories-controller');
 const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory, createSignController, deleteSignByIdController, updateSignByIdController } = require('./controllers/sign-controller');
 
-const { getAllCourses, createCourseController, deleteCourse, updateCourse } = require('./controllers/course-controller');
+const { getAllCourses, getCourseById, createCourseController, deleteCourse, updateCourse } = require('./controllers/course-controller');
 
 const { getAllChapters, deleteChapter, getChapterById, getPrevChapterByCourseId, getNextChapterByCourseId } = require('./controllers/chapter-controller');
 
@@ -85,6 +85,7 @@ server.post('/api/v1/signs', async (req, res, params) => {
 
 
 server.get('/api/v1/courses', getAllCourses);
+server.get('/api/v1/courses/:id', getCourseById);
 server.post('/api/v1/courses', async (req, res, params) => {
     verifyToken(req, res, params, true, createCourseController);
 });

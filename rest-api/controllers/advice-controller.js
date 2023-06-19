@@ -100,7 +100,7 @@ async function updateAdviceByIdController(req, res, params) {
             
             if(!response){
                 const { statusCode: statusCode2, response: response2 } = await findAdviceById(params.id);
-                response = response2.data.image_url;
+                response = { data: response2.data.image_url};
             }
 
             const advice = {
