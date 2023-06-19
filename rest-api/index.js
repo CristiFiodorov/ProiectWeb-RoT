@@ -100,7 +100,7 @@ server.get('/api/v1/courses/:course_id/chapters', getAllChapters);
 server.get('/api/v1/chapters/:chapter_id', getChapterById);
 server.get('/api/v1/chapters/prevchapter/:chapter_id/:course_id', getPrevChapterByCourseId);
 server.get('/api/v1/chapters/nextchapter/:chapter_id/:course_id', getNextChapterByCourseId);
-server.post('/api/v1/courses/:course_id/chapters', async (req, res, params) => {
+server.post('/api/v1/chapters', async (req, res, params) => {
     verifyToken(req, res, params, true, createChapterController);
 });
 server.put('/api/v1/chapters/:chapter_id', async (req, res, params) => {

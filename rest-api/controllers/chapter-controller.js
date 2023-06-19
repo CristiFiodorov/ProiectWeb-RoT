@@ -26,7 +26,7 @@ async function updateChapter(req, res, params) {
 }
 
 async function deleteChapter(req, res, params) {
-    const { statusCode, response } = await deleteChapterById(params.id);
+    const { statusCode, response } = await deleteChapterById(params.chapter_id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 

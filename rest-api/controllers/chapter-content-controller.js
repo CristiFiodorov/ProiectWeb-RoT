@@ -27,7 +27,7 @@ async function addToChapterContentController(req, res, params) {
             let statusCode;
             let response;
     
-            if (uploadedFile) {
+            if (uploadedFile && fields.elementType === 'image') {
                 const status = await uploadFile(uploadedFile);
                 response = status.response;
                 statusCode = status.statusCode;
