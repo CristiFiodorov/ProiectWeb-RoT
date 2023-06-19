@@ -1,6 +1,44 @@
 .contents-card-link{
     text-decoration: none;
+    width: 100%;
 }
+
+.admin-course-buttons__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-size: 3rem;
+    background-color: #3bb78f;
+    background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%); 
+    border-color: #71BC78;
+}
+
+.modify-course__link:hover {
+    background-color: #71BC78;
+}
+
+.delete-course__link:hover {
+    background-color: #71BC78;
+}
+
+.admin-link {
+    text-decoration: none;
+    color: white;
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* .delete-course__link {
+    background-color: #E1AD01;
+    border-color: #71BC78;
+}
+
+.modify-course__link {
+    background-color: blue;
+    border-color: #71BC78;
+} */
 
 .contents-container {
     display: flex;
@@ -39,7 +77,41 @@
     border-radius: 2rem;
     padding: 15px;
     text-align: center;
+}
 
+.admin-add-contents__item {
+    /* background: #E1AD01; */
+    border-color: #71BC78;
+}
+
+#chapter-container {
+    display: flex;
+    align-items: center;
+}
+
+.admin-chapter_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-chapter_buttons a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+.admin-modify-chapter__icon {
+    background-image: url("https://fiiwebapp.blob.core.windows.net/rot-web/admin_modify_chapter.png");
+}
+
+.admin-delete-chapter__icon {
+    background-image: url("https://fiiwebapp.blob.core.windows.net/rot-web/admin_delete_chapter.png");
 }
 
 .contents-card__item:hover, .contents-card-link:focus .contents-card__item{

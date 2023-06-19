@@ -64,7 +64,6 @@ async function createSignController(req, res, params) {
             }
 
             const { statusCode: statusCode2, response: response2 } = await createSign(sign);
-            console.log("Sign " + sign);
 
             sendJsonResponse(res, statusCode2, JSON.stringify(response2));
         });
@@ -111,7 +110,7 @@ async function updateSignByIdController(req, res, params) {
             
             if(!response){
                 const { statusCode: statusCode2, response: response2 } = await findSignById(params.id);
-                response = response2.data.image_url;
+                response = { data: response2.data.image_url};
             }
 
             const sign = {
@@ -120,8 +119,6 @@ async function updateSignByIdController(req, res, params) {
                 parentId: fields.parentId,
                 image_url: response.data
             }
-
-            console.log("Sign " + sign);
 
             const { statusCode: statusCode2, response: response2 } = await updateSignById(params.id, sign);
 

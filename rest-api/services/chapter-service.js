@@ -1,7 +1,7 @@
 const Chapter = require('../models/chapter-scheme');
 const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
-const { deleteChapterContentByChapterId } = require('./chapter-content-service');
+const { createEmptyChapterContent, deleteChapterContentByChapterId } = require('./chapter-content-service');
 
 async function findChaptersByCourseId(courseId) {
     try {
@@ -24,6 +24,39 @@ async function findChapterById(chapterId) {
         return new Status(404, new Response(false, null, "Chapter not found."));
     }
     return new Status(200, new Response(true, chapter, "Chapter successfully retrieved."));
+}
+
+async function createChapter(chapter) {
+    try {
+        const newChapter = new Chapter(chapter);
+        const savedChapter = await newChapter.save();
+
+        const { statusCode, response } = await createEmptyChapterContent(savedChapter._id);
+
+        if (statusCode !== 201)
+            return new Status(statusCode, response);
+
+        return new Status(201, new Response(true, savedChapter, "Chapter successfully created."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
+async function updateChapterById(chapter_id, chapter) {
+    try {
+        const updatedChapter = await Chapter.findByIdAndUpdate(chapter_id, chapter, { new: true });
+
+        if (!updatedChapter)
+            return new Status(404, new Response(false, null, "Chapter not found."));
+
+        return new Status(200, new Response(true, updatedChapter, "Chapter successfully updated."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
 }
 
 async function deleteChapterById(id) {
@@ -106,6 +139,8 @@ async function findNextChapterByCourseId(chapterId, courseId) {
 
 module.exports = {
     findChaptersByCourseId,
+    createChapter,
+    updateChapterById,
     deleteChapterById,
     deleteChaptersByCourseId,
     findChapterById,
