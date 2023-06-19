@@ -53,7 +53,6 @@ async function createAdviceController(req, res, params) {
             }
 
             const { statusCode: statusCode2, response: response2 } = await createAdvice(advice);
-            console.log("Sign " + advice);
 
             sendJsonResponse(res, statusCode2, JSON.stringify(response2));
         });
@@ -108,8 +107,6 @@ async function updateAdviceByIdController(req, res, params) {
                 description: fields.description,
                 image_url: response.data
             }
-
-            console.log("Sign " + advice);
 
             const { statusCode: statusCode2, response: response2 } = await updateAdviceById(params.id, advice);
 

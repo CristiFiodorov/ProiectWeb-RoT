@@ -12,9 +12,9 @@ const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCat
 
 const { getAllCourses, getCourseById, createCourseController, deleteCourse, updateCourse } = require('./controllers/course-controller');
 
-const { getAllChapters, deleteChapter, getChapterById, getPrevChapterByCourseId, getNextChapterByCourseId } = require('./controllers/chapter-controller');
+const { getAllChapters, getChapterById, createChapterController, updateChapter, deleteChapter, getPrevChapterByCourseId, getNextChapterByCourseId } = require('./controllers/chapter-controller');
 
-const { getChapterContentByChapterId, deleteChapterContent } = require('./controllers/chapter-content-controller');
+const { getChapterContentByChapterId, addToChapterContentController, deleteChapterContent } = require('./controllers/chapter-content-controller');
 
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
@@ -100,11 +100,21 @@ server.get('/api/v1/courses/:course_id/chapters', getAllChapters);
 server.get('/api/v1/chapters/:chapter_id', getChapterById);
 server.get('/api/v1/chapters/prevchapter/:chapter_id/:course_id', getPrevChapterByCourseId);
 server.get('/api/v1/chapters/nextchapter/:chapter_id/:course_id', getNextChapterByCourseId);
+server.post('/api/v1/courses/:course_id/chapters', async (req, res, params) => {
+    verifyToken(req, res, params, true, createChapterController);
+});
+server.put('/api/v1/chapters/:chapter_id', async (req, res, params) => {
+    verifyToken(req, res, params, true, updateChapter);
+});
 server.delete('/api/v1/chapters/:chapter_id', async (req, res, params) => {
   verifyToken(req, res, params, true, deleteChapter);
 });
 
+
 server.get('/api/v1/chapters/:chapter_id/contents', getChapterContentByChapterId);
+server.put('/api/v1/chapters/:chapter_id/contents/append', async (req, res, params) => {
+    verifyToken(req, res, params, true, addToChapterContentController);
+});
 server.delete('/api/v1/chapters/:chapter_id/contents', async (req, res, params) => {
     verifyToken(req, res, params, true, deleteChapterContent);
 });
