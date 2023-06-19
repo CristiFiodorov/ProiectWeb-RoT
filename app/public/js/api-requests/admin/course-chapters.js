@@ -153,3 +153,40 @@ function submitDeleteChapterHandler(event, chapter) {
         alert(error.message);
     });
 }
+
+function submitAddChapterHandler(event) {
+    event.preventDefault();
+    const title = document.getElementById("form_title").value;
+    const parentId = new URLSearchParams(window.location.search).get('courseID');
+
+    if (!title) {
+        addErrorMessageElement("The title field is required");
+        return;
+    }
+
+    fetch(`${config.apiAddress}/api/v1/chapters`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        body: JSON.stringify({
+            title: title,
+            parentId: parentId,
+        })
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(responseObj => {
+        if (responseObj.success) {
+            window.location.reload();
+        }
+        else {
+            throw new Error(responseObj.message);
+        }
+    })
+    .catch(error => {
+        addErrorMessageElement(error.message);
+    });
+}

@@ -58,6 +58,24 @@ function appendAdminChapterButtons(chaptersList, chapter) {
     chaptersList.appendChild(chapterButtons);
 }
 
+function addChapterPopUp(event) {
+    event.preventDefault();
+    document.getElementById("modal-content").firstChild?.remove();
+    document.getElementById("modal-title").innerHTML = "Adaugă un nou capitol";
+    document.getElementById("modal").style.height = "400px";
+
+    const form = document.createElement("form");
+    form.className = "flex flex-col align-center";
+
+    form.innerHTML = `
+        <input type="text" id="form_title" name="form_title" placeholder="Titlul Capitolului"/>
+    `;
+
+    document.getElementById("modal-content").appendChild(form);
+    document.getElementById("save-modal").addEventListener("click", submitAddChapterHandler);
+    form.addEventListener("submit", submitAddChapterHandler);
+}
+
 function appendAdminAddChapterButton() {
     const addChapterContainer = document.createElement("div");
     addChapterContainer.id = "chapter-container";
@@ -66,10 +84,11 @@ function appendAdminAddChapterButton() {
     a.href = `#`;
     a.className = "contents-card-link";
     a.innerHTML = `
-        <div class="contents-card__item admin-add-contents__item">
+        <div class="contents-card__item admin-add-contents__item modal-open">
             <p>Adaugă un nou capitol</p>
         </div>
     `;
+    a.addEventListener("click", addChapterPopUp);
     addChapterContainer.appendChild(a);
     list.appendChild(addChapterContainer);
 }
