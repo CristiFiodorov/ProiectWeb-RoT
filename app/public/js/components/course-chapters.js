@@ -30,6 +30,8 @@ getChapters(id)
         if(userIsAdmin()) {
             appendAdminAddChapterButton();
         }
+        // After all the admin special buttons have been placed
+        addModalBundles();
     })
     .catch(error => {
         console.error(error);

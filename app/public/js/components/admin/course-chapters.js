@@ -1,3 +1,37 @@
+function updateChapterPopUp(event, chapter) {
+    event.preventDefault();
+    document.getElementById("modal-content").firstChild?.remove();
+    document.getElementById("modal-title").innerHTML = "Modifică capitolul";
+    document.getElementById("modal").style.height = "400px";
+
+    const form = document.createElement("form");
+    form.className = "flex flex-col align-center";
+
+    form.innerHTML = `
+        <input type="text" id="form_title" name="form_title" placeholder="Titlul Capitolului"/>
+    `;
+
+    document.getElementById("modal-content").appendChild(form);
+    initializeUpdateChapterForm(chapter);
+    document.getElementById("save-modal").addEventListener("click", (event) => {
+        submitUpdateChapterHandler(event, chapter);
+    });
+    form.addEventListener("submit", (event) => {
+        submitUpdateChapterHandler(event, chapter);
+    });
+}
+
+function deleteChapterPopUp(event, chapter) {
+    event.preventDefault();
+    document.getElementById("delete-modal-title").innerHTML = "Ești sigur că vrei să ștergi capitolul?";
+    document.getElementById("save-delete-modal").addEventListener("click", (event) => {
+        submitDeleteChapterHandler(event, chapter);
+    });
+}
+
+/**
+ * Buttons that appear on admin user page that involves a specific chapter (those icons that appaear at the right)
+ */
 function appendAdminChapterButtons(chaptersList, chapter) {
     const chapterButtons = document.createElement("span");
     chapterButtons.className = "admin-chapter_buttons";
@@ -5,16 +39,21 @@ function appendAdminChapterButtons(chaptersList, chapter) {
     // Append admin modify icon 
     const modifyIcon = document.createElement("a");
     modifyIcon.href = '#';
-    modifyIcon.className = "admin-modify-chapter__icon";
+    modifyIcon.className = "admin-modify-chapter__icon modal-open";
     modifyIcon.title = "Modifica capitol";
+    modifyIcon.addEventListener("click", (event) => {
+        updateChapterPopUp(event, chapter);
+    });
     chapterButtons.appendChild(modifyIcon);
 
     // Append admin delete icon 
     const deleteIcon = document.createElement("a");
     deleteIcon.href = "#";
-    deleteIcon.className = "admin-delete-chapter__icon";
+    deleteIcon.className = "admin-delete-chapter__icon delete-modal-open";
     deleteIcon.title = "Sterge capitol";
-    
+    deleteIcon.addEventListener("click", (event) => {
+        deleteChapterPopUp(event, chapter);
+    });
     chapterButtons.appendChild(deleteIcon);
     chaptersList.appendChild(chapterButtons);
 }
@@ -39,15 +78,14 @@ function appendAdminAddChapterButton() {
 function deleteCoursePopUp(event) {
     event.preventDefault();
     document.getElementById("delete-modal-title").innerHTML = "Ești sigur că vrei să ștergi cursul?";
-    document.getElementById("save-delete-modal").addEventListener("click", (event) => {
-        submitDeleteCourseHandler(event);
-    });
+    document.getElementById("save-delete-modal").addEventListener("click", submitDeleteCourseHandler);
 }
 
-function updateCoursePopUp(event) {
+async function updateCoursePopUp(event) {
     event.preventDefault();
     document.getElementById("modal-content").firstChild?.remove();
     document.getElementById("modal-title").innerHTML = "Modifică Cursul";
+    document.getElementById("modal").style.height = "600px";
 
     const form = document.createElement("form");
     form.className = "flex flex-col align-center";
@@ -57,37 +95,37 @@ function updateCoursePopUp(event) {
         <textarea id="form_description" name="form_description" rows="7" placeholder="Descrierea Cursului"></textarea>
         <input type="file" id="form_img" name="form_img" title = "Incărcați o nouă poză" accept="image/*"/>
     `;
-    
+
     document.getElementById("modal-content").appendChild(form);
     await initializeUpdateCourseForm();
-    document.getElementById("save-modal").addEventListener("click", (event) => submitUpdateSignHandler(event, currentSign.parentId));
+    document.getElementById("save-modal").addEventListener("click", submitUpdateCourseHandler);
 }
 
 function appendAdminCourseButtons() {
     const main = document.getElementById("main");
     const adminContainer = document.createElement("div");
     adminContainer.className = "admin-course-buttons__container";
-    
+
     const deleteCourseLink = document.createElement("a");
     deleteCourseLink.href = "#";
-    deleteCourseLink.classList = "admin-link delete-course__link modal-open"; 
+    deleteCourseLink.classList = "admin-link delete-course__link delete-modal-open";
     deleteCourseLink.innerHTML = "Șterge cursul";
 
     deleteCourseLink.addEventListener("click", deleteCoursePopUp);
 
     const modifyCourseLink = document.createElement("a");
     modifyCourseLink.href = "#";
-    modifyCourseLink.classList = "admin-link modify-course__link delete-modal-open";
+    modifyCourseLink.classList = "admin-link modify-course__link modal-open";
     modifyCourseLink.innerHTML = "Modifică cursul";
 
     modifyCourseLink.addEventListener("click", updateCoursePopUp);
     adminContainer.appendChild(modifyCourseLink);
     adminContainer.appendChild(deleteCourseLink);
-    
-    
+
+
     main.insertBefore(adminContainer, main.firstChild);
 }
 
-if(userIsAdmin()) {
+if (userIsAdmin()) {
     appendAdminCourseButtons();
 }

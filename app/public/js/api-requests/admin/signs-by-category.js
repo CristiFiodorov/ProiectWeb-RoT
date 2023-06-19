@@ -135,6 +135,6 @@ function submitDeleteSignCategoryHandler(event) {
         }
     })
     .catch(error => {
-        addErrorMessageElement(error.message);
+        alert(error.message);
     });
 }
