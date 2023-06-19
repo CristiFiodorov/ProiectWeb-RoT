@@ -1,12 +1,3 @@
-function addErrorMessageElement(errorMessage) {
-    document.querySelector('.error-message')?.remove();
-    const errorContainer = document.createElement('div');
-    errorContainer.className = 'error-message';
-    errorContainer.textContent = errorMessage;
-    const form = document.querySelector('form');
-    form.insertBefore(errorContainer, form.firstChild);
-}
-
 async function deleteAdvice(adviceID) {
     return fetch(`${config.apiAddress}/api/v1/advices/${adviceID}`, {
         method: 'DELETE',

@@ -1,8 +1,8 @@
-function submitAddSingleAdviceHandler(event) {
+function submitAddCourseHandler(event) {
     event.preventDefault();
     const title = document.getElementById("form_title").value;
-    const img = document.getElementById("form_img").files[0];
     const description = document.getElementById("form_description").value;
+    const img = document.getElementById("form_img").files[0];
 
     if (!title) {
         addErrorMessageElement("The title field is required");
@@ -24,7 +24,8 @@ function submitAddSingleAdviceHandler(event) {
     formData.append('title', title);
     formData.append('description', description);
 
-    fetch(`${config.apiAddress}/api/v1/advices`, {
+
+    fetch(`${config.apiAddress}/api/v1/courses`, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
@@ -36,7 +37,7 @@ function submitAddSingleAdviceHandler(event) {
     })
     .then(responseObj => {
         if (responseObj.success) {
-            window.location.href = 'advice.html';
+            window.location.href = `courses.html`;
         }
         else {
             throw new Error(responseObj.message);
