@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="../public/css/navbar.css">
     <link rel="stylesheet" href="../public/css/contents-page.css">
     <link rel="stylesheet" href="../public/css/contents-card.css">
+    <link rel="stylesheet" href="../public/css/modal-forms.css">
+    <link rel="stylesheet" href="../public/css/modal.css">
+    <link rel="stylesheet" href="../public/css/delete-modal.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,26 +22,52 @@
 </head>
 <body>
     <nav id="navbar" class="navbar"></nav>
-    <main>
+
+    <!-- Modal Structure -->
+    <div id="modal-overlay">
+        <div id="modal">
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+            </div>
+            <div id="modal-content">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-button" id="close-modal">Închide</button>
+                <button type="button" class="modal-button" id="save-modal">Salvează</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Delete Modal Structure -->
+    <div id="delete-modal-overlay">
+        <div id="delete-modal">
+            <div class="delete-modal-header">
+                <h2 id="delete-modal-title"></h2>
+            </div>
+            <div class="delete-modal-footer">
+                <button type="button" class="delete-modal-button" id="close-delete-modal">Închide</button>
+                <button type="button" class="delete-modal-button" id="save-delete-modal">Șterge</button>
+            </div>
+        </div>
+    </div>
+
+    <main id="main">
         <h1 class="contents-container__title contents-container__title--green">Cuprinsul Cursului</h1>
         <div class="contents-container">
             <div id="list" class="contents-card card--gradient-green">
-                <!-- <a href="capitol_curs.html" class="contents-card-link">
-                    <div class="contents-card__item">
-                        <p>
-                            Capitolul 1 - partea 1 - Drumul Public
-                        </p>
-                    </div>
-                </a> -->
                 
             </div>
         </div>
     </main>
 
     <script src="../public/js/api-requests/config/config.js"></script>
+    <script src="../public/js/components/admin/admin-utils.js"></script>
     <script src="../public/js/components/nav.js"></script>
+    <script src="../public/js/api-requests/admin/course-chapters.js"></script>
     <script src="../public/js/api-requests/course-chapters.js"></script>
     <script src="../public/js/api-requests/courses.js"></script>
+    <script src="../public/js/components/admin/course-chapters.js" ></script>
     <script src="../public/js/components/course-chapters.js" ></script>
 </body>
 </html> 
