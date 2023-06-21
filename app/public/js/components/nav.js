@@ -40,6 +40,7 @@ nav.innerHTML = '\
             <li><a class="navbar__link" href="advice.html">Sfaturi</a></li>\
             <li><a class="navbar__link" href="teste.html">Teste</a></li>\
             <li><a class="navbar__link" href="clasament.html">Clasament</a></li>\
+            <li><a class="navbar__link" href="help.html">Ajutor</a></li>\
         </ul>\
     </div>';
 
@@ -66,6 +67,7 @@ routesMap.set("teste.html", "teste.html");
 routesMap.set("teste.html", "teste.html");
 routesMap.set("clasament.html", "clasament.html");
 routesMap.set("about.html", "about.html");
+routesMap.set("help.html", "help.html");
 
 let toggle = document.querySelector(".toggle");
 let login = document.querySelector(".navbar__log-btn");
