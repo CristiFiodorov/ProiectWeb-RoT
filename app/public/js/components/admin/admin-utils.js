@@ -73,3 +73,8 @@ function userIsAdmin() {
     const payload = extractPayloadFromJwt(token);
     return payload.isAdmin;
 }
+
+function isUserLoggedIn() {
+    const isLogged = localStorage.getItem("accessToken");
+    return isLogged ? true : false;
+}

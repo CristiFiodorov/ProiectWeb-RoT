@@ -72,16 +72,36 @@ function appendSimpleUserFooterButtons(footer, chapterId, courseId) {
             });
     });
 
+    // Export To JSON button
+    const exportJsonButton = document.createElement("a");
+    exportJsonButton.className = "chapter-footer__link chapter-footer__link--gold";
+    exportJsonButton.href = `${config.apiAddress}/api/v1/export/json/chapters/${chapterId}/contents`;
+    exportJsonButton.innerHTML = "<h1>Export JSON</h1>";
+
+    // Export to CSV button
+    const exportCsvButton = document.createElement("a");
+    exportCsvButton.className = "chapter-footer__link chapter-footer__link--gold";
+    exportCsvButton.href = `${config.apiAddress}/api/v1/export/csv/chapters/${chapterId}/contents`;
+    exportCsvButton.innerHTML = "<h1>Export CSV</h1>";
+
+    if (isUserLoggedIn()) {
+        footer.appendChild(exportJsonButton);
+    }
+    
     footer.appendChild(prevButton);
     footer.appendChild(chaptersButton);
     footer.appendChild(nextButton);
+
+    if (isUserLoggedIn()) {
+        footer.appendChild(exportCsvButton);
+    }
 }
 
 function addFooterSectionToContainer(contentContainer, chapterId, courseId) {
     const footer = document.createElement("div");
     footer.className = "chapter-footer";
 
-    if(!userIsAdmin()) {
+    if (!userIsAdmin()) {
         appendSimpleUserFooterButtons(footer, chapterId, courseId);
     } else {
         appendAdminFooterButtons(footer, chapterId, courseId);

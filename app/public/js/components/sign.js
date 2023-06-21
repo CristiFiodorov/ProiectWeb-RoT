@@ -1,9 +1,18 @@
+function addButton(buttonClass, buttonId, buttonName, buttonHref, buttonContainer) {
+    const button = document.createElement("a");
+
+    button.className = buttonClass;
+    button.id = buttonId;
+    button.href = buttonHref;
+    button.innerText = buttonName;
+
+    buttonContainer.appendChild(button);
+}
+
 function appendSimpleUserCardButtons(cardButtons, currentSign, cardContainer, mainContainer) {
-    cardButtons.innerHTML = `
-        <a class="big-card__button" id="prev" href="#">Înapoi</a>
-        <a class="big-card__button" href="signs_by_category.html?categoryID=${currentSign.parentId}">Indicatoare</a>
-        <a class="big-card__button" id="next" href="#">Următorul</a>
-    `;
+    addButton("big-card__button", "prev", "Înapoi", "#", cardButtons);
+    addButton("big-card__button", "back", "Indicatoare", `signs_by_category.html?categoryID=${currentSign.parentId}`, cardButtons);
+    addButton("big-card__button", "next", "Următorul", "#", cardButtons);
 
     cardContainer.appendChild(cardButtons);
     mainContainer.appendChild(cardContainer);

@@ -13,11 +13,25 @@ function createCategoryCard(category) {
     main.appendChild(a);
 }
 
+function createImportExportButtonsForSignCategories() {
+  if(isUserLoggedIn()) {
+    const importExportWrapper = document.createElement("div");
+    importExportWrapper.className = "import-export__wrapper";
+    importExportWrapper.innerHTML = `
+      <div class="import-export-links__container">
+        <a href="${config.apiAddress}/api/v1/export/json/signcategories" class="import-export__link import-export__link--red">Export JSON</a>
+        <a href="${config.apiAddress}/api/v1/export/csv/signcategories" class="import-export__link import-export__link--red">Export CSV</a>
+      </div>
+    `
+    document.getElementById("import-export").appendChild(importExportWrapper);
+  }
+}
 
 getSignCategories()
   .then(signCategories => {
     if (Array.isArray(signCategories)) {
       signCategories.map(e => createCategoryCard(e));
+      createImportExportButtonsForSignCategories();
     } else {
       console.error('signCategories is not an array');
     }
