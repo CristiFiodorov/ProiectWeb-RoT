@@ -135,7 +135,7 @@ async function getAdvicesInCSV(req, res, params) {
 
 async function getAdvicesInJSON(req, res, params) {
     const {statusCode, response} = await findAllAdvices();
-    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data));
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data), 'advices.json');
 }
 
 module.exports = {

@@ -13,11 +13,11 @@ function sendCSVResponse(res, status, content) {
     res.end(content);
 }
 
-function sendJsonResponseWithDownload(res, status, content) {
+function sendJsonResponseWithDownload(res, status, content, filename) {
     setCorsHeaders(res);
     res.writeHead(status, {
         'Content-Type': 'application/json',
-        'Content-Disposition': 'attachment; filename="file.json"'
+        'Content-Disposition': `attachment; filename="${filename}"`
     });
     res.end(content);
 }

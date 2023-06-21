@@ -172,7 +172,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
   
-  /api/v1/{category_id}/signs:
+  /api/v1/signcategories/{category_id}/signs:
     get:
       tags:
         - Signs
@@ -285,6 +285,24 @@ paths:
             schema:
               $ref: '#/components/schemas/SignRequest'
         required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+    get:
+      tags:
+        - Signs
+      operationId: getSigns
       responses:
         '200':
           description: OK
@@ -937,6 +955,183 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChapterResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+  /api/v1/export/csv/signcategories:
+    get:
+      tags:
+        - Export
+      operationId: exportSignCategories
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/json/signcategories:
+    get:
+      tags:
+        - Export
+      operationId: exportSignCategories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignCategoryResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/csv/signcategories/{category_id}/signs:
+    get:
+      tags:
+        - Export
+      operationId: exportSignsByCategoryId
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/json/signcategories/{category_id}/signs:
+    get:
+      tags:
+        - Export
+      operationId: exportSignsByCategoryId
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/csv/chapters/{chapter_id}/contents:
+    get:
+      tags:
+        - Export
+      operationId: exportContentsByChapterId
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/json/chapters/{chapter_id}/contents:
+    get:
+      tags:
+        - Export
+      operationId: exportContentsByChapterId
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/csv/advices:
+    get:
+      tags:
+        - Export
+      operationId: exportAdvices
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/json/advices:
+    get:
+      tags:
+        - Export
+      operationId: exportAdvices
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
         '404':
           description: Bad Request
           content:

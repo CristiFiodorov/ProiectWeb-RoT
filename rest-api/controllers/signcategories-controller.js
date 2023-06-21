@@ -124,7 +124,7 @@ async function getSignCategoriesInCSV(req, res) {
 
 async function getSignCategoriesInJSON(req, res) {
     const { statusCode, response } = await findSignCategories();
-    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data));
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data), 'signcategories.json');
 }
 
 

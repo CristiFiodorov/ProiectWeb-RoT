@@ -142,7 +142,7 @@ async function getSignsByCategoryIdInCSV(req, res, params) {
 
 async function getSignsByCategoryIdInJSON(req, res, params) {
     const { statusCode, response } = await findSignsByCategoryId(params.category_id);
-    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data));
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data), 'signs.json');
 }
 
 module.exports = {

@@ -52,10 +52,11 @@ server.get('/questions', async (req, res, params) => { findAllQuestions(req, res
 server.get('/questions/:id', async (req, res, params) => { findQuestionById(req, res, params); });
 server.delete('/questions/:id', async (req, res, params) => { deleteQuestion(req, res, params); });
 
-
+//Authentification
 server.post('/api/v1/register', registerUser);
 server.post('/api/v1/login', loginUser);
 
+//Sing categories
 server.get('/api/v1/signcategories', getSignCategories);
 server.get('/api/v1/signcategories/:id', getSignCategoryById);
 server.post('/api/v1/signcategories', async (req, res, params) => {
@@ -71,6 +72,7 @@ server.get('/api/v1/export/csv/signcategories', getSignCategoriesInCSV);
 server.get('/api/v1/export/json/signcategories', getSignCategoriesInJSON);
 
 
+//Sing
 server.get('/api/v1/signcategories/:category_id/signs', getSignsByCategoryId);
 server.get('/api/v1/signs/:id', getSignById);
 server.get('/api/v1/signs/nextsign/:sign_id/:category_id', getNextSignByCategory);
@@ -90,7 +92,7 @@ server.get('/api/v1/export/json/signcategories/:category_id/signs', getSignsByCa
 
 
 
-
+//Courses
 server.get('/api/v1/courses', getAllCourses);
 server.get('/api/v1/courses/:id', getCourseById);
 server.post('/api/v1/courses', async (req, res, params) => {
@@ -103,6 +105,8 @@ server.delete('/api/v1/courses/:id', async (req, res, params) => {
     verifyToken(req, res, params, true, deleteCourse);
 });
 
+
+//Chapters
 server.get('/api/v1/courses/:course_id/chapters', getAllChapters);
 server.get('/api/v1/chapters/:chapter_id', getChapterById);
 server.get('/api/v1/chapters/prevchapter/:chapter_id/:course_id', getPrevChapterByCourseId);
@@ -118,6 +122,7 @@ server.delete('/api/v1/chapters/:chapter_id', async (req, res, params) => {
 });
 
 
+//ChapterContent
 server.get('/api/v1/chapters/:chapter_id/contents', getChapterContentByChapterId);
 server.put('/api/v1/chapters/:chapter_id/contents/append', async (req, res, params) => {
     verifyToken(req, res, params, true, addToChapterContentController);
@@ -136,6 +141,7 @@ server.get('/api/v1/export/json/chapters/:chapter_id/contents', getChapterConten
 
 
 
+//Advices
 server.get('/api/v1/advices', getAdvices);
 server.get('/api/v1/advices/:id', getAdviceById);
 server.get('/api/v1/advices/nextadvice/:advice_id', getNextAdvice);
@@ -153,15 +159,10 @@ server.get('/api/v1/export/csv/advices', getAdvicesInCSV);
 server.get('/api/v1/export/json/advices', getAdvicesInJSON);
 
 
-
+//Upload
 server.post('/api/v1/upload', async (req, res, params) => {
     verifyToken(req, res, params, true, uploadFileController);
 });
 
-server.get('/api/v1/test', async (req, res) => {
-    // verifyToken(req, res, async () => {
-    // });
-});
-// generateNrTests(1);
 
 server.listen(3000);

@@ -80,7 +80,7 @@ async function getChapterContentByChapterIdInJSON(req, res, params) {
         return { elementType: element.elementType, data: element.data, tags: element.tags }
     });
 
-    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(content));
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(content), 'chapter-content.json');
 }
 
 async function updateChapterContentController(req, res, params) {
