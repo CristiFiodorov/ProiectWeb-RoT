@@ -1,5 +1,5 @@
-const { findSignsByCategory, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById } = require('../services/sign-service');
-const { sendJsonResponse } = require('../utils/response-utils');
+const { findSignsByCategory, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById, findAllSigns, findAllSignsInCSV } = require('../services/sign-service');
+const { sendJsonResponse, sendCSVResponse } = require('../utils/response-utils');
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
@@ -130,6 +130,15 @@ async function updateSignByIdController(req, res, params) {
     }
 }
 
+async function getAllSigns(req, res, params) {
+    const { statusCode, response } = await findAllSigns();
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
+}
+
+async function getAllSignsInCSV(req, res, params) {
+    const { statusCode, response } = await findAllSignsInCSV();
+    sendCSVResponse(res, statusCode, response.data);
+}
 
 module.exports = {
     getSignsByCategory,
@@ -138,5 +147,7 @@ module.exports = {
     getPrevSignByCategory,
     createSignController,
     deleteSignByIdController,
-    updateSignByIdController
+    updateSignByIdController,
+    getAllSigns,
+    getAllSignsInCSV
 };

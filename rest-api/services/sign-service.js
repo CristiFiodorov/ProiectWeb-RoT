@@ -130,6 +130,36 @@ async function deleteSignsByCategoryId(categoryId) {
     }
 }
 
+async function findAllSigns() {
+    try {
+        const signs = await Sign.find({}, {__v: 0});
+        return new Status(200, new Response(true, signs, "Signs successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
+async function findAllSignsInCSV() {
+    try {
+        const signs = await Sign.find({}, {__v: 0});
+
+        if (signs.length === 0)
+            return new Status(404, new Response(false, null, "Signs not found."));
+
+        const csv = signs.map(sign => {
+            return `${sign._id},"${sign.title}","${sign.description.trim().replace('\r\n', '').replace('\n', '')}",${sign.parentId} `;
+        }).join('\r\n');
+
+
+        return new Status(200, new Response(true, csv, "Signs successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
 
 module.exports = {
     findSignsByCategory,
@@ -139,5 +169,7 @@ module.exports = {
     createSign,
     deleteSignById,
     updateSignById,
-    deleteSignsByCategoryId
+    deleteSignsByCategoryId,
+    findAllSigns,
+    findAllSignsInCSV
 };

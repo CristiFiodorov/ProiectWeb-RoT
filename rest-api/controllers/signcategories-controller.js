@@ -1,5 +1,5 @@
-const { findSignCategories, findSignCategoryById, createSignCategory, deleteSignCategoryById, updateSignCategoryById } = require('../services/signcategories-service');
-const { sendJsonResponse } = require('../utils/response-utils');
+const { findSignCategories, findSignCategoryById, createSignCategory, deleteSignCategoryById, updateSignCategoryById, findSignCategoriesInCSV } = require('../services/signcategories-service');
+const { sendJsonResponse, sendCSVResponse } = require('../utils/response-utils');
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
@@ -117,11 +117,17 @@ async function updateSignCategoryByIdController(req, res, params) {
     }
 }
 
+async function getSignCategoriesInCSV(req, res) {
+    const { statusCode, response } = await findSignCategoriesInCSV();
+    sendCSVResponse(res, statusCode, response.data);
+}
+
 
 module.exports = {
     getSignCategories,
     getSignCategoryById,
     createSignCategoryController,
     deleteSignCategoryByIdController,
-    updateSignCategoryByIdController
+    updateSignCategoryByIdController,
+    getSignCategoriesInCSV
 };
