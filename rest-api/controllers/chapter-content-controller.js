@@ -1,4 +1,4 @@
-const { findChapterContentByChapterId, addToChapterContent, deleteChapterContentById } = require('../services/chapter-content-service');
+const { findChapterContentByChapterId, addToChapterContent, clearChapterContent, deleteChapterContentById } = require('../services/chapter-content-service');
 const { sendJsonResponse } = require('../utils/response-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
@@ -58,6 +58,11 @@ async function addToChapterContentController(req, res, params) {
     }
 }
 
+async function clearChapterContentController(req, res, params) {
+    const {statusCode, response} = await clearChapterContent(params.chapter_id);
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
+}
+
 async function deleteChapterContent(req, res, params) {
     const {statusCode, response} = await deleteChapterContentById(params.id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
@@ -66,5 +71,6 @@ async function deleteChapterContent(req, res, params) {
 module.exports = {
     getChapterContentByChapterId,
     addToChapterContentController,
+    clearChapterContentController,
     deleteChapterContent
 };

@@ -50,6 +50,26 @@ async function addToChapterContent(chapterId, content) {
     }
 }
 
+async function clearChapterContent(chapterId) {
+    try {
+        const chapterContent = await ChapterContent.find({ parentId: chapterId });
+
+        if (chapterContent.length === 0)
+            return new Status(404, new Response(false, null, "Chapter content not found."));
+
+        chapterContent[0].content = [];
+
+        const savedChapterContent = await chapterContent[0].save();
+
+        return new Status(200, new Response(true, savedChapterContent, "Chapter content successfully cleared."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
+
 async function deleteChapterContentById(id) {
     try {
         const chapterContent = await ChapterContent.findByIdAndDelete(id);
@@ -85,6 +105,7 @@ module.exports = {
     findChapterContentByChapterId,
     createEmptyChapterContent,
     addToChapterContent,
+    clearChapterContent,
     deleteChapterContentById,
     deleteChapterContentByChapterId
 };

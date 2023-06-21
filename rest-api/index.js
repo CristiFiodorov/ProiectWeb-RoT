@@ -14,7 +14,7 @@ const { getAllCourses, getCourseById, createCourseController, deleteCourse, upda
 
 const { getAllChapters, getChapterById, createChapterController, updateChapter, deleteChapter, getPrevChapterByCourseId, getNextChapterByCourseId } = require('./controllers/chapter-controller');
 
-const { getChapterContentByChapterId, addToChapterContentController, deleteChapterContent } = require('./controllers/chapter-content-controller');
+const { getChapterContentByChapterId, addToChapterContentController, clearChapterContentController, deleteChapterContent } = require('./controllers/chapter-content-controller');
 
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
@@ -114,6 +114,9 @@ server.delete('/api/v1/chapters/:chapter_id', async (req, res, params) => {
 server.get('/api/v1/chapters/:chapter_id/contents', getChapterContentByChapterId);
 server.put('/api/v1/chapters/:chapter_id/contents/append', async (req, res, params) => {
     verifyToken(req, res, params, true, addToChapterContentController);
+});
+server.delete('/api/v1/chapters/:chapter_id/clear', async (req, res, params) => {
+    verifyToken(req, res, params, true, clearChapterContentController);
 });
 server.delete('/api/v1/chapters/:chapter_id/contents', async (req, res, params) => {
     verifyToken(req, res, params, true, deleteChapterContent);
