@@ -60,7 +60,7 @@ function addElementPopUpHandler(event, chapterId) {
             <option value="image">Imagine</option>
         </select>
     `;
-    
+
     document.getElementById("modal-content").appendChild(form);
     const selectOptions = document.getElementById("element_type");
     selectOptions.addEventListener("change", (event) => {
@@ -68,10 +68,10 @@ function addElementPopUpHandler(event, chapterId) {
         const elementType = event.target.value;
         // Other option selected, so delete the last two childs from page and add new form fields
         let childCount = form.childElementCount;
-        while(childCount-- > 1) {
+        while (childCount-- > 1) {
             form.lastChild.remove();
         }
-        switch(elementType) {
+        switch (elementType) {
             case "subsection":
                 appendSubsectionSectionToForm(form);
                 break;
@@ -82,7 +82,7 @@ function addElementPopUpHandler(event, chapterId) {
                 appendImageSectionToForm(form);
         }
     });
-    
+
     document.getElementById("save-modal").addEventListener("click", (event) => submitAddElementHandler(event, chapterId));
     form.addEventListener("submit", (event) => submitAddElementHandler(event, chapterId));
 }
@@ -111,23 +111,26 @@ function appendAdminFooterButtons(footer, chapterId, courseId) {
 
     // handler for the next button 
     addButton.addEventListener('click', (event) => {
-        addElementPopUpHandler(event, chapterId); 
+        addElementPopUpHandler(event, chapterId);
     });
 
+
+    // Export To JSON button
+    const exportJsonButton = document.createElement("a");
+    exportJsonButton.className = "chapter-footer__link chapter-footer__link--gold";
+    exportJsonButton.href = `${config.apiAddress}/api/v1/export/json/chapters/${chapterId}/contents`;
+    ;
+    exportJsonButton.innerHTML = "<h1>Export JSON</h1>";
+
+    // Export to CSV button
+    const exportCsvButton = document.createElement("a");
+    exportCsvButton.className = "chapter-footer__link chapter-footer__link--gold";
+    exportCsvButton.href = `${config.apiAddress}/api/v1/export/csv/chapters/${chapterId}/contents`;
+    exportCsvButton.innerHTML = "<h1>Export CSV</h1>";
+
+    footer.appendChild(exportJsonButton);
     footer.appendChild(clearButton);
     footer.appendChild(chaptersButton);
     footer.appendChild(addButton);
-}
-
-function addFooterSectionToContainer(contentContainer, chapterId, courseId) {
-    const footer = document.createElement("div");
-    footer.className = "chapter-footer";
-
-    if(!userIsAdmin()) {
-        appendSimpleUserFooterButtons(footer, chapterId, courseId);
-    } else {
-        appendAdminFooterButtons(footer, chapterId, courseId);
-    }
-
-    contentContainer.appendChild(footer);
+    footer.appendChild(exportCsvButton);
 }

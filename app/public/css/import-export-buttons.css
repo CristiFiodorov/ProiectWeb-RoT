@@ -28,6 +28,10 @@
     color: #FF002E;
 }
 
+.import-export__link--move {
+    color: #5200FF;    
+}
+
 .import-export__link:hover {
     transform: scale(1.1);
     transition: 0.5s;

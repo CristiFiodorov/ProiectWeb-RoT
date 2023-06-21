@@ -100,13 +100,21 @@ main {
     font-weight: bold;
 }
 
+.chapter-footer__link--gold {
+    color: #FFD700
+}
+
+.chapter-footer__link h1 {
+    font-size: 1.5rem;
+}
+
 .chapter-footer__link:hover, .chapter-footer__link:focus{
     transform: scale(1.1);
     transition: 0.5s;
     font-weight: bold;
 }
 
-@media screen and (max-width: 995px) {
+@media screen and (max-width: 1100px) {
     .chapter-footer {
         width: 100%;
         text-align: center;
