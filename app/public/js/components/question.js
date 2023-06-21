@@ -37,6 +37,7 @@ async function createQuestion(questionIndex, questionArray) {
         const token = localStorage.getItem('accessToken');
         try {
             // TODO move this in requests
+            // TODO make treat existing test
             const response = await fetch(`${baseURL}/api/v1/scores`, {
                 method: 'POST',
                 headers: {
