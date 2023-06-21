@@ -1,5 +1,5 @@
 const token = localStorage.getItem('accessToken');
 
-if(token){
+if(token) {
     window.location.href = '/app/views/index.html';
 }
