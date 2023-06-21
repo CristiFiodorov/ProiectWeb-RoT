@@ -1,5 +1,5 @@
 const { findSignsByCategoryId, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById, findAllSigns, findSignsByCategoryIdInCSV } = require('../services/sign-service');
-const { sendJsonResponse, sendCSVResponse } = require('../utils/response-utils');
+const { sendJsonResponse, sendCSVResponse, sendJsonResponseWithDownload } = require('../utils/response-utils');
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
@@ -142,7 +142,7 @@ async function getSignsByCategoryIdInCSV(req, res, params) {
 
 async function getSignsByCategoryIdInJSON(req, res, params) {
     const { statusCode, response } = await findSignsByCategoryId(params.category_id);
-    sendJsonResponse(res, statusCode, JSON.stringify(response.data));
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data));
 }
 
 module.exports = {

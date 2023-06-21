@@ -1,5 +1,5 @@
 const { findAllAdvices, findAdviceById, createAdvice, updateAdviceById, deleteAdviceById, findNextAdvice, findPrevAdvice, findAllAdvicesInCSV } = require('../services/advice-service');
-const { sendJsonResponse, sendCSVResponse } = require('../utils/response-utils');
+const { sendJsonResponse, sendCSVResponse, sendJsonResponseWithDownload } = require('../utils/response-utils');
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
@@ -135,7 +135,7 @@ async function getAdvicesInCSV(req, res, params) {
 
 async function getAdvicesInJSON(req, res, params) {
     const {statusCode, response} = await findAllAdvices();
-    sendJsonResponse(res, statusCode, JSON.stringify(response.data));
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data));
 }
 
 module.exports = {
