@@ -120,6 +120,24 @@ async function findChapterContentByChapterIdInCSV(chapterId) {
     }
 }
 
+async function updateChapterContent(chapterId, content) {
+    try {
+        const chapterContent = await ChapterContent.find({ parentId: chapterId });
+
+        if (chapterContent.length === 0)
+            return new Status(404, new Response(false, null, "Chapter content not found."));
+
+        chapterContent[0].content = content;
+
+        const savedChapterContent = await chapterContent[0].save();
+
+        return new Status(200, new Response(true, savedChapterContent, "Chapter content successfully updated."));
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+
 module.exports = {
     findChapterContentByChapterId,
     createEmptyChapterContent,
@@ -127,5 +145,6 @@ module.exports = {
     clearChapterContent,
     deleteChapterContentById,
     deleteChapterContentByChapterId,
-    findChapterContentByChapterIdInCSV
+    findChapterContentByChapterIdInCSV,
+    updateChapterContent
 };

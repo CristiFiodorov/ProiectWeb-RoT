@@ -13,6 +13,15 @@ function sendCSVResponse(res, status, content) {
     res.end(content);
 }
 
+function sendJsonResponseWithDownload(res, status, content) {
+    setCorsHeaders(res);
+    res.writeHead(status, {
+        'Content-Type': 'application/json',
+        'Content-Disposition': 'attachment; filename="file.json"'
+    });
+    res.end(content);
+}
+
 function sendJsonResponse(res, status, content) {
     setCorsHeaders(res);
     res.writeHead(status, {
@@ -44,5 +53,6 @@ module.exports = {
     sendFileResponse,
     sendTextResponse,
     sendEmptyResponse,
-    sendCSVResponse
+    sendCSVResponse,
+    sendJsonResponseWithDownload
 }

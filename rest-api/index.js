@@ -14,7 +14,7 @@ const { getAllCourses, getCourseById, createCourseController, deleteCourse, upda
 
 const { getAllChapters, getChapterById, createChapterController, updateChapter, deleteChapter, getPrevChapterByCourseId, getNextChapterByCourseId } = require('./controllers/chapter-controller');
 
-const { getChapterContentByChapterId, addToChapterContentController, clearChapterContentController, deleteChapterContent, getChapterContentByChapterIdInCSV, getChapterContentByChapterIdInJSON } = require('./controllers/chapter-content-controller');
+const { getChapterContentByChapterId, addToChapterContentController, clearChapterContentController, deleteChapterContent, getChapterContentByChapterIdInCSV, getChapterContentByChapterIdInJSON, updateChapterContentController } = require('./controllers/chapter-content-controller');
 
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
@@ -127,6 +127,9 @@ server.delete('/api/v1/chapters/:chapter_id/clear', async (req, res, params) => 
 });
 server.delete('/api/v1/chapters/:chapter_id/contents', async (req, res, params) => {
     verifyToken(req, res, params, true, deleteChapterContent);
+});
+server.put('/api/v1/chapters/:chapter_id/contents', async (req, res, params) => {
+    verifyToken(req, res, params, true, updateChapterContentController);
 });
 server.get('/api/v1/export/csv/chapters/:chapter_id/contents', getChapterContentByChapterIdInCSV);
 server.get('/api/v1/export/json/chapters/:chapter_id/contents', getChapterContentByChapterIdInJSON);

@@ -1,7 +1,8 @@
-const { findChapterContentByChapterId, addToChapterContent, clearChapterContent, deleteChapterContentById, findChapterContentByChapterIdInCSV } = require('../services/chapter-content-service');
-const { sendJsonResponse, sendCSVResponse } = require('../utils/response-utils');
+const { findChapterContentByChapterId, addToChapterContent, clearChapterContent, deleteChapterContentById, findChapterContentByChapterIdInCSV, updateChapterContent } = require('../services/chapter-content-service');
+const { sendJsonResponse, sendCSVResponse, sendJsonResponseWithDownload } = require('../utils/response-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
+const { getBodyFromRequest } = require('../utils/request-utils');
 
 
 async function getChapterContentByChapterId(req, res, params) {
@@ -75,7 +76,17 @@ async function getChapterContentByChapterIdInCSV(req, res, params) {
 
 async function getChapterContentByChapterIdInJSON(req, res, params) {
     const {statusCode, response} = await findChapterContentByChapterId(params.chapter_id);
-    sendJsonResponse(res, statusCode, JSON.stringify(response.data));
+    content = response.data.content.map(element => {
+        return { elementType: element.elementType, data: element.data, tags: element.tags }
+    });
+
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(content));
+}
+
+async function updateChapterContentController(req, res, params) {
+    const body = await getBodyFromRequest(req);
+    const {statusCode, response} = await updateChapterContent(params.chapter_id, JSON.parse(body));
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
 module.exports = {
@@ -84,5 +95,6 @@ module.exports = {
     clearChapterContentController,
     deleteChapterContent,
     getChapterContentByChapterIdInCSV,
-    getChapterContentByChapterIdInJSON
+    getChapterContentByChapterIdInJSON,
+    updateChapterContentController
 };
