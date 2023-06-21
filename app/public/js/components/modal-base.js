@@ -17,6 +17,7 @@ function addModalBundles() {
     const openDeleteModalButtons = document.querySelectorAll(".delete-modal-open");
     const deleteModalWindowOverlay = document.getElementById("delete-modal-overlay");
 
+    console.log(openDeleteModalButtons);
     // Create normal modal windows (usually with forms as content)
     const createModalWindow = () => {
         modalWindowOverlay.style.display = "flex";

@@ -15,10 +15,10 @@ async function addToChapterContentController(req, res, params) {
     
         form.parse(req, async (err, fields, files) => {
             if (err) {
-                sendJsonResponse(res, 400, JSON.stringify({
-                success: false,
-                data: null,
-                message: 'Error uploading file'
+                    sendJsonResponse(res, 400, JSON.stringify({
+                    success: false,
+                    data: null,
+                    message: 'Error uploading file'
                 }));
                 return;
             }
