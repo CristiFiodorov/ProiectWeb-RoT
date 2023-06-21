@@ -5,6 +5,14 @@ function setCorsHeaders(res) {
     res.setHeader('Access-Control-Max-Age', 2592000);
 }
 
+function sendCSVResponse(res, status, content) {
+    setCorsHeaders(res);
+    res.writeHead(status, {
+        'Content-Type': 'text/csv'
+    });
+    res.end(content);
+}
+
 function sendJsonResponse(res, status, content) {
     setCorsHeaders(res);
     res.writeHead(status, {
@@ -35,5 +43,6 @@ module.exports = {
     sendJsonResponse,
     sendFileResponse,
     sendTextResponse,
-    sendEmptyResponse
+    sendEmptyResponse,
+    sendCSVResponse
 }
