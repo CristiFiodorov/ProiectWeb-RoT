@@ -122,6 +122,11 @@ async function getSignCategoriesInCSV(req, res) {
     sendCSVResponse(res, statusCode, response.data);
 }
 
+async function getSignCategoriesInJSON(req, res) {
+    const { statusCode, response } = await findSignCategories();
+    sendJsonResponse(res, statusCode, JSON.stringify(response.data));
+}
+
 
 module.exports = {
     getSignCategories,
@@ -129,5 +134,6 @@ module.exports = {
     createSignCategoryController,
     deleteSignCategoryByIdController,
     updateSignCategoryByIdController,
-    getSignCategoriesInCSV
+    getSignCategoriesInCSV,
+    getSignCategoriesInJSON
 };

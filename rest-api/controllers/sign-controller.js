@@ -1,11 +1,11 @@
-const { findSignsByCategory, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById, findAllSigns, findAllSignsInCSV } = require('../services/sign-service');
+const { findSignsByCategoryId, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById, findAllSigns, findSignsByCategoryIdInCSV } = require('../services/sign-service');
 const { sendJsonResponse, sendCSVResponse } = require('../utils/response-utils');
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
 
-async function getSignsByCategory(req, res, params) {
-    const { statusCode, response } = await findSignsByCategory(params.category_id);
+async function getSignsByCategoryId(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryId(params.category_id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
@@ -135,13 +135,18 @@ async function getAllSigns(req, res, params) {
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
-async function getAllSignsInCSV(req, res, params) {
-    const { statusCode, response } = await findAllSignsInCSV();
+async function getSignsByCategoryIdInCSV(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryIdInCSV(params.category_id);
     sendCSVResponse(res, statusCode, response.data);
 }
 
+async function getSignsByCategoryIdInJSON(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryId(params.category_id);
+    sendJsonResponse(res, statusCode, JSON.stringify(response.data));
+}
+
 module.exports = {
-    getSignsByCategory,
+    getSignsByCategoryId,
     getSignById,
     getNextSignByCategory,
     getPrevSignByCategory,
@@ -149,5 +154,6 @@ module.exports = {
     deleteSignByIdController,
     updateSignByIdController,
     getAllSigns,
-    getAllSignsInCSV
+    getSignsByCategoryIdInCSV,
+    getSignsByCategoryIdInJSON
 };

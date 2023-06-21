@@ -133,6 +133,10 @@ async function getAdvicesInCSV(req, res, params) {
     sendCSVResponse(res, statusCode, response.data);
 }
 
+async function getAdvicesInJSON(req, res, params) {
+    const {statusCode, response} = await findAllAdvices();
+    sendJsonResponse(res, statusCode, JSON.stringify(response.data));
+}
 
 module.exports = {
     getAdvices,
@@ -142,5 +146,6 @@ module.exports = {
     updateAdviceByIdController,
     getNextAdvice,
     getPrevAdvice,
-    getAdvicesInCSV
+    getAdvicesInCSV,
+    getAdvicesInJSON
 };

@@ -2,7 +2,7 @@ const Sign = require('../models/sign-scheme');
 const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 
-async function findSignsByCategory(categoryId) {
+async function findSignsByCategoryId(categoryId) {
     try {
         const signs = await Sign.find({ parentId: categoryId });
 
@@ -141,9 +141,9 @@ async function findAllSigns() {
     }
 }
 
-async function findAllSignsInCSV() {
+async function findSignsByCategoryIdInCSV(categoryId) {
     try {
-        const signs = await Sign.find({}, {__v: 0});
+        const signs = await Sign.find({ parentId: categoryId }, {__v: 0});
 
         if (signs.length === 0)
             return new Status(404, new Response(false, null, "Signs not found."));
@@ -162,7 +162,7 @@ async function findAllSignsInCSV() {
 }
 
 module.exports = {
-    findSignsByCategory,
+    findSignsByCategoryId,
     findSignById,
     findNextSignsByCategory,
     findPrevSignsByCategory,
@@ -171,5 +171,5 @@ module.exports = {
     updateSignById,
     deleteSignsByCategoryId,
     findAllSigns,
-    findAllSignsInCSV
+    findSignsByCategoryIdInCSV
 };
