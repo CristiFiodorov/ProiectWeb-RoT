@@ -6,7 +6,7 @@ const { Status } = require("../utils/status-class");
 
 async function findChapterContentByChapterId(chapterId) {
     try {
-        const chapterContent = await ChapterContent.find({ parentId: chapterId });
+        const chapterContent = await ChapterContent.find({ parentId: chapterId }, { __v: 0});
 
         if (chapterContent.length === 0)
             return new Status(404, new Response(false, null, "Chapter content not found."));
@@ -50,6 +50,26 @@ async function addToChapterContent(chapterId, content) {
     }
 }
 
+async function clearChapterContent(chapterId) {
+    try {
+        const chapterContent = await ChapterContent.find({ parentId: chapterId });
+
+        if (chapterContent.length === 0)
+            return new Status(404, new Response(false, null, "Chapter content not found."));
+
+        chapterContent[0].content = [];
+
+        const savedChapterContent = await chapterContent[0].save();
+
+        return new Status(200, new Response(true, savedChapterContent, "Chapter content successfully cleared."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
+
 async function deleteChapterContentById(id) {
     try {
         const chapterContent = await ChapterContent.findByIdAndDelete(id);
@@ -81,10 +101,31 @@ async function deleteChapterContentByChapterId(chapterId) {
     }
 }
 
+async function findChapterContentByChapterIdInCSV(chapterId) {
+    try {
+        const chapterContent = await ChapterContent.find({ parentId: chapterId });
+
+        if (chapterContent.length === 0)
+            return new Status(404, new Response(false, null, "Chapter content not found."));
+
+        const csv = chapterContent[0].content.map((content) => {
+            return `${content.elementType},"${content.data}" `
+        }).join('\r\n');
+
+        return new Status(200, new Response(true, csv, "Chapter content successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
 module.exports = {
     findChapterContentByChapterId,
     createEmptyChapterContent,
     addToChapterContent,
+    clearChapterContent,
     deleteChapterContentById,
-    deleteChapterContentByChapterId
+    deleteChapterContentByChapterId,
+    findChapterContentByChapterIdInCSV
 };

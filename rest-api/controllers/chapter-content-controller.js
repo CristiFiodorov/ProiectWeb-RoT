@@ -1,5 +1,5 @@
-const { findChapterContentByChapterId, addToChapterContent, deleteChapterContentById } = require('../services/chapter-content-service');
-const { sendJsonResponse } = require('../utils/response-utils');
+const { findChapterContentByChapterId, addToChapterContent, clearChapterContent, deleteChapterContentById, findChapterContentByChapterIdInCSV } = require('../services/chapter-content-service');
+const { sendJsonResponse, sendCSVResponse } = require('../utils/response-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
 
@@ -15,10 +15,10 @@ async function addToChapterContentController(req, res, params) {
     
         form.parse(req, async (err, fields, files) => {
             if (err) {
-                sendJsonResponse(res, 400, JSON.stringify({
-                success: false,
-                data: null,
-                message: 'Error uploading file'
+                    sendJsonResponse(res, 400, JSON.stringify({
+                    success: false,
+                    data: null,
+                    message: 'Error uploading file'
                 }));
                 return;
             }
@@ -58,13 +58,31 @@ async function addToChapterContentController(req, res, params) {
     }
 }
 
+async function clearChapterContentController(req, res, params) {
+    const {statusCode, response} = await clearChapterContent(params.chapter_id);
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
+}
+
 async function deleteChapterContent(req, res, params) {
     const {statusCode, response} = await deleteChapterContentById(params.id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
+async function getChapterContentByChapterIdInCSV(req, res, params) {
+    const {statusCode, response} = await findChapterContentByChapterIdInCSV(params.chapter_id);
+    sendCSVResponse(res, statusCode, response.data);
+}
+
+async function getChapterContentByChapterIdInJSON(req, res, params) {
+    const {statusCode, response} = await findChapterContentByChapterId(params.chapter_id);
+    sendJsonResponse(res, statusCode, JSON.stringify(response.data));
+}
+
 module.exports = {
     getChapterContentByChapterId,
     addToChapterContentController,
-    deleteChapterContent
+    clearChapterContentController,
+    deleteChapterContent,
+    getChapterContentByChapterIdInCSV,
+    getChapterContentByChapterIdInJSON
 };

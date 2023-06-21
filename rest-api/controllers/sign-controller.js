@@ -1,11 +1,11 @@
-const { findSignsByCategory, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById } = require('../services/sign-service');
-const { sendJsonResponse } = require('../utils/response-utils');
+const { findSignsByCategoryId, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById, findAllSigns, findSignsByCategoryIdInCSV } = require('../services/sign-service');
+const { sendJsonResponse, sendCSVResponse } = require('../utils/response-utils');
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
 
-async function getSignsByCategory(req, res, params) {
-    const { statusCode, response } = await findSignsByCategory(params.category_id);
+async function getSignsByCategoryId(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryId(params.category_id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
@@ -130,13 +130,30 @@ async function updateSignByIdController(req, res, params) {
     }
 }
 
+async function getAllSigns(req, res, params) {
+    const { statusCode, response } = await findAllSigns();
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
+}
+
+async function getSignsByCategoryIdInCSV(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryIdInCSV(params.category_id);
+    sendCSVResponse(res, statusCode, response.data);
+}
+
+async function getSignsByCategoryIdInJSON(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryId(params.category_id);
+    sendJsonResponse(res, statusCode, JSON.stringify(response.data));
+}
 
 module.exports = {
-    getSignsByCategory,
+    getSignsByCategoryId,
     getSignById,
     getNextSignByCategory,
     getPrevSignByCategory,
     createSignController,
     deleteSignByIdController,
-    updateSignByIdController
+    updateSignByIdController,
+    getAllSigns,
+    getSignsByCategoryIdInCSV,
+    getSignsByCategoryIdInJSON
 };

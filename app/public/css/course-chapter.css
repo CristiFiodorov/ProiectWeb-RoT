@@ -42,7 +42,7 @@ main {
     color: white;
     display: flex;
     justify-content: center;
-    align-items: center; /* Align vertical */
+    align-items: center;
     padding: 1rem;
 }
 

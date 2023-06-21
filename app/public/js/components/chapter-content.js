@@ -19,15 +19,11 @@ function addImageToContainer(contentContainer, imageUrl) {
 function addSubsectionToContainer(contentContainer, data) {
     const subsection = document.createElement("h1");
     subsection.className = "chapter-content__subsection chapter-content__subsection--green";
-    subsection.textContent = "Articole de referință din legislația în vigoare";
+    subsection.textContent = data;
     contentContainer.appendChild(subsection);
 }
 
-
-function addFooterSectionToContainer(contentContainer, chapterId, courseId) {
-    const footer = document.createElement("div");
-    footer.className = "chapter-footer";
-
+function appendSimpleUserFooterButtons(footer, chapterId, courseId) {
     const prevButton = document.createElement("a");
     const nextButton = document.createElement("a");
     const chaptersButton = document.createElement("a");
@@ -79,6 +75,17 @@ function addFooterSectionToContainer(contentContainer, chapterId, courseId) {
     footer.appendChild(prevButton);
     footer.appendChild(chaptersButton);
     footer.appendChild(nextButton);
+}
+
+function addFooterSectionToContainer(contentContainer, chapterId, courseId) {
+    const footer = document.createElement("div");
+    footer.className = "chapter-footer";
+
+    if(!userIsAdmin()) {
+        appendSimpleUserFooterButtons(footer, chapterId, courseId);
+    } else {
+        appendAdminFooterButtons(footer, chapterId, courseId);
+    }
 
     contentContainer.appendChild(footer);
 }
@@ -119,6 +126,7 @@ function createChapterPage(chapterData, chapterContent) {
 
     mainContainer.appendChild(header);
     mainContainer.appendChild(contentContainer);
+    addModalBundles();
 }
 
 const id = new URLSearchParams(window.location.search).get('chapterID');
