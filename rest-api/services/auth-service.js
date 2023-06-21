@@ -18,21 +18,23 @@ async function generateAccessToken(user) {
 
 function verifyToken(req, res, params, isAdmin, next) {
     const authHeader = req.headers.authorization;
+    console.log(authHeader);
     const token = authHeader && authHeader.split(" ")[1];
-    if (token == null) {
+    
+    if (token === null || token == 'null') {
         return sendJsonResponse(res, 401, JSON.stringify({ message: "Unauthorized" }));
     }
+    
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
         if (err) {
+            wrong = true;
             return sendJsonResponse(res, 403, JSON.stringify({ message: "Forbidden" }));
         }
         req.user = payload;
     });
-
     if (isAdmin && !req.user.isAdmin) {
         return sendJsonResponse(res, 403, JSON.stringify({ message: "Forbidden" }));
     }
-
     next(req, res, params);
 }
 

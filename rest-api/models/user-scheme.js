@@ -16,6 +16,9 @@ const userScheme = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         required: true,
+    },
+    score: {
+        type: Number
     }
 });
 

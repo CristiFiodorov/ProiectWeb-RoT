@@ -36,21 +36,24 @@ const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdContr
 const { saveTestByQuestions } = require('./services/test-service');
 const { sendMail } = require('./utils/email-utils');
 const { forgotPassword } = require('./controllers/forgot-password-controller');
+const { addScoreToUser } = require('./controllers/score-controller');
 
-//TODO case when entity not found
+server.post('/api/v1/scores', async (req, res, params) => { 
+    verifyToken(req, res, params, false, addScoreToUser);});
+
 server.get('/api/v1/forgot/:email', async (req, res, params) => { forgotPassword(req, res, params); });
-server.post('/tests', async (req, res, params) => { createTest(req, res, params); });
-server.get('/tests', async (req, res, params) => { findAllTests(req, res, params); });
-server.get('/tests/:id', async (req, res, params) => { findTestById(req, res, params); });
-server.patch('/tests/:id', async (req, res, params) => { patchTest(req, res, params); });
-server.get('/tests/index/:id', async (req, res, params) => { findTestByIndex(req, res, params); });
-server.delete('/tests/:id', async (req, res, params) => { deleteTest(req, res, params); });
+server.post('/api/v1/tests', async (req, res, params) => { createTest(req, res, params); });
+server.get('/api/v1/tests', async (req, res, params) => { findAllTests(req, res, params); });
+server.get('/api/v1/tests/:id', async (req, res, params) => { findTestById(req, res, params); });
+server.patch('/api/v1/tests/:id', async (req, res, params) => { patchTest(req, res, params); });
+server.get('/api/v1/tests/index/:id', async (req, res, params) => { findTestByIndex(req, res, params); });
+server.delete('/api/v1/tests/:id', async (req, res, params) => { deleteTest(req, res, params); });
 
-server.post('/questions', async (req, res, params) => { createQuestion(req, res, params); });
-server.patch('/questions/:id', async (req, res, params) => { patchQuestion(req, res, params); });
-server.get('/questions', async (req, res, params) => { findAllQuestions(req, res, params); });
-server.get('/questions/:id', async (req, res, params) => { findQuestionById(req, res, params); });
-server.delete('/questions/:id', async (req, res, params) => { deleteQuestion(req, res, params); });
+server.post('/api/v1/questions', async (req, res, params) => { createQuestion(req, res, params); });
+server.patch('/api/v1/questions/:id', async (req, res, params) => { patchQuestion(req, res, params); });
+server.get('/api/v1/questions', async (req, res, params) => { findAllQuestions(req, res, params); });
+server.get('/api/v1/questions/:id', async (req, res, params) => { findQuestionById(req, res, params); });
+server.delete('/api/v1/questions/:id', async (req, res, params) => { deleteQuestion(req, res, params); });
 
 
 server.post('/api/v1/register', registerUser);

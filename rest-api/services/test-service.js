@@ -1,7 +1,7 @@
 const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 const { mongo } = require("mongoose");
-const { getBodyFromRequest, isNotStringOf12Characters } = require("../utils/request-utils");
+const { getBodyFromRequest, isNotStringOf24Characters } = require("../utils/request-utils");
 const { generatorTeste } = require("../utils/random-test-utils");
 const Test = require("../models/test-schema");
 
@@ -78,7 +78,7 @@ const getTests = async () => {
 const _getTestById = async (id) => {
   try {
     console.log(id);
-    if (isNotStringOf12Characters(id)) { return null; }
+    if (isNotStringOf24Characters(id)) { return null; }
     const test = await Test.findById(id);
     return test;
   } catch (error) {

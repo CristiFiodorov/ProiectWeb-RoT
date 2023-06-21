@@ -1,7 +1,7 @@
 import { baseURL } from "./const.js";
 export const getQuestionById = async (id) => {
     try{
-        const request = await fetch(baseURL + '/questions/' + id);
+        const request = await fetch(baseURL + '/api/v1/questions/' + id);
         const response = await request.json();
         if(response?.success === false){
             console.log("ERROR");
@@ -17,7 +17,7 @@ export const getQuestionById = async (id) => {
 
 export const getTestById = async (id) => {
     try{
-        const request = await fetch(baseURL + '/tests/index/' + id);
+        const request = await fetch(baseURL + '/api/v1/tests/index/' + id);
         const response = await request.json();
         if(response?.success === false){
             console.log("ERROR");

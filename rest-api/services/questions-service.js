@@ -2,7 +2,7 @@ const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 const Question = require("../models/question-schema");
 const { mongo } = require("mongoose");
-const { getBodyFromRequest } = require("../utils/request-utils");
+const { getBodyFromRequest, isNotStringOf24Characters } = require("../utils/request-utils");
 
 // CREATE
 const saveQuestion = async(req) =>{
@@ -47,7 +47,7 @@ const getQuestions = async () => {
 const _getQuestionById = async (id) => {
   try {
     console.log(id);
-    if (isNotStringOf12Characters(id)) { return null; }
+    if (isNotStringOf24Characters(id)) { return null; }
     const question = await Question.findById(id);
     return question;
   } catch (error) {

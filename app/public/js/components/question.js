@@ -1,4 +1,5 @@
 import { getQuestionById, getTestById } from '../api-requests/questions.js'
+import { baseURL } from '../api-requests/const.js';
 
 function getNextChar(char) {
     return String.fromCharCode(char.charCodeAt(0) + 1);
@@ -6,6 +7,8 @@ function getNextChar(char) {
 
 const id = new URLSearchParams(window.location.search).get('testID');
 
+let right = 0;
+let wrong = 0;
 try {
     const response = await getTestById(id);
     console.log("AAAAA");
@@ -14,16 +17,49 @@ try {
 } catch (error) {
     console.log(error);
 }
-let right = 0;
-let wrong = 0;
 async function createQuestion(questionIndex, questionArray) {
     const questionElement = document.getElementById("question");
     if (questionIndex >= questionArray.length) {
+        let mesaj = "Promovat!";
+        let punctaj = right;
+        if (right < 22) {
+            punctaj = -wrong;
+            mesaj = "Nepromovat!";
+        }
+        console.log("UAAAIICAAAA");
         questionElement.innerHTML = `
         <h1 class="question__title" > Ai terminat testul!</h1>
+        <h2> ${mesaj} cu ${right} intrebari corecte!</h2>
+        <h3 id="info"></h3>
         <a href="teste.html">
         <button id="nextButton" class="question__btn"> Pagina de teste </button>
         </a>`;
+        const token = localStorage.getItem('accessToken');
+        try {
+            // TODO move this in requests
+            const response = await fetch(`${baseURL}/api/v1/scores`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({score: punctaj})
+            });
+            let responseBody = await response.json();
+            console.log(responseBody);
+            const h3 = document.getElementById("info");
+            if(responseBody?.success == true){
+                console.log("utilizator logat");
+                h3.innerHTML = "Scorul a fost actualizat!";
+            }
+            else{
+                console.log("utilizator nelogat");
+                h3.innerHTML = "Loghează-te pentru a-ți putea salva rezultatele și pentru a intra în clasament!";
+            }
+            console.log(responseBody);
+        } catch (error) {
+            console.log(error);
+        }
         return;
     }
 
@@ -46,7 +82,7 @@ async function createQuestion(questionIndex, questionArray) {
         </form>
         <button id="nextButton" class="question__btn"> Submit </button>
         `;
-        //TODO daca ramane validat intrebare
+
         let letter = 'A';
         const buttonElement = document.getElementById("nextButton");
         buttonElement.addEventListener("click", () => {
@@ -79,12 +115,12 @@ function validateQuestion(answers, questionIndex, questionArray) {
     ];
     for (let i = 0; i < 3; i++) {
         let col = "#7ae377";
-        if(answers[i].isValid == false){
+        if (answers[i].isValid == false) {
             let col = "#e34848";
         }
         checkbox[i].parentElement.style.backgroundColor = col;
     }
-    
+
     const buttonElement = document.getElementById("nextButton");
     const clonedElement = buttonElement.cloneNode(true);
 
@@ -93,11 +129,11 @@ function validateQuestion(answers, questionIndex, questionArray) {
         console.log("NOU");
         createQuestion(questionIndex, questionArray);
     });
-    
-    
+
+
     for (let i = 0; i < 3; i++) {
         let col = "#7ae377";
-        if(answers[i].isValid == false){
+        if (answers[i].isValid == false) {
             col = "#e34848";
         }
         checkbox[i].parentElement.style.backgroundColor = col;
@@ -118,7 +154,7 @@ function validateQuestion(answers, questionIndex, questionArray) {
     return true;
 }
 
-function update(){
-    document.getElementById("qr").innerHTML =  `Întrebări corecte: ${right}`;
-    document.getElementById("qw").innerHTML =  `Întrebări greșite: ${wrong}`;
+function update() {
+    document.getElementById("qr").innerHTML = `Întrebări corecte: ${right}`;
+    document.getElementById("qw").innerHTML = `Întrebări greșite: ${wrong}`;
 }

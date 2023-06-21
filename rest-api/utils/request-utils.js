@@ -42,11 +42,11 @@ const destructureRequestMiddleware = async (req, res) => {
   
     return { req, res, continue: true };
   };
-  function isNotStringOf12Characters(variable) {
-    return typeof variable !== 'string' || variable.length !== 12;
+  function isNotStringOf24Characters(variable) {
+    return typeof variable !== 'string' || variable.length !== 24;
   }
 module.exports = {
     destructureRequestMiddleware,
     getBodyFromRequest,
-    isNotStringOf12Characters
+    isNotStringOf24Characters
 }
