@@ -33,14 +33,20 @@ console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
 const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdController, updateAdviceByIdController, getNextAdvice, getPrevAdvice, getAdvicesInCSV, getAdvicesInJSON } = require('./controllers/advice-controller');
-const { saveTestByQuestions } = require('./services/test-service');
 const { sendMail } = require('./utils/email-utils');
 const { forgotPassword } = require('./controllers/forgot-password-controller');
-const { addScoreToUser } = require('./controllers/score-controller');
+const { addScoreToUser, addTestScoreToUser, userTestScores } = require('./controllers/score-controller');
 
 server.post('/api/v1/scores', async (req, res, params) => { 
     verifyToken(req, res, params, false, addScoreToUser);});
 
+server.get('/api/v1/user/tests', async (req, res, params) => { 
+    verifyToken(req, res, params, false, userTestScores);});
+
+server.post('/api/v1/scores/test', async (req, res, params) => { 
+        verifyToken(req, res, params, false, addTestScoreToUser);});
+
+        
 server.get('/api/v1/forgot/:email', async (req, res, params) => { forgotPassword(req, res, params); });
 server.post('/api/v1/tests', async (req, res, params) => { createTest(req, res, params); });
 server.get('/api/v1/tests', async (req, res, params) => { findAllTests(req, res, params); });

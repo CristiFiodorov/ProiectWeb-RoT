@@ -19,7 +19,13 @@ const userScheme = new mongoose.Schema({
     },
     score: {
         type: Number
-    }
+    },
+    tests: [
+        {
+            testId: String,
+            score: Number
+        }
+    ]
 });
 
 module.exports = mongoose.model('User', userScheme);

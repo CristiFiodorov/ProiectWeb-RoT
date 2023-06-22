@@ -2,7 +2,6 @@ const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 const { mongo } = require("mongoose");
 const { getBodyFromRequest, isNotStringOf24Characters } = require("../utils/request-utils");
-const { generatorTeste } = require("../utils/random-test-utils");
 const Test = require("../models/test-schema");
 
 
@@ -178,6 +177,32 @@ const _deleteTest = async (params) => {
   } catch (error) {
     console.error(error);
     return new Status(500, new Response(false, null, "There was an internal error."));
+  }
+}
+
+const generatorTeste = async () => {
+  try {
+      const result = await Question.aggregate([
+          { $sample: { size: 26 } },
+          { $project: { _id: 1 } }
+      ]);
+
+      const randomQuestionIds = result.map(question => question._id.toString());
+      console.log('Random Question IDs:', randomQuestionIds);
+      return randomQuestionIds;
+  } catch (error) {
+      console.error('Error retrieving random question IDs:', error);
+      throw error;
+  }
+}
+const addRandomTest = async () => {
+  const q = await generatorTeste();
+  await saveTestByQuestions(q);
+}
+
+const generateNrTests = async (n) => {
+  for (let i = 1; i <= n; ++i) {
+      await addRandomTest();
   }
 }
 module.exports = { saveTest, getTests, getTestById, getTestByIndex, saveTestByQuestions, updateTest, _deleteTest };

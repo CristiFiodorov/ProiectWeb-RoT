@@ -1,6 +1,8 @@
 import { getQuestionById, getTestById } from '../api-requests/questions.js'
 import { baseURL } from '../api-requests/const.js';
 
+
+
 function getNextChar(char) {
     return String.fromCharCode(char.charCodeAt(0) + 1);
 }
@@ -37,17 +39,32 @@ async function createQuestion(questionIndex, questionArray) {
         const token = localStorage.getItem('accessToken');
         try {
             // TODO move this in requests
-            // TODO make treat existing test
-            const response = await fetch(`${baseURL}/api/v1/scores`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({score: punctaj})
-            });
-            let responseBody = await response.json();
-            console.log(responseBody);
+            let responseBody;
+            if(id === 'random'){
+                const response = await fetch(`${baseURL}/api/v1/scores`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({score: punctaj})
+                });
+                responseBody = await response.json();
+                console.log(responseBody);
+            }
+            else{
+                const response = await fetch(`${baseURL}/api/v1/scores/test`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({testId: id, score: right})
+                });
+                responseBody = await response.json();
+                console.log(responseBody);
+            }
+            
             const h3 = document.getElementById("info");
             if(responseBody?.success == true){
                 console.log("utilizator logat");
