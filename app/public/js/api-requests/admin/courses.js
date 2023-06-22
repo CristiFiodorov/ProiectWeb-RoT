@@ -1,6 +1,7 @@
-function submitAddSignCategoryHandler(event) {
+function submitAddCourseHandler(event) {
     event.preventDefault();
     const title = document.getElementById("form_title").value;
+    const description = document.getElementById("form_description").value;
     const img = document.getElementById("form_img").files[0];
 
     if (!title) {
@@ -13,12 +14,18 @@ function submitAddSignCategoryHandler(event) {
         return;
     }
 
+    if(!description) {
+        addErrorMessageElement("The description field is required");
+        return;
+    }
+
     const formData = new FormData();
     formData.append('file', img);
     formData.append('title', title);
-    formData.append('description', null);
+    formData.append('description', description);
 
-    fetch(`${config.apiAddress}/api/v1/signcategories`, {
+
+    fetch(`${config.apiAddress}/api/v1/courses`, {
         method: 'POST',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
@@ -30,7 +37,7 @@ function submitAddSignCategoryHandler(event) {
     })
     .then(responseObj => {
         if (responseObj.success) {
-            window.location.href = 'sign_categories.html';
+            window.location.href = `courses.html`;
         }
         else {
             throw new Error(responseObj.message);

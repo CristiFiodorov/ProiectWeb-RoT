@@ -1,11 +1,11 @@
-const { findSignsByCategory, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById } = require('../services/sign-service');
-const { sendJsonResponse } = require('../utils/response-utils');
+const { findSignsByCategoryId, findSignById, findNextSignsByCategory, findPrevSignsByCategory, createSign, deleteSignById, updateSignById, findAllSigns, findSignsByCategoryIdInCSV } = require('../services/sign-service');
+const { sendJsonResponse, sendCSVResponse, sendJsonResponseWithDownload } = require('../utils/response-utils');
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
 
-async function getSignsByCategory(req, res, params) {
-    const { statusCode, response } = await findSignsByCategory(params.category_id);
+async function getSignsByCategoryId(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryId(params.category_id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
@@ -64,7 +64,6 @@ async function createSignController(req, res, params) {
             }
 
             const { statusCode: statusCode2, response: response2 } = await createSign(sign);
-            console.log("Sign " + sign);
 
             sendJsonResponse(res, statusCode2, JSON.stringify(response2));
         });
@@ -111,7 +110,7 @@ async function updateSignByIdController(req, res, params) {
             
             if(!response){
                 const { statusCode: statusCode2, response: response2 } = await findSignById(params.id);
-                response = response2.data.image_url;
+                response = { data: response2.data.image_url};
             }
 
             const sign = {
@@ -120,8 +119,6 @@ async function updateSignByIdController(req, res, params) {
                 parentId: fields.parentId,
                 image_url: response.data
             }
-
-            console.log("Sign " + sign);
 
             const { statusCode: statusCode2, response: response2 } = await updateSignById(params.id, sign);
 
@@ -133,13 +130,30 @@ async function updateSignByIdController(req, res, params) {
     }
 }
 
+async function getAllSigns(req, res, params) {
+    const { statusCode, response } = await findAllSigns();
+    sendJsonResponse(res, statusCode, JSON.stringify(response));
+}
+
+async function getSignsByCategoryIdInCSV(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryIdInCSV(params.category_id);
+    sendCSVResponse(res, statusCode, response.data);
+}
+
+async function getSignsByCategoryIdInJSON(req, res, params) {
+    const { statusCode, response } = await findSignsByCategoryId(params.category_id);
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data), 'signs.json');
+}
 
 module.exports = {
-    getSignsByCategory,
+    getSignsByCategoryId,
     getSignById,
     getNextSignByCategory,
     getPrevSignByCategory,
     createSignController,
     deleteSignByIdController,
-    updateSignByIdController
+    updateSignByIdController,
+    getAllSigns,
+    getSignsByCategoryIdInCSV,
+    getSignsByCategoryIdInJSON
 };

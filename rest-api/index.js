@@ -7,14 +7,14 @@ const { ServerManager } = require('./config/server-manager');
 const {  findAllQuestions, findQuestionById, createQuestion, deleteQuestion, patchQuestion } = require('./controllers/questions-controller');
 const { createTest, findAllTests, findTestById, findTestByIndex, patchTest, deleteTest } = require('./controllers/test-controller');
 
-const { getSignCategories, getSignCategoryById, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController } = require('./controllers/signcategories-controller');
-const { getSignsByCategory, getSignById, getNextSignByCategory, getPrevSignByCategory, createSignController, deleteSignByIdController, updateSignByIdController } = require('./controllers/sign-controller');
+const { getSignCategories, getSignCategoryById, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController, getSignCategoriesInCSV, getSignCategoriesInJSON } = require('./controllers/signcategories-controller');
+const { getSignsByCategoryId, getSignById, getNextSignByCategory, getPrevSignByCategory, createSignController, deleteSignByIdController, updateSignByIdController, getAllSigns, getSignsByCategoryIdInCSV, getSignsByCategoryIdInJSON } = require('./controllers/sign-controller');
 
-const { getAllCourses, createCourseController, deleteCourse, updateCourse } = require('./controllers/course-controller');
+const { getAllCourses, getCourseById, createCourseController, deleteCourse, updateCourse } = require('./controllers/course-controller');
 
-const { getAllChapters, deleteChapter, getChapterById, getPrevChapterByCourseId, getNextChapterByCourseId } = require('./controllers/chapter-controller');
+const { getAllChapters, getChapterById, createChapterController, updateChapter, deleteChapter, getPrevChapterByCourseId, getNextChapterByCourseId } = require('./controllers/chapter-controller');
 
-const { getChapterContentByChapterId, deleteChapterContent } = require('./controllers/chapter-content-controller');
+const { getChapterContentByChapterId, addToChapterContentController, clearChapterContentController, deleteChapterContent, getChapterContentByChapterIdInCSV, getChapterContentByChapterIdInJSON, updateChapterContentController } = require('./controllers/chapter-content-controller');
 
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
@@ -32,7 +32,7 @@ mongoose.connection.on('connected', () => console.log('Connected to database'));
 console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
-const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdController, updateAdviceByIdController, getNextAdvice, getPrevAdvice } = require('./controllers/advice-controller');
+const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdController, updateAdviceByIdController, getNextAdvice, getPrevAdvice, getAdvicesInCSV, getAdvicesInJSON } = require('./controllers/advice-controller');
 const { saveTestByQuestions } = require('./services/test-service');
 const { sendMail } = require('./utils/email-utils');
 const { forgotPassword } = require('./controllers/forgot-password-controller');
@@ -55,10 +55,11 @@ server.get('/api/v1/questions', async (req, res, params) => { findAllQuestions(r
 server.get('/api/v1/questions/:id', async (req, res, params) => { findQuestionById(req, res, params); });
 server.delete('/api/v1/questions/:id', async (req, res, params) => { deleteQuestion(req, res, params); });
 
-
+//Authentification
 server.post('/api/v1/register', registerUser);
 server.post('/api/v1/login', loginUser);
 
+//Sing categories
 server.get('/api/v1/signcategories', getSignCategories);
 server.get('/api/v1/signcategories/:id', getSignCategoryById);
 server.post('/api/v1/signcategories', async (req, res, params) => {
@@ -70,9 +71,12 @@ server.delete('/api/v1/signcategories/:id', async (req, res, params) => {
 server.put('/api/v1/signcategories/:id', async (req, res, params) => {
     verifyToken(req, res, params, true, updateSignCategoryByIdController);
 });
+server.get('/api/v1/export/csv/signcategories', getSignCategoriesInCSV);
+server.get('/api/v1/export/json/signcategories', getSignCategoriesInJSON);
 
 
-server.get('/api/v1/:category_id/signs', getSignsByCategory);
+//Sing
+server.get('/api/v1/signcategories/:category_id/signs', getSignsByCategoryId);
 server.get('/api/v1/signs/:id', getSignById);
 server.get('/api/v1/signs/nextsign/:sign_id/:category_id', getNextSignByCategory);
 server.get('/api/v1/signs/prevsign/:sign_id/:category_id', getPrevSignByCategory);
@@ -85,9 +89,15 @@ server.put('/api/v1/signs/:id', async (req, res, params) => {
 server.post('/api/v1/signs', async (req, res, params) => {
     verifyToken(req, res, params, true, createSignController);
 });
+server.get('/api/v1/signs', getAllSigns);
+server.get('/api/v1/export/csv/signcategories/:category_id/signs', getSignsByCategoryIdInCSV);
+server.get('/api/v1/export/json/signcategories/:category_id/signs', getSignsByCategoryIdInJSON);
 
 
+
+//Courses
 server.get('/api/v1/courses', getAllCourses);
+server.get('/api/v1/courses/:id', getCourseById);
 server.post('/api/v1/courses', async (req, res, params) => {
     verifyToken(req, res, params, true, createCourseController);
 });
@@ -98,21 +108,43 @@ server.delete('/api/v1/courses/:id', async (req, res, params) => {
     verifyToken(req, res, params, true, deleteCourse);
 });
 
+
+//Chapters
 server.get('/api/v1/courses/:course_id/chapters', getAllChapters);
 server.get('/api/v1/chapters/:chapter_id', getChapterById);
 server.get('/api/v1/chapters/prevchapter/:chapter_id/:course_id', getPrevChapterByCourseId);
 server.get('/api/v1/chapters/nextchapter/:chapter_id/:course_id', getNextChapterByCourseId);
+server.post('/api/v1/chapters', async (req, res, params) => {
+    verifyToken(req, res, params, true, createChapterController);
+});
+server.put('/api/v1/chapters/:chapter_id', async (req, res, params) => {
+    verifyToken(req, res, params, true, updateChapter);
+});
 server.delete('/api/v1/chapters/:chapter_id', async (req, res, params) => {
   verifyToken(req, res, params, true, deleteChapter);
 });
 
+
+//ChapterContent
 server.get('/api/v1/chapters/:chapter_id/contents', getChapterContentByChapterId);
+server.put('/api/v1/chapters/:chapter_id/contents/append', async (req, res, params) => {
+    verifyToken(req, res, params, true, addToChapterContentController);
+});
+server.delete('/api/v1/chapters/:chapter_id/clear', async (req, res, params) => {
+    verifyToken(req, res, params, true, clearChapterContentController);
+});
 server.delete('/api/v1/chapters/:chapter_id/contents', async (req, res, params) => {
     verifyToken(req, res, params, true, deleteChapterContent);
 });
+server.put('/api/v1/chapters/:chapter_id/contents', async (req, res, params) => {
+    verifyToken(req, res, params, true, updateChapterContentController);
+});
+server.get('/api/v1/export/csv/chapters/:chapter_id/contents', getChapterContentByChapterIdInCSV);
+server.get('/api/v1/export/json/chapters/:chapter_id/contents', getChapterContentByChapterIdInJSON);
 
 
 
+//Advices
 server.get('/api/v1/advices', getAdvices);
 server.get('/api/v1/advices/:id', getAdviceById);
 server.get('/api/v1/advices/nextadvice/:advice_id', getNextAdvice);
@@ -126,16 +158,14 @@ server.delete('/api/v1/advices/:id', async (req, res, params) => {
 server.put('/api/v1/advices/:id', async (req, res, params) => {
     verifyToken(req, res, params, true, updateAdviceByIdController);
 });
+server.get('/api/v1/export/csv/advices', getAdvicesInCSV);
+server.get('/api/v1/export/json/advices', getAdvicesInJSON);
 
 
+//Upload
 server.post('/api/v1/upload', async (req, res, params) => {
     verifyToken(req, res, params, true, uploadFileController);
 });
 
-server.get('/api/v1/test', async (req, res) => {
-    // verifyToken(req, res, async () => {
-    // });
-});
-// generateNrTests(1);
 
 server.listen(3000);

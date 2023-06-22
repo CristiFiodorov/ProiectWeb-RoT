@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: StudentProject API
+  title: RoT API
   version: 1.0.0
 servers:
   - url: http://localhost:3000
@@ -172,7 +172,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
   
-  /api/v1/{category_id}/signs:
+  /api/v1/signcategories/{category_id}/signs:
     get:
       tags:
         - Signs
@@ -285,6 +285,24 @@ paths:
             schema:
               $ref: '#/components/schemas/SignRequest'
         required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+    get:
+      tags:
+        - Signs
+      operationId: getSigns
       responses:
         '200':
           description: OK
@@ -574,6 +592,30 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
   
   /api/v1/courses/{id}:
+    get:
+      tags:
+        - Courses
+      operationId: getCourseById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourseResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
     delete:
       tags:
         - Courses
@@ -653,8 +695,87 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/chapters:
+    post:
+      tags:
+        - Chapters
+      operationId: createChapter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChapterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   
   /api/v1/chapters/{chapter_id}:
+    get:
+      tags:
+        - Chapters
+      operationId: getChapterById
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Chapters
+      operationId: updateChapter
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChapterRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
     delete:
       tags:
         - Chapters
@@ -750,6 +871,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+  /api/v1/chapters/{chapter_id}/contents/append:
+    put:
+      tags:
+        - ChapterContents
+      operationId: appendContent
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Content'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChapterContentResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
   /api/v1/chapters/prevchapter/{chapter_id}/{course_id}:
     get:
       tags:
@@ -810,7 +962,190 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+
+  /api/v1/export/csv/signcategories:
+    get:
+      tags:
+        - Export
+      operationId: exportSignCategories
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/json/signcategories:
+    get:
+      tags:
+        - Export
+      operationId: exportSignCategories
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignCategoryResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/csv/signcategories/{category_id}/signs:
+    get:
+      tags:
+        - Export
+      operationId: exportSignsByCategoryId
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/json/signcategories/{category_id}/signs:
+    get:
+      tags:
+        - Export
+      operationId: exportSignsByCategoryId
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/csv/chapters/{chapter_id}/contents:
+    get:
+      tags:
+        - Export
+      operationId: exportContentsByChapterId
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/json/chapters/{chapter_id}/contents:
+    get:
+      tags:
+        - Export
+      operationId: exportContentsByChapterId
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/csv/advices:
+    get:
+      tags:
+        - Export
+      operationId: exportAdvices
+      responses:
+        '200':
+          description: OK
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/export/json/advices:
+    get:
+      tags:
+        - Export
+      operationId: exportAdvices
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdviceResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
 components:
+  securitySchemes:
+    bearerAuth:        
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
     User:
       type: object
@@ -1013,11 +1348,12 @@ components:
     Content:
       type: object
       properties:
-        element:
+        elementType:
           type: string
         data:
-          string:
-            type: string
+          type: string
+        file:
+          type: file
         tags:
           array:
             type: string
@@ -1070,5 +1406,7 @@ components:
         message:
           type: string
 
+security:
+  - bearerAuth: []
   
     

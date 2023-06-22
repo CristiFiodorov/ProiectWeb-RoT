@@ -24,14 +24,20 @@ function verifyToken(req, res, params, isAdmin, next) {
     if (token === null || token == 'null') {
         return sendJsonResponse(res, 401, JSON.stringify({ message: "Unauthorized" }));
     }
-    
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
+
+    const verifyResponse = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, payload) => {
         if (err) {
-            wrong = true;
-            return sendJsonResponse(res, 403, JSON.stringify({ message: "Forbidden" }));
+            return false;
         }
         req.user = payload;
+        return true;
     });
+
+
+    if (!verifyResponse) {
+        sendJsonResponse(res, 403, JSON.stringify({ message: "Forbidden" }));
+        return;
+    }
     if (isAdmin && !req.user.isAdmin) {
         return sendJsonResponse(res, 403, JSON.stringify({ message: "Forbidden" }));
     }

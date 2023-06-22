@@ -35,12 +35,12 @@ nav.innerHTML = '\
             </div>\
         </div>\
         <ul class="navbar__nav-links">\
-            <li><a class="navbar__link" href="index.html">Acasa</a></li>\
             <li><a class="navbar__link" href="courses.html">Cursuri</a></li>\
             <li><a class="navbar__link" href="sign_categories.html">Indicatoare</a></li>\
             <li><a class="navbar__link" href="advice.html">Sfaturi</a></li>\
             <li><a class="navbar__link" href="teste.html">Teste</a></li>\
             <li><a class="navbar__link" href="clasament.html">Clasament</a></li>\
+            <li><a class="navbar__link" href="help.html">Ajutor</a></li>\
         </ul>\
     </div>';
 
@@ -53,6 +53,22 @@ else {
     appendLogoutButton(nav);
 }
 
+const routesMap = new Map();
+routesMap.set("index.html", "index.html");
+routesMap.set("courses.html", "courses.html");
+routesMap.set("course_chapters.html", "courses.html");
+routesMap.set("chapter_content.html", "courses.html");
+routesMap.set("sign_categories.html", "sign_categories.html");
+routesMap.set("signs_by_category.html", "sign_categories.html");
+routesMap.set("sign.html", "sign_categories.html");
+routesMap.set("advice.html", "advice.html");
+routesMap.set("single_advice.html", "advice.html");
+routesMap.set("teste.html", "teste.html");
+routesMap.set("teste.html", "teste.html");
+routesMap.set("clasament.html", "clasament.html");
+routesMap.set("about.html", "about.html");
+routesMap.set("help.html", "help.html");
+
 let toggle = document.querySelector(".toggle");
 let login = document.querySelector(".navbar__log-btn");
 let links = document.querySelector(".navbar__nav-links");
@@ -60,7 +76,7 @@ let links = document.querySelector(".navbar__nav-links");
 let current_url = document.location;
 
 document.querySelectorAll(".navbar__link").forEach(function (e) {
-    if (e.href == current_url) {
+    if (e.href.includes(routesMap.get(current_url.pathname.split("/").pop()))) {
         e.classList += " navbar__link--clicked";
     }
 });

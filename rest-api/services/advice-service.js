@@ -4,10 +4,7 @@ const { Status } = require("../utils/status-class");
 
 async function findAllAdvices() {
     try {
-        const advices = await Advice.find();
-
-        if(advices.length === 0)
-            return new Status(404, new Response(false, null, "Advices not found."));
+        const advices = await Advice.find({}, {__v: 0});
 
         return new Status(200, new Response(true, advices, "Advices successfully retrieved."));
     }
@@ -115,6 +112,22 @@ async function findPrevAdvice(adviceId) {
     }
 }
 
+async function findAllAdvicesInCSV() {
+    try {
+        const advices = await Advice.find({}, {__v: 0});
+
+        const csv = advices.map(advice => {
+            return `${advice._id},"${advice.title}",${advice.image_url},"${advice.description}" `
+        }).join('\r\n');
+
+        return new Status(200, new Response(true, csv, "Advices successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
 module.exports = {
     findAllAdvices,
     findAdviceById,
@@ -122,5 +135,6 @@ module.exports = {
     updateAdviceById,
     deleteAdviceById,
     findNextAdvice,
-    findPrevAdvice
+    findPrevAdvice,
+    findAllAdvicesInCSV
 };

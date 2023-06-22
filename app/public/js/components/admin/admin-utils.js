@@ -2,6 +2,16 @@
  * Given a container, the title of the card, the image source of the card,
  * a flag that indicates whether clicking the card pops up a modal or not,
  * and a 'click' event handler for the card, it will create a special admin card 
+ * Used for sign and advices admin cards, usually when more than one card should pe included in mainContainer
+ * 
+ *   mainContainer.append(..
+ *   <a href="#" class="card__link">
+ *       <div class="card card--gradient-orange $modalType">
+ *           <img src="$imgSrc" alt="$title" class="card__image">
+ *           <h3 class="card__title">$title</h3>
+ *       </div>
+ *   </a>
+ *   ..)
  */
 function addAdminSpecificButton(mainContainer, title, imgSrc, modalType, clickHandler) {
     const specificButton = document.createElement("a");
@@ -26,6 +36,24 @@ function addAdminSpecificButton(mainContainer, title, imgSrc, modalType, clickHa
     mainContainer.appendChild(specificButton);
 }
 
+/**
+ * Given a container, the title of the card, the image source of the card,
+ * a flag that indicates whether clicking the card pops up a modal or not,
+ * and a 'click' event handler for the card, it will create a special admin card 
+ * used for COURSE cards, ONLY when ONE card is included in the mainContainer
+ * 
+ */
+function addAdminCourseSpecificButton(mainContainer, title, description, imgSrc, modalType, clickHandler) {
+    mainContainer.innerHTML = `
+        <a href="#" class="course-card-link ${modalType}">
+            <div class="course-card course-card--gradient-orange">
+                <h3 class="course-card__title">${title}</h3>
+                <img src="${imgSrc}" alt="${title}" class="course-card__image">
+                <h3 class="course-card__description">${description}</h3>
+            </div>
+    `
+    mainContainer.querySelector("a").addEventListener("click", clickHandler);
+}
 
 function extractPayloadFromJwt (token) {
     var base64Url = token.split('.')[1];
@@ -44,4 +72,9 @@ function userIsAdmin() {
     }
     const payload = extractPayloadFromJwt(token);
     return payload.isAdmin;
+}
+
+function isUserLoggedIn() {
+    const isLogged = localStorage.getItem("accessToken");
+    return isLogged ? true : false;
 }

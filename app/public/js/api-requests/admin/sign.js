@@ -1,12 +1,3 @@
-function addErrorMessageElement(errorMessage) {
-    document.querySelector('.error-message')?.remove();
-    const errorContainer = document.createElement('div');
-    errorContainer.className = 'error-message';
-    errorContainer.textContent = errorMessage;
-    const form = document.querySelector('form');
-    form.insertBefore(errorContainer, form.firstChild);
-}
-
 function initializeUpdateSignFormAndGetParentId(currentSign) {
     document.getElementById("form_title").value = currentSign.title;
     document.getElementById("form_description").value = currentSign.description;

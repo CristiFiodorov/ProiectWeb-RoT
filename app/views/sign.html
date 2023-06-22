@@ -21,11 +21,10 @@
 
     <title>RoT</title>
     <link rel="icon" type="image/x-icon" href="../public/images/wheel.png">
+    <script src="../public/js/components/route-guards/expired-token-guard.js"></script>
 </head>
 
 <body>
-    <nav id="navbar" class="navbar"></nav>
-
     <!-- Modal Structure -->
     <div id="modal-overlay">
         <div id="modal">
@@ -54,11 +53,12 @@
             </div>
         </div>
     </div>
+        
+    <nav id="navbar" class="navbar"></nav>
 
     <main id="main">
 
     </main>
-
     <script src="../public/js/api-requests/config/config.js"></script>
     <script src="../public/js/components/admin/admin-utils.js"></script>
     <script src="../public/js/components/nav.js"></script>

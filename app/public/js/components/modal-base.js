@@ -1,3 +1,15 @@
+/** 
+ * Used for modals that have a form as modal-content. It will create an error message that will be displayed exactly before the form. 
+ **/
+function addErrorMessageElement(errorMessage) {
+    document.querySelector('.error-message')?.remove();
+    const errorContainer = document.createElement('div');
+    errorContainer.className = 'error-message';
+    errorContainer.textContent = errorMessage;
+    const form = document.querySelector('form');
+    form.insertBefore(errorContainer, form.firstChild);
+}
+
 function addModalBundles() {
     const openModalButtons = document.querySelectorAll(".modal-open");
     const modalWindowOverlay = document.getElementById("modal-overlay")
@@ -5,6 +17,7 @@ function addModalBundles() {
     const openDeleteModalButtons = document.querySelectorAll(".delete-modal-open");
     const deleteModalWindowOverlay = document.getElementById("delete-modal-overlay");
 
+    console.log(openDeleteModalButtons);
     // Create normal modal windows (usually with forms as content)
     const createModalWindow = () => {
         modalWindowOverlay.style.display = "flex";

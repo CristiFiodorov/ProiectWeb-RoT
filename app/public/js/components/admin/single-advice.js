@@ -22,6 +22,7 @@ function updateSingleAdvicePopUpHandler(event, currentAdvice) {
     document.getElementById("modal-content").appendChild(form);
     initializeUpdateSingleAdviceForm(currentAdvice);
     document.getElementById("save-modal").addEventListener("click", submitUpdateSingleAdviceHandler);
+    form.addEventListener("submit", submitUpdateSingleAdviceHandler);
 }
 
 function appendAdminCardButtons(cardButtons, currentAdvice, cardContainer, mainContainer) {

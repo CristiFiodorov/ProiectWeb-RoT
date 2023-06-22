@@ -2,12 +2,9 @@ const Sign = require('../models/sign-scheme');
 const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 
-async function findSignsByCategory(categoryId) {
+async function findSignsByCategoryId(categoryId) {
     try {
         const signs = await Sign.find({ parentId: categoryId });
-
-        if (signs.length === 0)
-            return new Status(404, new Response(false, null, "Signs not found."));
 
         return new Status(200, new Response(true, signs, "Signs successfully retrieved."));
     }
@@ -130,14 +127,43 @@ async function deleteSignsByCategoryId(categoryId) {
     }
 }
 
+async function findAllSigns() {
+    try {
+        const signs = await Sign.find({}, {__v: 0});
+        return new Status(200, new Response(true, signs, "Signs successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
+async function findSignsByCategoryIdInCSV(categoryId) {
+    try {
+        const signs = await Sign.find({ parentId: categoryId }, {__v: 0});
+
+        const csv = signs.map(sign => {
+            return `${sign._id},"${sign.title}","${sign.description.trim().replace('\r\n', '').replace('\n', '')}",${sign.parentId} `;
+        }).join('\r\n');
+
+
+        return new Status(200, new Response(true, csv, "Signs successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
 
 module.exports = {
-    findSignsByCategory,
+    findSignsByCategoryId,
     findSignById,
     findNextSignsByCategory,
     findPrevSignsByCategory,
     createSign,
     deleteSignById,
     updateSignById,
-    deleteSignsByCategoryId
+    deleteSignsByCategoryId,
+    findAllSigns,
+    findSignsByCategoryIdInCSV
 };

@@ -7,10 +7,22 @@ async function findAllCourses() {
     try {
         const courses = await Course.find();
 
-        if(courses.length === 0)
-            return new Status(404, new Response(false, null, "Courses not found."));
-
         return new Status(200, new Response(true, courses, "Courses successfully retrieved."));
+    }
+    catch (error) {
+        console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+
+async function findCourseById(id) {
+    try {
+        const course = await Course.findById(id);
+
+        if(!course)
+            return new Status(404, new Response(false, null, "Course not found."));
+
+        return new Status(200, new Response(true, course, "Course successfully retrieved."));
     }
     catch (error) {
         console.error(error);
@@ -71,6 +83,7 @@ async function updateCourseById(id, course) {
 
 module.exports = {
     findAllCourses,
+    findCourseById,
     createCourse,
     deleteCourseById,
     updateCourseById

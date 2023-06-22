@@ -1,5 +1,5 @@
-const { findAllAdvices, findAdviceById, createAdvice, updateAdviceById, deleteAdviceById, findNextAdvice, findPrevAdvice } = require('../services/advice-service');
-const { sendJsonResponse } = require('../utils/response-utils');
+const { findAllAdvices, findAdviceById, createAdvice, updateAdviceById, deleteAdviceById, findNextAdvice, findPrevAdvice, findAllAdvicesInCSV } = require('../services/advice-service');
+const { sendJsonResponse, sendCSVResponse, sendJsonResponseWithDownload } = require('../utils/response-utils');
 const { getBodyFromRequest } = require('../utils/request-utils');
 const { uploadFile } = require('../services/file-upload-service');
 const formidable = require('formidable');
@@ -53,7 +53,6 @@ async function createAdviceController(req, res, params) {
             }
 
             const { statusCode: statusCode2, response: response2 } = await createAdvice(advice);
-            console.log("Sign " + advice);
 
             sendJsonResponse(res, statusCode2, JSON.stringify(response2));
         });
@@ -100,7 +99,7 @@ async function updateAdviceByIdController(req, res, params) {
             
             if(!response){
                 const { statusCode: statusCode2, response: response2 } = await findAdviceById(params.id);
-                response = response2.data.image_url;
+                response = { data: response2.data.image_url};
             }
 
             const advice = {
@@ -108,8 +107,6 @@ async function updateAdviceByIdController(req, res, params) {
                 description: fields.description,
                 image_url: response.data
             }
-
-            console.log("Sign " + advice);
 
             const { statusCode: statusCode2, response: response2 } = await updateAdviceById(params.id, advice);
 
@@ -131,6 +128,15 @@ async function getPrevAdvice(req, res, params) {
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
+async function getAdvicesInCSV(req, res, params) {
+    const {statusCode, response} = await findAllAdvicesInCSV();
+    sendCSVResponse(res, statusCode, response.data);
+}
+
+async function getAdvicesInJSON(req, res, params) {
+    const {statusCode, response} = await findAllAdvices();
+    sendJsonResponseWithDownload(res, statusCode, JSON.stringify(response.data), 'advices.json');
+}
 
 module.exports = {
     getAdvices,
@@ -139,5 +145,7 @@ module.exports = {
     deleteAdviceByIdController,
     updateAdviceByIdController,
     getNextAdvice,
-    getPrevAdvice
+    getPrevAdvice,
+    getAdvicesInCSV,
+    getAdvicesInJSON
 };
