@@ -80,6 +80,10 @@ a:hover, a:active, a:focus{
     color: #3bb78f;
 }
 
+.admin-span {
+    color: #ffd700;
+}
+
 .ui-desktop-img, .ui-mobile-img {
     width: 90%;
 }

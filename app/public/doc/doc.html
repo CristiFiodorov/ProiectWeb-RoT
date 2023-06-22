@@ -256,6 +256,13 @@
                                     A page that displays relevant information about a specific traffic sign. All the rules, variations and real world examples regarding the traffic signs are 
                                     concisely displayed on the screen. 
                                 </li>
+                                <li>
+                                    The application's logic regarding traffic signs is designed to be user-friendly for <span class="admin-span">administrators</span>. The admin has the ability to add a new traffic 
+                                    sign for a specific category, or a new category entirely. Also, the admin can edit or delete a specific traffic sign or category as well.
+                                </li>
+                                <li>
+                                    For each specific traffic sign and sign category, the <span class="admin-span">administrator</span> might upload a photo that is relevant to the sign or category.
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -268,13 +275,19 @@
                                 <li>
                                     A page that presents a practical driving advice.   
                                 </li>
+                                <li>
+                                    The application's logic regarding practical advice is designed to be user-friendly for <span class="admin-span">administrators</span>. The admin has the ability to add, edit or delete a new practical advice.
+                                </li>
+                                <li>
+                                    For each practical advice, the <span class="admin-span">administrator</span> might upload a photo that is relevant to the advice.
+                                </li>
                             </ul>
                         </li>
                         <li>
                             <span class="ul-heading__move">Courses Features</span> 
                             <ul>
                                 <li>
-                                    A page that contains three course categories: <span class="course--green">Legislation</span>, <span class="course--green">Mechanics</span> and <span class="course--green">First Aid</span>. 
+                                    A page that contains several course categories. 
                                     Each course is displayed on a separate card. The user can press on a specific card in order to enter a new page that displays the a list of available chapters for the 
                                     selected course.
                                 </li>
@@ -284,17 +297,31 @@
                                 <li>
                                     A page that presents a given chapter of the course. Several resourses such as images and citations might be included in the presentation. 
                                 </li>
+                                <li>
+                                    The application's logic regarding courses is designed to be user-friendly for <span class="admin-span">administrators</span>. The admin has the ability to add a new course, or a new chapter for a specific course.
+                                    Also, the admin can edit or delete a specific course and chapter as well.
+                                </li>
+                                <li>
+                                    For a given course chapter, the <span class="admin-span">administrator</span> can modify the chapter content as well. On the contents page, he has the ability to add a new page element that might be a subsection title, an entire paragraph 
+                                    or an uploaded-page.
+                                </li>
                             </ul>
                         </li>
                         <li>
                             <span class="ul-heading__move">Quizes Features</span> 
                             <ul>
                                 <li>
-                                    A page that contains multiple quizes, of different difficulties, on different topics. Only logged in users can access this page. 
-                                    Each quiz is displayed on a separate card. The user can press one of the cards in order to start a desired quiz.
+                                    A page that contains multiple exercise quizes. Only logged in users can access this page. 
+                                    Each exercise quiz is displayed on a separate card. The user can press one of the cards in order to start a desired quiz.
+                                    The maximum score obtained for a given exercise quiz obtained by the user is displayed on the card.
                                 </li>
                                 <li>
-                                    A page that displays a question from a specific quiz. Each question is numbered. A photo and three answer options are associated. 
+                                    If the user wants to start a randomly generated quiz, in order to simulate an exam environment, he can do it as well by pressing a specific 
+                                    button on the page. For these type of quizes, 
+                                </li>
+                                <li>
+                                    A special page that displays the current question in a started quiz. The user can choose one or more options to answer the question for the question.
+                                    After the submit button is pressed, the user might see if his answer is correct or not and jump to the next question.
                                 </li>
                             </ul>
                         </li>
@@ -303,6 +330,7 @@
                             <ul>
                                 <li>
                                     A scoreboard page. All users are displayed on the scoreboard, in descending order of their total score. 
+                                    The total score is calculated by adding the results for each randomly generated quiz.
                                 </li>
                             </ul>
                         </li>
@@ -395,11 +423,11 @@
         <section role="application-architecture", id="architecture">
             <h2>3. Application Architecture (C4 model)</h2>
             <section id="c4-diagrams">
-                <h3>3.1 Context Diagram</h2>
+                <h3>3.2 Context Diagram</h2>
                 <img class="diagrams" id="context-diagram" src="images/diagrams/C1.png" alt="Context Diagram">
-                <h3>3.2 Containers Diagram</h3>
+                <h3>3.3 Containers Diagram</h3>
                 <img class="diagrams" id="containers-diagram" src="images/diagrams/C2.png" alt="Containers Diagram">
-                <h3>3.3 Components Diagram</h3>
+                <h3>3.4 Components Diagram</h3>
                 <img class="diagrams" id="components-diagram" src="images/diagrams/C3.png" alt="Components Diagram">
             </section>
         </section>
