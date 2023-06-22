@@ -15,6 +15,7 @@ async function updateSignPopUpHandler(event, currentSign) {
     document.getElementById("modal-content").appendChild(form);
     initializeUpdateSignFormAndGetParentId(currentSign);
     document.getElementById("save-modal").addEventListener("click", (event) => submitUpdateSignHandler(event, currentSign.parentId));
+    form.addEventListener("submit", (event) => submitUpdateSignHandler(event, currentSign.parentId));
 }
 
 async function deleteSignPopUpHandler(event, currentSign) {

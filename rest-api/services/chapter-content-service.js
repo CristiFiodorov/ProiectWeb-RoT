@@ -125,16 +125,26 @@ async function updateChapterContent(chapterId, content) {
         const chapterContent = await ChapterContent.find({ parentId: chapterId });
 
         if (chapterContent.length === 0)
-            return new Status(404, new Response(false, null, "Chapter content not found."));
+            return new Status(404, new Response(false, null, "Capitol indisponibil."));
+
+        let areValidFields = true;
+        content.forEach((element) => {
+            if(!element.elementType || !element.data) {
+                areValidFields = false;
+            }
+        });
+
+        if(!areValidFields) {
+            return new Status(400, new Response(false, null, "Câmpuri invalide în fișierul JSON. Respectați formatul impus."));
+        }
 
         chapterContent[0].content = content;
-
         const savedChapterContent = await chapterContent[0].save();
-
         return new Status(200, new Response(true, savedChapterContent, "Chapter content successfully updated."));
     }
     catch (error) {
         console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
     }
 }
 

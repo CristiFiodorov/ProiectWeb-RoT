@@ -114,6 +114,10 @@
     background-image: url("https://fiiwebapp.blob.core.windows.net/rot-web/admin_delete_chapter.png");
 }
 
+.admin-upload-chapter__icon {
+    background-image: url("https://fiiwebapp.blob.core.windows.net/rot-web/admin_upload_course.png");
+}
+
 .contents-card__item:hover, .contents-card-link:focus .contents-card__item{
     background-color: #71BC78;
     /* background-image: linear-gradient(315deg, #deebdd 0%, #bbdbbe 74%); */

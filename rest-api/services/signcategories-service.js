@@ -8,9 +8,6 @@ async function findSignCategories() {
     try{
         const signCategories = await SignCategory.find({},{ __v: 0});
 
-        if(signCategories.length === 0)
-            return new Status(404, new Response(false, null, "Sign Categories not found."));
-
         return new Status(200, new Response(true, signCategories, "Sign Categories successfully retrieved."));
     }
     catch (error) {
@@ -79,8 +76,6 @@ async function updateSignCategoryById(signCategoryId, signCategory) {
 async function findSignCategoriesInCSV(){
     try{
         const signCategories = await SignCategory.find({},{ __v: 0});
-        if(signCategories.length === 0)
-            return new Status(404, new Response(false, null, "Sign Categories not found."));
 
         const csv = signCategories.map(signCategory => {
             return `${signCategory._id},"${signCategory.title}",${signCategory.image_url} `;

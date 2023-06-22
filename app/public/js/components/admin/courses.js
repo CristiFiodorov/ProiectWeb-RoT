@@ -12,6 +12,7 @@ function addCoursePopUpHandler() {
     `;
 
     document.getElementById("save-modal").addEventListener("click", submitAddCourseHandler);
+    form.addEventListener("submit", submitAddCourseHandler);
     document.getElementById("modal-content").appendChild(form);
 }
 

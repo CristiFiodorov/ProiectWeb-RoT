@@ -12,6 +12,7 @@ function addSingleAdvicePopUpHandler() {
     `;
 
     document.getElementById("save-modal").addEventListener("click", submitAddSingleAdviceHandler);
+    form.addEventListener("submit", submitAddSingleAdviceHandler);
     document.getElementById("modal-content").appendChild(form);
 };
 

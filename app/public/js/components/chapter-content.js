@@ -34,7 +34,7 @@ function appendSimpleUserFooterButtons(footer, chapterId, courseId) {
 
     prevButton.href = "#";
     nextButton.href = "#";
-    chaptersButton.href = "courses.html";
+    chaptersButton.href = `course_chapters.html?courseID=${courseId}`;
 
     prevButton.innerHTML = "<h1>Lecția Precedentă</h1>";
     nextButton.innerHTML = "<h1>Lecția Următoare</h1>";
