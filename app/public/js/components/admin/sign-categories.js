@@ -11,6 +11,7 @@ function addSignCategoryPopUpHandler() {
     `;
 
     document.getElementById("save-modal").addEventListener("click", submitAddSignCategoryHandler);
+    form.addEventListener("submit", submitAddSignCategoryHandler);
     document.getElementById("modal-content").appendChild(form);
 };
 

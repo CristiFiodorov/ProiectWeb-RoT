@@ -151,6 +151,7 @@ async function updateCoursePopUp(event) {
     document.getElementById("modal-content").appendChild(form);
     await initializeUpdateCourseForm();
     document.getElementById("save-modal").addEventListener("click", submitUpdateCourseHandler);
+    form.addEventListener("submit", submitUpdateCourseHandler);
 }
 
 function appendAdminCourseButtons() {

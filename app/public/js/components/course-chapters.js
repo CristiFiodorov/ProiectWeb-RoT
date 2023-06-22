@@ -6,9 +6,9 @@ function createCourseChapter(chapter){
     a.href = `chapter_content.html?chapterID=${chapter._id}`;
     a.className = "contents-card-link";
     a.innerHTML = `
-    <div class="contents-card__item">
-        <p>${chapter.title}</p>
-    </div>
+        <div class="contents-card__item">
+            <p>${chapter.title}</p>
+        </div>
     `;
     chapterContainer.appendChild(a);
     // If user is admin add one more child after the link: the admin special icon_buttons

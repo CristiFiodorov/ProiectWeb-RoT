@@ -12,6 +12,7 @@ function addSignPopUpHandler() {
     `;
 
     document.getElementById("save-modal").addEventListener("click", submitAddSignHandler);
+    form.addEventListener("submit", submitAddSignHandler);
     document.getElementById("modal-content").appendChild(form);
 };
 
@@ -30,6 +31,7 @@ async function modifySignCategoryHandler() {
     document.getElementById("modal-content").appendChild(form);    
     await initializeUpdateSignCategoryForm();
     document.getElementById("save-modal").addEventListener("click", submitUpdateSignCategoryHandler);
+    form.addEventListener("submit", submitUpdateSignCategoryHandler);
 };
 
 function deleteSignCategoryHandler() {
