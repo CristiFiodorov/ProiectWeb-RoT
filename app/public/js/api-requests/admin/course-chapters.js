@@ -190,3 +190,29 @@ function submitAddChapterHandler(event) {
         addErrorMessageElement(error.message);
     });
 }
+
+function uploadContentInChapterHandler(jsonObject, chapter) {
+    const chapterId = chapter._id;
+    fetch(`${config.apiAddress}/api/v1/chapters/${chapterId}/contents`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        body: JSON.stringify(jsonObject)
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(responseObj => {
+        if (responseObj.success) {
+            window.location.href = `chapter_content.html?chapterID=${chapterId}`;
+        }
+        else {
+            throw new Error(responseObj.message);
+        }
+    })
+    .catch(error => {
+        alert(error.message);
+    });
+}

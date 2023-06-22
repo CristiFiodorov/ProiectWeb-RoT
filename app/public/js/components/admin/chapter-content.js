@@ -98,7 +98,7 @@ function appendAdminFooterButtons(footer, chapterId, courseId) {
 
     clearButton.href = "#";
     addButton.href = "#";
-    chaptersButton.href = "courses.html";
+    chaptersButton.href = `course_chapters.html?courseID=${courseId}`;
 
     clearButton.innerHTML = "<h1>Curăță Conținutul</h1>";
     addButton.innerHTML = "<h1>Adaugă Secțiune</h1>";

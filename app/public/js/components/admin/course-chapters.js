@@ -29,6 +29,28 @@ function deleteChapterPopUp(event, chapter) {
     });
 }
 
+function uploadContentHandling(event, chapter) {
+    event.preventDefault();
+      
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+
+    // Only Json Files Allowed 
+    fileInput.accept = ".json"; 
+
+    fileInput.addEventListener("change", (changeEvent) => {
+        const selectedFile = changeEvent.target.files[0]; 
+        const fileReader = new FileReader();
+        fileReader.addEventListener("load", (loadEvent) => {
+            const jsonContent = loadEvent.target.result;
+            const jsonObject = JSON.parse(jsonContent);
+            uploadContentInChapterHandler(jsonObject, chapter);
+        });
+        fileReader.readAsText(selectedFile);
+    });
+    fileInput.click();
+}
+
 /**
  * Buttons that appear on admin user page that involves a specific chapter (those icons that appaear at the right)
  */
@@ -40,20 +62,31 @@ function appendAdminChapterButtons(chaptersList, chapter) {
     const modifyIcon = document.createElement("a");
     modifyIcon.href = '#';
     modifyIcon.className = "admin-modify-chapter__icon modal-open";
-    modifyIcon.title = "Modifica capitol";
+    modifyIcon.title = "Modifică capitolul";
     modifyIcon.addEventListener("click", (event) => {
         updateChapterPopUp(event, chapter);
     });
     chapterButtons.appendChild(modifyIcon);
 
+    // Upload json file icon 
+    const uploadIcon = document.createElement("a");
+    uploadIcon.href = '#';
+    uploadIcon.className = "admin-upload-chapter__icon";
+    uploadIcon.title = "Încarcă capitol dintr-un fișier JSON";
+    uploadIcon.addEventListener("click", (event) => {
+        uploadContentHandling(event, chapter);
+    });
+
+    chapterButtons.appendChild(uploadIcon);
     // Append admin delete icon 
     const deleteIcon = document.createElement("a");
     deleteIcon.href = "#";
     deleteIcon.className = "admin-delete-chapter__icon delete-modal-open";
-    deleteIcon.title = "Sterge capitol";
+    deleteIcon.title = "Șterge capitolul";
     deleteIcon.addEventListener("click", (event) => {
         deleteChapterPopUp(event, chapter);
     });
+
     chapterButtons.appendChild(deleteIcon);
     chaptersList.appendChild(chapterButtons);
 }
