@@ -22,7 +22,7 @@ function submitUpdateSignHandler(event, parentId) {
 
     const formData = new FormData();
     if(img) {
-        formData.append('file', x);
+        formData.append('file', img);
     }
     formData.append('title', title);
     formData.append('description', description);
