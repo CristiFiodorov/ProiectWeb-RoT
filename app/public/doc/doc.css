@@ -4,7 +4,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    margin: 5rem 15vw;
+    margin: 5rem 9vw;
     height: 100vh;
 }
 
@@ -108,4 +108,9 @@ a:hover, a:active, a:focus{
 footer{
     height: 5rem;
     text-align: center;
+}
+
+.diagrams {
+    width: 100%;
+    height: auto;
 }
