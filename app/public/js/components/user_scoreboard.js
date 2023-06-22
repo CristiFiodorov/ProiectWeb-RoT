@@ -1,3 +1,5 @@
+import { baseURL } from "../api-requests/const.js";
+
 function createTableRow(id, userName, score){
     const tableRow = document.createElement("tr");
     tableRow.className = "rank-table__row";
@@ -10,4 +12,24 @@ function createTableRow(id, userName, score){
     tableElement.appendChild(tableRow);
 }
 
-users.map( e => createTableRow(e.id, e.userName, e.score));
+try{
+    const response = await fetch(`${baseURL}/api/v1/user/top`, {
+        method: 'GET'
+    });
+    const responseBody = await response.json();
+    console.log(responseBody);
+    if(responseBody.success == true){
+        responseBody.data.map((e, index) => {
+            let userName = e.username;
+            let score = 0;
+            if(e.hasOwnProperty('score')){
+                score = e['score'];
+            }
+            createTableRow(index + 1, userName, score);
+        })
+    }
+} catch(error){
+    console.log(error);
+}
+
+// users.map( e => createTableRow(e.id, e.userName, e.score));

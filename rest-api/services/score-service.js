@@ -90,4 +90,24 @@ const addTestScore = async (req) => {
         return new Status(500, new Response(false, null, "There was an internal error."));
     }
 }
-module.exports = { addScore , addTestScore};
+
+const _getTopUsers = async(number) => {
+    try{
+        const result = await User.find().sort({score: - 1}).limit(number)
+        .select('username score');
+        console.log(result);
+        return result;
+    } catch (error){
+        console.log(error);
+    }
+}
+const getTopUsers = async(number) => {
+    try {
+        const result = await _getTopUsers(number);
+        return new Status(200, new Response(true, result, "Score successfully updated."));
+    } catch (error) {
+        console.log(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
+    }
+}
+module.exports = { addScore , addTestScore, getTopUsers};

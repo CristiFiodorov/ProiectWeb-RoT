@@ -19,7 +19,6 @@ const { getChapterContentByChapterId, addToChapterContentController, clearChapte
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
 const { verifyToken } = require('./services/auth-service');
-const { generateNrTests } = require('./utils/random-test-utils');
 
 const { uploadFileController } = require('./controllers/file-upload-controller');
 
@@ -35,7 +34,9 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdController, updateAdviceByIdController, getNextAdvice, getPrevAdvice, getAdvicesInCSV, getAdvicesInJSON } = require('./controllers/advice-controller');
 const { sendMail } = require('./utils/email-utils');
 const { forgotPassword } = require('./controllers/forgot-password-controller');
-const { addScoreToUser, addTestScoreToUser, userTestScores } = require('./controllers/score-controller');
+const { addScoreToUser, addTestScoreToUser, userTestScores, topUsers } = require('./controllers/score-controller');
+
+server.get('/api/v1/user/top', async (req, res, params) => { topUsers(req, res, params); })
 
 server.post('/api/v1/scores', async (req, res, params) => { 
     verifyToken(req, res, params, false, addScoreToUser);});
