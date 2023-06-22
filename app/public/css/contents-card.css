@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    font-size: 3rem;
+    font-size: 2.4rem;
     background-color: #3bb78f;
     background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%); 
     border-color: #71BC78;
@@ -30,21 +30,12 @@
     font-weight: bold;
 }
 
-/* .delete-course__link {
-    background-color: #E1AD01;
-    border-color: #71BC78;
-}
-
-.modify-course__link {
-    background-color: blue;
-    border-color: #71BC78;
-} */
-
 .contents-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0px;    
 }
 
 .contents-container a {
@@ -79,6 +70,16 @@
     text-align: center;
 }
 
+.admin-chapter_buttons a {
+    display: inline-block;
+    width: 50px;
+    height: 50px;   
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
 .admin-add-contents__item {
     /* background: #E1AD01; */
     border-color: #71BC78;
@@ -94,16 +95,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-
-.admin-chapter_buttons a {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    margin-left: 10px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
 }
 
 .admin-modify-chapter__icon {
@@ -139,6 +130,22 @@
         color: #fff;
         font-size: 0.85rem;
         margin: 0;  
+    }
+}
+
+@media screen and (max-width: 880px) {
+    .admin-course-buttons__container {
+        flex-direction: column;
+        font-size: 2rem;
+    }
+    #chapter-container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .admin-course-buttons__container {
+        font-size: 1.3rem;
     }
 }
 

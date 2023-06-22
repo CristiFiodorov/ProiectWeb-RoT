@@ -18,3 +18,9 @@ body {
     background-image: linear-gradient(315deg, #3bb78f 0%, #0bab64 74%);
     color: white;
 }
+
+@media screen and (max-width: 550px) {
+    .contents-container__title {
+        font-size: 2rem;
+    }
+}
