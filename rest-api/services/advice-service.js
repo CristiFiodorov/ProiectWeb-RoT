@@ -6,9 +6,6 @@ async function findAllAdvices() {
     try {
         const advices = await Advice.find({}, {__v: 0});
 
-        if(advices.length === 0)
-            return new Status(404, new Response(false, null, "Advices not found."));
-
         return new Status(200, new Response(true, advices, "Advices successfully retrieved."));
     }
     catch (error) {
@@ -118,9 +115,6 @@ async function findPrevAdvice(adviceId) {
 async function findAllAdvicesInCSV() {
     try {
         const advices = await Advice.find({}, {__v: 0});
-
-        if(advices.length === 0)
-            return new Status(404, new Response(false, null, "Advices not found."));
 
         const csv = advices.map(advice => {
             return `${advice._id},"${advice.title}",${advice.image_url},"${advice.description}" `

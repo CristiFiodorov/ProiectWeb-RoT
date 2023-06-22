@@ -7,9 +7,6 @@ async function findAllCourses() {
     try {
         const courses = await Course.find();
 
-        if(courses.length === 0)
-            return new Status(404, new Response(false, null, "Courses not found."));
-
         return new Status(200, new Response(true, courses, "Courses successfully retrieved."));
     }
     catch (error) {

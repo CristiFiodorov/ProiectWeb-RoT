@@ -7,9 +7,6 @@ async function findChaptersByCourseId(courseId) {
     try {
         const chapters = await Chapter.find({ parentId: courseId });
 
-        if (chapters.length === 0)
-            return new Status(404, new Response(false, null, "Chapters not found."));
-
         return new Status(200, new Response(true, chapters, "Chapters successfully retrieved."));
     }
     catch (error) {
