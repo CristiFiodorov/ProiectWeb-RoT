@@ -127,6 +127,12 @@ async function updateChapterContent(chapterId, content) {
         if (chapterContent.length === 0)
             return new Status(404, new Response(false, null, "Chapter content not found."));
 
+        content.forEach((element) => {
+            if(!element.elementType || !element.data) {
+                return new Status(400, new Response(false, null, "Invalid content."));
+            }
+        });
+
         chapterContent[0].content = content;
 
         const savedChapterContent = await chapterContent[0].save();
@@ -135,6 +141,7 @@ async function updateChapterContent(chapterId, content) {
     }
     catch (error) {
         console.error(error);
+        return new Status(500, new Response(false, null, "There was an internal error."));
     }
 }
 
