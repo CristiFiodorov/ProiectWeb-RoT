@@ -30,9 +30,12 @@ const saveTestByQuestions = async (questions) => {
 }
 // CREATE
 const saveTest = async (req) => {
-  //TODO AUTO INCREMENT TESTID
   try {
-    const { questions } = JSON.parse(await getBodyFromRequest(req));
+    const  questions  = JSON.parse(await getBodyFromRequest(req))?.questions;
+    console.log(questions);
+    if(questions == null || questions == undefined || questions.length < 1){
+      return new Status(404, new Response(false, null, "Questions array must be defined."));
+    }
     const result = await Test.findOne({}, 'testId')
       .sort({ testId: -1 })
       .exec();
@@ -123,6 +126,9 @@ const getTestByIndex = async (params) => {
     const id = params.id;
     console.log(id);
     const test = await _getTestByIndex(id);
+    if (test == null) {
+      return new Status(404, new Response(false, null, "Resource was not found."));
+    }
     console.log(test);
     return new Status(200, new Response(true, test, "Test successfully retrieved."));
   } catch (error) {
@@ -137,6 +143,7 @@ const _updateTest = async (req, testId) => {
   try {
     const body = JSON.parse(await getBodyFromRequest(req));
     const fields = ['questions'];
+    let updatedData = {};
     fields.map(field => {
       if (body.hasOwnProperty(field)) {
         updatedData[field] = body[field];

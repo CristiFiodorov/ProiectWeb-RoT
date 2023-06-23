@@ -73,7 +73,7 @@ server.delete('/api/v1/questions/:id', async (req, res, params) => { deleteQuest
 server.post('/api/v1/register', registerUser);
 server.post('/api/v1/login', loginUser);
 
-//Sing categories
+//Sign categories
 server.get('/api/v1/signcategories', getSignCategories);
 server.get('/api/v1/signcategories/:id', getSignCategoryById);
 server.post('/api/v1/signcategories', async (req, res, params) => {
@@ -89,7 +89,7 @@ server.get('/api/v1/export/csv/signcategories', getSignCategoriesInCSV);
 server.get('/api/v1/export/json/signcategories', getSignCategoriesInJSON);
 
 
-//Sing
+//Sign
 server.get('/api/v1/signcategories/:category_id/signs', getSignsByCategoryId);
 server.get('/api/v1/signs/:id', getSignById);
 server.get('/api/v1/signs/nextsign/:sign_id/:category_id', getNextSignByCategory);
