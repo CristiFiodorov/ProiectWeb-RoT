@@ -16,25 +16,28 @@ const { getAllChapters, getChapterById, createChapterController, updateChapter, 
 
 const { getChapterContentByChapterId, addToChapterContentController, clearChapterContentController, deleteChapterContent, getChapterContentByChapterIdInCSV, getChapterContentByChapterIdInJSON, updateChapterContentController } = require('./controllers/chapter-content-controller');
 
+const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdController, updateAdviceByIdController, getNextAdvice, getPrevAdvice, getAdvicesInCSV, getAdvicesInJSON } = require('./controllers/advice-controller');
+
+const { sendMail } = require('./utils/email-utils');
+const { forgotPassword } = require('./controllers/forgot-password-controller');
+const { addScoreToUser, addTestScoreToUser, userTestScores, topUsers } = require('./controllers/score-controller');
+
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
 const { verifyToken } = require('./services/auth-service');
 
 const { uploadFileController } = require('./controllers/file-upload-controller');
 
-const Question = require('./models/question-schema');
-const server = new ServerManager();
 
+// Mongo DB connection
 mongoose.connection.on('error', (error) => console.error(error));
 mongoose.connection.on('connected', () => console.log('Connected to database'));
 
 console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
-const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdController, updateAdviceByIdController, getNextAdvice, getPrevAdvice, getAdvicesInCSV, getAdvicesInJSON } = require('./controllers/advice-controller');
-const { sendMail } = require('./utils/email-utils');
-const { forgotPassword } = require('./controllers/forgot-password-controller');
-const { addScoreToUser, addTestScoreToUser, userTestScores, topUsers } = require('./controllers/score-controller');
+// Server
+const server = new ServerManager();
 
 server.get('/api/v1/user/top', async (req, res, params) => { topUsers(req, res, params); })
 
@@ -49,6 +52,8 @@ server.post('/api/v1/scores/test', async (req, res, params) => {
 
         
 server.get('/api/v1/forgot/:email', async (req, res, params) => { forgotPassword(req, res, params); });
+
+// Tests
 server.post('/api/v1/tests', async (req, res, params) => { createTest(req, res, params); });
 server.get('/api/v1/tests', async (req, res, params) => { findAllTests(req, res, params); });
 server.get('/api/v1/tests/:id', async (req, res, params) => { findTestById(req, res, params); });
@@ -56,6 +61,7 @@ server.patch('/api/v1/tests/:id', async (req, res, params) => { patchTest(req, r
 server.get('/api/v1/tests/index/:id', async (req, res, params) => { findTestByIndex(req, res, params); });
 server.delete('/api/v1/tests/:id', async (req, res, params) => { deleteTest(req, res, params); });
 
+// Questions
 server.post('/api/v1/questions', async (req, res, params) => { createQuestion(req, res, params); });
 server.patch('/api/v1/questions/:id', async (req, res, params) => { patchQuestion(req, res, params); });
 server.get('/api/v1/questions', async (req, res, params) => { findAllQuestions(req, res, params); });
