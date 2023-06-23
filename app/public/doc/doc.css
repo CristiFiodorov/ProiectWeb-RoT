@@ -80,6 +80,11 @@ a:hover, a:active, a:focus{
     color: #3bb78f;
 }
 
+.schema--green {
+    font-weight: bold;
+    color: #3bb78f;
+}
+
 .admin-span {
     color: #ffd700;
 }
