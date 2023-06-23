@@ -3,10 +3,10 @@ info:
   title: RoT API
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
-    description: Development server
   - url: http://165.22.83.18:3000
     description: Production server
+  - url: http://localhost:3000
+    description: Development server
 
 paths:
   /api/v1/register:
