@@ -3,6 +3,7 @@ const { Status } = require("../utils/status-class");
 const Question = require("../models/question-schema");
 const { mongo } = require("mongoose");
 const { getBodyFromRequest, isNotStringOf24Characters } = require("../utils/request-utils");
+const { uploadFile } = require("./file-upload-service");
 
 // CREATE
 const saveQuestion = async(req) =>{
@@ -117,4 +118,24 @@ const _deleteQuestion = async(params) =>{
     return new Status(500, new Response(false, null, "There was an internal error."));
   }
 }
-module.exports = { saveQuestion, getQuestions, getQuestionById, _deleteQuestion, updateQuestion };
+
+
+
+const createUploadedQuestion = async(uploadedQuestion) => {
+  try{
+    const {question, answers, image_url} = uploadedQuestion;
+    console.log(uploadedQuestion);
+    const newQuestion = new Question({
+      question,
+      image_url,
+      answers: JSON.parse(answers),
+    });
+    newQuestion.save();
+    return new Status(201, new Response(true, newQuestion, "Questions successfully created."));
+  } catch(error){
+    console.error(error);
+    return new Status(500, new Response(false, null, "There was an internal error."));
+  }
+}
+
+module.exports = {createUploadedQuestion, saveQuestion, getQuestions, getQuestionById, _deleteQuestion, updateQuestion };

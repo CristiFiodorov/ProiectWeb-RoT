@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const { ServerManager } = require('./config/server-manager');
 
-const {  findAllQuestions, findQuestionById, createQuestion, deleteQuestion, patchQuestion } = require('./controllers/questions-controller');
+const {  findAllQuestions, findQuestionById, createQuestion, deleteQuestion, patchQuestion, uploadQuestion } = require('./controllers/questions-controller');
 const { createTest, findAllTests, findTestById, findTestByIndex, patchTest, deleteTest } = require('./controllers/test-controller');
 
 const { getSignCategories, getSignCategoryById, createSignCategoryController, deleteSignCategoryByIdController, updateSignCategoryByIdController, getSignCategoriesInCSV, getSignCategoriesInJSON } = require('./controllers/signcategories-controller');
@@ -66,6 +66,7 @@ server.get('/api/v1/tests/index/:id', async (req, res, params) => { findTestByIn
 server.delete('/api/v1/tests/:id', async (req, res, params) => { deleteTest(req, res, params); });
 
 // Questions
+server.post('/api/v1/upload/questions', async (req, res, params) => { uploadQuestion(req, res, params); });
 server.post('/api/v1/questions', async (req, res, params) => { createQuestion(req, res, params); });
 server.patch('/api/v1/questions/:id', async (req, res, params) => { patchQuestion(req, res, params); });
 server.get('/api/v1/questions', async (req, res, params) => { findAllQuestions(req, res, params); });
