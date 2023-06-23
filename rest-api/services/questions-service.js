@@ -2,7 +2,8 @@ const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 const Question = require("../models/question-schema");
 const { mongo } = require("mongoose");
-const { getBodyFromRequest } = require("../utils/request-utils");
+const { getBodyFromRequest, isNotStringOf24Characters } = require("../utils/request-utils");
+const { uploadFile } = require("./file-upload-service");
 
 // CREATE
 const saveQuestion = async(req) =>{
@@ -47,6 +48,7 @@ const getQuestions = async () => {
 const _getQuestionById = async (id) => {
   try {
     console.log(id);
+    if (isNotStringOf24Characters(id)) { return null; }
     const question = await Question.findById(id);
     return question;
   } catch (error) {
@@ -60,6 +62,7 @@ const getQuestionById = async (params) => {
     const id = params.id;
     console.log(id);
     const question = await _getQuestionById(id);
+    if (question == null) { return new Status(404, new Response(false, null, "Resource was not found.")); }
     console.log(question);
     return new Status(200, new Response(true, question, "Question successfully retrieved."));
   } catch (error) {
@@ -82,6 +85,7 @@ const _updateQuestion = async (req, questionId) => {
       }
     });
     
+    if ((await _getQuestionById(questionId)) == null) return null;
      await Question.updateOne({ _id: `${questionId}`}, { $set : updatedData});
      const question  = await _getQuestionById(questionId);
     return question;
@@ -94,6 +98,7 @@ const _updateQuestion = async (req, questionId) => {
 const updateQuestion = async (req, params) =>{
   try{
       const question = await _updateQuestion(req, params.id);
+      if(question == null) { return new Status(404, new Response(false, null, "Resource was not found.")); }
       return new Status(200, new Response(true, question, "Question successfully updated."));
   } catch (error) {
     console.error(error);
@@ -105,6 +110,7 @@ const updateQuestion = async (req, params) =>{
 const _deleteQuestion = async(params) =>{
   try{
     const question = await _getQuestionById(params.id);
+    if(question == null) { return new Status(404, new Response(false, null, "Resource was not found.")); }
     await Question.deleteOne({_id : params.id});
     return new Status(204, new Response(true, null, "Question successfully deleted."));
   } catch (error) {
@@ -112,4 +118,24 @@ const _deleteQuestion = async(params) =>{
     return new Status(500, new Response(false, null, "There was an internal error."));
   }
 }
-module.exports = { saveQuestion, getQuestions, getQuestionById, _deleteQuestion, updateQuestion };
+
+
+
+const createUploadedQuestion = async(uploadedQuestion) => {
+  try{
+    const {question, answers, image_url} = uploadedQuestion;
+    console.log(uploadedQuestion);
+    const newQuestion = new Question({
+      question,
+      image_url,
+      answers: JSON.parse(answers),
+    });
+    newQuestion.save();
+    return new Status(201, new Response(true, newQuestion, "Questions successfully created."));
+  } catch(error){
+    console.error(error);
+    return new Status(500, new Response(false, null, "There was an internal error."));
+  }
+}
+
+module.exports = {createUploadedQuestion, saveQuestion, getQuestions, getQuestionById, _deleteQuestion, updateQuestion };

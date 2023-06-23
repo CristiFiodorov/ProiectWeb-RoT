@@ -3,8 +3,10 @@ info:
   title: RoT API
   version: 1.0.0
 servers:
+  - url: http://165.22.83.18:3000
+    description: Production server
   - url: http://localhost:3000
-    description: Generated server url
+    description: Development server
 
 paths:
   /api/v1/register:
@@ -963,6 +965,391 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 
 
+  /api/v1/tests:
+    get:
+      tags:
+        - Tests
+      operationId: getTests
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      tags:
+        - Tests
+      operationId: createTest
+      requestBody:
+        description: Test object that needs to be added to the database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTestRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/tests/{id}:
+    get:
+      tags:
+        - Tests
+      operationId: getTestById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    patch:
+      tags:
+        - Tests
+      operationId: updateTestById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Test object that needs to be updated in the database
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+    delete:
+      tags:
+        - Tests
+      operationId: deleteTestById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/tests/index/{id}:
+    get:
+      tags:
+        - Tests
+      operationId: getTestIndexById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestIndexResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/upload/questions:
+    post:
+      tags:
+        - Questions
+      operationId: uploadQuestions
+      requestBody:
+        description: Questions object that needs to be added to the database
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/QuestionUploadRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/questions:
+    get:
+      tags:
+        - Questions
+      operationId: getQuestions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      tags:
+        - Questions
+      operationId: createQuestion
+      requestBody:
+        description: Question object that needs to be added to the database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/questions/{id}:
+    get:
+      tags:
+        - Questions
+      operationId: getQuestionById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - Questions
+      operationId: deleteQuestionById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    patch:
+      tags:
+        - Questions
+      operationId: updateQuestionById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Question object that needs to be updated in the database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    
+  /api/v1/scores:
+    post:
+      tags:
+        - Scoreboard
+      operationId: updateScore
+      requestBody:
+        description: Score object that needs to be updated in the database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Score'
+            
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/user/top:
+    get:
+      tags:
+        - Scoreboard
+      operationId: getTopUsers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTopResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/user/tests:
+    get:
+      tags:
+        - Scoreboard
+      operationId: getUserTests
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTestResponse'
+        '404':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  
+  /api/v1/scores/test:
+    post:
+      tags:
+        - Scoreboard
+      operationId: createScore
+      requestBody:
+        description: Score for a test that needs to be added to the database
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestScoreRequest'
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreTestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
   /api/v1/export/csv/signcategories:
     get:
       tags:
@@ -1403,6 +1790,248 @@ components:
         data:
           type: array
           default: null
+        message:
+          type: string
+
+    UserTop:
+      type: object
+      properties:
+        _id:
+          type: string
+        username:
+          type: string
+        score:
+          type: number
+
+    UserTopResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTop'
+        message:
+          type: string
+
+    Test:
+      type: object
+      properties:
+        _id:
+          type: string
+        testId:
+          type: number
+        questions:
+          type: array
+          items:
+            type: string
+        __v:
+          type: number
+
+    TestResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Test'
+        message:
+          type: string
+
+    CreateTestRequest:
+      type: object
+      properties:
+        questions:
+          type: array
+          items:
+            type: string
+
+    Answer:
+      type: object
+      properties:
+        _id:
+          type: string
+        content:
+          type: string
+        isValid:
+          type: boolean
+
+    AnswerRequest:
+      type: object
+      properties:
+        content:
+          type: string
+        isValid:
+          type: boolean
+
+    Question:
+      type: object
+      properties:
+        _id:
+          type: string
+        question:
+          type: string
+        image_url:
+          type: string
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Answer'
+        __v:
+          type: number
+
+    QuestionResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+        message:
+          type: string
+
+    QuestionRequest:
+      type: object
+      properties:
+        question:
+          type: string
+        image_url:
+          type: string
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerRequest'
+
+    QuestionUploadRequest:
+      type: object
+      properties:
+        question:
+          type: string
+        file:
+          type: file
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerRequest'
+
+    TestScoreRequest:
+      type: object
+      properties:
+        testId:
+          type: number
+        score:
+          type: number
+
+    TestScoreResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TestScore'
+        message:
+          type: string
+
+    TestScore:
+      type: object
+      properties:
+        _id:
+          type: string
+        testId:
+          type: number
+        score:
+          type: number
+
+    Score:
+      type: object
+      properties:
+        score:
+          type: number
+
+
+    UserResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: object
+          properties:
+            username:
+              type: string
+            score:
+              type: number
+        message:
+          type: string
+
+    UserTest:
+      type: object
+      properties:
+        testId:
+          type: string  
+        score:
+          type: number
+        _id:
+          type: string
+
+
+    UserTestResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTest'
+        message:
+          type: string
+
+    ScoreTest:
+      type: object
+      properties:
+        testId:
+          type: string  
+        score:
+          type: number
+        _id:
+          type: string
+
+    ScoreTestResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScoreTest'
+        message:
+          type: string
+
+    TestIndexResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: object
+          properties:
+            _id:
+              type: string
+            testId:
+              type: number
+            questions:
+              type: array
+              items:
+                type: string
         message:
           type: string
 
