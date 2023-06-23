@@ -1278,7 +1278,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/userResponse'
+                $ref: '#/components/schemas/UserResponse'
         '404':
           description: Bad Request
           content:
@@ -1342,7 +1342,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TestScoreResponse'
+                $ref: '#/components/schemas/ScoreTestResponse'
         '400':
           description: Bad Request
           content:
@@ -1954,6 +1954,86 @@ components:
       properties:
         score:
           type: number
+
+
+    UserResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: object
+          properties:
+            username:
+              type: string
+            score:
+              type: number
+        message:
+          type: string
+
+    UserTest:
+      type: object
+      properties:
+        testId:
+          type: string  
+        score:
+          type: number
+        _id:
+          type: string
+
+
+    UserTestResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserTest'
+        message:
+          type: string
+
+    ScoreTest:
+      type: object
+      properties:
+        testId:
+          type: string  
+        score:
+          type: number
+        _id:
+          type: string
+
+    ScoreTestResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScoreTest'
+        message:
+          type: string
+
+    TestIndexResponse:
+      type: object 
+      properties:
+        success:
+         type: boolean
+        data:
+          type: object
+          properties:
+            _id:
+              type: string
+            testId:
+              type: number
+            questions:
+              type: array
+              items:
+                type: string
+        message:
+          type: string
 
 security:
   - bearerAuth: []
