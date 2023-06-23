@@ -42,13 +42,16 @@ const server = new ServerManager();
 server.get('/api/v1/user/top', async (req, res, params) => { topUsers(req, res, params); })
 
 server.post('/api/v1/scores', async (req, res, params) => { 
-    verifyToken(req, res, params, false, addScoreToUser);});
+    verifyToken(req, res, params, false, addScoreToUser);
+});
 
 server.get('/api/v1/user/tests', async (req, res, params) => { 
-    verifyToken(req, res, params, false, userTestScores);});
+    verifyToken(req, res, params, false, userTestScores);
+});
 
 server.post('/api/v1/scores/test', async (req, res, params) => { 
-        verifyToken(req, res, params, false, addTestScoreToUser);});
+    verifyToken(req, res, params, false, addTestScoreToUser);
+});
 
         
 server.get('/api/v1/forgot/:email', async (req, res, params) => { forgotPassword(req, res, params); });
@@ -88,7 +91,7 @@ server.get('/api/v1/export/csv/signcategories', getSignCategoriesInCSV);
 server.get('/api/v1/export/json/signcategories', getSignCategoriesInJSON);
 
 
-//Sing
+//Signs
 server.get('/api/v1/signcategories/:category_id/signs', getSignsByCategoryId);
 server.get('/api/v1/signs/:id', getSignById);
 server.get('/api/v1/signs/nextsign/:sign_id/:category_id', getNextSignByCategory);
