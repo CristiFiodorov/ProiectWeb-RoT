@@ -21,7 +21,7 @@ try{
     if(responseBody.success == true){
         responseBody.data.map((e, index) => {
             let userName = e.username;
-            let score = 0;
+            let score = "-";
             if(e.hasOwnProperty('score')){
                 score = e['score'];
             }

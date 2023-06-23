@@ -93,7 +93,9 @@ const addTestScore = async (req) => {
 
 const _getTopUsers = async(number) => {
     try{
-        const result = await User.find().sort({score: - 1}).limit(number)
+        const result = await User.find({ isAdmin: false })
+        .sort({score: - 1})
+        .limit(number)
         .select('username score');
         console.log(result);
         return result;
