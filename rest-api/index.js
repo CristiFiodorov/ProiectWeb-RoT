@@ -35,7 +35,11 @@ const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdContr
 const { sendMail } = require('./utils/email-utils');
 const { forgotPassword } = require('./controllers/forgot-password-controller');
 const { addScoreToUser, addTestScoreToUser, userTestScores, topUsers } = require('./controllers/score-controller');
+const { createRssFeed } = require('./utils/user-rss');
+const { getRssText } = require('./controllers/rss-controller');
 
+
+server.get('/api/v1/user/rss/:number', async(req, res, params) => { getRssText(req, res, params); })
 server.get('/api/v1/user/top', async (req, res, params) => { topUsers(req, res, params); })
 
 server.post('/api/v1/scores', async (req, res, params) => { 
