@@ -59,7 +59,7 @@ function submitUpdateSingleAdviceHandler(event) {
     formData.append('title', title);
     formData.append('description', description);
 
-    fetch(`http://localhost:3000/api/v1/advices/${adviceID}`, {
+    fetch(`${config.apiAddress}/api/v1/advices/${adviceID}`, {
         method: 'PUT',
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
