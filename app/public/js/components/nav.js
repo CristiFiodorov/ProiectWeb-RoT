@@ -64,7 +64,7 @@ routesMap.set("sign.html", "sign_categories.html");
 routesMap.set("advice.html", "advice.html");
 routesMap.set("single_advice.html", "advice.html");
 routesMap.set("teste.html", "teste.html");
-routesMap.set("teste.html", "teste.html");
+routesMap.set("intrebare.html", "teste.html");
 routesMap.set("clasament.html", "clasament.html");
 routesMap.set("about.html", "about.html");
 routesMap.set("help.html", "help.html");
