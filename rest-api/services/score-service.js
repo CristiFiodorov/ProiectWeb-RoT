@@ -37,7 +37,8 @@ const addScore = async (req) => {
         const userId = req.user.id;
         const user = await _addScore(req, userId);
         if (user == null) { return new Status(404, new Response(false, null, "User was not found or invalid request.")); }
-        return new Status(200, new Response(true, user, "Score successfully updated."));
+        const userData = { username: user.username, score: user.score};
+        return new Status(200, new Response(true, userData, "Score successfully updated."));
     } catch (error) {
         console.log(error);
         return new Status(500, new Response(false, null, "There was an internal error."));
@@ -84,7 +85,9 @@ const addTestScore = async (req) => {
         const userId = req.user.id;
         const user = await _addTestScore(req, userId);
         if (user == null) { return new Status(404, new Response(false, null, "User was not found or invalid request.")); }
-        return new Status(200, new Response(true, user, "Score successfully updated."));
+        const userData = { username: user.username, tests: user.tests};
+        
+        return new Status(200, new Response(true, userData, "Score successfully updated."));
     } catch (error) {
         console.log(error);
         return new Status(500, new Response(false, null, "There was an internal error."));
@@ -93,7 +96,9 @@ const addTestScore = async (req) => {
 
 const _getTopUsers = async(number) => {
     try{
-        const result = await User.find().sort({score: - 1}).limit(number)
+        const result = await User.find({ isAdmin: false })
+        .sort({score: - 1})
+        .limit(number)
         .select('username score');
         console.log(result);
         return result;

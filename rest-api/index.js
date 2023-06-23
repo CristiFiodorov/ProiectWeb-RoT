@@ -27,6 +27,7 @@ const { registerUser } = require('./controllers/register-controller');
 const { verifyToken } = require('./services/auth-service');
 
 const { uploadFileController } = require('./controllers/file-upload-controller');
+const { getRssText } = require('./controllers/rss-controller');
 
 
 // Mongo DB connection
@@ -36,9 +37,9 @@ mongoose.connection.on('connected', () => console.log('Connected to database'));
 console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
-// Server
 const server = new ServerManager();
 
+server.get('/api/v1/user/rss/:number', async(req, res, params) => { getRssText(req, res, params); })
 server.get('/api/v1/user/top', async (req, res, params) => { topUsers(req, res, params); })
 
 server.post('/api/v1/scores', async (req, res, params) => { 
@@ -75,7 +76,7 @@ server.delete('/api/v1/questions/:id', async (req, res, params) => { deleteQuest
 server.post('/api/v1/register', registerUser);
 server.post('/api/v1/login', loginUser);
 
-//Sing categories
+//Sign categories
 server.get('/api/v1/signcategories', getSignCategories);
 server.get('/api/v1/signcategories/:id', getSignCategoryById);
 server.post('/api/v1/signcategories', async (req, res, params) => {

@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../public/css/scroll-bar.css">
+    <link rel="stylesheet" href="../public/css/scroll-bar.css" />
     <link rel="stylesheet" href="../public/css/global.css" />
     <link rel="stylesheet" href="../public/css/navbar.css" />
     <link rel="stylesheet" href="../public/css/card.css" />
     <link rel="stylesheet" href="../public/css/card-page-updated.css" />
-
+    
+    <link rel="stylesheet" href="../public/css/modal-forms.css">
+    <link rel="stylesheet" href="../public/css/modal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,28 +20,51 @@
       rel="stylesheet"
     />
     <title>RoT</title>
-<link rel="icon" type="image/x-icon" href="../public/images/wheel.png">
+    <link rel="icon" type="image/x-icon" href="../public/images/wheel.png" />
   </head>
   <body>
+    <div id="modal-overlay">
+      <div id="modal">
+        <div class="modal-header">
+          <h2 id="modal-title"></h2>
+        </div>
+        <div id="modal-content"></div>
+        <div class="modal-footer">
+          <button type="button" class="modal-button" id="close-modal">
+            Închide
+          </button>
+          <button type="button" class="modal-button" id="save-modal">
+            Salvează
+          </button>
+        </div>
+      </div>
+    </div>
+
     <nav id="navbar" class="navbar"></nav>
 
-    <main >
+    <main>
       <h1>Teste de antrenament</h1>
       <div id="main" class="main"></div>
-      <h1>Teste generate aleator</h1> 
+      <h1>Teste generate aleator</h1>
 
       <div class="subtext">
-        Generează chestionar nou, instant, pentru Categoria B (B, B1) <br>
-        În cazul în care ai terminat chestionarele predefinite de mai sus, poți să îți generezi alte chestionare pentru Categoria B (B, B1). În acest caz întrebarile se pot repeta de pe un chestionar pe altul, deoarece întrebarile sunt alese aleatoriu.
+        Generează chestionar nou, instant, pentru Categoria B (B, B1) <br />
+        În cazul în care ai terminat chestionarele predefinite de mai sus, poți
+        să îți generezi alte chestionare pentru Categoria B (B, B1). În acest
+        caz întrebarile se pot repeta de pe un chestionar pe altul, deoarece
+        întrebarile sunt alese aleatoriu.
       </div>
-      <a href="intrebare.html?testID=random" class="button">
-            Generează test
-      </a>
+      <a href="intrebare.html?testID=random" class="button"> Generează test </a>
     </main>
 
     <script src="../public/js/api-requests/config/config.js"></script>
     <script src="../public/js/components/nav.js"></script>
     <script src="../public/js/api-requests/teste.js"></script>
     <script src="../public/js/components/test.js" type="module"></script>
+  
+    <script src="../public/js/components/admin/admin-utils.js"></script>
+    <script src="../public/js/components/modal-base.js"></script>
+    <script src="../public/js/components/admin/admin-test.js"></script>
+  
   </body>
 </html>
