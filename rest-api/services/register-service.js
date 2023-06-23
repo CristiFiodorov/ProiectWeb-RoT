@@ -40,7 +40,9 @@ async function registerUserIfValid(user) {
             username: user.username,
             password: hashedPassword,
             email: user.email,
-            isAdmin: false
+            isAdmin: false,
+            score: 0,
+            tests: []
         });
         await newUser.save();
         return new Status(201, new Response(true, null, "User successfully registered."));

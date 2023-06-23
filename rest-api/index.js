@@ -19,7 +19,6 @@ const { getChapterContentByChapterId, addToChapterContentController, clearChapte
 const { loginUser } = require('./controllers/login-controller');
 const { registerUser } = require('./controllers/register-controller');
 const { verifyToken } = require('./services/auth-service');
-const { generateNrTests } = require('./utils/random-test-utils');
 
 const { uploadFileController } = require('./controllers/file-upload-controller');
 
@@ -33,24 +32,35 @@ console.log(process.env.DATABASE_URL);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
 
 const { getAdviceById, getAdvices, createAdviceController, deleteAdviceByIdController, updateAdviceByIdController, getNextAdvice, getPrevAdvice, getAdvicesInCSV, getAdvicesInJSON } = require('./controllers/advice-controller');
-const { saveTestByQuestions } = require('./services/test-service');
 const { sendMail } = require('./utils/email-utils');
 const { forgotPassword } = require('./controllers/forgot-password-controller');
+const { addScoreToUser, addTestScoreToUser, userTestScores, topUsers } = require('./controllers/score-controller');
 
-//TODO case when entity not found
+server.get('/api/v1/user/top', async (req, res, params) => { topUsers(req, res, params); })
+
+server.post('/api/v1/scores', async (req, res, params) => { 
+    verifyToken(req, res, params, false, addScoreToUser);});
+
+server.get('/api/v1/user/tests', async (req, res, params) => { 
+    verifyToken(req, res, params, false, userTestScores);});
+
+server.post('/api/v1/scores/test', async (req, res, params) => { 
+        verifyToken(req, res, params, false, addTestScoreToUser);});
+
+        
 server.get('/api/v1/forgot/:email', async (req, res, params) => { forgotPassword(req, res, params); });
-server.post('/tests', async (req, res, params) => { createTest(req, res, params); });
-server.get('/tests', async (req, res, params) => { findAllTests(req, res, params); });
-server.get('/tests/:id', async (req, res, params) => { findTestById(req, res, params); });
-server.patch('/tests/:id', async (req, res, params) => { patchTest(req, res, params); });
-server.get('/tests/index/:id', async (req, res, params) => { findTestByIndex(req, res, params); });
-server.delete('/tests/:id', async (req, res, params) => { deleteTest(req, res, params); });
+server.post('/api/v1/tests', async (req, res, params) => { createTest(req, res, params); });
+server.get('/api/v1/tests', async (req, res, params) => { findAllTests(req, res, params); });
+server.get('/api/v1/tests/:id', async (req, res, params) => { findTestById(req, res, params); });
+server.patch('/api/v1/tests/:id', async (req, res, params) => { patchTest(req, res, params); });
+server.get('/api/v1/tests/index/:id', async (req, res, params) => { findTestByIndex(req, res, params); });
+server.delete('/api/v1/tests/:id', async (req, res, params) => { deleteTest(req, res, params); });
 
-server.post('/questions', async (req, res, params) => { createQuestion(req, res, params); });
-server.patch('/questions/:id', async (req, res, params) => { patchQuestion(req, res, params); });
-server.get('/questions', async (req, res, params) => { findAllQuestions(req, res, params); });
-server.get('/questions/:id', async (req, res, params) => { findQuestionById(req, res, params); });
-server.delete('/questions/:id', async (req, res, params) => { deleteQuestion(req, res, params); });
+server.post('/api/v1/questions', async (req, res, params) => { createQuestion(req, res, params); });
+server.patch('/api/v1/questions/:id', async (req, res, params) => { patchQuestion(req, res, params); });
+server.get('/api/v1/questions', async (req, res, params) => { findAllQuestions(req, res, params); });
+server.get('/api/v1/questions/:id', async (req, res, params) => { findQuestionById(req, res, params); });
+server.delete('/api/v1/questions/:id', async (req, res, params) => { deleteQuestion(req, res, params); });
 
 //Authentification
 server.post('/api/v1/register', registerUser);

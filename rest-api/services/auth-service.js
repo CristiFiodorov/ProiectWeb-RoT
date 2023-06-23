@@ -18,8 +18,10 @@ async function generateAccessToken(user) {
 
 function verifyToken(req, res, params, isAdmin, next) {
     const authHeader = req.headers.authorization;
+    console.log(authHeader);
     const token = authHeader && authHeader.split(" ")[1];
-    if (token == null) {
+    
+    if (token === null || token == 'null') {
         return sendJsonResponse(res, 401, JSON.stringify({ message: "Unauthorized" }));
     }
 
@@ -31,15 +33,14 @@ function verifyToken(req, res, params, isAdmin, next) {
         return true;
     });
 
+
     if (!verifyResponse) {
         sendJsonResponse(res, 403, JSON.stringify({ message: "Forbidden" }));
         return;
     }
-
     if (isAdmin && !req.user.isAdmin) {
         return sendJsonResponse(res, 403, JSON.stringify({ message: "Forbidden" }));
     }
-
     next(req, res, params);
 }
 

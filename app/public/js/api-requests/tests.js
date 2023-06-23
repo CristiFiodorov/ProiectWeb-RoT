@@ -2,7 +2,7 @@ import { baseURL } from "./const.js";
 
 export const getAllTests = async () => {
     try {
-        const request = await fetch(baseURL + '/tests');
+        const request = await fetch(baseURL + '/api/v1/tests');
         const response = await request.json();
         if(response?.success === false){
             console.log("ERROR");
@@ -15,5 +15,4 @@ export const getAllTests = async () => {
         console.log(error);
     }
 }
-
 

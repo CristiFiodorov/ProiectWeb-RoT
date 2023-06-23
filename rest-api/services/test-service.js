@@ -1,8 +1,7 @@
 const { Response } = require("../utils/response-class");
 const { Status } = require("../utils/status-class");
 const { mongo } = require("mongoose");
-const { getBodyFromRequest } = require("../utils/request-utils");
-const { generatorTeste } = require("../utils/random-test-utils");
+const { getBodyFromRequest, isNotStringOf24Characters } = require("../utils/request-utils");
 const Test = require("../models/test-schema");
 
 
@@ -78,6 +77,7 @@ const getTests = async () => {
 const _getTestById = async (id) => {
   try {
     console.log(id);
+    if (isNotStringOf24Characters(id)) { return null; }
     const test = await Test.findById(id);
     return test;
   } catch (error) {
@@ -89,8 +89,8 @@ const _getTestById = async (id) => {
 const _getTestByIndex = async (index) => {
   try {
     console.log(index);
-    if(index === 'random'){
-      return {questions:  (await generatorTeste())};
+    if (index === 'random') {
+      return { questions: (await generatorTeste()) };
     }
     const test = await Test.findOne({ testId: index });
     return test;
@@ -106,6 +106,9 @@ const getTestById = async (params) => {
     console.log(id);
     const test = await _getTestById(id);
     console.log(test);
+    if (test == null) {
+      return new Status(404, new Response(false, null, "Resource was not found."));
+    }
     return new Status(200, new Response(true, test, "Test successfully retrieved."));
   } catch (error) {
     console.error(error);
@@ -132,7 +135,6 @@ const getTestByIndex = async (params) => {
 const _updateTest = async (req, testId) => {
   try {
     const body = JSON.parse(await getBodyFromRequest(req));
-    let updatedData = {};
     const fields = ['questions'];
     fields.map(field => {
       if (body.hasOwnProperty(field)) {
@@ -140,6 +142,9 @@ const _updateTest = async (req, testId) => {
       }
     });
 
+    if ((await Test.findOne({ testId: index })) == null) {
+      return null;
+    }
     await Test.updateOne({ _id: `${testId}` }, { $set: updatedData });
     const test = await _getTestById(testId);
     return test;
@@ -152,6 +157,7 @@ const _updateTest = async (req, testId) => {
 const updateTest = async (req, params) => {
   try {
     const test = await _updateTest(req, params.id);
+    if (test == null) { return new Status(404, new Response(false, null, "Resource was not found.")); }
     return new Status(200, new Response(true, test, "Test successfully updated."));
   } catch (error) {
     console.error(error);
@@ -160,16 +166,43 @@ const updateTest = async (req, params) => {
 }
 
 // // DELETE
-const _deleteTest = async(params) =>{
-  try{
+const _deleteTest = async (params) => {
+  try {
     const test = await _getTestById(params.id);
+    if (test == null) { return new Status(404, new Response(false, null, "Resource was not found.")); }
     console.log(test);
     console.log(test._id);
-    await Test.deleteOne({_id : test._id});
+    await Test.deleteOne({ _id: test._id });
     return new Status(204, new Response(true, null, "Test successfully deleted."));
   } catch (error) {
     console.error(error);
     return new Status(500, new Response(false, null, "There was an internal error."));
   }
 }
-module.exports = { saveTest, getTests, getTestById, getTestByIndex, saveTestByQuestions, updateTest , _deleteTest};
+
+const generatorTeste = async () => {
+  try {
+      const result = await Question.aggregate([
+          { $sample: { size: 26 } },
+          { $project: { _id: 1 } }
+      ]);
+
+      const randomQuestionIds = result.map(question => question._id.toString());
+      console.log('Random Question IDs:', randomQuestionIds);
+      return randomQuestionIds;
+  } catch (error) {
+      console.error('Error retrieving random question IDs:', error);
+      throw error;
+  }
+}
+const addRandomTest = async () => {
+  const q = await generatorTeste();
+  await saveTestByQuestions(q);
+}
+
+const generateNrTests = async (n) => {
+  for (let i = 1; i <= n; ++i) {
+      await addRandomTest();
+  }
+}
+module.exports = { saveTest, getTests, getTestById, getTestByIndex, saveTestByQuestions, updateTest, _deleteTest };
