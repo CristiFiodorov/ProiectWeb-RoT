@@ -3,6 +3,7 @@ const { Status } = require("../utils/status-class");
 const { mongo } = require("mongoose");
 const { getBodyFromRequest, isNotStringOf24Characters } = require("../utils/request-utils");
 const Test = require("../models/test-schema");
+const Question = require("../models/question-schema");
 
 
 const saveTestByQuestions = async (questions) => {
