@@ -26,32 +26,32 @@ async function getPrevSignByCategory(req, res, params) {
 
 async function createSignController(req, res, params) {
     try {
-        const form = new formidable.IncomingForm({  uploadDir: './uploads' });
-    
+        const form = new formidable.IncomingForm({ uploadDir: './uploads' });
+
         form.parse(req, async (err, fields, files) => {
             if (err) {
                 sendJsonResponse(res, 400, JSON.stringify({
-                success: false,
-                data: null,
-                message: 'Error uploading file'
+                    success: false,
+                    data: null,
+                    message: 'Error uploading file'
                 }));
                 return;
             }
-    
+
             const uploadedFile = files.file;
-    
+
             if (!uploadedFile) {
                 sendJsonResponse(res, 400, JSON.stringify({
-                success: false,
-                data: null,
-                message: 'No file uploaded'
+                    success: false,
+                    data: null,
+                    message: 'No file uploaded'
                 }));
                 return;
             }
-    
+
             const { statusCode, response } = await uploadFile(uploadedFile);
-          
-            if(statusCode !== 200){
+
+            if (statusCode !== 200) {
                 sendJsonResponse(res, statusCode, JSON.stringify(response));
                 return;
             }
@@ -80,37 +80,37 @@ async function deleteSignByIdController(req, res, params) {
 
 async function updateSignByIdController(req, res, params) {
     try {
-        const form = new formidable.IncomingForm({  uploadDir: './uploads' });
-    
+        const form = new formidable.IncomingForm({ uploadDir: './uploads' });
+
         form.parse(req, async (err, fields, files) => {
             if (err) {
                 sendJsonResponse(res, 400, JSON.stringify({
-                success: false,
-                data: null,
-                message: 'Error uploading file'
+                    success: false,
+                    data: null,
+                    message: 'Error uploading file'
                 }));
                 return;
             }
-    
+
             const uploadedFile = files.file;
 
             let response = null;
             let statusCode;
-    
+
             if (uploadedFile) {
                 const status = await uploadFile(uploadedFile);
                 response = status.response;
                 statusCode = status.statusCode;
-                
-                if(statusCode !== 200){
+
+                if (statusCode !== 200) {
                     sendJsonResponse(res, statusCode, JSON.stringify(response));
                     return;
                 }
             }
-            
-            if(!response){
+
+            if (!response) {
                 const { statusCode: statusCode2, response: response2 } = await findSignById(params.id);
-                response = { data: response2.data.image_url};
+                response = { data: response2.data.image_url };
             }
 
             const sign = {

@@ -4,7 +4,7 @@ const formidable = require('formidable');
 
 async function uploadFileController(req, res) {
   try {
-    const form = new formidable.IncomingForm({  uploadDir: './uploads', multiples: false });
+    const form = new formidable.IncomingForm({ uploadDir: './uploads', multiples: false });
 
     form.parse(req, async (err, fields, files) => {
       if (err) {

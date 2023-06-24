@@ -16,18 +16,18 @@ async function findTestById(req, res, params) {
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
-async function findTestByIndex(req, res, params){
-    const {statusCode, response} = await getTestByIndex(params);
+async function findTestByIndex(req, res, params) {
+    const { statusCode, response } = await getTestByIndex(params);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
-async function deleteTest(req, res, params){
-    const {statusCode, response} = await _deleteTest(params);
+async function deleteTest(req, res, params) {
+    const { statusCode, response } = await _deleteTest(params);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
-async function patchTest(req, res, params){
-    const {statusCode, response} = await updateTest(req, params);
+async function patchTest(req, res, params) {
+    const { statusCode, response } = await updateTest(req, params);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 module.exports = {

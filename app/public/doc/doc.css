@@ -127,3 +127,19 @@ footer{
     width: 100%;
     height: auto;
 }
+
+.fetch-img-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.fetch-img {
+    width: 100%;
+}
+
+.wide-img {
+    width: 100%;
+}
