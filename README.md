@@ -10,5 +10,5 @@ Project proposed at the [**Web Technologies**](https://victorvlad19.github.io/we
 
 :adult: **Alexandru Neagu** from **2A6**
 
-## A presentation of the final application can be found here [here] (https://www.youtube.com/watch?v=PpRcrRzUtX0)
+## A presentation of the final application can be found [here]( https://www.youtube.com/watch?v=PpRcrRzUtX0 )
 
