@@ -801,29 +801,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      get:
-        tags:
-          - Chapters
-        operationId: getChapterById
-        parameters:
-          - name: chapter_id
-            in: path
-            required: true
-            schema:
-              type: string
-        responses:
-          '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ChapterResponse'
-          '404':
-            description: Bad Request
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ErrorResponse'
   
   /api/v1/chapters/{chapter_id}/contents:
     get:
@@ -1354,7 +1331,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportSignCategories
+      operationId: exportSignCategoriesCSV
       responses:
         '200':
           description: OK
@@ -1373,14 +1350,14 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportSignCategories
+      operationId: exportSignCategoriesJSON
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignCategoryResponse'
+                type: string
         '404':
           description: Bad Request
           content:
@@ -1392,7 +1369,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportSignsByCategoryId
+      operationId: exportSignsByCategoryIdCSV
       parameters:
         - name: category_id
           in: path
@@ -1417,7 +1394,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportSignsByCategoryId
+      operationId: exportSignsByCategoryIdJSON
       parameters:
         - name: category_id
           in: path
@@ -1430,7 +1407,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignResponse'
+                type: string
         '404':
           description: Bad Request
           content:
@@ -1442,7 +1419,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportContentsByChapterId
+      operationId: exportContentsByChapterIdCSV
       parameters:
         - name: chapter_id
           in: path
@@ -1467,7 +1444,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportContentsByChapterId
+      operationId: exportContentsByChapterIdJSON
       parameters:
         - name: chapter_id
           in: path
@@ -1480,7 +1457,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContentResponse'
+                type: string
         '404':
           description: Bad Request
           content:
@@ -1518,7 +1495,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AdviceResponse'
+                type: string
         '404':
           description: Bad Request
           content:
