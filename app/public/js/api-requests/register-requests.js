@@ -81,7 +81,7 @@ function handleFormSubmission(event) {
             throw new Error(JSON.stringify(responseObj.data));
         } else {
             // everything is ok
-            window.location.href = "/app/views/login.html";
+            window.location.href = "login.html";
         }
     })
     .catch(error => {
