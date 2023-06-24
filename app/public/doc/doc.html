@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,12 @@
     <link rel="stylesheet" href="doc.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <title>Documentation</title>
 </head>
+
 <body>
     <article resource="#" typeof="schema:ScholarlyArticle">
         <header>
@@ -63,7 +67,7 @@
                         <ul>
                             <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
                                 <a href="mailto:cristifv59@gmail.com " property="schema:email">
-                                    cristifv59@gmail.com 
+                                    cristifv59@gmail.com
                                 </a>
                             </li>
                         </ul>
@@ -92,7 +96,40 @@
                         <li class="nested"><a href="#product-functions">Product Functions</a></li>
                         <li class="nested"><a href="#user-classes">User Classes and Characteristics</a></li>
                         <li class="nested"><a href="#operating-environment">Operating Environment</a></li>
-                        <li class="nested"><a href="#implementation-constraints">Design and Implementation Constraints</a></li>
+                        <li class="nested"><a href="#implementation-constraints">Design and Implementation
+                                Constraints</a></li>
+                    </ol>
+                </li>
+                <li class="nested">
+                    <a href="#architecture">Application Architecture</a>
+                    <ol class="nested">
+                        <li class="nested"><a href="#architecture-description">Architecture Description</a></li>
+                        <li class="nested"><a href="#context-diagram">Context Diagram</a></li>
+                        <li class="nested"><a href="#containers-diagram">Containers Diagram</a></li>
+                        <li class="nested"><a href="#components-diagram">Components Diagram</a></li>
+                    </ol>
+                </li>
+                <li class="nested">
+                    <a href="#system-features">System Features</a>
+                    <ol class="nested">
+                        <li class="nested"><a href="#module-distribution">Module Distribution</a></li>
+                        <li class="nested"><a href="#authentification-module">Authentification Module</a></li>
+                        <li class="nested"><a href="#courses-module">Courses Module</a></li>
+                        <li class="nested"><a href="#traffic-signs-advices-module">Traffic Signs and Advice Module</a></li>
+                        <li class="nested"><a href="#quizes-module">Quizes Module</a></li>
+                        <li class="nested"><a href="#docs-api">API Documentation</a></li>
+                        <li class="nested"><a href="#deployment-feature">Application Deployment</a></li>
+                        <li class="nested"><a href="#external-libaries">External Libraries</a>
+                            <ol class="nested">
+                                <li class="nested"><a href="#jsonwebtoken-library">jsonwebtoken</a></li>
+                                <li class="nested"><a href="#bcrypt-library">bcrypt</a></li>
+                                <li class="nested"><a href="#mongoose-library">mongoose</a></li>
+                                <li class="nested"><a href="#azure-storage-library">azure/storage-blob</a></li>
+                                <li class="nested"><a href="#formidable-library">formidable</a></li>
+                                <li class="nested"><a href="#nodemailer-library">nodemailer</a></li>
+                                <li class="nested"><a href="#rss-library">rss</a></li>
+                            </ol>
+                        </li>
                     </ol>
                 </li>
                 <li class="nested">
@@ -107,7 +144,8 @@
                                 <li class="nested"><a href="#courses-page">Courses Page</a></li>
                                 <li class="nested"><a href="#course-toc-page">Course Table Of Contents</a></li>
                                 <li class="nested"><a href="#chapter-presentation">Chapter Presentation Page</a></li>
-                                <li class="nested"><a href="#signs-categories-page">Traffic Signs Categories Page</a></li>
+                                <li class="nested"><a href="#signs-categories-page">Traffic Signs Categories Page</a>
+                                </li>
                                 <li class="nested"><a href="#signs-page">Traffic Signs Page</a></li>
                                 <li class="nested"><a href="#sign-info-page">Traffic Sign Presentation Page</a></li>
                                 <li class="nested"><a href="#advices-page">Practical Advices Page</a></li>
@@ -128,9 +166,13 @@
             <section id="purpose">
                 <h3>1.1 Purpose</h3>
                 <p>
-                    This SRS describes the general specifications for the <b class="bold-text--blue">Romanian Traffic Tutor</b> application v1.0. We created this application during the Web Technologies course, in the fourth semester 
-                    of University at the Faculty of Computer Science, Iași. Because the full project is not finished yet, this paper aims to describe the product scope, different characteristics and details regarding 
-                    the user interfaces, and several application features. We will cover the back-end components of the application later, in an updated version of this documentation.
+                    This SRS describes the general specifications for the <b class="bold-text--blue">Romanian Traffic
+                        Tutor</b> application v1.0. We created this application during the Web Technologies course, in
+                    the fourth semester
+                    of University at the Faculty of Computer Science, Iași. Because the full project is not finished
+                    yet, this paper aims to describe the product scope, different characteristics and details regarding
+                    the user interfaces, and several application features. We will cover the back-end components of the
+                    application later, in an updated version of this documentation.
                     <!-- Identify the product whose software requirements are specified in this document, 
                     including the revision or release number. Describe the scope of the product that is 
                     covered by this SRS, particularly if this SRS describes only part of the system or a 
@@ -140,7 +182,8 @@
             <section id="conventions">
                 <h3>1.2 Document Conventions</h3>
                 <ul>
-                    <li>This document has been written following the <cite typeof="citation">IEEE System Requirements Specification Template</cite></li>
+                    <li>This document has been written following the <cite typeof="citation">IEEE System Requirements
+                            Specification Template</cite></li>
                     <li>This document respects the <cite typeof="citation">Scholarly HTML</cite> specification</li>
                     <li>Citations are specified in italics</li>
                     <!-- <li></li> -->
@@ -152,8 +195,10 @@
             <section id="audience">
                 <h3>1.3 Intended Audience and Reading Suggestions</h3>
                 <p>
-                    This document is intended for the laboratory teacher, who will be grading our product during the 8th and 17th weeks of the semester. For the evaluation during the 8th week, only the 
-                    <cite><a href="#scope">Product Scope</a></cite>, <cite><a href="#overall-description">Overall Description</a></cite>, and <cite><a href="#user-interfaces">User Interfaces</a></cite> 
+                    This document is intended for the laboratory teacher, who will be grading our product during the 8th
+                    and 17th weeks of the semester. For the evaluation during the 8th week, only the
+                    <cite><a href="#scope">Product Scope</a></cite>, <cite><a href="#overall-description">Overall
+                            Description</a></cite>, and <cite><a href="#user-interfaces">User Interfaces</a></cite>
                     sections are relevant.
                     <!-- Describe the different types of reader that the document is intended for, 
                     such as developers, project managers, marketing staff, users, testers, 
@@ -165,10 +210,14 @@
             <section id="scope">
                 <h3>1.4 Product Scope</h3>
                 <p>
-                    The <b class="bold-text--blue">Romanian Traffic Tutor</b> application aims to help those who are struggling to pass their driving license exam. All the laws 
-                    from the Traffic Code are presented in an interactive way, making it easier for the users to learn. All the traffic signs are concisely presented in a 
-                    separate section, with a lot of real examples. The users should be able to test their understanding by taking quizes, ordered by difficulty levels. 
-                    A scoreboard to track the progress and performance should also be provided, both within the application and as a RSS feed.
+                    The <b class="bold-text--blue">Romanian Traffic Tutor</b> application aims to help those who are
+                    struggling to pass their driving license exam. All the laws
+                    from the Traffic Code are presented in an interactive way, making it easier for the users to learn.
+                    All the traffic signs are concisely presented in a
+                    separate section, with a lot of real examples. The users should be able to test their understanding
+                    by taking quizes, ordered by difficulty levels.
+                    A scoreboard to track the progress and performance should also be provided, both within the
+                    application and as a RSS feed.
                     <!-- Provide a short description of the software being specified and its purpose, s
                     including relevant benefits, objectives, and goals. 
                     Relate the software to corporate goals or business strategies. 
@@ -183,29 +232,111 @@
                     Provide enough information so that the reader could access a copy of each reference, including title, author, 
                     version number, date, and source or location. -->
                 <ul>
-                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://profs.info.uaic.ro/~busaco/teach/courses/web" property="schema:citation" id="course-site">
+                    <li typeof="schema:WebPage" role="doc-biblioentry"
+                        resource="https://profs.info.uaic.ro/~busaco/teach/courses/web" property="schema:citation"
+                        id="course-site">
                         <cite property="schema:name">
-                            <a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/">B. Sabin Corneliu. Course Page. Web Technologies 2023.</a>
+                            <a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/">B. Sabin Corneliu. Course
+                                Page. Web Technologies 2023.</a>
                         </cite>
                     </li>
-                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://victorvlad19.github.io/web" property="schema:citation" id="lab-page">
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://victorvlad19.github.io/web"
+                        property="schema:citation" id="lab-page">
                         <cite property="schema:name">
-                            <a href="https://victorvlad19.github.io/web">V. Vlad. Laboratory Page. Web Technologies 2023.</a>
+                            <a href="https://victorvlad19.github.io/web">V. Vlad. Laboratory Page. Web Technologies
+                                2023.</a>
                         </cite>
                     </li>
-                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://github.com/rick4470/IEEE-SRS-Tempate" property="schema:citation" id="document-template">
+                    <li typeof="schema:WebPage" role="doc-biblioentry"
+                        resource="https://github.com/rick4470/IEEE-SRS-Tempate" property="schema:citation"
+                        id="document-template">
                         <cite property="schema:name">
-                            <a href="https://github.com/rick4470/IEEE-SRS-Tempate">H. Rick. IEEE System Requirments Specification Template.</a>
+                            <a href="https://github.com/rick4470/IEEE-SRS-Tempate">H. Rick. IEEE System Requirments
+                                Specification Template.</a>
                         </cite>
                     </li>
-                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://w3c.github.io/scholarly-html" property="schema:citation" id="scholarly-html">
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://w3c.github.io/scholarly-html"
+                        property="schema:citation" id="scholarly-html">
                         <cite property="schema:name">
                             <a href="https://w3c.github.io/scholarly-html/">About Scholarly HTML.</a>
                         </cite>
                     </li>
-                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://fonts.google.com/" property="schema:citation" id="application-fonts">
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://fonts.google.com/"
+                        property="schema:citation" id="application-fonts">
                         <cite property="schema:name">
                             <a href="https://fonts.google.com/">Google Fonts</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://nodejs.org/en/docs"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://nodejs.org/en/docs">Node.js Documentation</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.digitalocean.com/"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.digitalocean.com/">Digital Ocean Cloud Storage</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://azure.microsoft.com/en-us"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://azure.microsoft.com/en-us">Microsoft Azure Cloud Storage</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.docker.com/"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.docker.com/">Docker</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://swagger.io/"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://swagger.io/">OpenAPI specification</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.npmjs.com/package/nodemailer"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.npmjs.com/package/nodemailer">nodemailer</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.npmjs.com/package/mongoose"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.npmjs.com/package/mongoose">mongoose</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.npmjs.com/package/bcrypt"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.npmjs.com/package/bcrypt">bcrypt</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.npmjs.com/package/@azure/storage-blob"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.npmjs.com/package/@azure/storage-blob">azure/storage-blob</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.npmjs.com/package/formidable"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.npmjs.com/package/formidable">formidable</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.npmjs.com/package/jsonwebtoken"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.npmjs.com/package/jsonwebtoken">jsonwebtoken</a>
+                        </cite>
+                    </li>
+                    <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.npmjs.com/package/rss"
+                        property="schema:citation" id="application-fonts">
+                        <cite property="schema:name">
+                            <a href="https://www.npmjs.com/package/rss">rss</a>
                         </cite>
                     </li>
                 </ul>
@@ -217,13 +348,19 @@
             <section id="product-motivation">
                 <h3>2.1 Product Motivation</h3>
                 <p>
-                    Driving is a crucial part of modern life, providing individuals the freedom to go where they want in relatively short time. However, driving comes with a lot of 
+                    Driving is a crucial part of modern life, providing individuals the freedom to go where they want in
+                    relatively short time. However, driving comes with a lot of
                     risks and dangers that can be minimized by knowing the laws and regulations of the traffic code.
-                    Unfortunately, there are drivers who don't know even the elementary rules in traffic, which can make them more likely to cause accidents or receive traffic violations.
-                    Additionally, attending driving school and passing the driving exam can be difficult for some people, as they may have trouble retaining the information they learn. 
-                    This can lead to a sense of frustration and lack of confidence. To address these issues, we aim to create a modern application that teaches all the laws and signs 
-                    from the traffic code in an interactive and engaging way. Our application will provide a variety of quizzes organized by difficulty levels, so that users can test 
-                    their knowledge and improve their understanding of the traffic code. By doing so, we hope to make a positive impact in the society and help new drivers feel more confident and 
+                    Unfortunately, there are drivers who don't know even the elementary rules in traffic, which can make
+                    them more likely to cause accidents or receive traffic violations.
+                    Additionally, attending driving school and passing the driving exam can be difficult for some
+                    people, as they may have trouble retaining the information they learn.
+                    This can lead to a sense of frustration and lack of confidence. To address these issues, we aim to
+                    create a modern application that teaches all the laws and signs
+                    from the traffic code in an interactive and engaging way. Our application will provide a variety of
+                    quizzes organized by difficulty levels, so that users can test
+                    their knowledge and improve their understanding of the traffic code. By doing so, we hope to make a
+                    positive impact in the society and help new drivers feel more confident and
                     safe behind the wheel.
                     <!-- Motivatia Produsului !-->
                 </p>
@@ -231,111 +368,178 @@
             <section id="product-functions">
                 <h3>2.2 Product Functions</h3>
                 <p>
-                    <ul>
-                        <li>
-                            <span class="ul-heading__move">Login and Sign-up Features</span>
-                            <ul>
-                                <li>A login page where users introduce their username and password to enter the application</li>
-                                <li>An authentification page where users can create a new account in the application</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="ul-heading__move">
-                                Traffic Signs Features
-                            </span>
-                            <ul>
-                                <li>
-                                    A page that contains multiple categories of traffic signs. All the categories are displayed on separated cards. 
-                                    The user can press on any card in order to enter a page that displays all the traffic signs related to the chosen category.
-                                </li>
-                                <li>
-                                    A page that displays multiple traffic signs that are all corresponding to a specific category. All the traffic signs are displayed on separated cards.
-                                    The user can press on any card in order to enter a page that displays relevant information about the chosen traffic sign.
-                                </li>
-                                <li>
-                                    A page that displays relevant information about a specific traffic sign. All the rules, variations and real world examples regarding the traffic signs are 
-                                    concisely displayed on the screen. 
-                                </li>
-                                <li>
-                                    The application's logic regarding traffic signs is designed to be user-friendly for <span class="admin-span">administrators</span>. The admin has the ability to add a new traffic 
-                                    sign for a specific category, or a new category entirely. Also, the admin can edit or delete a specific traffic sign or category as well.
-                                </li>
-                                <li>
-                                    For each specific traffic sign and sign category, the <span class="admin-span">administrator</span> might upload a photo that is relevant to the sign or category.
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="ul-heading__move">Practical Advices Features</span> 
-                            <ul>
-                                <li>
-                                    A page that contains multiple practical advices about driving. All the practical advices are displayed on separated cards. 
-                                    The user can press on a specific card in order to enter a page that presents the chosen advice.
-                                </li>
-                                <li>
-                                    A page that presents a practical driving advice.   
-                                </li>
-                                <li>
-                                    The application's logic regarding practical advice is designed to be user-friendly for <span class="admin-span">administrators</span>. The admin has the ability to add, edit or delete a new practical advice.
-                                </li>
-                                <li>
-                                    For each practical advice, the <span class="admin-span">administrator</span> might upload a photo that is relevant to the advice.
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="ul-heading__move">Courses Features</span> 
-                            <ul>
-                                <li>
-                                    A page that contains several course categories. 
-                                    Each course is displayed on a separate card. The user can press on a specific card in order to enter a new page that displays the a list of available chapters for the 
-                                    selected course.
-                                </li>
-                                <li>
-                                    A page that displays a list of chapters for a specific course. The user can press on a specific chapter in order to enter a presentation page. 
-                                </li>
-                                <li>
-                                    A page that presents a given chapter of the course. Several resourses such as images and citations might be included in the presentation. 
-                                </li>
-                                <li>
-                                    The application's logic regarding courses is designed to be user-friendly for <span class="admin-span">administrators</span>. The admin has the ability to add a new course, or a new chapter for a specific course.
-                                    Also, the admin can edit or delete a specific course and chapter as well.
-                                </li>
-                                <li>
-                                    For a given course chapter, the <span class="admin-span">administrator</span> can modify the chapter content as well. On the contents page, he has the ability to add a new page element that might be a subsection title, an entire paragraph 
-                                    or an uploaded-page.
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="ul-heading__move">Quizes Features</span> 
-                            <ul>
-                                <li>
-                                    A page that contains multiple exercise quizes. Only logged in users can access this page. 
-                                    Each exercise quiz is displayed on a separate card. The user can press one of the cards in order to start a desired quiz.
-                                    The maximum score obtained for a given exercise quiz obtained by the user is displayed on the card.
-                                </li>
-                                <li>
-                                    If the user wants to start a randomly generated quiz, in order to simulate an exam environment, he can do it as well by pressing a specific 
-                                    button on the page. For these type of quizes, 
-                                </li>
-                                <li>
-                                    A special page that displays the current question in a started quiz. The user can choose one or more options to answer the question for the question.
-                                    After the submit button is pressed, the user might see if his answer is correct or not and jump to the next question.
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span class="ul-heading__move">Scoreboard Features</span> 
-                            <ul>
-                                <li>
-                                    A scoreboard page. All users are displayed on the scoreboard, in descending order of their total score. 
-                                    The total score is calculated by adding the results for each randomly generated quiz.
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- Summarize the major functions the product must perform or must let the user perform. 
+                <ul>
+                    <li>
+                        <span class="ul-heading__move">Login and Sign-up Features</span>
+                        <ul>
+                            <li>A login page where users introduce their username and password to enter the application
+                            </li>
+                            <li>An authentification page where users can create a new account in the application</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="ul-heading__move">
+                            Traffic Signs Features
+                        </span>
+                        <ul>
+                            <li>
+                                A page that contains multiple categories of traffic signs. All the categories are
+                                displayed on separated cards.
+                                The user can press on any card in order to enter a page that displays all the traffic
+                                signs related to the chosen category.
+                            </li>
+                            <li>
+                                A page that displays multiple traffic signs that are all corresponding to a specific
+                                category. All the traffic signs are displayed on separated cards.
+                                The user can press on any card in order to enter a page that displays relevant
+                                information about the chosen traffic sign.
+                            </li>
+                            <li>
+                                A page that displays relevant information about a specific traffic sign. All the rules,
+                                variations and real world examples regarding the traffic signs are
+                                concisely displayed on the screen.
+                            </li>
+                            <li>
+                                The application's logic regarding traffic signs is designed to be user-friendly for
+                                <span class="admin-span">administrators</span>. The admin has the ability to add a new
+                                traffic
+                                sign for a specific category, or a new category entirely. Also, the admin can edit or
+                                delete a specific traffic sign or category as well.
+                            </li>
+                            <li>
+                                For each specific traffic sign and sign category, the <span
+                                    class="admin-span">administrator</span> might upload a photo that is relevant to the
+                                sign or category.
+                            </li>
+                            <li>
+                                The Traffic Signs and Traffic Signs Categories modules provide users the ability to
+                                export data in multiple formats.
+                                Users can export traffic sign data and traffic sign category data in either
+                                <strong>JSON</strong> or <strong>CSV</strong> format.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="ul-heading__move">Practical Advices Features</span>
+                        <ul>
+                            <li>
+                                A page that contains multiple practical advices about driving. All the practical advices
+                                are displayed on separated cards.
+                                The user can press on a specific card in order to enter a page that presents the chosen
+                                advice.
+                            </li>
+                            <li>
+                                A page that presents a practical driving advice.
+                            </li>
+                            <li>
+                                The application's logic regarding practical advice is designed to be user-friendly for
+                                <span class="admin-span">administrators</span>. The admin has the ability to add, edit
+                                or delete a new practical advice.
+                            </li>
+                            <li>
+                                For each practical advice, the <span class="admin-span">administrator</span> might
+                                upload a photo that is relevant to the advice.
+                            </li>
+                            <li>
+                                The Practical Advice module provide users the ability to export data in multiple
+                                formats.
+                                Users can export traffic sign data and traffic sign category data in either
+                                <strong>JSON</strong> or <strong>CSV</strong> format.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="ul-heading__move">Courses Features</span>
+                        <ul>
+                            <li>
+                                A page that contains several course categories.
+                                Each course is displayed on a separate card. The user can press on a specific card in
+                                order to enter a new page that displays the a list of available chapters for the
+                                selected course.
+                            </li>
+                            <li>
+                                A page that displays a list of chapters for a specific course. The user can press on a
+                                specific chapter in order to enter a presentation page.
+                            </li>
+                            <li>
+                                A page that presents a given chapter of the course. Several resourses such as images and
+                                citations might be included in the presentation.
+                            </li>
+                            <li>
+                                The application's logic regarding courses is designed to be user-friendly for <span
+                                    class="admin-span">administrators</span>. The admin has the ability to add a new
+                                course, or a new chapter for a specific course.
+                                Also, the admin can edit or delete a specific course and chapter as well.
+                            </li>
+                            <li>
+                                For a given course chapter, the <span class="admin-span">administrator</span> can modify
+                                the chapter content as well. On the contents page, he has the ability to add a new page
+                                element that might be a subsection title, an entire paragraph
+                                or an uploaded-page.
+                            </li>
+                            <li>
+                                The Course Chapter module provide users the ability to export the course data in
+                                multiple formats.
+                                Users can export course data in either <strong>JSON</strong> or <strong>CSV</strong>
+                                format.
+                            </li>
+                            <li>
+                                There is also an <strong>Import as JSON</strong> feature on the page for <span
+                                    class="admin-span">administrators</span>. An administrator
+                                can import / modify an entire course using this feature, by uploading a JSON file that
+                                contains the course data
+                                that follows the specified template. The template should be the same as the one provided
+                                by the <strong>Export as JSON</strong> feature.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="ul-heading__move">Quizes Features</span>
+                        <ul>
+                            <li>
+                                A page that contains multiple exercise quizes. Only logged in users can access this
+                                page.
+                                Each exercise quiz is displayed on a separate card. The user can press one of the cards
+                                in order to start a desired quiz.
+                                The maximum score obtained for a given exercise quiz obtained by the user is displayed
+                                on the card.
+                            </li>
+                            <li>
+                                If the user wants to start a randomly generated quiz, in order to simulate an exam
+                                environment, he can do it as well by pressing a specific
+                                button on the page. For these type of quizes,
+                            </li>
+                            <li>
+                                A special page that displays the current question in a started quiz. The user can choose
+                                one or more options to answer the question for the question.
+                                After the submit button is pressed, the user might see if his answer is correct or not
+                                and jump to the next question.
+                            </li>
+                            <li>
+                                The application's logic regarding questions is designed to be user-friendly for <span
+                                    class="admin-span">administrators</span>. The admin has the ability to add a new
+                                question, with
+                                the corresponding answer options.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="ul-heading__move">Scoreboard Features</span>
+                        <ul>
+                            <li>
+                                A scoreboard page. All users are displayed on the scoreboard, in descending order of
+                                their total score.
+                                The total score is calculated by adding the results for each randomly generated quiz.
+                            </li>
+                            <li>
+                                Only the top 10 users that achived the highest scores are displayed on the scoreboard
+                                page. For consulting the whole scoreboard, there is a feature on the page
+                                that provides the ability to export the whole scoreboard as a RSS file.
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Summarize the major functions the product must perform or must let the user perform. 
                     Details will be provided in Section 3, so only a high level summary (such as a bullet list) is needed here. 
                     Organize the functions to make them understandable to any reader of the SRS. A picture of the major groups of 
                     related requirements and how they relate, such as a top level data flow diagram or 
@@ -345,8 +549,9 @@
             <section id="user-classes">
                 <h3>2.3 User Classes and Characteristics</h3>
                 <p>
-                    The application will be used by all the people who want to learn more about the traffic code and improve their driving skills.
-                    
+                    The application will be used by all the people who want to learn more about the traffic code and
+                    improve their driving skills.
+
                     <!-- Identify the various user classes that you anticipate will use this product. User classes may be differentiated 
                     based on frequency of use, subset of product functions used, technical expertise, security or privilege levels, 
                     educational level, or experience. Describe the pertinent characteristics of each user class. 
@@ -361,34 +566,37 @@
                     operating system and versions, and any other software components or applications with which it
                     must peacefully coexist. -->
 
-                    <ul>
-                        <li>
-                            Hardware Platform
-                            <ul>
-                                <li>Desktop</li>
-                                <li>Mobile</li>
-                            </ul>
-                        </li>
-                        <li>
-                            Browser
-                            <ul>
-                                <li>Google Chrome</li>
-                                <li>Mozilla Firefox</li>
-                                <li>Microsoft Edge</li>
-                                <li>Apple Safari</li>
-                            </ul>
-                        </li>
+                <ul>
+                    <li>
+                        Hardware Platform
+                        <ul>
+                            <li>Desktop</li>
+                            <li>Mobile</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Browser
+                        <ul>
+                            <li>Google Chrome</li>
+                            <li>Mozilla Firefox</li>
+                            <li>Microsoft Edge</li>
+                            <li>Apple Safari</li>
+                        </ul>
+                    </li>
 
-                </p>
+                    </p>
             </section>
             <section id="implementation-constraints">
                 <h3>2.5 Design and Implementation Constraints</h3>
                 <p>
 
-                    The development of the Romanian Traffic Tutor app will have some constraints regarding the use of tools and frameworks. 
-                    The grading policy prohibits the use of frontend or backend frameworks, and any tools used must have an open license.
-                    To comply with these constraints, the development team will rely on HTML5, CSS3, and Javascript for the interface, 
-                    without using any frontend or backend frameworks. The team will also use Node.js for the backend, 
+                    The development of the Romanian Traffic Tutor app will have some constraints regarding the use of
+                    tools and frameworks.
+                    The grading policy prohibits the use of frontend or backend frameworks, and any tools used must have
+                    an open license.
+                    To comply with these constraints, the development team will rely on HTML5, CSS3, and Javascript for
+                    the interface,
+                    without using any frontend or backend frameworks. The team will also use Node.js for the backend,
                     but without the use of web server frameworks like Express.
 
                     <!-- Describe any items or issues that will limit the options available to the developers. 
@@ -420,30 +628,349 @@
             </section> -->
         </section>
         <hr>
-        <section role="application-architecture", id="architecture">
+        <section role="application-architecture" id="architecture">
             <h2>3. Application Architecture (C4 model)</h2>
             <section id="c4-diagrams">
-                <h3>3.2 Context Diagram</h2>
-                <img class="diagrams" id="context-diagram" src="images/diagrams/C1.png" alt="Context Diagram">
-                <h3>3.3 Containers Diagram</h3>
-                <img class="diagrams" id="containers-diagram" src="images/diagrams/C2.png" alt="Containers Diagram">
-                <h3>3.4 Components Diagram</h3>
-                <img class="diagrams" id="components-diagram" src="images/diagrams/C3.png" alt="Components Diagram">
+                <h3 id="architecture-description">3.1 Architecture Description</h3>
+                <p>
+                    The application follows a client-server architecture, consisting of a <strong>REST-API
+                        server</strong> and a <strong>Client-Centric Web Application</strong>.
+                </p>
+                <ul>
+                    <li>
+                        On the server-side, the <strong>REST-API</strong> server is implemented in <b>Node.js</b>,
+                        utilizing the <b>HTTP</b>
+                        module to handle incoming requests and provide API endpoints. The server exposes several routes
+                        that allow for Create, Read, Update, and Delete (<strong>CRUD</strong>) operations on various
+                        entities, including
+                        courses, traffic signs, advice, quizzes, scoreboard, and authentication. Each API request is
+                        processed, and the server generates JSON responses that adhere to a specific format defined by
+                        the application. These responses consist of a status attribute indicating the success or failure
+                        of the operation, a data attribute containing the requested data or relevant information, and a
+                        message attribute providing additional details or error messages. This structured format ensures
+                        consistency and ease of parsing on the client-side.
+                    </li>
+                    <br>
+                    <li>
+                        The application architecture includes a database layer powered by <strong>MongoDB</strong>,
+                        a non-relational database system, and <strong>Mongoose</strong>, a robust ODM library for
+                        MongoDB in Node.js.
+
+                        Within the REST-API server, the Mongoose library is utilized to define models that map to
+                        specific collections in the MongoDB database. These models define the schema, including the
+                        fields, data types, and validation rules for each entity such as courses, traffic signs, advice,
+                        quizzes, scoreboard, and user. Mongoose also provides convenient methods to
+                        perform CRUD operations on the database, simplifying the process of interacting with MongoDB
+                    </li>
+                    <br>
+                    <li>
+                        On the client-side, the Web Application leverages the <b>Fetch API</b> to interact with the
+                        server and retrieve JSON responses. The application dynamically constructs web pages by
+                        utilizing <b>JavaScript</b> and <b>DOM manipulation</b> techniques. When a user performs an
+                        action,
+                        such as navigating to a specific page or submitting a form, the Web Application initiates a
+                        request using the Fetch API to the corresponding API endpoint on the server. Upon receiving the
+                        JSON response, the client-side JavaScript code processes the data and dynamically updates the
+                        web page's content, ensuring a seamless and interactive user experience. This Client-Centric
+                        approach enables efficient rendering of content on the client-side, reducing server load and
+                        providing a responsive user interface.
+                    </li>
+                    <p>
+                        By combining the server-side REST-API implementation with the client-side Web Application built
+                        on JavaScript and DOM manipulation, the application achieves a robust and scalable
+                        architecture. The separation of concerns between the server and client components allows for
+                        independent development, maintenance, and scalability of each layer. This architecture fosters
+                        efficient communication between the server and client, facilitating seamless data exchange,
+                        dynamic page rendering, and a user-friendly interface.
+                    </p>
+                    <h3>3.2 Context Diagram</h2>
+                        <img class="diagrams" id="context-diagram" src="images/diagrams/C1.png" alt="Context Diagram">
+                        <h3>3.3 Containers Diagram</h3>
+                        <img class="diagrams" id="containers-diagram" src="images/diagrams/C2.png"
+                            alt="Containers Diagram">
+                        <h3>3.4 Components Diagram</h3>
+                        <img class="diagrams" id="components-diagram" src="images/diagrams/C3.png"
+                            alt="Components Diagram">
+            </section>
+        </section>
+        <section role="system-features" id="system-features">
+            <h2>4. System features</h2>
+            <section role="module-distribution">
+                <h3 id="module-distribution">4.1 Module Distribution</h3>
+                <p>
+                    The web application has been organized into four distinct modules, each focusing on specific
+                    functionalities to ensure a modular and manageable system architecture. These modules provide clear
+                    separation of concerns, enabling easier development, maintenance, and scalability of the
+                    application.
+                <ol>
+                    <li><strong>Authentication Module</strong>.
+                        The Authentication Module handles all aspects related to user authentication and authorization.
+                        It provides features such as user registration, login, password management, role management, and
+                        uses
+                        <strong>Json Web Token (JWT)</strong> for access control.
+                        This module ensures secure access to the application, safeguarding user data and protecting
+                        sensitive information by using the <b>bcrypt</b> library.
+                    </li>
+                    <li>
+                        <strong>Courses Module</strong>.
+                        The Courses Module is responsible for managing the courses, chapters and contents of a chapter
+                        in the application. It handles functionalities related to creating, updating, and organizing
+                        courses by the application
+                        <span class="admin-span">administrator</span>. Also, the normal users can view the courses and
+                        their contents.
+                    </li>
+                    <li>
+                        <strong>Traffic Signs and Advice Module</strong>.
+                        The Traffic Signs and Advice Module focuses on managing and presenting traffic sign information
+                        and practical advice to users. It provides features to retrieve relevant information about
+                        traffic signs and and safety guidelines. Also, the <span class="admin-span">administrator</span>
+                        can perform
+                        CRUD operation on each entity.
+                    </li>
+                    <li>
+                        <strong>Quizzes Module</strong>:
+                        The Quizzes Module enables the creation and administration of interactive quizzes
+                        within the application. It allows simple users to do exercise tests and exam simulations. Also
+                        the user's performance is tracked and a scoring formula is applied. Each user can see the score
+                        situations by consulting
+                        the scoreboard page.
+                    </li>
+                </ol>
+                </p>
+                <h3 id="authentification-module">4.2 Authentification Module</h3>
+                <p>
+                    The authentification module is based on the following MongoDB <span
+                        class="schema--green">User</span> collection:
+                </p>
+                <img id="user-schema" src="images/schemas/User.jpg">
+                <p>
+                    As it can be observed from the image, the password is encrypted using the <strong>bcrypt</strong>
+                    library.
+                    Also, this module enforce the authorization of the API by using <strong>Json Web Token
+                        (JWT)</strong>.
+                    On the Client Web Application, the JWT is stored in the <strong>localStorage</strong> and is sent to
+                    the server on each request
+                    as an <strong>authorization header</strong>.
+                </p>
+                <h3 id="courses-module">4.3 Courses Module</h3>
+                <p>
+                    The courses module is based on the following MongoDB collections:
+                </p>
+                <ul>
+                    <li>
+                        <p><span class="schema--green">Course</span> collection</p>
+                        <img id="course-schema" src="images/schemas/Course.jpg">
+                    </li>
+                    <li>
+                        <p><span class="schema--green">Chapter</span> collection</p>
+                        <img id="chapter-schema" src="images/schemas/Chapter.jpg">
+                    </li>
+                    <li>
+                        <p><span class="schema--green">Chapter-Content</span> collection</p>
+                        <img id="content-schema" src="images/schemas/Content.jpg">
+                    </li>
+                </ul>
+                <p>
+                    As it can be observed from the collections, the course might contain several chapters and each
+                    chapter contains a specific chapter content.
+                    The chapter content logic was designed as follows: Each element of the page might be of three types:
+                    <strong>paragraph</strong>, <strong>subsection</strong> or <strong>image</strong>.
+                    All of these elements are stored as an array in the content attribute. This array is then parsed by
+                    the client and the page is rendered accordingly.
+                    All this data might be exported by the normal user as a JSON or CSV file. Also, the <span
+                        class="admin-span">administrator</span> can import an entire content for a chapter from a
+                    local JSON file that should respect the template imposed by the <span
+                        class="schema--green">Chapter-Content</span> schema. All the CRUD operations are implemented
+                    both on server-side and client-side, and have each operation has a corresponding role permission.
+                </p>
+                <p>
+                    Another important aspect is that the images are stored in cloud using <strong>Azure Cloud
+                        Storage</strong>. Thus, when the admin uploads an image for a course, it is stored in the cloud
+                    and the link is saved in the database.
+                </p>
+                <h3 id="traffic-signs-advices-module">4.4 Traffic Signs and Advice Module</h3>
+                <p>
+                    The traffic signs and advice module is based on the following MongoDB collections:
+                </p>
+                <ul>
+                    <li>
+                        <p><span class="schema--green">Sign Category</span> collection</p>
+                        <img id="traffic-sign-schema" src="images/schemas/SignCategory.jpg">
+                    </li>
+                    <li>
+                        <p><span class="schema--green">Sign</span> collection</p>
+                        <img id="advice-schema" src="images/schemas/TrafficSign.jpg">
+                    </li>
+                    <li>
+                        <p><span class="schema--green">Advice</span> collection</p>
+                        <img id="advice-schema" src="images/schemas/Advice.jpg">
+                    </li>
+                </ul>
+                <p>
+                    As it can be observed from the collections, a sign category may contain several traffic signs
+                    (mapped by the parentId attribute).
+                    Also, there is an advice collection that has a structure similar to that of a traffic sign.
+                    All this data might be exported by the normal user as a JSON or CSV file. All the CRUD operations
+                    regarding these entitites are implemented both on server-side and client-side, and have each
+                    operation
+                    has a corresponding role permission.
+                </p>
+                <p>
+                    Another important aspect is that the images are stored in cloud using <strong>Azure Cloud
+                        Storage</strong>. Thus, when the <span class="admin-span">administrator</span> uploads an image
+                    for a traffic sign, a sign category or
+                    an advice, it is stored in the cloud and the links are saved in the database.
+                </p>
+                <p>
+                    All the data regarding the sign categories and specific signs was extracted from <a
+                        href="https://www.scoalarutiera.ro/indicatoare-si-marcaje">scoalarutiera.ro</a>
+                    using a <strong>Web Crawler</strong>. The crawler was implemented in <strong>Python</strong> using
+                    <strong>regular expressions</strong> and the
+                    <strong>urllib</strong> library. More details about the Web Crawler can be found on <a
+                        href="https://github.com/AlexNeagu123/ROT-WebCrawler">this</a>
+                    GitHub repository.
+                </p>
+                <h3 id="quizes-module">4.5 Quizes Module</h3>
+                <p>
+                    The quizes module is based on the following MongoDB collections:
+                </p>
+                <ul>
+                    <li>
+                        <p><span class="schema--green">Test</span> collection</p>
+                        <img id="traffic-sign-schema" src="images/schemas/Test.jpg">
+                    </li>
+                    <li>
+                        <p><span class="schema--green">Question</span> collection</p>
+                        <img id="advice-schema" src="images/schemas/Question.jpg">
+                    </li>
+                </ul>
+                <p>
+                    As it can be observed from the collections, each quiz contains an array of questions (each mapped by
+                    its ObjectId).
+                    Each question has three answer options, each having a flag representing wether the option is correct
+                    or not.
+                    An <span class="admin-span">administrator</span> has the ability to add a new question, that will
+                    have the chance to be part of a
+                    generated quiz.
+                </p>
+                <p>
+                    Each question might have an image in it. Question images are stored in cloud using <strong>Azure
+                        Cloud
+                        Storage</strong>.
+                </p>
+                <p>
+                    There are more than <strong>800</strong> questions stored in the database.
+                    All the questions were extracted from <a
+                        href="https://www.scoalarutiera.ro/intrebari-posibile-drpciv-categoria-b">scoalarutiera.ro</a>
+                    using a <strong>Web Crawler</strong>. As stated above, more details about the Web Crawler can be
+                    found on <a href="https://github.com/AlexNeagu123/ROT-WebCrawler">this</a>
+                    GitHub repository.
+                </p>
+                <h3 id="docs-api">4.6 API Documentation</h3>
+                <p>
+                    We have also provided a comprehensive API documentation using the OpenAPI specification and
+                    Swagger. This documentation serves as a valuable resource for developers, enabling them to
+                    understand and interact with the available RESTful API endpoints exposed by the server.
+                </p>
+                <p>
+                    Here is a photo of how the swagger user interface page looks like (only some endpoints):
+                </p>
+                <img id="api-docs-img" src="images/api-docs.jpg">
+                <p>
+                    The full <strong>OpenApi</strong> yaml specification file can be found <a
+                        href="https://app.swaggerhub.com/apis/NALEX4080_1/ro-t_api/1.0.0">here</a>!
+                </p>
+                <h3 id="deployment-feature">4.7 Application Deployment</h3>
+                <p>
+                    Our application has been successfully deployed and made accessible to users on the internet.
+                <ol>
+                    <li>
+                        The <strong>server-side</strong> REST API, responsible for handling data requests and processing
+                        API endpoints, was deployed using a <strong>Docker</strong> image.
+                        To host the REST API, we utilized a <strong>DigitalOcean</strong> droplet. To access the
+                        deployed REST API, the following address might be used: <a
+                            href="http://165.22.83.18:3000">http://165.22.83.18:3000/api/v1</a>/<strong>endpoint</strong>.
+                    </li>
+                    <li>
+                        For the <strong>client-side</strong> application, in addition to the <strong>Docker</strong>
+                        image, we utilized <strong>NgNix</strong> for serving the web application.
+                        The application might be accessed at the following url: <a
+                            href="http://rot.romaniantrafictutor.tech/index.html">http://rot.romaniantrafictutor.tech</a>
+                    </li>
+                </ol>
+                </p>
+                <h3 id="external-libaries">4.8 External Libraries</h3>
+                <p>
+                    Our application uses the following <strong>node.js libraries</strong>
+                </p>
+                <h4 id="jsonwebtoken-library">4.8.1 jsonwebtoken</h4>
+                <p>
+                    We use this library in order to have a secure and efficient way to <strong>sign</strong> and
+                    <strong>verify</strong> JSON Web Tokens.
+                    Several important aspects regarding the application's security such as token authenticity and
+                    expiration are handled with the
+                    help of this library. One of the notable advantages of a Json Web Token is its
+                    <strong>stateless</strong> nature.
+                    It does not rely on server-side session state, all the the information needed being stored in the
+                    token itself.
+                </p>
+                <h4 id="bcrypt-library">4.8.2 bcrypt</h4>
+                <p>
+                    This library provides a robust hashing algorithm that strengthens the security of stored
+                    passwords. It is used to hash the user's password before storing it in the database. In this way, we
+                    make
+                    sure that the user's personal data is confidential and protected, even in the case of a database
+                    breach.
+                </p>
+                <h4 id="mongoose-library">4.8.3 mongoose</h4>
+                <p>
+                    This library provides an intuitive way to interact with the MongoDB database. It simplifies the
+                    process of defining schemas for our collections, allowing us to establish a clear structure and
+                    enforce data consistency.
+                </p>
+                <h4 id="azure-storage-library">4.8.4 azure/storage-blob</h4>
+                <p>
+                    This library provides an efficient way to interact with the Azure Cloud Storage. It allows us to
+                    upload and manage photos in an Azure Container. By using cloud services we allow efficient and
+                    secure management of the application's media assets.
+                </p>
+                <h4 id="formidable-library">4.8.5 formidable</h4>
+                <p>
+                    This library provides an efficient way to handle image uploads. It excels at processing incoming
+                    <strong>multipart/form-data</strong> requests, making it a good choice for handling file
+                    uploads and form submissions.
+                </p>
+                <h4 id="nodemailer-library">4.8.6 nodemailer</h4>
+                <p>
+                    This library offers a straightforward solution for sending emails from our application. It
+                    simplifies the process
+                    of sending password reset emails to an address given by the user.
+                </p>
+                <h4 id="rss-library">4.8.7 rss</h4>
+                <p>
+                    This library provides an accurate way to generate <strong>RSS</strong> feeds. It is extremely
+                    helpful when exporting the scoreboard as a RSS feed.
+                </p>
             </section>
         </section>
         <section role="doc-chapter" id="requirments">
-            <h2>4. External Interface Requirements</h2>
+            <h2>5. External Interface Requirements</h2>
             <section id="user-interfaces">
-                <h3>4.1 User Interfaces</h3>
+                <h3>5.1 User Interfaces</h3>
                 <section id="landing-page">
-                    <h4>4.1.1 Landing Page</h4>
+                    <h4>5.1.1 Landing Page</h4>
                     <p>
-                        This page contains a navbar that is also present on every other page. 
-                        The navbar contains seven different links, each one leading to different pages. 
-                        The following pages might be accesed (in the same order) from the navbar: <cite><a href="#landing-page">Landing Page</a></cite>,
-                        <cite><a href="#courses-page">Courses Page</a></cite>, <cite><a href="#signs-categories-page">Traffic Signs Categories Page</a></cite>, 
-                        <cite><a href="#advices-page">Practical Advices Page</a></cite>, <cite><a href="#quizes-page">Quizes Page</a></cite>, <cite><a href="#scoreboard-page">Scoreboard Page</a></cite>
-                        and <cite><a href="#login-page">Login Page</a></cite>. Also, it's worth to mention that the page is perfectly responsive and the navbar transforms into an accordion. We used javascript
+                        This page contains a navbar that is also present on every other page.
+                        The navbar contains seven different links, each one leading to different pages.
+                        The following pages might be accesed (in the same order) from the navbar: <cite><a
+                                href="#landing-page">Landing Page</a></cite>,
+                        <cite><a href="#courses-page">Courses Page</a></cite>, <cite><a
+                                href="#signs-categories-page">Traffic Signs Categories Page</a></cite>,
+                        <cite><a href="#advices-page">Practical Advices Page</a></cite>, <cite><a
+                                href="#quizes-page">Quizes Page</a></cite>, <cite><a href="#scoreboard-page">Scoreboard
+                                Page</a></cite>
+                        and <cite><a href="#login-page">Login Page</a></cite>. Also, it's worth to mention that the page
+                        is perfectly responsive and the navbar transforms into an accordion. We used javascript
                         to create such effects.
                         <!-- ADD CONTENT  -->
                     </p>
@@ -453,17 +980,21 @@
                             <figcaption>Landing Page Design On Desktop</figcaption>
                         </figure>
                         <figure typeof="sa-image">
-                            <img src="images/m_landing_page.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <img src="images/m_landing_page.png" alt="Landing Page didn't load :("
+                                class="ui-mobile-img">
                             <figcaption>Landing Page Design On Mobile</figcaption>
                         </figure>
                     </div>
                 </section>
                 <section id="signup-page">
-                    <h4>4.1.2 Sign-up Page</h4>
+                    <h4>5.1.2 Sign-up Page</h4>
                     <p>
-                        This page displays a form on the screen, where the user should fill all the given fields in order to create an account on the application.
-                        After the user successfully completed all the fields, he should click the button bellow in order to create the account. If the user already has an account 
-                        he can press on the link <b class="bold-text--blue">Loghează-te</b> to be redirected on the <cite><a href="#login-page">Login Page</a></cite>.
+                        This page displays a form on the screen, where the user should fill all the given fields in
+                        order to create an account on the application.
+                        After the user successfully completed all the fields, he should click the button bellow in order
+                        to create the account. If the user already has an account
+                        he can press on the link <b class="bold-text--blue">Loghează-te</b> to be redirected on the
+                        <cite><a href="#login-page">Login Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -473,12 +1004,17 @@
                     </div>
                 </section>
                 <section id="login-page">
-                    <h4>4.1.3 Login Page</h4>
+                    <h4>5.1.3 Login Page</h4>
                     <p>
-                        This page displays a form on the screen, where the user should fill the username and password fields.
-                        After the user successfully completed the fields with the correct information, he will enter the application by clicking on the button below. A logged in user will have access
-                        to the quizes page and his progress will be displayed on the <cite><a href="#scoreboard-page">Scoreboard Page</a></cite>. 
-                        If the user doesn't have an account, he can press on the link <b class="bold-text--blue">Înregistrează-te</b> to be redirected on the <cite><a href="#signup-page">Sign-up Page</a></cite>.
+                        This page displays a form on the screen, where the user should fill the username and password
+                        fields.
+                        After the user successfully completed the fields with the correct information, he will enter the
+                        application by clicking on the button below. A logged in user will have access
+                        to the quizes page and his progress will be displayed on the <cite><a
+                                href="#scoreboard-page">Scoreboard Page</a></cite>.
+                        If the user doesn't have an account, he can press on the link <b
+                            class="bold-text--blue">Înregistrează-te</b> to be redirected on the <cite><a
+                                href="#signup-page">Sign-up Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -492,11 +1028,16 @@
                     </div>
                 </section>
                 <section id="courses-page">
-                    <h4>4.1.4 Courses Page</h4>
+                    <h4>5.1.4 Courses Page</h4>
                     <p>
-                        This page displays three cards on the screen. Each card corresponds to a course that has multiple chapters and detailed explanations for each chapter.
-                        The course-themes are the following: <span class="course--green">Legislation</span>, <span class="course--green">Mechanics</span> and <span class="course--green">First Aid</span> in the exact 
-                        same order. A hover effect was added for each card. If the user clicks on a card, he will be redirected to a <cite><a href="#course-toc-page">Course Table Of Contents Page</a></cite>, specific 
+                        This page displays three cards on the screen. Each card corresponds to a course that has
+                        multiple chapters and detailed explanations for each chapter.
+                        The course-themes are the following: <span class="course--green">Legislation</span>, <span
+                            class="course--green">Mechanics</span> and <span class="course--green">First Aid</span> in
+                        the exact
+                        same order. A hover effect was added for each card. If the user clicks on a card, he will be
+                        redirected to a <cite><a href="#course-toc-page">Course Table Of Contents Page</a></cite>,
+                        specific
                         for each type of course.
                     </p>
                     <div class="figure-wrapper">
@@ -505,72 +1046,89 @@
                             <figcaption>Courses Page Design On Desktop</figcaption>
                         </figure>
                         <figure typeof="sa-image">
-                            <img src="images/m_courses_page.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <img src="images/m_courses_page.png" alt="Landing Page didn't load :("
+                                class="ui-mobile-img">
                             <figcaption>Courses Page Design On Mobile</figcaption>
                         </figure>
                     </div>
                 </section>
                 <section id="course-toc-page">
-                    <h4>4.1.5 Course Table Of Contents</h4>
+                    <h4>5.1.5 Course Table Of Contents</h4>
                     <p>
-                        This page displays a list of available chapters for a specific course. Each chapter has it's own box on the screen and the user can click on one 
-                        of them in order to choose a specific chapter. A hover effect was added for each box. All the boxes on the page are generated using javascript. If the user clicks on the box, 
-                        he will further be redirected to the <cite><a href="#chapter-presentation">Chapter Presentation Page</a></cite>. 
+                        This page displays a list of available chapters for a specific course. Each chapter has it's own
+                        box on the screen and the user can click on one
+                        of them in order to choose a specific chapter. A hover effect was added for each box. All the
+                        boxes on the page are generated using javascript. If the user clicks on the box,
+                        he will further be redirected to the <cite><a href="#chapter-presentation">Chapter Presentation
+                                Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
-                            <img src="images/courses_toc_page.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <img src="images/courses_toc_page.png" alt="Landing Page didn't load :("
+                                class="ui-desktop-img">
                             <figcaption>Course Table Of Contents Page Design On Desktop</figcaption>
                         </figure>
                         <figure typeof="sa-image">
-                            <img src="images/m_courses_toc_page.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <img src="images/m_courses_toc_page.png" alt="Landing Page didn't load :("
+                                class="ui-mobile-img">
                             <figcaption>Course Table Of Contents Page Design On Mobile</figcaption>
                         </figure>
                     </div>
                 </section>
-                
+
                 <section id="chapter-presentation">
-                    <h4>4.1.6 Chapter Presentation Page</h4>
+                    <h4>5.1.6 Chapter Presentation Page</h4>
                     <p>
                         This page displays specific information about a chosen course chapter.
-                        Several elements might be displayed on this page such as images, styled headings, block paragraphs and bolded text.
-                        On the bottom of the page there is a footer with three buttons. The leftmost and rightmost buttons redirects the user to the 
-                        previous and next chapters. The middle button redirects the user back to the <cite><a href="#course-toc-page">Course Table Of Contents Page</a></cite>.
+                        Several elements might be displayed on this page such as images, styled headings, block
+                        paragraphs and bolded text.
+                        On the bottom of the page there is a footer with three buttons. The leftmost and rightmost
+                        buttons redirects the user to the
+                        previous and next chapters. The middle button redirects the user back to the <cite><a
+                                href="#course-toc-page">Course Table Of Contents Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
-                            <img src="images/course_chapter.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <img src="images/course_chapter.png" alt="Landing Page didn't load :("
+                                class="ui-desktop-img">
                             <figcaption>Chapter Presentation Page Design On Desktop</figcaption>
                         </figure>
                         <figure typeof="sa-image">
-                            <img src="images/m_course_chapter.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <img src="images/m_course_chapter.png" alt="Landing Page didn't load :("
+                                class="ui-mobile-img">
                             <figcaption>Chapter Presentation Page Design On Mobile</figcaption>
                         </figure>
                     </div>
                 </section>
                 <section id="signs-categories-page">
-                    <h4>4.1.7 Traffic Signs Categories Page</h4>
+                    <h4>5.1.7 Traffic Signs Categories Page</h4>
                     <p>
-                        This page displays a multitude of cards on the screen. Each card corresponds to a specific category of traffic signs. A hover effect was added for 
-                        each card. When the user clicks on a card he is redirected to the <cite><a href="#signs-page">Traffic Signs Page</a></cite>.
+                        This page displays a multitude of cards on the screen. Each card corresponds to a specific
+                        category of traffic signs. A hover effect was added for
+                        each card. When the user clicks on a card he is redirected to the <cite><a
+                                href="#signs-page">Traffic Signs Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
-                            <img src="images/signs_categories.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <img src="images/signs_categories.png" alt="Landing Page didn't load :("
+                                class="ui-desktop-img">
                             <figcaption>Traffic Signs Categories Page Design On Desktop</figcaption>
                         </figure>
                         <figure typeof="sa-image">
-                            <img src="images/m_signs_categories.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <img src="images/m_signs_categories.png" alt="Landing Page didn't load :("
+                                class="ui-mobile-img">
                             <figcaption>Traffic Signs Categories Page Design On Mobile</figcaption>
                         </figure>
                     </div>
                 </section>
 
                 <section id="signs-page">
-                    <h4>4.1.8 Traffic Signs Page</h4>
+                    <h4>5.1.8 Traffic Signs Page</h4>
                     <p>
-                        This page displays a multitude of cards on the screen. Each card corresponds to a specific traffic sign. A hover effect was added for 
-                        each card. When the user clicks on a card he is redirected to the <cite><a href="#sign-info-page">Traffic Sign Presentation Page</a></cite>.
+                        This page displays a multitude of cards on the screen. Each card corresponds to a specific
+                        traffic sign. A hover effect was added for
+                        each card. When the user clicks on a card he is redirected to the <cite><a
+                                href="#sign-info-page">Traffic Sign Presentation Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -583,14 +1141,18 @@
                         </figure>
                     </div>
                 </section>
-                
+
                 <section id="sign-info-page">
-                    <h4>4.1.9 Traffic Sign Presentation Page</h4>
+                    <h4>5.1.9 Traffic Sign Presentation Page</h4>
                     <p>
-                        This page displays specific information about a chosen traffic sign displayed as a card. Important details about the sign such as rules, variations and real world examples are highlighted.
-                        The text on the card is scrollable, while the image always remains on top. There are three buttons at the buttom of the card. 
-                        The leftmost and rightmost buttons redirects the user to the previous and next traffic signs.  
-                        The middle button redirects the user back to the <cite><a href="#signs-page">Traffic Signs Page</a></cite>.
+                        This page displays specific information about a chosen traffic sign displayed as a card.
+                        Important details about the sign such as rules, variations and real world examples are
+                        highlighted.
+                        The text on the card is scrollable, while the image always remains on top. There are three
+                        buttons at the buttom of the card.
+                        The leftmost and rightmost buttons redirects the user to the previous and next traffic signs.
+                        The middle button redirects the user back to the <cite><a href="#signs-page">Traffic Signs
+                                Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -604,12 +1166,14 @@
                     </div>
                 </section>
 
-                
+
                 <section id="advices-page">
-                    <h4>4.1.10 Practical Advices Page</h4>
+                    <h4>5.1.10 Practical Advices Page</h4>
                     <p>
-                        This page displays a multitude of cards on the screen. Each card corresponds to a different practical advice in traffic. A hover effect was added for 
-                        each card. When the user clicks on a card he is redirected to the <cite><a href="#advice-presentation">Advice Presentation Page</a></cite>.
+                        This page displays a multitude of cards on the screen. Each card corresponds to a different
+                        practical advice in traffic. A hover effect was added for
+                        each card. When the user clicks on a card he is redirected to the <cite><a
+                                href="#advice-presentation">Advice Presentation Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -623,14 +1187,16 @@
                     </div>
                 </section>
 
-                
+
                 <section id="advice-presentation">
-                    <h4>4.1.11 Advice Presentation Page</h4>
+                    <h4>5.1.11 Advice Presentation Page</h4>
                     <p>
                         This page displays specific information about a chosen practical advice displayed as a card.
-                        The text on the card is scrollable, while the image always remains on top. There are three buttons at the buttom of the card. 
-                        The leftmost and rightmost buttons redirects the user to the previous and next traffic signs.  
-                        The middle button redirects the user back to the <cite><a href="#advices-page">Practical Advices Page</a></cite>.
+                        The text on the card is scrollable, while the image always remains on top. There are three
+                        buttons at the buttom of the card.
+                        The leftmost and rightmost buttons redirects the user to the previous and next traffic signs.
+                        The middle button redirects the user back to the <cite><a href="#advices-page">Practical Advices
+                                Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -643,12 +1209,14 @@
                         </figure>
                     </div>
                 </section>
-         
+
                 <section id="quizes-page">
-                    <h4>4.1.12 Quizes Page</h4>
+                    <h4>5.1.12 Quizes Page</h4>
                     <p>
-                        This page displays a multitude of cards on the screen. Each card corresponds to a specific quiz. The title of the quiz and the number of points obtained by the 
-                        user are displayed on the card. When the user clicks on a card he is redirected to the <cite><a href="#quiz-question-page">Quiz Question Page</a></cite>.
+                        This page displays a multitude of cards on the screen. Each card corresponds to a specific quiz.
+                        The title of the quiz and the number of points obtained by the
+                        user are displayed on the card. When the user clicks on a card he is redirected to the <cite><a
+                                href="#quiz-question-page">Quiz Question Page</a></cite>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -662,12 +1230,13 @@
                     </div>
                 </section>
                 <section id="quiz-question-page">
-                    <h4>4.1.13 Quiz Question Page</h4>
+                    <h4>5.1.13 Quiz Question Page</h4>
                     <p>
-                        This page displays a question from a specific quiz. 
+                        This page displays a question from a specific quiz.
                         Each question is numbered and has three answer options.
-                        Optionally, a question might contain images. 
-                        In order to submit the answer, the user should check the boxes corresponding to the options he considers to be correct and then he should press the 
+                        Optionally, a question might contain images.
+                        In order to submit the answer, the user should check the boxes corresponding to the options he
+                        considers to be correct and then he should press the
                         <b class="bold-text--blue">submit</b> button.
                     </p>
                     <div class="figure-wrapper">
@@ -682,9 +1251,10 @@
                     </div>
                 </section>
                 <section id="scoreboard-page">
-                    <h4>4.1.14 Scoreboard Page</h4>
+                    <h4>5.1.14 Scoreboard Page</h4>
                     <p>
-                        The scoreboard page displayed all the users on the screen ordered decreasingly by their total score.  
+                        The scoreboard page displayed all the users on the screen ordered decreasingly by their total
+                        score.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -703,4 +1273,5 @@
 
     <footer></footer>
 </body>
+
 </html>
