@@ -12,17 +12,17 @@ function addSingleAdvicePopUpHandler() {
         <input type="file" id="form_img" name="form_img" title = "Incărcați poza sfatului" accept="image/*"/>
         
         <div style="flex-direction: row;">
-        <input type="text" id="form_answer_1" name="form_answer_1" placeholder="Answer1"></input>
+        <input type="text" id="form_answer_1" name="form_answer_1" placeholder="Răspuns 1"></input>
         <input type="checkbox" id="answer1" name="answer1" value="1">
         </div>
         
         <div style="flex-direction: row;">
-        <input type="text" id="form_answer_2" name="form_answer_2" placeholder="Answer2"></input>
+        <input type="text" id="form_answer_2" name="form_answer_2" placeholder="Răspuns 2"></input>
         <input type="checkbox" id="answer2" name="answer2" value="2">
         </div>
         
         <div style="flex-direction: row;">
-            <input type="text" id="form_answer_3" name="form_answer_3" placeholder="Answer3"></input>
+            <input type="text" id="form_answer_3" name="form_answer_3" placeholder="Răspuns 3"></input>
             <input type="checkbox" id="answer3" name="answer3" value="3">
         </div>
     `;
@@ -35,11 +35,7 @@ function addSingleAdvicePopUpHandler() {
 
 function addAdminButton() {
     const main = document.getElementById("main");
-
-    // Adding add button for admin
     addAdminSpecificButton(main, "Adaugă Întrebare", "https://fiiwebapp.blob.core.windows.net/rot-web/admin_add_img.png", "modal-open", addSingleAdvicePopUpHandler);
-
-    // Asociate modal event handlers for each button that will pop up a modal window
     addModalBundles();
 }
 

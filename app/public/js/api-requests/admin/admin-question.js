@@ -10,13 +10,13 @@ export function submitAddQuestion(event) {
     const isValid3 = document.getElementById("answer3").checked;
 
     if (!question) {
-        addErrorMessageElement("The title field is required");
+        addErrorMessageElement("Întrebarea nu trebuie să fie nulă.");
         return;
     }
 
 
     if(!answer1 || !answer2 || !answer3) {
-        addErrorMessageElement("Answers are required");
+        addErrorMessageElement("Toate variantele de răspuns trebuie completate.");
         return;
     }
     console.log(question);

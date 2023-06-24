@@ -58,7 +58,7 @@ const saveTest = async (req) => {
 // READ
 const _getTests = async () => {
   try {
-    const tests = await Test.find();
+    const tests = (await Test.find().sort({testId: 1}));
     return tests;
   } catch (error) {
     console.error(error);
