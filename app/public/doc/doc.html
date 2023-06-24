@@ -154,6 +154,7 @@
                                 <li class="nested"><a href="#quizes-page">Quizes Page</a></li>
                                 <li class="nested"><a href="#quiz-question-page">Quiz Question Page</a></li>
                                 <li class="nested"><a href="#scoreboard-page">Scoreboard Page</a></li>
+                                <li class="nested"><a href="#help-page">Help Page</a></li>
                             </ol>
                         </li>
                     </ol>
@@ -641,7 +642,7 @@
                                 <div class="figure-wrapper">
                                     <figure typeof="sa-image">
                                         <img src="images/controller-func.jpg"
-                                            alt="Controller example image didn't load :(" class="wide-img">
+                                            alt="Controller example image didn't load :(" class="half-img">
                                         <figcaption>An example of a controller method located in the
                                             <strong>advice-controller</strong> folder
                                         </figcaption>
@@ -654,8 +655,8 @@
                                 interact with the models to retrieve or modify data.
                                 <div class="figure-wrapper">
                                     <figure typeof="sa-image">
-                                        <img src="images/service-func.jpg" alt="Controller example image didn't load :("
-                                            class="wide-img">
+                                        <img src="images/service-func.jpg" alt="Service example image didn't load :("
+                                            class="half-img">
                                         <figcaption>An example of a service method located in the
                                             <strong>advice-service</strong> folder
                                         </figcaption>
@@ -673,9 +674,64 @@
                                 <div class="figure-wrapper">
                                     <figure typeof="sa-image">
                                         <img src="images/mongoose-model.jpg" alt="Model example image didn't load :("
-                                            class="wide-img">
+                                            class="half-img">
                                         <figcaption>An example of a model class located in the
                                             <strong>advice-model</strong> folder
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                Also, in order to easily define <strong>routes</strong>, we have extended the
+                                <strong>Server</strong>
+                                class provided by the <strong>http</strong> node.js module. We mapped each method and
+                                route to a handler,
+                                and created a specialized method for parsing the requested route in order to extract the
+                                <strong>path parameters</strong>.
+                                <div class="figure-wrapper">
+                                    <figure typeof="sa-image">
+                                        <img src="images/server-manager.jpg"
+                                            alt="ServerManager example image didn't load :(" class="wide-img">
+                                        <figcaption>
+                                            The <strong>ServerManager</strong> class that extends the http Server class
+                                        </figcaption>
+                                    </figure>
+                                    <figure typeof="sa-image">
+                                        <img src="images/match-route.jpg" alt="index.js example image didn't load :("
+                                            class="wide-img">
+                                        <figcaption>
+                                            A method in <strong>ServerManager</strong> that splits the url and extracts
+                                            path parameters
+                                        </figcaption>
+                                    </figure>
+                                    <figure typeof="sa-image">
+                                        <img src="images/handler-definition.jpg"
+                                            alt="Model example image didn't load :(" class="wide-img">
+                                        <figcaption>
+                                            How are handlers defined for each route in <strong>index.js</strong>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                In order to provide a standard way of returning data from the server, we have defined
+                                two classes,
+                                <strong>Status</strong> and <strong>Respone</strong>. Each time a response is being
+                                returned from the server,
+                                new instances of these classes should be created.
+                                <div class="figure-wrapper">
+                                    <figure typeof="sa-image">
+                                        <img src="images/status-class.jpg"
+                                            alt="status class image didn't load :(" class="wide-img">
+                                        <figcaption>
+                                            The <strong>Status</strong> class
+                                        </figcaption>
+                                    </figure>
+                                    <figure typeof="sa-image">
+                                        <img src="images/response-class.jpg" alt="response class image didn't load :("
+                                            class="wide-img">
+                                        <figcaption>
+                                            The <strong>Response</strong> class
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -738,6 +794,7 @@
                             alt="Components Diagram">
             </section>
         </section>
+        <hr>
         <section role="system-features" id="system-features">
             <h2>4. System features</h2>
             <section role="module-distribution">
@@ -998,6 +1055,7 @@
                 </p>
             </section>
         </section>
+        <hr>
         <section role="doc-chapter" id="requirments">
             <h2>5. External Interface Requirements</h2>
             <section id="user-interfaces">

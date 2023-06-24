@@ -143,3 +143,7 @@ footer{
 .wide-img {
     width: 100%;
 }
+
+.half-img {
+    width: 65%;
+}
