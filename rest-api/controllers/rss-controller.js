@@ -6,4 +6,4 @@ async function getRssText(req, res, params) {
     sendTextResponse(res, statusCode, response.data);
 }
 
-module.exports = {getRssText}
+module.exports = { getRssText }

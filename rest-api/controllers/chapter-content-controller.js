@@ -6,40 +6,40 @@ const { getBodyFromRequest } = require('../utils/request-utils');
 
 
 async function getChapterContentByChapterId(req, res, params) {
-    const {statusCode, response} = await findChapterContentByChapterId(params.chapter_id);
+    const { statusCode, response } = await findChapterContentByChapterId(params.chapter_id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
 async function addToChapterContentController(req, res, params) {
     try {
-        const form = new formidable.IncomingForm({  uploadDir: './uploads' });
-    
+        const form = new formidable.IncomingForm({ uploadDir: './uploads' });
+
         form.parse(req, async (err, fields, files) => {
             if (err) {
-                    sendJsonResponse(res, 400, JSON.stringify({
+                sendJsonResponse(res, 400, JSON.stringify({
                     success: false,
                     data: null,
                     message: 'Error uploading file'
                 }));
                 return;
             }
-    
+
             const uploadedFile = files.file;
             let statusCode;
             let response;
-    
+
             if (uploadedFile && fields.elementType === 'image') {
                 const status = await uploadFile(uploadedFile);
                 response = status.response;
                 statusCode = status.statusCode;
-          
-                if(statusCode !== 200){
+
+                if (statusCode !== 200) {
                     sendJsonResponse(res, statusCode, JSON.stringify(response));
                     return;
                 }
             }
-            else{
-                response = {data: fields.data};
+            else {
+                response = { data: fields.data };
                 statusCode = 200;
             }
 
@@ -60,22 +60,22 @@ async function addToChapterContentController(req, res, params) {
 }
 
 async function clearChapterContentController(req, res, params) {
-    const {statusCode, response} = await clearChapterContent(params.chapter_id);
+    const { statusCode, response } = await clearChapterContent(params.chapter_id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
 async function deleteChapterContent(req, res, params) {
-    const {statusCode, response} = await deleteChapterContentById(params.id);
+    const { statusCode, response } = await deleteChapterContentById(params.id);
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 
 async function getChapterContentByChapterIdInCSV(req, res, params) {
-    const {statusCode, response} = await findChapterContentByChapterIdInCSV(params.chapter_id);
+    const { statusCode, response } = await findChapterContentByChapterIdInCSV(params.chapter_id);
     sendCSVResponse(res, statusCode, response.data);
 }
 
 async function getChapterContentByChapterIdInJSON(req, res, params) {
-    const {statusCode, response} = await findChapterContentByChapterId(params.chapter_id);
+    const { statusCode, response } = await findChapterContentByChapterId(params.chapter_id);
     content = response.data.content.map(element => {
         return { elementType: element.elementType, data: element.data, tags: element.tags }
     });
@@ -85,7 +85,7 @@ async function getChapterContentByChapterIdInJSON(req, res, params) {
 
 async function updateChapterContentController(req, res, params) {
     const body = await getBodyFromRequest(req);
-    const {statusCode, response} = await updateChapterContent(params.chapter_id, JSON.parse(body));
+    const { statusCode, response } = await updateChapterContent(params.chapter_id, JSON.parse(body));
     sendJsonResponse(res, statusCode, JSON.stringify(response));
 }
 

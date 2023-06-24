@@ -31,9 +31,9 @@ const saveTestByQuestions = async (questions) => {
 // CREATE
 const saveTest = async (req) => {
   try {
-    const  questions  = JSON.parse(await getBodyFromRequest(req))?.questions;
+    const questions = JSON.parse(await getBodyFromRequest(req))?.questions;
     console.log(questions);
-    if(questions == null || questions == undefined || questions.length < 1){
+    if (questions == null || questions == undefined || questions.length < 1) {
       return new Status(404, new Response(false, null, "Questions array must be defined."));
     }
     const result = await Test.findOne({}, 'testId')
@@ -58,7 +58,7 @@ const saveTest = async (req) => {
 // READ
 const _getTests = async () => {
   try {
-    const tests = (await Test.find().sort({testId: 1}));
+    const tests = (await Test.find().sort({ testId: 1 }));
     return tests;
   } catch (error) {
     console.error(error);
@@ -190,17 +190,17 @@ const _deleteTest = async (params) => {
 
 const generatorTeste = async () => {
   try {
-      const result = await Question.aggregate([
-          { $sample: { size: 26 } },
-          { $project: { _id: 1 } }
-      ]);
+    const result = await Question.aggregate([
+      { $sample: { size: 26 } },
+      { $project: { _id: 1 } }
+    ]);
 
-      const randomQuestionIds = result.map(question => question._id.toString());
-      console.log('Random Question IDs:', randomQuestionIds);
-      return randomQuestionIds;
+    const randomQuestionIds = result.map(question => question._id.toString());
+    console.log('Random Question IDs:', randomQuestionIds);
+    return randomQuestionIds;
   } catch (error) {
-      console.error('Error retrieving random question IDs:', error);
-      throw error;
+    console.error('Error retrieving random question IDs:', error);
+    throw error;
   }
 }
 const addRandomTest = async () => {
@@ -210,7 +210,7 @@ const addRandomTest = async () => {
 
 const generateNrTests = async (n) => {
   for (let i = 1; i <= n; ++i) {
-      await addRandomTest();
+    await addRandomTest();
   }
 }
 module.exports = { saveTest, getTests, getTestById, getTestByIndex, saveTestByQuestions, updateTest, _deleteTest };

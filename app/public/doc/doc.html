@@ -594,7 +594,6 @@
             <section id="implementation-constraints">
                 <h3>2.5 Design and Implementation Constraints</h3>
                 <p>
-
                     The development of the Romanian Traffic Tutor app will have some constraints regarding the use of
                     tools and frameworks.
                     The grading policy prohibits the use of frontend or backend frameworks, and any tools used must have
@@ -603,34 +602,8 @@
                     the interface,
                     without using any frontend or backend frameworks. The team will also use Node.js for the backend,
                     but without the use of web server frameworks like Express.
-
-                    <!-- Describe any items or issues that will limit the options available to the developers. 
-                    These might include: corporate or regulatory policies; hardware limitations (timing requirements, 
-                    memory requirements); interfaces to other applications; specific technologies, tools, and databases 
-                    to be used; parallel operations; language requirements; communications protocols; security 
-                    considerations; design conventions or programming standards (for example, if the customer’s 
-                    organization will be responsible for maintaining the delivered software). -->
                 </p>
             </section>
-            <!-- <section id="user-documentation">
-                <h3>2.6 User Documentation</h3>
-                <p>
-                    List the user documentation components (such as user manuals, on-line help, and tutorials) that will 
-                    be delivered along with the software. Identify any known user documentation delivery formats or 
-                    standards.
-                </p>
-            </section>
-            <section id="assumptions-dependencies">
-                <h3>2.7 Assumptions and Dependencies</h3>
-                <p>
-                    List any assumed factors (as opposed to known facts) that could affect the requirements 
-                    stated in the SRS. These could include third-party or commercial components that you plan to use, 
-                    issues around the development or operating environment, or constraints. The project could be affected 
-                    if these assumptions are incorrect, are not shared, or change. Also identify any dependencies the project 
-                    has on external factors, such as software components that you intend to reuse from another project, 
-                    unless they are already documented elsewhere  (for example, in the vision and scope document or the project plan). 
-                </p>
-            </section> -->
         </section>
         <hr>
         <section role="application-architecture" id="architecture">
@@ -654,6 +627,60 @@
                         of the operation, a data attribute containing the requested data or relevant information, and a
                         message attribute providing additional details or error messages. This structured format ensures
                         consistency and ease of parsing on the client-side.
+                        <br>
+                        <br>
+                        In the development proccess of the REST-API server, we have divided the code into three distinct
+                        sections: <strong>controllers</strong>, <strong>services</strong>, and <strong>models</strong>.
+                        <ul>
+                            <li>
+                                The <strong>controllers</strong> act as intermediaries between the client and other
+                                components of the application. Each endpoint of the REST API is associated with a
+                                specific controller method responsible for handling the corresponding request.
+                                In other words, the controllers extract the necessary data from the request, and then
+                                invoke the appropriate service methods.
+                                <div class="figure-wrapper">
+                                    <figure typeof="sa-image">
+                                        <img src="images/controller-func.jpg"
+                                            alt="Controller example image didn't load :(" class="wide-img">
+                                        <figcaption>An example of a controller method located in the
+                                            <strong>advice-controller</strong> folder
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                The <strong>services</strong> are a bridge between the controllers and the
+                                underlying data models. They handle the complex operations, perform data validation, and
+                                interact with the models to retrieve or modify data.
+                                <div class="figure-wrapper">
+                                    <figure typeof="sa-image">
+                                        <img src="images/service-func.jpg" alt="Controller example image didn't load :("
+                                            class="wide-img">
+                                        <figcaption>An example of a service method located in the
+                                            <strong>advice-service</strong> folder
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </li>
+                            <li>
+                                The <strong>models</strong> represent the underlying data structure and define how the
+                                data is stored and
+                                accessed in the application. With the help of <strong>Mongoose</strong>, we represent
+                                our data models as
+                                objects. Each model is associated with a specific collection in the database and several
+                                <strong>MongoDB</strong> queries
+                                might be performed.
+                                <div class="figure-wrapper">
+                                    <figure typeof="sa-image">
+                                        <img src="images/mongoose-model.jpg" alt="Model example image didn't load :("
+                                            class="wide-img">
+                                        <figcaption>An example of a model class located in the
+                                            <strong>advice-model</strong> folder
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </li>
+                        </ul>
                     </li>
                     <br>
                     <li>
@@ -679,6 +706,19 @@
                         web page's content, ensuring a seamless and interactive user experience. This Client-Centric
                         approach enables efficient rendering of content on the client-side, reducing server load and
                         providing a responsive user interface.
+                        <div class="figure-wrapper">
+                            <figure typeof="sa-image">
+                                <img src="images/fetch.jpg" alt="Fetch example image didn't load :(" class="fetch-img">
+                                <figcaption>An example of Fetch Api usage (DELETE method) from the client-side web
+                                    application</figcaption>
+                            </figure>
+                            <figure typeof="sa-image">
+                                <img src="images/fetch_get.jpg" alt="Fetch example image didn't load :("
+                                    class="fetch-img">
+                                <figcaption>An example of Fetch Api usage (GET method) from the client-side web
+                                    application</figcaption>
+                            </figure>
+                        </div>
                     </li>
                     <p>
                         By combining the server-side REST-API implementation with the client-side Web Application built
@@ -1115,7 +1155,8 @@
                         each card. When the user clicks on a card he is redirected to the <cite><a
                                 href="#signs-page">Traffic Signs Page</a></cite>.
                         On the bottom of the page there are two links. By clicking these links, the logged user can
-                        download the traffic sign categories information as <strong>JSON</strong> or <strong>CSV</strong>.
+                        download the traffic sign categories information as <strong>JSON</strong> or
+                        <strong>CSV</strong>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -1139,7 +1180,8 @@
                         each card. When the user clicks on a card he is redirected to the <cite><a
                                 href="#sign-info-page">Traffic Sign Presentation Page</a></cite>.
                         On the bottom of the page there are two links. By clicking these links, the logged user can
-                        download the traffic sign categories information as <strong>JSON</strong> or <strong>CSV</strong>.
+                        download the traffic sign information for the current category as <strong>JSON</strong> or
+                        <strong>CSV</strong>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -1185,6 +1227,9 @@
                         practical advice in traffic. A hover effect was added for
                         each card. When the user clicks on a card he is redirected to the <cite><a
                                 href="#advice-presentation">Advice Presentation Page</a></cite>.
+                        On the bottom of the page there are two links. By clicking these links, the logged user can
+                        download the practical advice information as <strong>JSON</strong> or
+                        <strong>CSV</strong>.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -1224,10 +1269,16 @@
                 <section id="quizes-page">
                     <h4>5.1.12 Quizes Page</h4>
                     <p>
-                        This page displays a multitude of cards on the screen. Each card corresponds to a specific quiz.
+                        This page displays a multitude of cards on the screen. Each card corresponds to a specific
+                        exercise quiz.
                         The title of the quiz and the number of points obtained by the
                         user are displayed on the card. When the user clicks on a card he is redirected to the <cite><a
                                 href="#quiz-question-page">Quiz Question Page</a></cite>.
+                        On the bottom of the Quiz Page there is a special button. If the user presses this button, a
+                        quiz will be randomly
+                        generated, and the result he will obtain on this quiz will be counted for the scoreboard. Only
+                        generated quizes can influence
+                        the user's score.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -1266,8 +1317,11 @@
                 <section id="scoreboard-page">
                     <h4>5.1.14 Scoreboard Page</h4>
                     <p>
-                        The scoreboard page displayed all the users on the screen ordered decreasingly by their total
-                        score.
+                        The scoreboard page displays the top 10 users with the highest total score. On the bottom of the
+                        page, there is a special link the user can click, in order to download the scoreboard as a
+                        <strong>RSS</strong>
+                        feed. The rss feed has a path parameter, which can be used to specify the number of users to be
+                        displayed in the <strong>RSS</strong> feed.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
@@ -1282,19 +1336,18 @@
                 </section>
 
                 <section id="help-page">
-                    <h4>5.1.14 Help Page</h4>
+                    <h4>5.1.15 Help Page</h4>
                     <p>
-                        The scoreboard page displayed all the users on the screen ordered decreasingly by their total
-                        score.
+                        The help page displays useful information about the functionalities of the application.
                     </p>
                     <div class="figure-wrapper">
                         <figure typeof="sa-image">
-                            <img src="images/scoreboard.png" alt="Landing Page didn't load :(" class="ui-desktop-img">
-                            <figcaption>Scoreboard Page Design on Desktop</figcaption>
+                            <img src="images/help.jpg" alt="Landing Page didn't load :(" class="ui-desktop-img">
+                            <figcaption>Help Page Design on Desktop</figcaption>
                         </figure>
                         <figure typeof="sa-image">
-                            <img src="images/m_scoreboard.png" alt="Landing Page didn't load :(" class="ui-mobile-img">
-                            <figcaption>Scoreboard Page Design on Mobile</figcaption>
+                            <img src="images/m_help.jpg" alt="Landing Page didn't load :(" class="ui-mobile-img">
+                            <figcaption>Help Page Design on Mobile</figcaption>
                         </figure>
                     </div>
                 </section>
