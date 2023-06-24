@@ -1469,7 +1469,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportAdvices
+      operationId: exportAdvicesCSV
       responses:
         '200':
           description: OK
@@ -1488,7 +1488,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportAdvices
+      operationId: exportAdvicesJSON
       responses:
         '200':
           description: OK
@@ -1563,7 +1563,8 @@ components:
         title:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
 
     Sign:
       type: object
@@ -1587,7 +1588,8 @@ components:
         title:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
         description:
           type: string
         parentId:
@@ -1625,7 +1627,8 @@ components:
         title:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
         description:
           type: string
 
@@ -1717,9 +1720,11 @@ components:
         data:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
         tags:
-          array:
+          type: array
+          items:
             type: string
     
     ChapterContent:
@@ -1730,21 +1735,9 @@ components:
         parentId:
           type: string
         content:
-          array:
-            type: object
-            items:
-              $ref: '#/components/schemas/Content'
-    
-    ChapterContentRequest:
-      type: object
-      properties:
-        parentId:
-          type: string
-        content:
-          array:
-            type: object
-            items:
-              $ref: '#/components/schemas/Content'
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
     
     ChapterContentResponse:
       type: object 
@@ -1762,10 +1755,12 @@ components:
       type: object 
       properties:
         success:
-         type: boolean
-         default: false
+          type: boolean
+          default: false
         data:
           type: array
+          items:
+            type: object
           default: null
         message:
           type: string
@@ -1890,7 +1885,8 @@ components:
         question:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
         answers:
           type: array
           items:
@@ -1903,18 +1899,6 @@ components:
           type: number
         score:
           type: number
-
-    TestScoreResponse:
-      type: object 
-      properties:
-        success:
-         type: boolean
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestScore'
-        message:
-          type: string
 
     TestScore:
       type: object
