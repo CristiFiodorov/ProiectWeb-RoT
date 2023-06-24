@@ -51,6 +51,11 @@ class ServerManager extends Server {
 
         const handlers = this.routes.get(method);
 
+        if(!handlers) {
+            sendTextResponse(res, 405, `Method ${method} not allowed`);
+            return;
+        }
+
         let foundRoute = false;
         handlers.forEach((handler, route) => {
             const params = matchRoute(route, reqUrl);
