@@ -98,7 +98,7 @@ async function createQuestion(questionIndex, questionArray) {
         ${img}
         <form id="form" class="question__form" action="">
         </form>
-        <button id="nextButton" class="question__btn"> Submit </button>
+        <button id="nextButton" class="question__btn"> Trimite răspuns </button>
         `;
 
         let letter = 'A';
@@ -143,6 +143,7 @@ function validateQuestion(answers, questionIndex, questionArray) {
     const clonedElement = buttonElement.cloneNode(true);
 
     buttonElement.parentNode.replaceChild(clonedElement, buttonElement);
+    clonedElement.innerHTML = "Următoarea întrebare";
     clonedElement.addEventListener("click", () => {
         console.log("NOU");
         createQuestion(questionIndex, questionArray);
