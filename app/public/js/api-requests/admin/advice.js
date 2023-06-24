@@ -5,17 +5,22 @@ function submitAddSingleAdviceHandler(event) {
     const description = document.getElementById("form_description").value;
 
     if (!title) {
-        addErrorMessageElement("The title field is required");
+        addErrorMessageElement("Titlul este obligatoriu");
         return;
     }
 
     if (!img) {
-        addErrorMessageElement("Please upload an image");
+        addErrorMessageElement("Încărcarea imaginii este obligatorie");
         return;
     }
 
     if(!description) {
-        addErrorMessageElement("The description field is required");
+        addErrorMessageElement("Descrierea este obligatorie");
+        return;
+    }
+
+    if(description.includes('<script>') || title.includes('<script>')) {
+        addErrorMessageElement("Nu sunt permise scripturi!");
         return;
     }
 

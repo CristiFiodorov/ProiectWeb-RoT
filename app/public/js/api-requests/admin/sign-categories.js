@@ -4,12 +4,17 @@ function submitAddSignCategoryHandler(event) {
     const img = document.getElementById("form_img").files[0];
 
     if (!title) {
-        addErrorMessageElement("The title field is required");
+        addErrorMessageElement("Titlul este obligatoriu!");
         return;
     }
 
     if (!img) {
-        addErrorMessageElement("Please upload an image");
+        addErrorMessageElement("Încărcarea imaginii este obligatorie!");
+        return;
+    }
+
+    if(title.includes('<script>')) {
+        addErrorMessageElement("Nu sunt permise scripturi!");
         return;
     }
 

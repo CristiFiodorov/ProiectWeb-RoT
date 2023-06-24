@@ -22,9 +22,15 @@ function submitDeleteSignHandler(event, chapterId) {
 function addParagraphDataToFormData(formData) {
     const description = document.getElementById('form_description').value;
     if(!description) {
-        addErrorMessageElement("Paragraful nu poate fi gol");
+        addErrorMessageElement("Paragraful nu poate fi gol!");
         return false;
     }
+    
+    if(description.includes('<script>')) {
+        addErrorMessageElement("Nu sunt permise scripturi!");
+        return false;
+    }
+
     const allTags = document.querySelectorAll('input[type="checkbox"]');
     const selectedTags = [];
     allTags.forEach(tag => {
@@ -39,8 +45,8 @@ function addParagraphDataToFormData(formData) {
 
 function addImageDataToFormData(formData) {
     const img = document.getElementById('form_img').files[0];
-    if(!img) {
-        addErrorMessageElement("Please upload an image");
+    if (!img) {
+        addErrorMessageElement("Încărcarea imaginii este obligatorie!");
         return false;
     }
     formData.append('file', img);
@@ -49,8 +55,8 @@ function addImageDataToFormData(formData) {
 
 function addSubsectionDataToFormData(formData) {
     const title = document.getElementById('form_title').value;
-    if(!title) {
-        addErrorMessageElement("Titlul subsecțiunii nu poate fi gol");
+    if (!title) {
+        addErrorMessageElement("Titlul este obligatoriu!");
         return false;
     }
     formData.append('data', title);

@@ -30,12 +30,17 @@ function submitUpdateCourseHandler(event) {
     const courseId = new URLSearchParams(window.location.search).get('courseID');
 
     if (!title) {
-        addErrorMessageElement("The title field is required");
+        addErrorMessageElement("Titlul este obligatoriu!");
         return;
     }
 
     if(!description) {
-        addErrorMessageElement("The description field is required");
+        addErrorMessageElement("Descrierea este obligatorie!");
+        return;
+    }
+
+    if(description.includes('<script>') || title.includes('<script>')) {
+        addErrorMessageElement("Nu sunt permise scripturi!");
         return;
     }
 
@@ -99,7 +104,12 @@ function submitUpdateChapterHandler(event, chapter) {
     const parentId = new URLSearchParams(window.location.search).get('courseID');
 
     if (!title) {
-        addErrorMessageElement("The title field is required");
+        addErrorMessageElement("Titlul este obligatoriu!");
+        return;
+    }
+    
+    if(title.includes('<script>')) {
+        addErrorMessageElement("Nu sunt permise scripturi!");
         return;
     }
 
@@ -160,7 +170,12 @@ function submitAddChapterHandler(event) {
     const parentId = new URLSearchParams(window.location.search).get('courseID');
 
     if (!title) {
-        addErrorMessageElement("The title field is required");
+        addErrorMessageElement("Titlul este obligatoriu!");
+        return;
+    }
+
+    if(title.includes('<script>')) {
+        addErrorMessageElement("Nu sunt permise scripturi!!");
         return;
     }
 

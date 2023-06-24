@@ -11,12 +11,17 @@ function submitUpdateSignHandler(event, parentId) {
     const signID = new URLSearchParams(window.location.search).get('indicatorID');
 
     if (!title) {
-        addErrorMessageElement("The title field is required");
+        addErrorMessageElement("Titlul este obligatoriu!");
         return;
     }
 
     if(!description) {
-        addErrorMessageElement("The description field is required");
+        addErrorMessageElement("Descrierea este obligatorie!");
+        return;
+    }
+
+    if(description.includes('<script>') || title.includes('<script>')) {
+        addErrorMessageElement("Nu sunt permise scripturi!");
         return;
     }
 
