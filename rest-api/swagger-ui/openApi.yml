@@ -575,7 +575,7 @@ paths:
       operationId: createCourse
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/CourseRequest'
         required: true
@@ -654,7 +654,7 @@ paths:
             type: string
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/CourseRequest'
         required: true
@@ -1663,8 +1663,9 @@ components:
       properties:
         title:
           type: string
-        image_url:
+        file:
           type: string
+          format: binary
         description:
           type: string
     
@@ -1895,16 +1896,6 @@ components:
     TestScoreRequest:
       type: object
       properties:
-        testId:
-          type: number
-        score:
-          type: number
-
-    TestScore:
-      type: object
-      properties:
-        _id:
-          type: string
         testId:
           type: number
         score:
