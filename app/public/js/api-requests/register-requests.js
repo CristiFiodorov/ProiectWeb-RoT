@@ -1,4 +1,4 @@
-export function addErrorMessageAfterElement(errorMessage, elementId) {
+function addErrorMessageAfterElement(errorMessage, elementId) {
     const errorContainer = document.createElement('div');
     errorContainer.className = 'error-message-auth';
     errorContainer.textContent = errorMessage;
