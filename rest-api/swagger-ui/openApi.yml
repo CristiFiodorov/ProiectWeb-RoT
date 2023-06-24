@@ -575,7 +575,7 @@ paths:
       operationId: createCourse
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/CourseRequest'
         required: true
@@ -654,7 +654,7 @@ paths:
             type: string
       requestBody:
         content:
-          application/json:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/CourseRequest'
         required: true
@@ -801,29 +801,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-      get:
-        tags:
-          - Chapters
-        operationId: getChapterById
-        parameters:
-          - name: chapter_id
-            in: path
-            required: true
-            schema:
-              type: string
-        responses:
-          '200':
-            description: OK
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ChapterResponse'
-          '404':
-            description: Bad Request
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/ErrorResponse'
   
   /api/v1/chapters/{chapter_id}/contents:
     get:
@@ -1354,7 +1331,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportSignCategories
+      operationId: exportSignCategoriesCSV
       responses:
         '200':
           description: OK
@@ -1373,14 +1350,14 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportSignCategories
+      operationId: exportSignCategoriesJSON
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignCategoryResponse'
+                type: string
         '404':
           description: Bad Request
           content:
@@ -1392,7 +1369,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportSignsByCategoryId
+      operationId: exportSignsByCategoryIdCSV
       parameters:
         - name: category_id
           in: path
@@ -1417,7 +1394,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportSignsByCategoryId
+      operationId: exportSignsByCategoryIdJSON
       parameters:
         - name: category_id
           in: path
@@ -1430,7 +1407,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignResponse'
+                type: string
         '404':
           description: Bad Request
           content:
@@ -1442,7 +1419,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportContentsByChapterId
+      operationId: exportContentsByChapterIdCSV
       parameters:
         - name: chapter_id
           in: path
@@ -1467,7 +1444,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportContentsByChapterId
+      operationId: exportContentsByChapterIdJSON
       parameters:
         - name: chapter_id
           in: path
@@ -1480,7 +1457,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ContentResponse'
+                type: string
         '404':
           description: Bad Request
           content:
@@ -1492,7 +1469,7 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportAdvices
+      operationId: exportAdvicesCSV
       responses:
         '200':
           description: OK
@@ -1511,14 +1488,14 @@ paths:
     get:
       tags:
         - Export
-      operationId: exportAdvices
+      operationId: exportAdvicesJSON
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AdviceResponse'
+                type: string
         '404':
           description: Bad Request
           content:
@@ -1586,7 +1563,8 @@ components:
         title:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
 
     Sign:
       type: object
@@ -1610,7 +1588,8 @@ components:
         title:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
         description:
           type: string
         parentId:
@@ -1648,7 +1627,8 @@ components:
         title:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
         description:
           type: string
 
@@ -1683,8 +1663,9 @@ components:
       properties:
         title:
           type: string
-        image_url:
+        file:
           type: string
+          format: binary
         description:
           type: string
     
@@ -1740,9 +1721,11 @@ components:
         data:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
         tags:
-          array:
+          type: array
+          items:
             type: string
     
     ChapterContent:
@@ -1753,21 +1736,9 @@ components:
         parentId:
           type: string
         content:
-          array:
-            type: object
-            items:
-              $ref: '#/components/schemas/Content'
-    
-    ChapterContentRequest:
-      type: object
-      properties:
-        parentId:
-          type: string
-        content:
-          array:
-            type: object
-            items:
-              $ref: '#/components/schemas/Content'
+          type: array
+          items:
+            $ref: '#/components/schemas/Content'
     
     ChapterContentResponse:
       type: object 
@@ -1785,10 +1756,12 @@ components:
       type: object 
       properties:
         success:
-         type: boolean
-         default: false
+          type: boolean
+          default: false
         data:
           type: array
+          items:
+            type: object
           default: null
         message:
           type: string
@@ -1913,7 +1886,8 @@ components:
         question:
           type: string
         file:
-          type: file
+          type: string
+          format: binary
         answers:
           type: array
           items:
@@ -1922,28 +1896,6 @@ components:
     TestScoreRequest:
       type: object
       properties:
-        testId:
-          type: number
-        score:
-          type: number
-
-    TestScoreResponse:
-      type: object 
-      properties:
-        success:
-         type: boolean
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TestScore'
-        message:
-          type: string
-
-    TestScore:
-      type: object
-      properties:
-        _id:
-          type: string
         testId:
           type: number
         score:
